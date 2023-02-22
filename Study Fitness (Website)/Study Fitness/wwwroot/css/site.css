@@ -1,0 +1,153 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+
+/*---------------Homepage---------------*/
+.header {
+    grid-area: header;
+    background-color: #f1f1f1;
+    padding: 30px;
+    text-align: center;
+    font-size: 35px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-areas:
+        'header header header header header header'
+        'left left middle middle right right'
+}
+
+.left,
+.right {
+    padding: 10px;
+    height: 650px; 
+    background-color: aqua;
+}
+
+
+.left {
+    grid-area: left;
+}
+
+
+.middle {
+    grid-area: middle;
+    padding: 10px;
+    height: 650px;
+}
+
+.right {
+    grid-area: right;
+}
+
+.left img,
+.right img,
+.middle img {
+    width: 420px;
+    height: 350px;
+    align-content: center;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media (max-width: 600px) {
+    .grid-container {
+        grid-template-areas:
+            'header header header header header header'
+            'left left left left left left'
+            'middle middle middle middle middle middle'
+            'right right right right right right';
+    }
+}
+
+/*-----------End Homepage-----------*/
+/*-----------About page-------------*/
+div.carousel-item img {
+    width: 500px;
+    height: 450px;
+}
+
+div.about-us {
+    text-align: center;
+}
+
+p.about-text{
+    font-size: 20px;
+}
+/*-----------End About---------------*/
+/*-----------Trainer page---------------------*/
+
+.header-trainers {
+    grid-area: header;
+    background-color: #f1f1f1;
+    padding: 30px;
+    text-align: center;
+    font-size: 35px;
+}
+
+
+.grid-container-trainers {
+    display: grid;
+    grid-template-areas:
+        'header header header header header header'
+        'left left middle middle right right'
+}
+
+.left-trainer,
+.right-trainer {
+    padding: 10px;
+    height: 650px;
+    background-color: aqua;
+}
+
+.left-trainer {
+    grid-area: left;
+}
+
+.middle-trainer {
+    grid-area: middle;
+    padding: 10px;
+    height: 650px;
+    background-color: pink;
+}
+
+.right-trainer {
+    grid-area: right;
+}
+
+.left-trainer img,
+.right-trainer img,
+.middle-trainer img {
+    width: 420px;
+    height: 350px;
+    align-content: center;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media (max-width: 600px) {
+    .grid-container-trainers {
+        grid-template-areas:
+            'header header header header header header'
+            'left left left left left left'
+            'middle middle middle middle middle middle'
+            'right right right right right right';
+    }
+}
+
+/*-----------End Trainer page-----------------*/
