@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\panay\\Desktop\\semester 2\\Study Fitness\\study-fitness\\Study Fitness (Website)\\Study Fitness\\Study Fitness.csproj",
+      "projectUniqueName": "C:\\Users\\panay\\Desktop\\Study Fitness\\study-fitness\\Study Fitness (Website)\\Study Fitness\\Study Fitness.csproj",
       "projectName": "Study Fitness",
-      "projectPath": "C:\\Users\\panay\\Desktop\\semester 2\\Study Fitness\\study-fitness\\Study Fitness (Website)\\Study Fitness\\Study Fitness.csproj",
+      "projectPath": "C:\\Users\\panay\\Desktop\\Study Fitness\\study-fitness\\Study Fitness (Website)\\Study Fitness\\Study Fitness.csproj",
       "packagesPath": "C:\\Users\\panay\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\panay\\Desktop\\semester 2\\Study Fitness\\study-fitness\\Study Fitness (Website)\\Study Fitness\\obj\\",
+      "outputPath": "C:\\Users\\panay\\Desktop\\Study Fitness\\study-fitness\\Study Fitness (Website)\\Study Fitness\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\panay\\AppData\\Roaming\\NuGet\\NuGet.Config",

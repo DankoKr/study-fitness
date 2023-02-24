@@ -16,5 +16,20 @@ namespace Study_Fitness
 		{
 			InitializeComponent();
 		}
-	}
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {//Temporary until database is connected!
+			if (txbEmail.Text == "admin@email.com" && txbPassword.Text == "1234")
+			{
+                AppForm app = new AppForm();
+                Hide();
+                app.Show();
+            }
+            else
+            {
+                MessageBox.Show("Incorrect/Missing details!", "ERROR");
+            }
+        
+        }
+    }
 }

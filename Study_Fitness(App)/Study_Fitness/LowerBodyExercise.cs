@@ -8,26 +8,19 @@ namespace Study_Fitness
 {
 	public class LowerBodyExercise : Exercise
 	{
-		private bool singleLegExercise;
+		private string legs;
 
-		public LowerBodyExercise(string name, string difficulty, string equipment, int reps, double weight, bool bodyElement) : base(name, difficulty, equipment, reps, weight)
+		public LowerBodyExercise(string name, string difficulty, string equipment, int reps, double weight, string legs) : base(name, difficulty, equipment, reps, weight)
 		{
-			this.singleLegExercise = bodyElement;
+			this.legs = legs;
 		}
 
 		public override string ToString()
 		{
 			string s = "Lower Exercise - ";
-			s += $" performed with {singleLegExercise} legs; details are {base.ToString()}, ";
+			s += $" performed with {legs} legs; details are {base.ToString()}, ";
 			return s;
 		}
-
-		public void WeightOnLeg(bool leg, double amount) 
-		{
-		    
-		}
-
-
 
 	}
 }
