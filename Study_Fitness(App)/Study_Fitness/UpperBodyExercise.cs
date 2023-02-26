@@ -18,7 +18,7 @@ namespace Study_Fitness
 		public override string ToString()
 		{
 			string s = "Upper Exercise - ";
-			s += $" affects {bodyElement}; details are {base.ToString()}, ";			
+			s += $" affects the {bodyElement}. {base.ToString()}. ";			
 			return s;
 		}
 

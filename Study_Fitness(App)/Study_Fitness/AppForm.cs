@@ -23,15 +23,15 @@ namespace Study_Fitness
 		private void CreateExercisesTesting() 
 		{//Temporary until database is added!
 		    Exercise ex1 = new UpperBodyExercise("Pushup", "normal", "no", 20, 25.6, "Chest");
-            myAdministrator.AddExercise(ex1);
+            myAdministrator.AddDummyData(ex1);
 			lbAllExercises.Items.Add(ex1);
 
             Exercise ex2 = new LowerBodyExercise("Squats", "medium", "yes", 10, 65.6, "both legs");
-            myAdministrator.AddExercise(ex2);
+            myAdministrator.AddDummyData(ex2);
             lbAllExercises.Items.Add(ex2);
 
             Exercise ex3 = new ComplexExercise("Pullup", "hard", "no", 5, 70, "Back and Arm");
-            myAdministrator.AddExercise(ex3);
+            myAdministrator.AddDummyData(ex3);
             lbAllExercises.Items.Add(ex3);
         }
 
@@ -52,7 +52,7 @@ namespace Study_Fitness
         }
 
         private void btnCreateExercise_Click(object sender, EventArgs e)
-        {//Will remove if/else in the future!
+        {
             string typeEx = cmbTypeEx.Text;
             string nameEx = txbName.Text;
             string difficulty = txbDifficulty.Text;
@@ -61,25 +61,7 @@ namespace Study_Fitness
             double weight = Convert.ToDouble(txbWeight.Text);
             string specialty = txbSpecialty.Text;
 
-            if (typeEx == "Lower body")
-            {
-                Exercise ex = new LowerBodyExercise(nameEx, difficulty, equipment, numReps, weight, specialty);
-                myAdministrator.AddExercise(ex);
-            }
-            else if (typeEx == "Upper body")
-            {
-                Exercise ex = new UpperBodyExercise(nameEx, difficulty, equipment, numReps, weight, specialty);
-                myAdministrator.AddExercise(ex);
-            }
-            else if (typeEx == "Complex")
-            {
-                Exercise ex = new ComplexExercise(nameEx, difficulty, equipment, numReps, weight, specialty);
-                myAdministrator.AddExercise(ex);
-            }
-            else
-            {
-                MessageBox.Show("Incorrect data!", "ERROR");
-            }
+            myAdministrator.CreateExercise(typeEx,nameEx, difficulty, equipment, numReps, weight, specialty);
 
             ClearFields();
             ShowAllExercises();
@@ -112,6 +94,10 @@ namespace Study_Fitness
             txbRepsNum.Text = "";
             txbWeight.Text = "";
             txbSpecialty.Text = "";
+            txbManageExercise.Text = "";
+            txbNewDifficulty.Text = "";
+            txbNewReps.Text = "";
+            txbNewWeight.Text = "";
         }
 
         private void btnShowExercises_Click(object sender, EventArgs e)
@@ -128,7 +114,21 @@ namespace Study_Fitness
         {
             string exName = txbManageExercise.Text;
             myAdministrator.RemoveExercise(exName);
+            MessageBox.Show("Exercise deleted!", "Done");
             ShowExercisesToManage();
+            ClearFields();
         }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            string exName = txbManageExercise.Text;
+            int newReps = Convert.ToInt32(txbNewReps.Text);
+            double newWeight = Convert.ToDouble(txbNewWeight.Text);
+            string newDifficulty = txbNewDifficulty.Text;
+            myAdministrator.EditExercise(exName, newReps, newWeight, newDifficulty);
+            MessageBox.Show("Exercise edited!", "Done");
+            ClearFields();
+        }
+
     }
 }

@@ -33,7 +33,7 @@ namespace Study_Fitness
 
 		public virtual string ToString()
 		{
-			return $"This is an exercise data: {Name} ({Difficulty}, {Equipment}, {RepRange}, {Weight})";
+			return $"This is an exercise called {Name} (difficulty: {Difficulty}, required equipment: {Equipment}, rep range: {RepRange}, weight: {Weight})";
 		}
 
 		public void AddWeight(double weight) 
@@ -89,6 +89,21 @@ namespace Study_Fitness
                 }
             }
 		}
+
+		public void EditExerciseData(Exercise ex,int newReps, double newWeight, string difficulty) 
+		{
+			if (newReps > 0 && newWeight >0)
+			{
+				ex.RepRange = newReps;
+				ex.Weight = newWeight;
+				ex.Difficulty = difficulty;
+			}
+			else
+			{
+				MessageBox.Show("Inccorect data!", "ERROR");
+			}
+		}
+
 
 	}
 }

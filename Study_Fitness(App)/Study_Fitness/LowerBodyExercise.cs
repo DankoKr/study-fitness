@@ -18,7 +18,7 @@ namespace Study_Fitness
 		public override string ToString()
 		{
 			string s = "Lower Exercise - ";
-			s += $" performed with {legs} legs; details are {base.ToString()}, ";
+			s += $" performed with {legs}. {base.ToString()}.";
 			return s;
 		}
 
