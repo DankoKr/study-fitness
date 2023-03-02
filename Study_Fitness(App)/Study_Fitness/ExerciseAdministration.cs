@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Study_Fitness
 {
-	public class ExerciseAdministration
-	{
+	public class ExerciseAdministration 
+    {
 		List<Exercise> myExercises = new List<Exercise>();
 		public ExerciseAdministration() { }
 
@@ -83,7 +84,8 @@ namespace Study_Fitness
 			if (ExerciseExists(exName))
 			{				
 				myExercises.Remove(GetExercise(exName));
-			}
+                MessageBox.Show("Exercise deleted!", "Done");
+            }
 		}
 
 		public void EditExercise(string exName, int numReps, double amount, string difficulty) 
@@ -104,14 +106,13 @@ namespace Study_Fitness
 			foreach (Exercise ex in myExercises)
 			{
 				if (name == ex.Name)
-				{
-					return ex;
-				}
-			}
+                {
+                    return ex;
+                }
+            }
 			return null;
 		}
 
 
-
-	}
+    }
 }

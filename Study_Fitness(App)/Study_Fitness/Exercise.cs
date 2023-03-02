@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+
 
 namespace Study_Fitness
 {
-	public abstract class Exercise
-	{
+	public abstract class Exercise 
+    {
 		protected string name;
 		protected string difficulty;
 		protected string equipment;
@@ -97,7 +97,8 @@ namespace Study_Fitness
 				ex.RepRange = newReps;
 				ex.Weight = newWeight;
 				ex.Difficulty = difficulty;
-			}
+                MessageBox.Show("Exercise edited!", "Done");
+            }
 			else
 			{
 				MessageBox.Show("Inccorect data!", "ERROR");
@@ -105,5 +106,5 @@ namespace Study_Fitness
 		}
 
 
-	}
+    }
 }

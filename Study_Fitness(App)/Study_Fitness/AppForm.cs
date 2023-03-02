@@ -14,11 +14,15 @@ namespace Study_Fitness
 	public partial class AppForm : Form
 	{
 		ExerciseAdministration myAdministrator = new ExerciseAdministration();
-		public AppForm()
+        private List<IMapClient> imapClientList = new List<IMapClient>();
+        public AppForm()
 		{
 			InitializeComponent();
 			CreateExercisesTesting();
-		}
+            NotifierForm notifierform = new NotifierForm();
+            imapClientList.Add(notifierform);
+            notifierform.Show();
+        }
 
 		private void CreateExercisesTesting() 
 		{//Temporary until database is added!
@@ -61,8 +65,17 @@ namespace Study_Fitness
             double weight = Convert.ToDouble(txbWeight.Text);
             string specialty = txbSpecialty.Text;
 
-            myAdministrator.CreateExercise(typeEx,nameEx, difficulty, equipment, numReps, weight, specialty);
+            myAdministrator.CreateExercise(typeEx, nameEx, difficulty, equipment, numReps, weight, specialty);
 
+            //Experimenting with Interface-------------------------
+
+            foreach (IMapClient imapclient in imapClientList)
+            {
+                Exercise ex = new UpperBodyExercise(nameEx, difficulty, equipment, numReps, weight, specialty);
+                imapclient.ExerciseAdded(ex);
+            }
+
+            //-----------------------------------------------------
             ClearFields();
             ShowAllExercises();
         }
@@ -114,8 +127,18 @@ namespace Study_Fitness
         {
             string exName = txbManageExercise.Text;
             myAdministrator.RemoveExercise(exName);
-            MessageBox.Show("Exercise deleted!", "Done");
             ShowExercisesToManage();
+            ShowAllExercises();
+
+            ////Experimenting with Interface-------------------------
+
+            //foreach (IMapClient imapclient in imapClientList)
+            //{               
+            //    imapclient.ExerciseRemoved(myAdministrator.GetExercise(exName));
+            //}
+
+            ////-----------------------------------------------------
+
             ClearFields();
         }
 
@@ -126,9 +149,9 @@ namespace Study_Fitness
             double newWeight = Convert.ToDouble(txbNewWeight.Text);
             string newDifficulty = txbNewDifficulty.Text;
             myAdministrator.EditExercise(exName, newReps, newWeight, newDifficulty);
-            MessageBox.Show("Exercise edited!", "Done");
             ClearFields();
         }
+
 
     }
 }

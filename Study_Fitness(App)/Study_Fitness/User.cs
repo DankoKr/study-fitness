@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Study_Fitness
 {
@@ -25,7 +26,18 @@ namespace Study_Fitness
 			this.Password = password;
 		}
 
+        public void ChangePassword(User user, string newPassword)
+        {
+            if (newPassword != "")
+            {
+				user.Password = newPassword;
+                MessageBox.Show("Password changed!", "Done");
+            }
+            else
+            {
+                MessageBox.Show("Inccorect data!", "ERROR");
+            }
+        }
 
-
-	}
+    }
 }

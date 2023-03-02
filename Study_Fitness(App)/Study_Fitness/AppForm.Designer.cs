@@ -56,33 +56,34 @@
             this.txbEquipment = new System.Windows.Forms.TextBox();
             this.btnCreateExercise = new System.Windows.Forms.Button();
             this.tabManageExercises = new System.Windows.Forms.TabPage();
+            this.tabconManageExercise = new System.Windows.Forms.TabControl();
+            this.tabEditExercise = new System.Windows.Forms.TabPage();
+            this.lblNewDifficulty = new System.Windows.Forms.Label();
+            this.txbNewDifficulty = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txbNewWeight = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txbNewReps = new System.Windows.Forms.TextBox();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.tabDeleteExercise = new System.Windows.Forms.TabPage();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.lblManageExName = new System.Windows.Forms.Label();
             this.btnManageAllExercises = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
             this.txbManageExercise = new System.Windows.Forms.TextBox();
             this.lbManageExercises = new System.Windows.Forms.ListBox();
             this.tabTrainerData = new System.Windows.Forms.TabPage();
             this.lblFuture = new System.Windows.Forms.Label();
-            this.txbNewReps = new System.Windows.Forms.TextBox();
-            this.txbNewWeight = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.tabconManageExercise = new System.Windows.Forms.TabControl();
-            this.tabEditExercise = new System.Windows.Forms.TabPage();
-            this.tabDeleteExercise = new System.Windows.Forms.TabPage();
-            this.txbNewDifficulty = new System.Windows.Forms.TextBox();
-            this.lblNewDifficulty = new System.Windows.Forms.Label();
+            this.lblSelectAnExercise = new System.Windows.Forms.Label();
             this.tapconExercises.SuspendLayout();
             this.tabAllExercises.SuspendLayout();
             this.tabAddExercise.SuspendLayout();
             this.grbSpecifics.SuspendLayout();
             this.grbInformation.SuspendLayout();
             this.tabManageExercises.SuspendLayout();
-            this.tabTrainerData.SuspendLayout();
             this.tabconManageExercise.SuspendLayout();
             this.tabEditExercise.SuspendLayout();
             this.tabDeleteExercise.SuspendLayout();
+            this.tabTrainerData.SuspendLayout();
             this.SuspendLayout();
             // 
             // tapconExercises
@@ -351,6 +352,7 @@
             // 
             // tabManageExercises
             // 
+            this.tabManageExercises.Controls.Add(this.lblSelectAnExercise);
             this.tabManageExercises.Controls.Add(this.tabconManageExercise);
             this.tabManageExercises.Controls.Add(this.lblManageExName);
             this.tabManageExercises.Controls.Add(this.btnManageAllExercises);
@@ -363,6 +365,112 @@
             this.tabManageExercises.TabIndex = 2;
             this.tabManageExercises.Text = "Manage Exercises";
             this.tabManageExercises.UseVisualStyleBackColor = true;
+            // 
+            // tabconManageExercise
+            // 
+            this.tabconManageExercise.Controls.Add(this.tabEditExercise);
+            this.tabconManageExercise.Controls.Add(this.tabDeleteExercise);
+            this.tabconManageExercise.Location = new System.Drawing.Point(469, 118);
+            this.tabconManageExercise.Name = "tabconManageExercise";
+            this.tabconManageExercise.SelectedIndex = 0;
+            this.tabconManageExercise.Size = new System.Drawing.Size(200, 217);
+            this.tabconManageExercise.TabIndex = 11;
+            // 
+            // tabEditExercise
+            // 
+            this.tabEditExercise.Controls.Add(this.lblNewDifficulty);
+            this.tabEditExercise.Controls.Add(this.txbNewDifficulty);
+            this.tabEditExercise.Controls.Add(this.label1);
+            this.tabEditExercise.Controls.Add(this.txbNewWeight);
+            this.tabEditExercise.Controls.Add(this.label2);
+            this.tabEditExercise.Controls.Add(this.txbNewReps);
+            this.tabEditExercise.Controls.Add(this.btnEdit);
+            this.tabEditExercise.Location = new System.Drawing.Point(4, 25);
+            this.tabEditExercise.Name = "tabEditExercise";
+            this.tabEditExercise.Padding = new System.Windows.Forms.Padding(3);
+            this.tabEditExercise.Size = new System.Drawing.Size(192, 188);
+            this.tabEditExercise.TabIndex = 0;
+            this.tabEditExercise.Text = "Edit Ex";
+            this.tabEditExercise.UseVisualStyleBackColor = true;
+            // 
+            // lblNewDifficulty
+            // 
+            this.lblNewDifficulty.AutoSize = true;
+            this.lblNewDifficulty.Location = new System.Drawing.Point(10, 97);
+            this.lblNewDifficulty.Name = "lblNewDifficulty";
+            this.lblNewDifficulty.Size = new System.Drawing.Size(59, 16);
+            this.lblNewDifficulty.TabIndex = 12;
+            this.lblNewDifficulty.Text = "Difficulty:";
+            // 
+            // txbNewDifficulty
+            // 
+            this.txbNewDifficulty.Location = new System.Drawing.Point(86, 94);
+            this.txbNewDifficulty.Name = "txbNewDifficulty";
+            this.txbNewDifficulty.Size = new System.Drawing.Size(100, 22);
+            this.txbNewDifficulty.TabIndex = 11;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(26, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(43, 16);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Reps:";
+            // 
+            // txbNewWeight
+            // 
+            this.txbNewWeight.Location = new System.Drawing.Point(86, 53);
+            this.txbNewWeight.Name = "txbNewWeight";
+            this.txbNewWeight.Size = new System.Drawing.Size(100, 22);
+            this.txbNewWeight.TabIndex = 8;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(17, 59);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(52, 16);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Weight:";
+            // 
+            // txbNewReps
+            // 
+            this.txbNewReps.Location = new System.Drawing.Point(86, 19);
+            this.txbNewReps.Name = "txbNewReps";
+            this.txbNewReps.Size = new System.Drawing.Size(100, 22);
+            this.txbNewReps.TabIndex = 7;
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.Location = new System.Drawing.Point(61, 139);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(75, 43);
+            this.btnEdit.TabIndex = 3;
+            this.btnEdit.Text = "Edit";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // tabDeleteExercise
+            // 
+            this.tabDeleteExercise.Controls.Add(this.btnDelete);
+            this.tabDeleteExercise.Location = new System.Drawing.Point(4, 25);
+            this.tabDeleteExercise.Name = "tabDeleteExercise";
+            this.tabDeleteExercise.Padding = new System.Windows.Forms.Padding(3);
+            this.tabDeleteExercise.Size = new System.Drawing.Size(192, 188);
+            this.tabDeleteExercise.TabIndex = 1;
+            this.tabDeleteExercise.Text = "Delete Ex";
+            this.tabDeleteExercise.UseVisualStyleBackColor = true;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(60, 67);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 43);
+            this.btnDelete.TabIndex = 4;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // lblManageExName
             // 
@@ -382,26 +490,6 @@
             this.btnManageAllExercises.Text = "Show all exercises";
             this.btnManageAllExercises.UseVisualStyleBackColor = true;
             this.btnManageAllExercises.Click += new System.EventHandler(this.btnManageAllExercises_Click);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Location = new System.Drawing.Point(60, 67);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 43);
-            this.btnDelete.TabIndex = 4;
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Location = new System.Drawing.Point(61, 139);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(75, 43);
-            this.btnEdit.TabIndex = 3;
-            this.btnEdit.Text = "Edit";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // txbManageExercise
             // 
@@ -441,91 +529,14 @@
             this.lblFuture.TabIndex = 0;
             this.lblFuture.Text = "FOR THE FUTURE";
             // 
-            // txbNewReps
+            // lblSelectAnExercise
             // 
-            this.txbNewReps.Location = new System.Drawing.Point(86, 19);
-            this.txbNewReps.Name = "txbNewReps";
-            this.txbNewReps.Size = new System.Drawing.Size(100, 22);
-            this.txbNewReps.TabIndex = 7;
-            // 
-            // txbNewWeight
-            // 
-            this.txbNewWeight.Location = new System.Drawing.Point(86, 53);
-            this.txbNewWeight.Name = "txbNewWeight";
-            this.txbNewWeight.Size = new System.Drawing.Size(100, 22);
-            this.txbNewWeight.TabIndex = 8;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(26, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 16);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "Reps:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(17, 59);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(52, 16);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "Weight:";
-            // 
-            // tabconManageExercise
-            // 
-            this.tabconManageExercise.Controls.Add(this.tabEditExercise);
-            this.tabconManageExercise.Controls.Add(this.tabDeleteExercise);
-            this.tabconManageExercise.Location = new System.Drawing.Point(469, 118);
-            this.tabconManageExercise.Name = "tabconManageExercise";
-            this.tabconManageExercise.SelectedIndex = 0;
-            this.tabconManageExercise.Size = new System.Drawing.Size(200, 217);
-            this.tabconManageExercise.TabIndex = 11;
-            // 
-            // tabEditExercise
-            // 
-            this.tabEditExercise.Controls.Add(this.lblNewDifficulty);
-            this.tabEditExercise.Controls.Add(this.txbNewDifficulty);
-            this.tabEditExercise.Controls.Add(this.label1);
-            this.tabEditExercise.Controls.Add(this.txbNewWeight);
-            this.tabEditExercise.Controls.Add(this.label2);
-            this.tabEditExercise.Controls.Add(this.txbNewReps);
-            this.tabEditExercise.Controls.Add(this.btnEdit);
-            this.tabEditExercise.Location = new System.Drawing.Point(4, 25);
-            this.tabEditExercise.Name = "tabEditExercise";
-            this.tabEditExercise.Padding = new System.Windows.Forms.Padding(3);
-            this.tabEditExercise.Size = new System.Drawing.Size(192, 188);
-            this.tabEditExercise.TabIndex = 0;
-            this.tabEditExercise.Text = "Edit Ex";
-            this.tabEditExercise.UseVisualStyleBackColor = true;
-            // 
-            // tabDeleteExercise
-            // 
-            this.tabDeleteExercise.Controls.Add(this.btnDelete);
-            this.tabDeleteExercise.Location = new System.Drawing.Point(4, 25);
-            this.tabDeleteExercise.Name = "tabDeleteExercise";
-            this.tabDeleteExercise.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDeleteExercise.Size = new System.Drawing.Size(192, 188);
-            this.tabDeleteExercise.TabIndex = 1;
-            this.tabDeleteExercise.Text = "Delete Ex";
-            this.tabDeleteExercise.UseVisualStyleBackColor = true;
-            // 
-            // txbNewDifficulty
-            // 
-            this.txbNewDifficulty.Location = new System.Drawing.Point(86, 94);
-            this.txbNewDifficulty.Name = "txbNewDifficulty";
-            this.txbNewDifficulty.Size = new System.Drawing.Size(100, 22);
-            this.txbNewDifficulty.TabIndex = 11;
-            // 
-            // lblNewDifficulty
-            // 
-            this.lblNewDifficulty.AutoSize = true;
-            this.lblNewDifficulty.Location = new System.Drawing.Point(10, 97);
-            this.lblNewDifficulty.Name = "lblNewDifficulty";
-            this.lblNewDifficulty.Size = new System.Drawing.Size(59, 16);
-            this.lblNewDifficulty.TabIndex = 12;
-            this.lblNewDifficulty.Text = "Difficulty:";
+            this.lblSelectAnExercise.AutoSize = true;
+            this.lblSelectAnExercise.Location = new System.Drawing.Point(483, 19);
+            this.lblSelectAnExercise.Name = "lblSelectAnExercise";
+            this.lblSelectAnExercise.Size = new System.Drawing.Size(219, 16);
+            this.lblSelectAnExercise.TabIndex = 12;
+            this.lblSelectAnExercise.Text = "Select an exercise and edit/delete it";
             // 
             // AppForm
             // 
@@ -545,12 +556,12 @@
             this.grbInformation.PerformLayout();
             this.tabManageExercises.ResumeLayout(false);
             this.tabManageExercises.PerformLayout();
-            this.tabTrainerData.ResumeLayout(false);
-            this.tabTrainerData.PerformLayout();
             this.tabconManageExercise.ResumeLayout(false);
             this.tabEditExercise.ResumeLayout(false);
             this.tabEditExercise.PerformLayout();
             this.tabDeleteExercise.ResumeLayout(false);
+            this.tabTrainerData.ResumeLayout(false);
+            this.tabTrainerData.PerformLayout();
             this.ResumeLayout(false);
 
 		}
@@ -602,5 +613,6 @@
         private System.Windows.Forms.TabPage tabDeleteExercise;
         private System.Windows.Forms.Label lblNewDifficulty;
         private System.Windows.Forms.TextBox txbNewDifficulty;
+        private System.Windows.Forms.Label lblSelectAnExercise;
     }
 }
