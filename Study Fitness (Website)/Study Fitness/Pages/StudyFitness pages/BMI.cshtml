@@ -4,20 +4,51 @@
 	ViewData["Title"] = "BMI";
 }
 
-<h1>BMI Calculator</h1>
+<h1 class="Bmi-h1">BMI Calculator</h1>
 
-@if(Model.hasData)
-{
-	<p>Your BMI is @Model.result !</p>
-}
+<div>
+    <p class="BMI-Message">@Model.Message</p>
+</div>
 
+<form class ="BMI" method="post">
+    <fieldset>
+        <legend class="Bmi-legend">Please fill in the form</legend>
 
-<form method="post">
-	<input type="text" id="sex" name="sex" placeholder="your sex"/>
-	<input type="text" id="age" name="age" placeholder="your age" />
-	<input type="text" id="height" name="height" placeholder="your height" />
-	<input type="text" id="weight" name="weight" placeholder="your weight"/><br />
-
-	<br />
-	<input type="submit" value="Submit" />
+        <div>
+            <label asp-for="calculator.Sex">Choose a gender:</label>
+            <span asp-validation-for="calculator.Sex"></span>
+            <select asp-for="calculator.Sex">
+                <option value="Male">male</option>
+                <option value="Female">female</option>
+                <option value="Unicorn">unicorn</option>
+            </select>
+        </div>
+        <div>
+            <label asp-for="calculator.Age">Age:</label>
+            <span asp-validation-for="calculator.Age"></span>
+            <input asp-for="calculator.Age" />
+        </div>
+        <div>
+            <label asp-for="calculator.Height">Height:</label>
+            <span asp-validation-for="calculator.Height"></span>
+            <input asp-for="calculator.Height" />
+        </div>
+        <div>
+            <label asp-for="calculator.Weight">Weight:</label>
+            <span asp-validation-for="calculator.Weight"></span>
+            <input asp-for="calculator.Weight" />
+        </div>
+        <div>
+            <label class="Bmi-label">&nbsp;</label>
+            <input type="submit" value="Submit" class="submit" />
+        </div>
+        <div>
+            <button type="reset" value="Cancel">Cancel</button>
+        </div>
+    </fieldset>
 </form>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    }
