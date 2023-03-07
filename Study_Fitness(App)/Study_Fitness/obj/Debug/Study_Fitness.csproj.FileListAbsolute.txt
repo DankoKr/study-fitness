@@ -21,4 +21,3 @@ C:\Users\panay\Desktop\Study Fitness\study-fitness\Study_Fitness(App)\Study_Fitn
 C:\Users\panay\Desktop\Study Fitness\study-fitness\Study_Fitness(App)\Study_Fitness\obj\Debug\Study_Fitness.csproj.CoreCompileInputs.cache
 C:\Users\panay\Desktop\Study Fitness\study-fitness\Study_Fitness(App)\Study_Fitness\obj\Debug\Study_Fitness.exe
 C:\Users\panay\Desktop\Study Fitness\study-fitness\Study_Fitness(App)\Study_Fitness\obj\Debug\Study_Fitness.pdb
-C:\Users\panay\Desktop\Study Fitness\study-fitness\Study_Fitness(App)\Study_Fitness\obj\Debug\Study_Fitness.NotifierForm.resources

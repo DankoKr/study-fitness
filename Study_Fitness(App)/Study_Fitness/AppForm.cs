@@ -14,14 +14,10 @@ namespace Study_Fitness
 	public partial class AppForm : Form
 	{
 		ExerciseAdministration myAdministrator = new ExerciseAdministration();
-        private List<IMapClient> imapClientList = new List<IMapClient>();
         public AppForm()
 		{
 			InitializeComponent();
 			CreateExercisesTesting();
-            NotifierForm notifierform = new NotifierForm();
-            imapClientList.Add(notifierform);
-            notifierform.Show();
         }
 
 		private void CreateExercisesTesting() 
@@ -67,15 +63,6 @@ namespace Study_Fitness
 
             myAdministrator.CreateExercise(typeEx, nameEx, difficulty, equipment, numReps, weight, specialty);
 
-            //Experimenting with Interface-------------------------
-
-            foreach (IMapClient imapclient in imapClientList)
-            {
-                Exercise ex = new UpperBodyExercise(nameEx, difficulty, equipment, numReps, weight, specialty);
-                imapclient.ExerciseAdded(ex);
-            }
-
-            //-----------------------------------------------------
             ClearFields();
             ShowAllExercises();
         }
@@ -129,15 +116,6 @@ namespace Study_Fitness
             myAdministrator.RemoveExercise(exName);
             ShowExercisesToManage();
             ShowAllExercises();
-
-            ////Experimenting with Interface-------------------------
-
-            //foreach (IMapClient imapclient in imapClientList)
-            //{               
-            //    imapclient.ExerciseRemoved(myAdministrator.GetExercise(exName));
-            //}
-
-            ////-----------------------------------------------------
 
             ClearFields();
         }
