@@ -53,6 +53,7 @@
             tabManageExercises = new TabPage();
             tabconManageExercise = new TabControl();
             tabEditExercise = new TabPage();
+            cmbNewDifficulty = new ComboBox();
             btnEdit = new Button();
             txbNewWeight = new TextBox();
             txbNewReps = new TextBox();
@@ -61,7 +62,10 @@
             btnManageAllExercises = new Button();
             lbManageExercises = new ListBox();
             txbManageExercise = new TextBox();
-            cmbNewDifficulty = new ComboBox();
+            tabCompareExercises = new TabPage();
+            lbTest = new ListBox();
+            btnCompare = new Button();
+            lblDescriptionCompare = new Label();
             tabconExercises.SuspendLayout();
             tabAllExercises.SuspendLayout();
             tabAddExercise.SuspendLayout();
@@ -71,6 +75,7 @@
             tabconManageExercise.SuspendLayout();
             tabEditExercise.SuspendLayout();
             tabDeletExercise.SuspendLayout();
+            tabCompareExercises.SuspendLayout();
             SuspendLayout();
             // 
             // tabconExercises
@@ -78,6 +83,7 @@
             tabconExercises.Controls.Add(tabAllExercises);
             tabconExercises.Controls.Add(tabAddExercise);
             tabconExercises.Controls.Add(tabManageExercises);
+            tabconExercises.Controls.Add(tabCompareExercises);
             tabconExercises.Location = new Point(12, 12);
             tabconExercises.Name = "tabconExercises";
             tabconExercises.SelectedIndex = 0;
@@ -328,6 +334,15 @@
             tabEditExercise.Text = "Edit";
             tabEditExercise.UseVisualStyleBackColor = true;
             // 
+            // cmbNewDifficulty
+            // 
+            cmbNewDifficulty.FormattingEnabled = true;
+            cmbNewDifficulty.Items.AddRange(new object[] { "Beginner", "Intermediate", "Advanced", "Athlete" });
+            cmbNewDifficulty.Location = new Point(58, 103);
+            cmbNewDifficulty.Name = "cmbNewDifficulty";
+            cmbNewDifficulty.Size = new Size(125, 28);
+            cmbNewDifficulty.TabIndex = 4;
+            // 
             // btnEdit
             // 
             btnEdit.Location = new Point(75, 142);
@@ -402,14 +417,47 @@
             txbManageExercise.Size = new Size(125, 27);
             txbManageExercise.TabIndex = 0;
             // 
-            // cmbNewDifficulty
+            // tabCompareExercises
             // 
-            cmbNewDifficulty.FormattingEnabled = true;
-            cmbNewDifficulty.Items.AddRange(new object[] { "Beginner", "Intermediate", "Advanced", "Athlete" });
-            cmbNewDifficulty.Location = new Point(58, 103);
-            cmbNewDifficulty.Name = "cmbNewDifficulty";
-            cmbNewDifficulty.Size = new Size(125, 28);
-            cmbNewDifficulty.TabIndex = 4;
+            tabCompareExercises.Controls.Add(lblDescriptionCompare);
+            tabCompareExercises.Controls.Add(lbTest);
+            tabCompareExercises.Controls.Add(btnCompare);
+            tabCompareExercises.Location = new Point(4, 29);
+            tabCompareExercises.Name = "tabCompareExercises";
+            tabCompareExercises.Padding = new Padding(3);
+            tabCompareExercises.Size = new Size(768, 393);
+            tabCompareExercises.TabIndex = 3;
+            tabCompareExercises.Text = "Compare";
+            tabCompareExercises.UseVisualStyleBackColor = true;
+            // 
+            // lbTest
+            // 
+            lbTest.DisplayMember = "Name";
+            lbTest.FormattingEnabled = true;
+            lbTest.ItemHeight = 20;
+            lbTest.Location = new Point(265, 124);
+            lbTest.Name = "lbTest";
+            lbTest.Size = new Size(242, 144);
+            lbTest.TabIndex = 1;
+            // 
+            // btnCompare
+            // 
+            btnCompare.Location = new Point(340, 274);
+            btnCompare.Name = "btnCompare";
+            btnCompare.Size = new Size(94, 29);
+            btnCompare.TabIndex = 0;
+            btnCompare.Text = "Compare";
+            btnCompare.UseVisualStyleBackColor = true;
+            btnCompare.Click += btnCompare_Click;
+            // 
+            // lblDescriptionCompare
+            // 
+            lblDescriptionCompare.AutoSize = true;
+            lblDescriptionCompare.Location = new Point(290, 61);
+            lblDescriptionCompare.Name = "lblDescriptionCompare";
+            lblDescriptionCompare.Size = new Size(182, 20);
+            lblDescriptionCompare.TabIndex = 2;
+            lblDescriptionCompare.Text = "Exercises based on weight";
             // 
             // AppForm
             // 
@@ -433,6 +481,8 @@
             tabEditExercise.ResumeLayout(false);
             tabEditExercise.PerformLayout();
             tabDeletExercise.ResumeLayout(false);
+            tabCompareExercises.ResumeLayout(false);
+            tabCompareExercises.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -472,5 +522,9 @@
         private ListBox lbManageExercises;
         private TextBox txbManageExercise;
         private ComboBox cmbNewDifficulty;
+        private TabPage tabCompareExercises;
+        private Button btnCompare;
+        private ListBox lbTest;
+        private Label lblDescriptionCompare;
     }
 }

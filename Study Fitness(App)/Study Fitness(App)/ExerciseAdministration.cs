@@ -110,5 +110,12 @@ namespace Study_Fitness_App_
             }
             return null;
         }
+
+        public List<Exercise> GetExercisesList() 
+        {
+            return this.myExercises;
+        }
+
+
     }
 }

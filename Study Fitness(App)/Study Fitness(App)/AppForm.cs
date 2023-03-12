@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace Study_Fitness_App_
 {
@@ -127,5 +128,17 @@ namespace Study_Fitness_App_
             myAdministrator.EditExercise(exName, newReps, newWeight, newDifficulty);
             ClearFields();
         }
+
+        private void btnCompare_Click(object sender, EventArgs e)
+        {
+            (myAdministrator.GetExercisesList()).Sort();
+            lbTest.Items.Clear();
+
+            foreach (Exercise ex in myAdministrator.GetExercises())
+            {
+                lbTest.Items.Add(ex);
+            }
+        }
+
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Study_Fitness_App_
 {
-    public abstract class Exercise
+    public abstract class Exercise : IComparable<Exercise>
     {
         protected string name;
         protected string difficulty;
@@ -102,5 +102,16 @@ namespace Study_Fitness_App_
                 MessageBox.Show("Inccorect data!", "ERROR");
             }
         }
+
+        public int CompareTo(Exercise compareExercise) 
+        {
+            if (compareExercise.Weight > this.Weight)
+                return -1;
+            else if (compareExercise.Weight < this.Weight)
+                return 1;
+
+            return String.Compare(this.Name, compareExercise.Name);
+        }
+
     }
 }
