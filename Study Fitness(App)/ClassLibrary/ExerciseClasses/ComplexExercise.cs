@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Study_Fitness_App_
+namespace ClassLibrary.ExerciseClasses
 {
     public class ComplexExercise : Exercise
     {

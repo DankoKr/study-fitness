@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Study_Fitness_App_;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Study_Fitness_App_
+namespace ClassLibrary.ExerciseClasses
 {
     public class ExerciseAdministration
     {
@@ -28,10 +29,10 @@ namespace Study_Fitness_App_
                 Exercise ex = new ComplexExercise(nameEx, difficulty, equipment, numReps, weight, specialty);
                 AddExercise(ex);
             }
-            else
-            {
-                MessageBox.Show("Incorrect data!", "ERROR");
-            }
+            //else
+            //{
+            //    MessageBox.Show("Incorrect data!", "ERROR");
+            //}
         }
 
         public void AddExercise(Exercise newEx)
@@ -39,12 +40,12 @@ namespace Study_Fitness_App_
             if (ValidateExerciseIsUnique(newEx.Name))
             {
                 myExercises.Add(newEx);
-                MessageBox.Show("Exercise created!", "Done");
+                //MessageBox.Show("Exercise created!", "Done");
             }
-            else
-            {
-                MessageBox.Show("Dublication of exercise name!", "ERROR");
-            }
+            //else
+            //{
+            //    MessageBox.Show("Dublication of exercise name!", "ERROR");
+            //}
         }
 
         public void AddDummyData(Exercise ex)
@@ -68,7 +69,7 @@ namespace Study_Fitness_App_
         {
             if (ValidateExerciseIsUnique(exName))
             {
-                MessageBox.Show("Exercise does not exist!", "ERROR");
+                //MessageBox.Show("Exercise does not exist!", "ERROR");
                 return false;
             }
             else
@@ -82,7 +83,7 @@ namespace Study_Fitness_App_
             if (ExerciseExists(exName))
             {
                 myExercises.Remove(GetExercise(exName));
-                MessageBox.Show("Exercise deleted!", "Done");
+                //MessageBox.Show("Exercise deleted!", "Done");
             }
         }
 
@@ -111,9 +112,9 @@ namespace Study_Fitness_App_
             return null;
         }
 
-        public List<Exercise> GetExercisesList() 
+        public List<Exercise> GetExercisesList()
         {
-            return this.myExercises;
+            return myExercises;
         }
 
         public void EditExerciseData(Exercise ex, int newReps, double newWeight, string difficulty)
@@ -123,12 +124,12 @@ namespace Study_Fitness_App_
                 ex.RepRange = newReps;
                 ex.Weight = newWeight;
                 ex.Difficulty = difficulty;
-                MessageBox.Show("Exercise edited!", "Done");
+                //MessageBox.Show("Exercise edited!", "Done");
             }
-            else
-            {
-                MessageBox.Show("Inccorect data!", "ERROR");
-            }
+            //else
+            //{
+            //    MessageBox.Show("Inccorect data!", "ERROR");
+            //}
         }
 
     }

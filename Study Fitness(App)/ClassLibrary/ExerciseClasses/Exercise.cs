@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Study_Fitness_App_
+namespace ClassLibrary.ExerciseClasses
 {
     public abstract class Exercise : IComparable<Exercise>
     {
@@ -17,11 +17,11 @@ namespace Study_Fitness_App_
 
         public Exercise(string name, string difficulty, string equipment, int reps, double weight)
         {
-            this.Name = name;
-            this.Difficulty = difficulty;
-            this.Equipment = equipment;
-            this.RepRange = reps;
-            this.Weight = weight;
+            Name = name;
+            Difficulty = difficulty;
+            Equipment = equipment;
+            RepRange = reps;
+            Weight = weight;
         }
 
         public virtual string ToString()
@@ -29,14 +29,14 @@ namespace Study_Fitness_App_
             return $"This is an exercise called {Name} (difficulty: {Difficulty}, required equipment: {Equipment}, rep range: {RepRange}, weight: {Weight})";
         }
 
-        public int CompareTo(Exercise compareExercise) 
+        public int CompareTo(Exercise compareExercise)
         {
-            if (compareExercise.Weight > this.Weight)
+            if (compareExercise.Weight > Weight)
                 return -1;
-            else if (compareExercise.Weight < this.Weight)
+            else if (compareExercise.Weight < Weight)
                 return 1;
 
-            return String.Compare(this.Name, compareExercise.Name);
+            return string.Compare(Name, compareExercise.Name);
         }
 
     }

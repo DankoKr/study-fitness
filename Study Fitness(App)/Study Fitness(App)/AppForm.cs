@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ClassLibrary.ExerciseClasses;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace Study_Fitness_App_
