@@ -90,7 +90,7 @@ namespace Study_Fitness_App_
         {
             Exercise selectedEx = GetExercise(exName);
             myExercises.Remove(GetExercise(exName));
-            selectedEx.EditExerciseData(selectedEx, numReps, amount, difficulty);
+            EditExerciseData(selectedEx, numReps, amount, difficulty);
             myExercises.Add(selectedEx);
         }
 
@@ -116,6 +116,20 @@ namespace Study_Fitness_App_
             return this.myExercises;
         }
 
+        public void EditExerciseData(Exercise ex, int newReps, double newWeight, string difficulty)
+        {
+            if (newReps > 0 && newWeight > 0)
+            {
+                ex.RepRange = newReps;
+                ex.Weight = newWeight;
+                ex.Difficulty = difficulty;
+                MessageBox.Show("Exercise edited!", "Done");
+            }
+            else
+            {
+                MessageBox.Show("Inccorect data!", "ERROR");
+            }
+        }
 
     }
 }

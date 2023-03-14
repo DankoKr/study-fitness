@@ -8,9 +8,6 @@ namespace Study_Fitness_App_
 {
     public class User
     {
-        private string firstName;
-        private string username;
-        private string password;
 
         public string FirstName { get; private set; }
 
