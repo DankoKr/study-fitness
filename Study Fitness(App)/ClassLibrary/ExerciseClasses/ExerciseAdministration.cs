@@ -7,32 +7,48 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary.ExerciseClasses
 {
-    public class ExerciseAdministration
+    public class ExerciseAdministration : IAdministration
     {
         List<Exercise> myExercises = new List<Exercise>();
         public ExerciseAdministration() { }
 
         public void CreateExercise(string typeEx, string nameEx, string difficulty, string equipment, int numReps, double weight, string specialty)
         {
-            if (typeEx == "Lower body")
+            if (typeEx == "Chest")
             {
-                Exercise ex = new LowerBodyExercise(nameEx, difficulty, equipment, numReps, weight, specialty);
+                Exercise ex = new ChestExercise(nameEx, difficulty, equipment, numReps, weight, specialty);
                 AddExercise(ex);
             }
-            else if (typeEx == "Upper body")
+            else if (typeEx == "Arm")
             {
-                Exercise ex = new UpperBodyExercise(nameEx, difficulty, equipment, numReps, weight, specialty);
+                Exercise ex = new ArmExercise(nameEx, difficulty, equipment, numReps, weight, specialty);
                 AddExercise(ex);
             }
-            else if (typeEx == "Complex")
+            else if (typeEx == "Back")
             {
-                Exercise ex = new ComplexExercise(nameEx, difficulty, equipment, numReps, weight, specialty);
+                Exercise ex = new BackExercise(nameEx, difficulty, equipment, numReps, weight, specialty);
                 AddExercise(ex);
             }
-            //else
-            //{
-            //    MessageBox.Show("Incorrect data!", "ERROR");
-            //}
+            else if (typeEx == "Core")
+            {
+                Exercise ex = new CoreExercise(nameEx, difficulty, equipment, numReps, weight);
+                AddExercise(ex);
+            }
+            else if (typeEx == "Legs")
+            {
+                Exercise ex = new LegsExercise(nameEx, difficulty, equipment, numReps, weight, specialty);
+                AddExercise(ex);
+            }
+            else if (typeEx == "Neck")
+            {
+                Exercise ex = new NeckExercise(nameEx, difficulty, equipment, numReps, weight);
+                AddExercise(ex);
+            }
+            else if (typeEx == "Shoulder")
+            {
+                Exercise ex = new ShoulderExercise(nameEx, difficulty, equipment, numReps, weight, specialty);
+                AddExercise(ex);
+            }
         }
 
         public void AddExercise(Exercise newEx)
@@ -40,12 +56,7 @@ namespace ClassLibrary.ExerciseClasses
             if (ValidateExerciseIsUnique(newEx.Name))
             {
                 myExercises.Add(newEx);
-                //MessageBox.Show("Exercise created!", "Done");
             }
-            //else
-            //{
-            //    MessageBox.Show("Dublication of exercise name!", "ERROR");
-            //}
         }
 
         public void AddDummyData(Exercise ex)
@@ -69,7 +80,6 @@ namespace ClassLibrary.ExerciseClasses
         {
             if (ValidateExerciseIsUnique(exName))
             {
-                //MessageBox.Show("Exercise does not exist!", "ERROR");
                 return false;
             }
             else
@@ -83,7 +93,6 @@ namespace ClassLibrary.ExerciseClasses
             if (ExerciseExists(exName))
             {
                 myExercises.Remove(GetExercise(exName));
-                //MessageBox.Show("Exercise deleted!", "Done");
             }
         }
 
@@ -124,12 +133,7 @@ namespace ClassLibrary.ExerciseClasses
                 ex.RepRange = newReps;
                 ex.Weight = newWeight;
                 ex.Difficulty = difficulty;
-                //MessageBox.Show("Exercise edited!", "Done");
             }
-            //else
-            //{
-            //    MessageBox.Show("Inccorect data!", "ERROR");
-            //}
         }
 
     }

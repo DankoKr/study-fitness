@@ -22,15 +22,15 @@ namespace Study_Fitness_App_
         }
         private void CreateExercisesTesting()
         {//Temporary until database is added!
-            Exercise ex1 = new UpperBodyExercise("Pushup", "normal", "no", 20, 25.6, "Chest");
+            Exercise ex1 = new ChestExercise("Pushup", "normal", "no", 20, 25.6, "all sectors");
             myAdministrator.AddDummyData(ex1);
             lbAllExercises.Items.Add(ex1);
 
-            Exercise ex2 = new LowerBodyExercise("Squats", "medium", "yes", 10, 65.6, "both legs");
+            Exercise ex2 = new LegsExercise("Squats", "medium", "yes", 10, 65.6, "both legs");
             myAdministrator.AddDummyData(ex2);
             lbAllExercises.Items.Add(ex2);
 
-            Exercise ex3 = new ComplexExercise("Pullup", "hard", "no", 5, 70, "Back and Arm");
+            Exercise ex3 = new ShoulderExercise("Arnoldpress", "hard", "no", 5, 70, "upper head");
             myAdministrator.AddDummyData(ex3);
             lbAllExercises.Items.Add(ex3);
         }

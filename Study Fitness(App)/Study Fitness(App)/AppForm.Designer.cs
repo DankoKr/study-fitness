@@ -63,9 +63,9 @@
             lbManageExercises = new ListBox();
             txbManageExercise = new TextBox();
             tabCompareExercises = new TabPage();
+            lblDescriptionCompare = new Label();
             lbTest = new ListBox();
             btnCompare = new Button();
-            lblDescriptionCompare = new Label();
             tabconExercises.SuspendLayout();
             tabAllExercises.SuspendLayout();
             tabAddExercise.SuspendLayout();
@@ -290,7 +290,7 @@
             // cmbTypeEx
             // 
             cmbTypeEx.FormattingEnabled = true;
-            cmbTypeEx.Items.AddRange(new object[] { "Upper body", "Lower body", "Complex" });
+            cmbTypeEx.Items.AddRange(new object[] { "Arm", "Back", "Chest", "Core", "Legs", "Neck", "Shoulder" });
             cmbTypeEx.Location = new Point(90, 38);
             cmbTypeEx.Name = "cmbTypeEx";
             cmbTypeEx.Size = new Size(151, 28);
@@ -430,6 +430,15 @@
             tabCompareExercises.Text = "Compare";
             tabCompareExercises.UseVisualStyleBackColor = true;
             // 
+            // lblDescriptionCompare
+            // 
+            lblDescriptionCompare.AutoSize = true;
+            lblDescriptionCompare.Location = new Point(290, 61);
+            lblDescriptionCompare.Name = "lblDescriptionCompare";
+            lblDescriptionCompare.Size = new Size(182, 20);
+            lblDescriptionCompare.TabIndex = 2;
+            lblDescriptionCompare.Text = "Exercises based on weight";
+            // 
             // lbTest
             // 
             lbTest.DisplayMember = "Name";
@@ -449,15 +458,6 @@
             btnCompare.Text = "Compare";
             btnCompare.UseVisualStyleBackColor = true;
             btnCompare.Click += btnCompare_Click;
-            // 
-            // lblDescriptionCompare
-            // 
-            lblDescriptionCompare.AutoSize = true;
-            lblDescriptionCompare.Location = new Point(290, 61);
-            lblDescriptionCompare.Name = "lblDescriptionCompare";
-            lblDescriptionCompare.Size = new Size(182, 20);
-            lblDescriptionCompare.TabIndex = 2;
-            lblDescriptionCompare.Text = "Exercises based on weight";
             // 
             // AppForm
             // 
