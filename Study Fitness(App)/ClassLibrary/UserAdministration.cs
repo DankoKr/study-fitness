@@ -15,7 +15,6 @@ namespace Study_Fitness_App_
             if (ValidateUserIsUnique(user.Username))
             {
                 myUsers.Add(user);
-                //MessageBox.Show("Account created!", "Done");
             }
         }
 
@@ -27,10 +26,6 @@ namespace Study_Fitness_App_
                 {
                     myUsers.Remove(user);
                 }
-                //else
-                //{
-                //    MessageBox.Show("No such account!", "ERROR");
-                //}
             }
         }
 
@@ -71,12 +66,7 @@ namespace Study_Fitness_App_
             if (newPassword != "")
             {
                 user.Password = newPassword;
-                //MessageBox.Show("Password changed!", "Done");
             }
-            //else
-            //{
-            //    MessageBox.Show("Inccorect data!", "ERROR");
-            //}
         }
 
     }

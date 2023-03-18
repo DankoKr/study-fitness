@@ -8,6 +8,11 @@ namespace ClassLibrary.ExerciseClasses
 {
     public abstract class Exercise : IComparable<Exercise>
     {
+        private string name;
+        private string difficulty;
+        private string equipment;
+        private int repRange;
+        private double weight;
 
         public string Name { get; set; }
         public string Difficulty { get; set; }
