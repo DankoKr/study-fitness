@@ -11,16 +11,21 @@ namespace ClassLibrary.ExerciseClasses
         private string name;
         private int calories;
         private string difficulty;
+        private string picture;
 
-        public string Name { get; set; }
-        public int Calories { get; set; }
-        public string Difficulty { get; set; }
+        public string Name 
+        { get { return this.name; } }
+        public int Calories { get { return this.calories; } }
+        public string Difficulty 
+        { get { return this.difficulty;} }
+        public string Picture { get { return this.picture; } }
 
-        public Cardio(string name, int calories, string difficulty) 
+        public Cardio(string name, int calories, string difficulty, string picture) 
         {
             this.name = name;
             this.calories = calories;
             this.difficulty = difficulty;
+            this.picture = picture;
         }
 
         public string ToString() 

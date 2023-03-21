@@ -10,7 +10,7 @@ namespace ClassLibrary.ExerciseClasses
     {
         private string shoulderHead;
 
-        public ShoulderExercise(string name, string difficulty, string equipment, int reps, double weight, string shoulderHead) : base(name, difficulty, equipment, reps, weight)
+        public ShoulderExercise(string name, string difficulty, string equipment, int reps, double weight, string shoulderHead, string picture) : base(name, difficulty, equipment, reps, weight, picture)
         {
             this.shoulderHead = shoulderHead;
         }

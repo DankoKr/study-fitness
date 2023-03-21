@@ -13,41 +13,41 @@ namespace ClassLibrary.ExerciseClasses
         List<Exercise> myExercises = new List<Exercise>();
         public ExerciseAdministration() { }
 
-        public void CreateExercise(string typeEx, string nameEx, string difficulty, string equipment, int numReps, double weight, string specialty)
+        public void CreateExercise(string typeEx, string nameEx, string difficulty, string equipment, int numReps, double weight, string specialty, string picture)
         {
             if (typeEx == "Chest")
             {
-                Exercise ex = new ChestExercise(nameEx, difficulty, equipment, numReps, weight, specialty);
+                Exercise ex = new ChestExercise(nameEx, difficulty, equipment, numReps, weight, specialty, picture);
                 AddExercise(ex);
             }
             else if (typeEx == "Arm")
             {
-                Exercise ex = new ArmExercise(nameEx, difficulty, equipment, numReps, weight, specialty);
+                Exercise ex = new ArmExercise(nameEx, difficulty, equipment, numReps, weight, specialty, picture);
                 AddExercise(ex);
             }
             else if (typeEx == "Back")
             {
-                Exercise ex = new BackExercise(nameEx, difficulty, equipment, numReps, weight, specialty);
+                Exercise ex = new BackExercise(nameEx, difficulty, equipment, numReps, weight, specialty, picture);
                 AddExercise(ex);
             }
             else if (typeEx == "Core")
             {
-                Exercise ex = new CoreExercise(nameEx, difficulty, equipment, numReps, weight);
+                Exercise ex = new CoreExercise(nameEx, difficulty, equipment, numReps, weight, picture);
                 AddExercise(ex);
             }
             else if (typeEx == "Legs")
             {
-                Exercise ex = new LegsExercise(nameEx, difficulty, equipment, numReps, weight, specialty);
+                Exercise ex = new LegsExercise(nameEx, difficulty, equipment, numReps, weight, specialty, picture);
                 AddExercise(ex);
             }
             else if (typeEx == "Neck")
             {
-                Exercise ex = new NeckExercise(nameEx, difficulty, equipment, numReps, weight);
+                Exercise ex = new NeckExercise(nameEx, difficulty, equipment, numReps, weight, picture);
                 AddExercise(ex);
             }
             else if (typeEx == "Shoulder")
             {
-                Exercise ex = new ShoulderExercise(nameEx, difficulty, equipment, numReps, weight, specialty);
+                Exercise ex = new ShoulderExercise(nameEx, difficulty, equipment, numReps, weight, specialty, picture);
                 AddExercise(ex);
             }
         }

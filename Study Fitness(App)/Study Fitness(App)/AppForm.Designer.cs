@@ -66,6 +66,7 @@
             lblDescriptionCompare = new Label();
             lbTest = new ListBox();
             btnCompare = new Button();
+            txbPicture = new TextBox();
             tabconExercises.SuspendLayout();
             tabAllExercises.SuspendLayout();
             tabAddExercise.SuspendLayout();
@@ -195,17 +196,18 @@
             // 
             // grbSpecifics
             // 
+            grbSpecifics.Controls.Add(txbPicture);
             grbSpecifics.Controls.Add(txbSpecialty);
             grbSpecifics.Location = new Point(494, 30);
             grbSpecifics.Name = "grbSpecifics";
-            grbSpecifics.Size = new Size(250, 125);
+            grbSpecifics.Size = new Size(250, 150);
             grbSpecifics.TabIndex = 1;
             grbSpecifics.TabStop = false;
             grbSpecifics.Text = "SPECIFICS";
             // 
             // txbSpecialty
             // 
-            txbSpecialty.Location = new Point(62, 49);
+            txbSpecialty.Location = new Point(62, 41);
             txbSpecialty.Name = "txbSpecialty";
             txbSpecialty.PlaceholderText = "Specialty";
             txbSpecialty.Size = new Size(125, 27);
@@ -459,6 +461,14 @@
             btnCompare.UseVisualStyleBackColor = true;
             btnCompare.Click += btnCompare_Click;
             // 
+            // txbPicture
+            // 
+            txbPicture.Location = new Point(62, 92);
+            txbPicture.Name = "txbPicture";
+            txbPicture.PlaceholderText = "Pic Url";
+            txbPicture.Size = new Size(125, 27);
+            txbPicture.TabIndex = 1;
+            // 
             // AppForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -526,5 +536,6 @@
         private Button btnCompare;
         private ListBox lbTest;
         private Label lblDescriptionCompare;
+        private TextBox txbPicture;
     }
 }

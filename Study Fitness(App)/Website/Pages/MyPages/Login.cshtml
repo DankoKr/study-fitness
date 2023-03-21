@@ -22,15 +22,15 @@
 
                     <!-- Password input -->
                     <div class="form-outline mb-4">
-                        <label class="form-label" for="form1Example23">Password</label>
-                        <input type="password" id="form1Example23" class="form-control form-control-lg" />
+                        <label class="form-label" asp-for="Password">Password</label>
+                        <input class="form-control form-control-lg" asp-for="Password" />
                     </div>
 
                     <label asp-for="KeepMeLoggedIn">Keep me logged in</label>
                     <input asp-for="KeepMeLoggedIn" />
 
                     <div class="d-flex justify-content-around align-items-center mb-4">
-                        <a href="#Create Account!">No account?</a>
+                        <a asp-page="/MyPages/CreateAccount">No account?</a>
                     </div>
 
                     <!-- Submit button -->

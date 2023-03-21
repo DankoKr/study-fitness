@@ -10,7 +10,7 @@ namespace ClassLibrary.ExerciseClasses
     {
         private string legs;
 
-        public LegsExercise(string name, string difficulty, string equipment, int reps, double weight, string legs) : base(name, difficulty, equipment, reps, weight)
+        public LegsExercise(string name, string difficulty, string equipment, int reps, double weight, string legs, string picture) : base(name, difficulty, equipment, reps, weight, picture)
         {
             this.legs = legs;
         }

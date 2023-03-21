@@ -9,20 +9,26 @@ namespace Website.Pages.MyPages
         public string UserName { get; set; }
 
         [BindProperty]
+        public string Password { get; set; }
+
+        [BindProperty]
         public bool KeepMeLoggedIn { get; set; }
 
         public IActionResult OnGet()
         {
-            if (HttpContext.Session.GetString("UserName") == "user")
+            if (HttpContext.Session.GetString("UserName") == "user" && ("Password") == "1234")
                 return new RedirectToPageResult("MemberPage"); 
-            if (HttpContext.Session.GetString("UserName") == "admin")
+            if (HttpContext.Session.GetString("UserName") == "admin" && ("Password") == "1234")
                 return new RedirectToPageResult("AdminPage");
 
-            if (Request.Cookies.ContainsKey("UserName"))
+            if (Request.Cookies.ContainsKey("UserName") && Request.Cookies.ContainsKey("Password"))
             {
                 UserName = Request.Cookies["UserName"];
+                Password = Request.Cookies["Password"];
                 // Create the session key again
                 HttpContext.Session.SetString("UserName", UserName);
+                HttpContext.Session.SetString("Password", Password);
+
                 if (UserName == "user")
                     return new RedirectToPageResult("MemberPage");
                 if (UserName == "admin")
@@ -39,18 +45,20 @@ namespace Website.Pages.MyPages
             if (UserName != null)
             {
                 HttpContext.Session.SetString("UserName", UserName);
+                HttpContext.Session.SetString("Password", Password);
                 // Create a cookie
                 if (KeepMeLoggedIn)
                 {
                     CookieOptions cOptions = new CookieOptions();
                     cOptions.Expires = DateTime.Now.AddDays(1);
                     Response.Cookies.Append("UserName", UserName, cOptions);
+                    Response.Cookies.Append("Password", Password, cOptions);
                 }
 
             }
-            if (UserName == "user")
+            if (UserName == "user" && Password == "1234")
                 return new RedirectToPageResult("MemberPage");
-            if (UserName == "admin")
+            if (UserName == "admin" && Password == "1234")
                 return new RedirectToPageResult("AdminPage");
             // if not user or admin, show error message
             ViewData["LoginMessage"] = "Invalid credentials, try again";

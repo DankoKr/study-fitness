@@ -13,9 +13,9 @@ namespace ClassLibrary.ExerciseClasses
         List<Cardio> myCardios = new List<Cardio>();
         public CardioAdministration() { }
 
-        public void AddCardio(string name, int calories, string difficulty) 
+        public void AddCardio(string name, int calories, string difficulty, string picture) 
         {
-            Cardio cardio = new Cardio(name, calories, difficulty);
+            Cardio cardio = new Cardio(name, calories, difficulty, picture);
             if (ValidateExerciseIsUnique(cardio.Name))
             {
                 myCardios.Add(cardio);

@@ -13,20 +13,23 @@ namespace ClassLibrary.ExerciseClasses
         private string equipment;
         private int repRange;
         private double weight;
+        private string pictureUrl;
 
         public string Name { get; set; }
         public string Difficulty { get; set; }
         public string Equipment { get; set; }
         public int RepRange { get; set; }
         public double Weight { get; set; }
+        public string PictureUrl { get; set; }
 
-        public Exercise(string name, string difficulty, string equipment, int reps, double weight)
+        public Exercise(string name, string difficulty, string equipment, int reps, double weight, string picture)
         {
             Name = name;
             Difficulty = difficulty;
             Equipment = equipment;
             RepRange = reps;
             Weight = weight;
+            PictureUrl = picture;
         }
 
         public virtual string ToString()

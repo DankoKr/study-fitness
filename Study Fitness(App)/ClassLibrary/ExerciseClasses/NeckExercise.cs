@@ -8,7 +8,7 @@ namespace ClassLibrary.ExerciseClasses
 {
     public class NeckExercise : Exercise
     {
-        public NeckExercise(string name, string difficulty, string equipment, int reps, double weight) : base(name, difficulty, equipment, reps, weight)
+        public NeckExercise(string name, string difficulty, string equipment, int reps, double weight, string picture) : base(name, difficulty, equipment, reps, weight, picture)
         {
         }
 
