@@ -273,3 +273,54 @@ input[type="submit"], button[type="reset"] {
     background: #eee;
 }
 /*-----------End Login-----------------*/
+/*-----------Exercise page-------------*/
+
+
+/* Style for the container of the rows */
+.column-row-exercise {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* Style for the container of each column */
+.column-container-exercise {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 250px;
+    margin-bottom: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+/* Style for the image */
+.column-image-avatar {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+/* Style for the description */
+.column-description-exercise {
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    margin-top: 10px;
+}
+
+/* Style for each fourth element to clear the previous row */
+.column-container-exercise:nth-child(4n+1) {
+    clear: left;
+}
+
+
+
+
+/*-----------End Exercise page---------*/

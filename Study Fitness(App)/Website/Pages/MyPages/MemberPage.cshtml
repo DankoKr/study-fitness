@@ -1,0 +1,15 @@
+﻿@page
+@model Website.Pages.MyPages.MemberPageModel
+@{
+}
+
+<h1>Member page</h1>
+
+<p> Welcome, @HttpContext.Session.GetString("UserName")</p>
+
+<form method="post">
+    <p>Click here to logout</p>
+    <div>
+        <button type="submit" value="Click">Log out</button>
+    </div>
+</form>

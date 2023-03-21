@@ -4,8 +4,25 @@
     ViewData["Title"] = "Exercises";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Exercises</h1>
+<br />
+<h1>List Exercises</h1>
 
+@*New Shit!-----------------------------------------------*@
+<div class="column-row-exercise">
+     @foreach (var data in Model.dummies)
+     {
+
+       <div class="column-container-exercise">
+           <div>
+             <p><img class="column-image-avatar" src="@data.Avatar"></p>
+             <p>@data.Id
+             @data.FirstName
+             @data.LastName</p>
+           </div>
+
+         <a class="column-description-exercise" asp-page="/MyPages/ExerciseDetails" asp-route-id=@data.Id>More details</a>
+       </div>
+
+
+     }
 </div>
-

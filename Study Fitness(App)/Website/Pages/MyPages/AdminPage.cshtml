@@ -1,0 +1,15 @@
+﻿@page
+@model Website.Pages.MyPages.AdminPageModel
+@{
+}
+
+<h1>Admin page</h1>
+<!-- <p>Welcome, @Request.Cookies["UserName"]</p> -->
+<p> Welcome, @HttpContext.Session.GetString("UserName")</p>
+
+<form method="post">
+    <p>Click here to logout</p>
+    <div>
+        <button type="submit" value="Click">Log out</button>
+    </div>
+</form>
