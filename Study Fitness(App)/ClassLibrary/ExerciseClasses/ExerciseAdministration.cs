@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Website.Models;
+
 
 namespace ClassLibrary.ExerciseClasses
 {
     public class ExerciseAdministration : IAdministration
     {
         List<Exercise> myExercises = new List<Exercise>();
+
         public ExerciseAdministration() { }
 
         public void CreateExercise(string typeEx, string nameEx, string difficulty, string equipment, int numReps, double weight, string specialty, string picture)

@@ -9,11 +9,13 @@ namespace Website.Pages.MyPages
 {
     public class ExerciseDetailscshtmlModel : PageModel
     {
-        public TestDummyData dummyData { get; set; }
+        public ExerciseAdministration myManager = new ExerciseAdministration();
         public void OnGet(int id)
         {
-            DummyAdmin dataManager = new DummyAdmin();
-            dummyData = dataManager.GetDummyId(id);
+            //myManager = new ExerciseAdministration();
+            //DBconfig db = new DBconfig();
+            //db.LoadExercises(myManager);
+            ////dummyData = dataManager.GetDummyId(id);
         }
 
     }

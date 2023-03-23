@@ -9,18 +9,17 @@
 
 
 <div class="column-row-exercise">
-     @foreach (var data in Model.dummies)
+     @foreach (var data in Model.MyExercises)
      {
 
        <div class="column-container-exercise">
            <div>
-             <p><img class="column-image-avatar" src="@data.Avatar"></p>
-             <p>@data.Id
-             @data.FirstName
-             @data.LastName</p>
+             <p><img class="column-image-avatar" src="@data.PictureUrl"></p>
+             <p>@data.Name    ;@data.Difficulty</p>
+
            </div>
 
-         <a class="column-description-exercise" asp-page="/MyPages/ExerciseDetails" asp-route-id=@data.Id>More details</a>
+         @*<a class="column-description-exercise" asp-page="/MyPages/ExerciseDetails" asp-route-id=@data.Id>More details</a>*@
        </div>
 
 

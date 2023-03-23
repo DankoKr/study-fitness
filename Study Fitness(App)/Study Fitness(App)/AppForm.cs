@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ClassLibrary;
 using ClassLibrary.ExerciseClasses;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
@@ -18,21 +19,8 @@ namespace Study_Fitness_App_
         public AppForm()
         {
             InitializeComponent();
-            CreateExercisesTesting();
-        }
-        private void CreateExercisesTesting()
-        {//Temporary until database is added!
-            Exercise ex1 = new ChestExercise("Pushup", "normal", "no", 20, 25.6, "all sectors", "picture");
-            myAdministrator.AddDummyData(ex1);
-            lbAllExercises.Items.Add(ex1);
-
-            Exercise ex2 = new LegsExercise("Squats", "medium", "yes", 10, 65.6, "both legs", "picture");
-            myAdministrator.AddDummyData(ex2);
-            lbAllExercises.Items.Add(ex2);
-
-            Exercise ex3 = new ShoulderExercise("Arnoldpress", "hard", "no", 5, 70, "upper head", "picture");
-            myAdministrator.AddDummyData(ex3);
-            lbAllExercises.Items.Add(ex3);
+            DBconfig db = new DBconfig();
+            db.LoadExercises(myAdministrator);
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
