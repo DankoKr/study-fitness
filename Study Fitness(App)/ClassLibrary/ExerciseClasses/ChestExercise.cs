@@ -18,7 +18,7 @@ namespace ClassLibrary.ExerciseClasses
         public override string ToString()
         {
             string s = "Chest exercise - ";
-            s += $"{base.ToString()}. ";
+            s += $"{base.ToString()}. Affects {chestElement}!";
             return s;
         }
     }
