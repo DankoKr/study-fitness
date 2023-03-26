@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ClassLibrary;
+using ClassLibrary.DatabaseClasses;
 using ClassLibrary.ExerciseClasses;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
@@ -16,11 +16,11 @@ namespace Study_Fitness_App_
     public partial class AppForm : Form
     {
         ExerciseAdministration myAdministrator = new ExerciseAdministration();
+        StorageManager myData = new StorageManager();
         public AppForm()
         {
             InitializeComponent();
-            DBconfig db = new DBconfig();
-            db.LoadExercises(myAdministrator);
+            myData.LoadExercises(myAdministrator);
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -28,7 +28,6 @@ namespace Study_Fitness_App_
             lbAllExercises.Items.Clear();
 
             string searched = txbSearchBar.Text;
-            //crashes when ex does not exist
             lbAllExercises.Items.Add(myAdministrator.GetExercise(searched));
             txbSearchBar.Text = "";
         }
@@ -104,6 +103,7 @@ namespace Study_Fitness_App_
         {
             string exName = txbManageExercise.Text;
             myAdministrator.RemoveExercise(exName);
+            
             ShowExercisesToManage();
             ShowAllExercises();
 

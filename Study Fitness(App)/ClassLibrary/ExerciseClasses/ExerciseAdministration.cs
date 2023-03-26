@@ -1,4 +1,5 @@
-﻿using Study_Fitness_App_;
+﻿using ClassLibrary.DatabaseClasses;
+using Study_Fitness_App_;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace ClassLibrary.ExerciseClasses
     public class ExerciseAdministration : IAdministration
     {
         List<Exercise> myExercises = new List<Exercise>();
+        ExerciseDAL ExerciseDAL = new ExerciseDAL();
 
         public ExerciseAdministration() { }
 
@@ -57,13 +59,9 @@ namespace ClassLibrary.ExerciseClasses
         {
             if (ValidateExerciseIsUnique(newEx.Name))
             {
+                ExerciseDAL.AddExercise(newEx);
                 myExercises.Add(newEx);
             }
-        }
-
-        public void AddDummyData(Exercise ex)
-        {// This exists only for the dummy data before connection to a database
-            myExercises.Add(ex);
         }
 
         public bool ValidateExerciseIsUnique(string name)
@@ -94,7 +92,9 @@ namespace ClassLibrary.ExerciseClasses
         {
             if (ExerciseExists(exName))
             {
+                ExerciseDAL.DeleteExercise(GetExercise(exName));
                 myExercises.Remove(GetExercise(exName));
+                
             }
         }
 
@@ -135,6 +135,7 @@ namespace ClassLibrary.ExerciseClasses
                 ex.RepRange = newReps;
                 ex.Weight = newWeight;
                 ex.Difficulty = difficulty;
+                ExerciseDAL.EditExercise(ex, difficulty, newReps, newWeight);
             }
         }
 

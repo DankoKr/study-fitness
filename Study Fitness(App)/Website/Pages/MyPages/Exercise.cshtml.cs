@@ -1,4 +1,4 @@
-using ClassLibrary;
+using ClassLibrary.DatabaseClasses;
 using ClassLibrary.ExerciseClasses;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -12,10 +12,10 @@ namespace Website.Pages.MyPages
     {
         public Exercise[]? MyExercises { get; set; }
         ExerciseAdministration myManager = new ExerciseAdministration();
-        DBconfig database = new DBconfig();
+        StorageManager myData = new StorageManager();
         public void OnGet()
         {            
-            database.LoadExercises(myManager);
+            myData.LoadExercises(myManager);
             MyExercises = myManager.GetExercises();
         }
 

@@ -9,6 +9,7 @@ namespace ClassLibrary.ExerciseClasses
     public class ArmExercise : Exercise
     {
         private string armElement;
+        public string ArmElemet { get { return this.armElement; } }
         public ArmExercise(string name, string difficulty, string equipment, int reps, double weight, string armElement, string picture) : base(name, difficulty, equipment, reps, weight, picture)
         {
             this.armElement = armElement;

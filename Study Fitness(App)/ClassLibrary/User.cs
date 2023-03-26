@@ -13,6 +13,7 @@ namespace Study_Fitness_App_
         private string firstName;
         private string username;
         private string password;
+        private string type;
 
         [Required(ErrorMessage = "Please supply a name")]
         [MinLength(5, ErrorMessage = "Please supply a name with at least 5 characters")]
@@ -23,11 +24,12 @@ namespace Study_Fitness_App_
 
         public string Password { get; set; }
 
-        public User(string name, string username, string password)
+        public User(string name, string username, string password, string type)
         {
             this.FirstName = name;
             this.Username = username;
             this.Password = password;
+            this.type = type;
         }
 
     }

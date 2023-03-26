@@ -1,37 +1,21 @@
 ﻿using ClassLibrary.ExerciseClasses;
+using Study_Fitness_App_;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Reflection.Metadata;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 
-namespace ClassLibrary
+namespace ClassLibrary.DatabaseClasses
 {
-    public class DBconfig
+    public class StorageManager
     {
-        private SqlConnection _connection;
-        private string conncetion;
-        private string server;
-        private string database;
-        private string user;
-        private string password;
-
-        public DBconfig()
-        {
-            this.server = "mssqlstud.fhict.local";
-            this.database = "dbi500872";
-            this.user = "dbi500872";
-            this.password = "Danko2003";
-            this.conncetion = $"Server = {server}; Database = {database}; User Id ={user}; Password = {password};";
-            _connection = new SqlConnection(conncetion);
-        }
-
+        DBconfig db = new DBconfig();
         public void LoadExercises(ExerciseAdministration myManager)
         {
+            SqlConnection _connection = db.GetSqlConnection();
             try
             {
                 string sql1 = "SELECT  e.Name, e.Difficulty, e.Equipment, e.RepRange, e.Weight, e.PictureURL, ch.chestElement \r\nFROM Exercise e\r\nJOIN ChestExercise ch\r\non e.exercise_id = ch.exercise_id";
@@ -109,12 +93,62 @@ namespace ClassLibrary
             }
             catch (SqlException sqlEx)
             {
-                 throw new Exception(sqlEx.Message);
+                throw new Exception(sqlEx.Message);
             }
             finally
             {
                 _connection.Close();
             }
+        }
+
+        public void LoadUsers(UserAdministration myManager) 
+        {
+            SqlConnection _connection = db.GetSqlConnection();
+
+            try
+            {
+                string sql = "SELECT  * FROM Account ";
+                SqlCommand cmd = new SqlCommand(sql, _connection);
+                _connection.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    myManager.AddUser(new User(Convert.ToString(dr[1]), Convert.ToString(dr[2]), Convert.ToString(dr[3]), Convert.ToString(dr[4])));
+                }
+
+                dr.Close();
+            }
+            catch (SqlException sqlEx)
+            {
+
+                throw new Exception (sqlEx.Message);
+            }
+            finally { _connection.Close(); }
+        }
+
+        public void LoadCardios(CardioAdministration myManager) 
+        {//Cardio db not created
+            SqlConnection _connection = db.GetSqlConnection();
+
+            try
+            {
+                string sql = "SELECT  * FROM Cardio ";
+                SqlCommand cmd = new SqlCommand(sql, _connection);
+                _connection.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    myManager.AddCardio(Convert.ToString(dr[1]), Convert.ToInt32(dr[2]), Convert.ToString(dr[3]), Convert.ToString(dr[4]));
+                }
+
+                dr.Close();
+            }
+            catch (SqlException sqlEx)
+            {
+
+                throw new Exception(sqlEx.Message);
+            }
+            finally { _connection.Close(); }
         }
 
     }

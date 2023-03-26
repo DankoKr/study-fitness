@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Study_Fitness_App_
 {
     public class UserAdministration
-    {//Will be implemented as soon as there is a database!
+    {
         List<User> myUsers = new List<User>();
 
         public void AddUser(User user)
