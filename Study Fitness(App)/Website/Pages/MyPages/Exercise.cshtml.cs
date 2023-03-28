@@ -12,10 +12,10 @@ namespace Website.Pages.MyPages
     {
         public Exercise[]? MyExercises { get; set; }
         ExerciseAdministration myManager = new ExerciseAdministration();
-        StorageManager myData = new StorageManager();
+        ExerciseDAL exData = new ExerciseDAL();
         public void OnGet()
         {            
-            myData.LoadExercises(myManager);
+            exData.LoadExercises(myManager);
             MyExercises = myManager.GetExercises();
         }
 

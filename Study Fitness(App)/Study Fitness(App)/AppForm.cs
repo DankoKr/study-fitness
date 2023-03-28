@@ -16,11 +16,11 @@ namespace Study_Fitness_App_
     public partial class AppForm : Form
     {
         ExerciseAdministration myAdministrator = new ExerciseAdministration();
-        StorageManager myData = new StorageManager();
+        ExerciseDAL exData = new ExerciseDAL();
         public AppForm()
         {
             InitializeComponent();
-            myData.LoadExercises(myAdministrator);
+            exData.LoadExercises(myAdministrator);
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
