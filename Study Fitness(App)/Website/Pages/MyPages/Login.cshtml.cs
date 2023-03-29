@@ -1,8 +1,11 @@
 using ClassLibrary.UserClasses;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System;
+using System.Collections.Generic;
 using System.Security.Claims;
 
 namespace Website.Pages.MyPages
@@ -11,44 +14,44 @@ namespace Website.Pages.MyPages
     {
         [BindProperty]
         public User user { get; set; }
-		[BindProperty]
-		public bool KeepMeLoggedIn { get; set; }
 
-		public IActionResult OnGet() 
-		{
-            //if (Request.Cookies.ContainsKey("user.Username"))
-            //{
-            //    user.Username = Request.Cookies["user.Username"];
-            //   // Create the session key again
-            //    HttpContext.Session.SetString("user.Username", user.Username);
-            //    if (user.Username == "user")
-            //        return new RedirectToPageResult("PersonalPage");
-            //    if (user.Username == "admin")
-            //        return new RedirectToPageResult("AdminPage");
-            //}
-            if (HttpContext.Session.GetString("Username") == "user")
+        [BindProperty]
+        public bool KeepMeLoggedIn { get; set; }
+
+        public IActionResult OnGet()
+        {
+            string username = HttpContext.Session.GetString("Username");
+
+            // Check for an existing cookie
+            if (string.IsNullOrEmpty(username) && Request.Cookies.ContainsKey("Username"))
+            {
+                username = Request.Cookies["Username"];
+                HttpContext.Session.SetString("Username", username);
+            }
+
+            // Redirect to the corresponding page
+            if (username == "user")
                 return new RedirectToPageResult("PersonalPage");
-            if (HttpContext.Session.GetString("Username") == "admin")
+            if (username == "admin")
                 return new RedirectToPageResult("AdminPage");
-            return Page();
 
-           // return Page();
+            return Page();
         }
 
         public IActionResult OnPost()
         {
             if (user.Username == "user" && user.Password == "1234" || user.Username == "admin")
             {
-                // successful login
                 List<Claim> claims = new List<Claim>();
                 claims.Add(new Claim(ClaimTypes.Name, user.Username));
                 claims.Add(new Claim("id", "1"));
                 HttpContext.Session.SetString("Username", user.Username);
+
                 // Create a cookie
                 if (KeepMeLoggedIn)
                 {
                     CookieOptions cOptions = new CookieOptions();
-                    cOptions.Expires = DateTime.Now.AddDays(1);
+                    cOptions.Expires = DateTime.Now.AddMinutes(5); // expires after 5 minutes
                     Response.Cookies.Append("Username", user.Username, cOptions);
                 }
 
@@ -69,9 +72,6 @@ namespace Website.Pages.MyPages
 
             ViewData["LoginMessage"] = "Invalid credentials!";
             return Page();
-
-		}
-
-
+        }
     }
 }
