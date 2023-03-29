@@ -1,4 +1,4 @@
-﻿using Study_Fitness_App_;
+﻿using ClassLibrary.UserClasses;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;

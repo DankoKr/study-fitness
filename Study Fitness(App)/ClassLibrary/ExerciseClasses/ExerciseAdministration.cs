@@ -1,5 +1,4 @@
 ﻿using ClassLibrary.DatabaseClasses;
-using Study_Fitness_App_;
 using System;
 using System.Collections.Generic;
 using System.Linq;

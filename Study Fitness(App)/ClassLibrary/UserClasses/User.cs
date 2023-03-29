@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Study_Fitness_App_
+namespace ClassLibrary.UserClasses
 {
     public class User
     {
@@ -15,20 +15,26 @@ namespace Study_Fitness_App_
         private string password;
         private string type;
 
-        [Required(ErrorMessage = "Please supply a name")]
-        [MinLength(5, ErrorMessage = "Please supply a name with at least 5 characters")]
-        [StringLength(10, ErrorMessage = "Name can have at most 10 characters")]
+
         public string FirstName { get; set; }
 
+        [Required]
+        //[Display(Name = "username")]
         public string Username { get; set; }
-
+        [Required]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        public User()
+        {
+
+        }
 
         public User(string name, string username, string password, string type)
         {
-            this.FirstName = name;
-            this.Username = username;
-            this.Password = password;
+            this.firstName = name;
+            this.username = username;
+            this.password = password;
             this.type = type;
         }
 

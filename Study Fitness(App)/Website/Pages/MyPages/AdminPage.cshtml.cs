@@ -1,8 +1,10 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Website.Pages.MyPages
 {
+    [Authorize(Policy = "OnlyAdminAccess")]
     public class AdminPageModel : PageModel
     {
         public void OnGet()
@@ -11,15 +13,20 @@ namespace Website.Pages.MyPages
 
         public IActionResult OnPost()
         {
-            HttpContext.Session.Remove("UserName");
-            if (Request.Cookies.ContainsKey("UserName"))
+            HttpContext.Session.Remove("Username");
+            if (Request.Cookies.ContainsKey("Username"))
             {
                 // remove the cookie upon logout
-                Response.Cookies.Append("UserName", "");
+                Response.Cookies.Append("Username", "");
             }
 
-            return new RedirectToPageResult("Login");
+            return new RedirectToPageResult("/MyPages/Login");
 
         }
+
+
+
     }
+
+
 }

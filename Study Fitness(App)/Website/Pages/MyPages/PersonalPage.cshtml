@@ -1,9 +1,10 @@
 ﻿@page
-@model Website.Pages.MyPages.MemberPageModel
+@model Website.Pages.MyPages.PersonalPageModel
 @{
+	ViewData["Title"] = "MyPage";
 }
 
-<h1>Member page</h1>
+<h1>This is a private page</h1>
 
 <p> Welcome, @HttpContext.Session.GetString("UserName")</p>
 

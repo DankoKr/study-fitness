@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Security.Claims;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,11 +10,25 @@ builder.Services.AddRazorPages();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromSeconds(40);
-    options.Cookie.HttpOnly = true;
-    options.Cookie.IsEssential = true;
+	options.IdleTimeout = TimeSpan.FromSeconds(40);
+	options.Cookie.HttpOnly = true;
+	options.Cookie.IsEssential = true;
 }
 );
+
+// Add these lines
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+{
+    options.LoginPath = new PathString("/Login");
+    options.AccessDeniedPath = new PathString("/AccessDenied");
+}
+);
+
+// policy for only admin access
+builder.Services.AddAuthorization(options =>
+{
+	options.AddPolicy("OnlyAdminAccess", policy => policy.RequireClaim(ClaimTypes.AuthorizationDecision, "admin"));
+});
 
 var app = builder.Build();
 
@@ -27,10 +44,10 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
 // Add code to use sessions
 app.UseSession();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();

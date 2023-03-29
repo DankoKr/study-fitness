@@ -1,37 +1,34 @@
+using ClassLibrary.UserClasses;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Security.Claims;
 
 namespace Website.Pages.MyPages
 {
-    public class LoginModel : PageModel
+    public class LoginV2Model : PageModel
     {
         [BindProperty]
-        public string UserName { get; set; }
+        public User user { get; set; }
+		[BindProperty]
+		public bool KeepMeLoggedIn { get; set; }
 
-        [BindProperty]
-        public string Password { get; set; }
-
-        [BindProperty]
-        public bool KeepMeLoggedIn { get; set; }
-
-        public IActionResult OnGet()
-        {
-            if (HttpContext.Session.GetString("UserName") == "user" && ("Password") == "1234")
-                return new RedirectToPageResult("MemberPage"); 
-            if (HttpContext.Session.GetString("UserName") == "admin" && ("Password") == "1234")
+		public IActionResult OnGet() 
+		{
+            if (HttpContext.Session.GetString("user.Username") == "user")
+                return new RedirectToPageResult("PersonalPage");
+            if (HttpContext.Session.GetString("user.Username") == "admin")
                 return new RedirectToPageResult("AdminPage");
 
-            if (Request.Cookies.ContainsKey("UserName") && Request.Cookies.ContainsKey("Password"))
+            if (Request.Cookies.ContainsKey("user.Username"))
             {
-                UserName = Request.Cookies["UserName"];
-                Password = Request.Cookies["Password"];
+                user.Username = Request.Cookies["user.Username"];
                 // Create the session key again
-                HttpContext.Session.SetString("UserName", UserName);
-                HttpContext.Session.SetString("Password", Password);
-
-                if (UserName == "user")
-                    return new RedirectToPageResult("MemberPage");
-                if (UserName == "admin")
+                HttpContext.Session.SetString("user.Username", user.Username);
+                if (user.Username == "user")
+                    return new RedirectToPageResult("PersonalPage");
+                if (user.Username == "admin")
                     return new RedirectToPageResult("AdminPage");
             }
 
@@ -40,29 +37,40 @@ namespace Website.Pages.MyPages
 
         public IActionResult OnPost()
         {
+			if (user.Username == "user" && user.Password == "1234" || user.Username == "admin")
+			{
+				// successful login
+				List<Claim> claims = new List<Claim>();
+				claims.Add(new Claim(ClaimTypes.Name, user.Username));
+				claims.Add(new Claim("id", "1"));
+				HttpContext.Session.SetString("UserName", user.Username);
+				// Create a cookie
+				if (KeepMeLoggedIn)
+				{
+					CookieOptions cOptions = new CookieOptions();
+					cOptions.Expires = DateTime.Now.AddDays(1);
+					Response.Cookies.Append("UserName", user.Username, cOptions);
+				}
 
-            // Set the session key value
-            if (UserName != null)
-            {
-                HttpContext.Session.SetString("UserName", UserName);
-                HttpContext.Session.SetString("Password", Password);
-                // Create a cookie
-                if (KeepMeLoggedIn)
-                {
-                    CookieOptions cOptions = new CookieOptions();
-                    cOptions.Expires = DateTime.Now.AddDays(1);
-                    Response.Cookies.Append("UserName", UserName, cOptions);
-                    Response.Cookies.Append("Password", Password, cOptions);
-                }
+				if (user.Username == "admin" && user.Password == "1234")
+				{
+					claims.Add(new Claim(ClaimTypes.AuthorizationDecision, "admin"));
+				}
 
-            }
-            if (UserName == "user" && Password == "1234")
-                return new RedirectToPageResult("MemberPage");
-            if (UserName == "admin" && Password == "1234")
-                return new RedirectToPageResult("AdminPage");
-            // if not user or admin, show error message
-            ViewData["LoginMessage"] = "Invalid credentials, try again";
-            return Page();
-        }
+				var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+				HttpContext.SignInAsync(new ClaimsPrincipal(claimsIdentity));
+
+				if (user.Username == "admin")
+					return new RedirectToPageResult("AdminPage");
+
+				return new RedirectToPageResult("PersonalPage");
+
+			}
+			ViewData["LoginMessage"] = "Invalid credentials!";
+			return Page();
+
+		}
+
+
     }
 }

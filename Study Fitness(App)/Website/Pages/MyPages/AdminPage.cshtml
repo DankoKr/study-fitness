@@ -3,10 +3,8 @@
 @{
 }
 
-<h1>Admin page</h1>
-<!-- <p>Welcome, @Request.Cookies["UserName"]</p> -->
+<h1>Hi Admin!</h1>
 <p> Welcome, @HttpContext.Session.GetString("UserName")</p>
-
 <form method="post">
     <p>Click here to logout</p>
     <div>

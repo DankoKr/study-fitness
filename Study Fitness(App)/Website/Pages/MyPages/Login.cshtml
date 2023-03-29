@@ -1,7 +1,7 @@
 ﻿@page
-@model Website.Pages.MyPages.LoginModel
+@model Website.Pages.MyPages.LoginV2Model
 @{
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "MyAccount";
 }
 
 <section class="vh-100">
@@ -13,19 +13,23 @@
             </div>
             <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
                 <h1>Login Form</h1>
+                <p> @ViewData["LoginMessage"]</p>
                 <form method="post">
-                    <!-- Email input -->
+                    <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+                    <!-- Username input -->
                     <div class="form-outline mb-4">
-                        <label class="form-label"  asp-for="UserName">Username</label>
-                        <input class="form-control form-control-lg" asp-for="UserName" />
+                        <label class="form-label" asp-for="user.Username">Username</label>
+                        <input class="form-control form-control-lg" asp-for="user.Username" />
+                        <span class="text-danger" asp-validation-for="user.Username"></span>
                     </div>
 
                     <!-- Password input -->
                     <div class="form-outline mb-4">
-                        <label class="form-label" asp-for="Password">Password</label>
-                        <input class="form-control form-control-lg" asp-for="Password" />
+                        <label class="form-label" asp-for="user.Password">Password</label>
+                        <input class="form-control form-control-lg" asp-for="user.Password" />
+                        <span class="text-danger" asp-validation-for="user.Password"></span>
                     </div>
-
+                    
                     <label asp-for="KeepMeLoggedIn">Keep me logged in</label>
                     <input asp-for="KeepMeLoggedIn" />
 
@@ -34,9 +38,10 @@
                     </div>
 
                     <!-- Submit button -->
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
-                    <p> @ViewData["LoginMessage"]</p>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</>
+
                 </form>
+                
             </div>
         </div>
     </div>
