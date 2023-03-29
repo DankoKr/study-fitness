@@ -16,58 +16,59 @@ namespace Website.Pages.MyPages
 
 		public IActionResult OnGet() 
 		{
-            if (HttpContext.Session.GetString("user.Username") == "user")
+            //if (Request.Cookies.ContainsKey("user.Username"))
+            //{
+            //    user.Username = Request.Cookies["user.Username"];
+            //   // Create the session key again
+            //    HttpContext.Session.SetString("user.Username", user.Username);
+            //    if (user.Username == "user")
+            //        return new RedirectToPageResult("PersonalPage");
+            //    if (user.Username == "admin")
+            //        return new RedirectToPageResult("AdminPage");
+            //}
+            if (HttpContext.Session.GetString("Username") == "user")
                 return new RedirectToPageResult("PersonalPage");
-            if (HttpContext.Session.GetString("user.Username") == "admin")
+            if (HttpContext.Session.GetString("Username") == "admin")
                 return new RedirectToPageResult("AdminPage");
-
-            if (Request.Cookies.ContainsKey("user.Username"))
-            {
-                user.Username = Request.Cookies["user.Username"];
-                // Create the session key again
-                HttpContext.Session.SetString("user.Username", user.Username);
-                if (user.Username == "user")
-                    return new RedirectToPageResult("PersonalPage");
-                if (user.Username == "admin")
-                    return new RedirectToPageResult("AdminPage");
-            }
-
             return Page();
+
+           // return Page();
         }
 
         public IActionResult OnPost()
         {
-			if (user.Username == "user" && user.Password == "1234" || user.Username == "admin")
-			{
-				// successful login
-				List<Claim> claims = new List<Claim>();
-				claims.Add(new Claim(ClaimTypes.Name, user.Username));
-				claims.Add(new Claim("id", "1"));
-				HttpContext.Session.SetString("UserName", user.Username);
-				// Create a cookie
-				if (KeepMeLoggedIn)
-				{
-					CookieOptions cOptions = new CookieOptions();
-					cOptions.Expires = DateTime.Now.AddDays(1);
-					Response.Cookies.Append("UserName", user.Username, cOptions);
-				}
+            if (user.Username == "user" && user.Password == "1234" || user.Username == "admin")
+            {
+                // successful login
+                List<Claim> claims = new List<Claim>();
+                claims.Add(new Claim(ClaimTypes.Name, user.Username));
+                claims.Add(new Claim("id", "1"));
+                HttpContext.Session.SetString("Username", user.Username);
+                // Create a cookie
+                if (KeepMeLoggedIn)
+                {
+                    CookieOptions cOptions = new CookieOptions();
+                    cOptions.Expires = DateTime.Now.AddDays(1);
+                    Response.Cookies.Append("Username", user.Username, cOptions);
+                }
 
-				if (user.Username == "admin" && user.Password == "1234")
-				{
-					claims.Add(new Claim(ClaimTypes.AuthorizationDecision, "admin"));
-				}
+                if (user.Username == "admin" && user.Password == "1234")
+                {
+                    claims.Add(new Claim(ClaimTypes.AuthorizationDecision, "admin"));
+                }
 
-				var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-				HttpContext.SignInAsync(new ClaimsPrincipal(claimsIdentity));
+                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                HttpContext.SignInAsync(new ClaimsPrincipal(claimsIdentity));
 
-				if (user.Username == "admin")
-					return new RedirectToPageResult("AdminPage");
+                if (user.Username == "admin")
+                    return new RedirectToPageResult("AdminPage");
 
-				return new RedirectToPageResult("PersonalPage");
+                return new RedirectToPageResult("PersonalPage");
 
-			}
-			ViewData["LoginMessage"] = "Invalid credentials!";
-			return Page();
+            }
+
+            ViewData["LoginMessage"] = "Invalid credentials!";
+            return Page();
 
 		}
 
