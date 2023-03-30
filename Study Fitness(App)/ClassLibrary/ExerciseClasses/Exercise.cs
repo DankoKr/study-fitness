@@ -22,6 +22,8 @@ namespace ClassLibrary.ExerciseClasses
         public double Weight { get; set; }
         public string PictureUrl { get; set; }
 
+        public Exercise() { }
+
         public Exercise(string name, string difficulty, string equipment, int reps, double weight, string picture)
         {
             Name = name;

@@ -10,7 +10,7 @@ using System.Security.Claims;
 
 namespace Website.Pages.MyPages
 {
-    public class LoginV2Model : PageModel
+    public class LoginModel : PageModel
     {
         [BindProperty]
         public User user { get; set; }

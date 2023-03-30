@@ -10,9 +10,9 @@ builder.Services.AddRazorPages();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
-	options.IdleTimeout = TimeSpan.FromSeconds(40);
-	options.Cookie.HttpOnly = true;
-	options.Cookie.IsEssential = true;
+    options.IdleTimeout = TimeSpan.FromSeconds(40);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
 }
 );
 
@@ -27,7 +27,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 // policy for only admin access
 builder.Services.AddAuthorization(options =>
 {
-	options.AddPolicy("OnlyAdminAccess", policy => policy.RequireClaim(ClaimTypes.AuthorizationDecision, "admin"));
+    options.AddPolicy("OnlyAdminAccess", policy => policy.RequireClaim(ClaimTypes.AuthorizationDecision, "admin"));
 });
 
 var app = builder.Build();

@@ -1,5 +1,5 @@
 ﻿@page
-@model Website.Pages.MyPages.LoginV2Model
+@model Website.Pages.MyPages.LoginModel
 @{
     ViewData["Title"] = "MyAccount";
 }
@@ -29,7 +29,7 @@
                         <input class="form-control form-control-lg" asp-for="user.Password" />
                         <span class="text-danger" asp-validation-for="user.Password"></span>
                     </div>
-                    
+
                     <label asp-for="KeepMeLoggedIn">Keep me logged in</label>
                     <input asp-for="KeepMeLoggedIn" />
 
@@ -38,10 +38,10 @@
                     </div>
 
                     <!-- Submit button -->
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
 
                 </form>
-                
+
             </div>
         </div>
     </div>

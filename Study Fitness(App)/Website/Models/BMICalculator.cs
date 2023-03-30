@@ -29,6 +29,7 @@ namespace Website.Models
         {
             Height /= 100;
             myBMI = Weight / (Height * Height);
+            myBMI = Math.Round(myBMI, 2);
         }
     }
 }

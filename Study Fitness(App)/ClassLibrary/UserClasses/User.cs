@@ -15,14 +15,15 @@ namespace ClassLibrary.UserClasses
         private string password;
         private string type;
 
-
+        [Required(ErrorMessage = "Please supply a name!")]
+        [MinLength(5, ErrorMessage = "Please supply a name with at least 5 characters!")]
         public string FirstName { get; set; }
 
         [Required]
-        //[Display(Name = "username")]
         public string Username { get; set; }
         [Required]
         [DataType(DataType.Password)]
+        [MinLength(8, ErrorMessage = "Please supply a name with at least 8 characters!")]
         public string Password { get; set; }
 
         public User()

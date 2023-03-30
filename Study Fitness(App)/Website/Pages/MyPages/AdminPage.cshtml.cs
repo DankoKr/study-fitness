@@ -1,3 +1,4 @@
+using ClassLibrary.ExerciseClasses;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -23,8 +24,6 @@ namespace Website.Pages.MyPages
             return new RedirectToPageResult("/MyPages/Login");
 
         }
-
-
 
     }
 
