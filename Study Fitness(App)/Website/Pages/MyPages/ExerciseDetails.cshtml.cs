@@ -1,4 +1,5 @@
 using ClassLibrary;
+using ClassLibrary.DatabaseClasses;
 using ClassLibrary.ExerciseClasses;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -10,12 +11,14 @@ namespace Website.Pages.MyPages
     public class ExerciseDetailscshtmlModel : PageModel
     {
         public ExerciseAdministration myManager = new ExerciseAdministration();
-        public void OnGet(int id)
+        public Exercise? selectedEx { get; set; }
+
+        public void OnGet(string name)
         {
-            //myManager = new ExerciseAdministration();
-            //DBconfig db = new DBconfig();
-            //db.LoadExercises(myManager);
-            ////dummyData = dataManager.GetDummyId(id);
+            myManager = new ExerciseAdministration();
+            ExerciseDAL db = new ExerciseDAL();
+            db.LoadExercises(myManager);
+            selectedEx = myManager.GetExercise(name);
         }
 
     }

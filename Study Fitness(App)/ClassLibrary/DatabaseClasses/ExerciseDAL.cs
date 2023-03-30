@@ -11,7 +11,7 @@ namespace ClassLibrary.DatabaseClasses
 {
     public class ExerciseDAL 
     {
-        DBconfig db = new DBconfig();
+        MSSQL db = new MSSQL();
 
         public void AddExercise(Exercise ex) 
         {

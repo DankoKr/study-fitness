@@ -1,0 +1,76 @@
+﻿@page
+@model Website.Pages.MyPages.AddExercisePageModel
+@{
+    ViewData["Title"] = "Create Exercise";
+}
+
+<p class="create-exercise-Message">@Model.Message</p>
+
+<form class="create-exercise" method="post">
+    <fieldset>
+        <legend class="createExercise-legend">Create a new exercise:</legend>
+
+        <div>
+            <label asp-for="Name">Name:</label>
+            <span asp-validation-for="Name"></span>
+            <input asp-for="Name" />
+        </div>
+        <div>
+            <label asp-for="Type">Choose a type:</label>
+            <span asp-validation-for="Type"></span>
+            <select asp-for="Type">
+                <option value="ArmExercise">ArmExercise</option>
+                <option value="BackExercise">BackExercise</option>
+                <option value="CoreExercise">CoreExercise</option>
+                <option value="ShoulderExercise">ShoulderExercise</option>
+                <option value="ChestExercise">ChestExercise</option>
+                <option value="LegsExercise">LegsExercise</option>
+                <option value="NeckExercise">NeckExercise</option>
+            </select>
+        </div>
+        <div>
+            <label asp-for="Difficulty">Choose a difficulty:</label>
+            <span asp-validation-for="Difficulty"></span>
+            <select asp-for="Difficulty">
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Advanced">Advanced</option>
+                <option value="Athlete">Athlete</option>
+            </select>
+        </div>
+        <div>
+            <label asp-for="Equipment">Equipment:</label>
+            <span asp-validation-for="Equipment"></span>
+            <input asp-for="Equipment" />
+        </div>
+        <div>
+            <label asp-for="RepRange">RepRange:</label>
+            <span asp-validation-for="RepRange"></span>
+            <input asp-for="RepRange" />
+        </div>
+        <div>
+            <label asp-for="Weight">Weight:</label>
+            <span asp-validation-for="Weight"></span>
+            <input asp-for="Weight" />
+        </div>
+        <div>
+            <label asp-for="PictureUrl">PictureUrl:</label>
+            <span asp-validation-for="PictureUrl"></span>
+            <input asp-for="PictureUrl" />
+        </div>
+        <div>
+            <label asp-for="Specialty">Element:</label>
+            <span asp-validation-for="Specialty"></span>
+            <input asp-for="Specialty" />
+        </div>
+        <div>
+            <label class="createExercise-label">&nbsp;</label>
+            <input type="submit" value="Submit" class="submit" />
+        </div>
+    </fieldset>
+</form>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    }

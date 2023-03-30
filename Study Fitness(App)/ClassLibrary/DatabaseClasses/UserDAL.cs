@@ -10,7 +10,7 @@ namespace ClassLibrary.DatabaseClasses
 {
     public class UserDAL
     {
-        DBconfig db = new DBconfig();
+        MSSQL db = new MSSQL();
         public void LoadUsers(UserAdministration myManager)
         {
             SqlConnection _connection = db.GetSqlConnection();

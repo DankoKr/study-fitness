@@ -12,7 +12,7 @@ using System.Xml.Linq;
 
 namespace ClassLibrary.DatabaseClasses
 {
-    public class DBconfig
+    public class MSSQL
     {
         private SqlConnection _connection;
         private string conncetion;
@@ -21,7 +21,7 @@ namespace ClassLibrary.DatabaseClasses
         private string user;
         private string password;
 
-        public DBconfig()
+        public MSSQL()
         {
             server = "mssqlstud.fhict.local";
             database = "dbi500872";

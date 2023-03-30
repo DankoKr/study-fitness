@@ -17,7 +17,7 @@ namespace Study_Fitness_App_
 {
     public partial class LoginForm : Form
     {
-        DBconfig db = new DBconfig();
+        MSSQL db = new MSSQL();
         public LoginForm()
         {
             InitializeComponent();

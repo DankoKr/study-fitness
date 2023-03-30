@@ -10,7 +10,7 @@ namespace ClassLibrary.DatabaseClasses
 {
     public class CardioDAL
     {
-        DBconfig db = new DBconfig();
+        MSSQL db = new MSSQL();
 
         public void LoadCardios(CardioAdministration myManager)
         {//Cardio db not created
