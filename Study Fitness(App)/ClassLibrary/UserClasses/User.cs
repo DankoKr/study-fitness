@@ -25,6 +25,7 @@ namespace ClassLibrary.UserClasses
         [DataType(DataType.Password)]
         [MinLength(8, ErrorMessage = "Please supply a name with at least 8 characters!")]
         public string Password { get; set; }
+        public string Type { get; set; }    
 
         public User()
         {

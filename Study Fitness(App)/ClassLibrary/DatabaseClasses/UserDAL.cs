@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,5 +36,9 @@ namespace ClassLibrary.DatabaseClasses
             }
             finally { _connection.Close(); }
         }
+
+        public void AddUser(User u) { }
+        public void DeleteUser(User u) { }
+        public void EditUser(User u, string name, string password) { }
     }
 }

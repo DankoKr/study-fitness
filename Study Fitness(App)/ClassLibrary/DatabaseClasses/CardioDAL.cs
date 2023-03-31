@@ -1,4 +1,5 @@
 ﻿using ClassLibrary.ExerciseClasses;
+using ClassLibrary.UserClasses;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -36,5 +37,9 @@ namespace ClassLibrary.DatabaseClasses
             }
             finally { _connection.Close(); }
         }
+
+        public void AddCardio(Cardio c) { }
+        public void DeleteCardio(Cardio c) { }
+        public void EditCardio(Cardio c, string difficulty, int calories) { }
     }
 }
