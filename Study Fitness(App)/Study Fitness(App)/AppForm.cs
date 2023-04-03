@@ -21,6 +21,7 @@ namespace Study_Fitness_App_
         {
             InitializeComponent();
             exData.LoadExercises(myAdministrator);
+            FillExercisesInBoxes();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -32,9 +33,18 @@ namespace Study_Fitness_App_
             txbSearchBar.Text = "";
         }
 
+        private void FillExercisesInBoxes()
+        {
+            foreach (Exercise ex in myAdministrator.GetExercises())
+            {
+                cmbSelectedEx.Items.Add(ex.GetName());
+                cmbManageEx.Items.Add(ex.GetName());
+            }
+        }
+
         private void btnViewExercise_Click(object sender, EventArgs e)
         {
-            string wantedExercise = txbWantedExercise.Text;
+            string wantedExercise = cmbSelectedEx.Text;
             MessageBox.Show((myAdministrator.GetExercise(wantedExercise)).ToString(), "Description");
         }
 
@@ -82,7 +92,7 @@ namespace Study_Fitness_App_
             txbNumReps.Text = "";
             txbWeight.Text = "";
             txbSpecialty.Text = "";
-            txbManageExercise.Text = "";
+            cmbManageEx.Text = "";
             cmbNewDifficulty.Text = "";
             txbNewReps.Text = "";
             txbNewWeight.Text = "";
@@ -101,23 +111,25 @@ namespace Study_Fitness_App_
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            string exName = txbManageExercise.Text;
+            string exName = cmbManageEx.Text;
             myAdministrator.RemoveExercise(exName);
-            
+
             ShowExercisesToManage();
             ShowAllExercises();
 
             ClearFields();
+            FillExercisesInBoxes();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            string exName = txbManageExercise.Text;
+            string exName = cmbManageEx.Text;
             int newReps = Convert.ToInt32(txbNewReps.Text);
             double newWeight = Convert.ToDouble(txbNewWeight.Text);
             string newDifficulty = cmbNewDifficulty.Text;
             myAdministrator.EditExercise(exName, newReps, newWeight, newDifficulty);
             ClearFields();
+            FillExercisesInBoxes();
         }
 
         private void btnCompare_Click(object sender, EventArgs e)

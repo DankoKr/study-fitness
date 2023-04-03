@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClassLibrary.DatabaseClasses;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -64,6 +65,23 @@ namespace ClassLibrary.ExerciseClasses
                 }
             }
             return null;
+        }
+
+        public Cardio[] GetCardios() 
+        {
+            return this.myCardios.ToArray();
+        }
+
+        public void EditCardioData(Cardio c, string newName, int newCalories, string newDifficulty, string newPicture) 
+        {
+            if (newCalories > 0 && newName != "")
+            {
+                c.Name = newName;
+                c.Calories = newCalories;
+                c.Difficulty = newDifficulty;
+                c.PictureURL = newPicture;
+            }
+
         }
 
     }

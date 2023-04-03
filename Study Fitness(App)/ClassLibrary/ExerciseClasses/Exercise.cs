@@ -49,5 +49,8 @@ namespace ClassLibrary.ExerciseClasses
             return string.Compare(Name, compareExercise.Name);
         }
 
+        public string GetName() { return this.Name; }
+
+
     }
 }

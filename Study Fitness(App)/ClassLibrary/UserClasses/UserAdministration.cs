@@ -18,15 +18,9 @@ namespace ClassLibrary.UserClasses
             }
         }
 
-        public void DeleteUser(string username)
+        public void DeleteUser(User u)
         {
-            foreach (User user in myUsers)
-            {
-                if (user.Username == username)
-                {
-                    myUsers.Remove(user);
-                }
-            }
+            myUsers.Remove(u);
         }
 
         public void EditPassword(string username, string newPassword)
@@ -68,6 +62,16 @@ namespace ClassLibrary.UserClasses
                 user.Password = newPassword;
             }
         }
+
+        public void ChangeUsername(User user, string newUsername) 
+        {
+            if (newUsername != "")
+            {
+                user.Username = newUsername;
+            }
+        }
+
+        public User[] GetUsers() { return this.myUsers.ToArray(); }
 
     }
 }

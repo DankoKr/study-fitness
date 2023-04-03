@@ -3,7 +3,7 @@ using ClassLibrary.ExerciseClasses;
 namespace TestProject
 {
     [TestClass]
-    public class UnitTest1
+    public class TestCreatingExercise
     {
         [TestMethod]
         public void TestMethod1()

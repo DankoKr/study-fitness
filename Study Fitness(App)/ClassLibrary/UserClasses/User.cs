@@ -34,10 +34,15 @@ namespace ClassLibrary.UserClasses
 
         public User(string name, string username, string password, string type)
         {
-            this.firstName = name;
-            this.username = username;
-            this.password = password;
-            this.type = type;
+            this.FirstName = name;
+            this.Username = username;
+            this.Password = password;
+            this.Type = type;
+        }
+
+        public string GetInfo() 
+        {
+            return $"{Username} is also known as {FirstName}";
         }
 
     }

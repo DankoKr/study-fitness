@@ -13,24 +13,22 @@ namespace ClassLibrary.ExerciseClasses
         private string difficulty;
         private string pictureURL;
 
-        public string Name 
-        { get { return this.name; } }
-        public int Calories { get { return this.calories; } }
-        public string Difficulty 
-        { get { return this.difficulty;} }
-        public string PictureURL { get { return this.pictureURL; } }
+        public string Name { get; set; }
+        public int Calories { get; set; }
+        public string Difficulty { get; set; }
+        public string PictureURL { get; set; }
 
         public Cardio(string name, int calories, string difficulty, string picture) 
         {
-            this.name = name;
-            this.calories = calories;
-            this.difficulty = difficulty;
-            this.pictureURL = picture;
+            Name = name;
+            Calories = calories;
+            Difficulty = difficulty;
+            PictureURL = picture;
         }
 
         public string ToString() 
         {
-            return $"{name} is a cardio activity which burns {calories} calories and has a {difficulty} difficulty";
+            return $"{Name} is a cardio activity which burns {Calories} calories and has a {Difficulty} difficulty";
         }
 
     }

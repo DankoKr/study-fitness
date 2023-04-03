@@ -30,7 +30,7 @@
         {
             tabconExercises = new TabControl();
             tabAllExercises = new TabPage();
-            txbWantedExercise = new TextBox();
+            cmbSelectedEx = new ComboBox();
             lblExName = new Label();
             btnViewExercise = new Button();
             btnShowExercises = new Button();
@@ -40,6 +40,7 @@
             tabAddExercise = new TabPage();
             btnCreateExercise = new Button();
             grbSpecifics = new GroupBox();
+            txbPicture = new TextBox();
             txbSpecialty = new TextBox();
             grbInformation = new GroupBox();
             lblDifficulty = new Label();
@@ -61,12 +62,12 @@
             btnDelete = new Button();
             btnManageAllExercises = new Button();
             lbManageExercises = new ListBox();
-            txbManageExercise = new TextBox();
             tabCompareExercises = new TabPage();
             lblDescriptionCompare = new Label();
             lbTest = new ListBox();
             btnCompare = new Button();
-            txbPicture = new TextBox();
+            cmbManageEx = new ComboBox();
+            lblManageEx = new Label();
             tabconExercises.SuspendLayout();
             tabAllExercises.SuspendLayout();
             tabAddExercise.SuspendLayout();
@@ -93,7 +94,7 @@
             // 
             // tabAllExercises
             // 
-            tabAllExercises.Controls.Add(txbWantedExercise);
+            tabAllExercises.Controls.Add(cmbSelectedEx);
             tabAllExercises.Controls.Add(lblExName);
             tabAllExercises.Controls.Add(btnViewExercise);
             tabAllExercises.Controls.Add(btnShowExercises);
@@ -108,21 +109,22 @@
             tabAllExercises.Text = "All Exercises";
             tabAllExercises.UseVisualStyleBackColor = true;
             // 
-            // txbWantedExercise
+            // cmbSelectedEx
             // 
-            txbWantedExercise.Location = new Point(573, 181);
-            txbWantedExercise.Name = "txbWantedExercise";
-            txbWantedExercise.Size = new Size(125, 27);
-            txbWantedExercise.TabIndex = 6;
+            cmbSelectedEx.FormattingEnabled = true;
+            cmbSelectedEx.Location = new Point(539, 181);
+            cmbSelectedEx.Name = "cmbSelectedEx";
+            cmbSelectedEx.Size = new Size(151, 28);
+            cmbSelectedEx.TabIndex = 6;
             // 
             // lblExName
             // 
             lblExName.AutoSize = true;
-            lblExName.Location = new Point(496, 184);
+            lblExName.Location = new Point(458, 184);
             lblExName.Name = "lblExName";
-            lblExName.Size = new Size(71, 20);
+            lblExName.Size = new Size(75, 20);
             lblExName.TabIndex = 5;
-            lblExName.Text = "Ex Name:";
+            lblExName.Text = "Select Ex :";
             // 
             // btnViewExercise
             // 
@@ -204,6 +206,14 @@
             grbSpecifics.TabIndex = 1;
             grbSpecifics.TabStop = false;
             grbSpecifics.Text = "SPECIFICS";
+            // 
+            // txbPicture
+            // 
+            txbPicture.Location = new Point(62, 92);
+            txbPicture.Name = "txbPicture";
+            txbPicture.PlaceholderText = "Pic Url";
+            txbPicture.Size = new Size(125, 27);
+            txbPicture.TabIndex = 1;
             // 
             // txbSpecialty
             // 
@@ -300,10 +310,11 @@
             // 
             // tabManageExercises
             // 
+            tabManageExercises.Controls.Add(lblManageEx);
+            tabManageExercises.Controls.Add(cmbManageEx);
             tabManageExercises.Controls.Add(tabconManageExercise);
             tabManageExercises.Controls.Add(btnManageAllExercises);
             tabManageExercises.Controls.Add(lbManageExercises);
-            tabManageExercises.Controls.Add(txbManageExercise);
             tabManageExercises.Location = new Point(4, 29);
             tabManageExercises.Name = "tabManageExercises";
             tabManageExercises.Padding = new Padding(3);
@@ -412,13 +423,6 @@
             lbManageExercises.Size = new Size(174, 244);
             lbManageExercises.TabIndex = 1;
             // 
-            // txbManageExercise
-            // 
-            txbManageExercise.Location = new Point(466, 58);
-            txbManageExercise.Name = "txbManageExercise";
-            txbManageExercise.Size = new Size(125, 27);
-            txbManageExercise.TabIndex = 0;
-            // 
             // tabCompareExercises
             // 
             tabCompareExercises.Controls.Add(lblDescriptionCompare);
@@ -461,13 +465,22 @@
             btnCompare.UseVisualStyleBackColor = true;
             btnCompare.Click += btnCompare_Click;
             // 
-            // txbPicture
+            // cmbManageEx
             // 
-            txbPicture.Location = new Point(62, 92);
-            txbPicture.Name = "txbPicture";
-            txbPicture.PlaceholderText = "Pic Url";
-            txbPicture.Size = new Size(125, 27);
-            txbPicture.TabIndex = 1;
+            cmbManageEx.FormattingEnabled = true;
+            cmbManageEx.Location = new Point(466, 56);
+            cmbManageEx.Name = "cmbManageEx";
+            cmbManageEx.Size = new Size(151, 28);
+            cmbManageEx.TabIndex = 4;
+            // 
+            // lblManageEx
+            // 
+            lblManageEx.AutoSize = true;
+            lblManageEx.Location = new Point(385, 59);
+            lblManageEx.Name = "lblManageEx";
+            lblManageEx.Size = new Size(75, 20);
+            lblManageEx.TabIndex = 5;
+            lblManageEx.Text = "Select Ex :";
             // 
             // AppForm
             // 
@@ -500,7 +513,6 @@
 
         private TabControl tabconExercises;
         private TabPage tabAllExercises;
-        private TextBox txbWantedExercise;
         private Label lblExName;
         private Button btnViewExercise;
         private Button btnShowExercises;
@@ -530,12 +542,14 @@
         private Button btnDelete;
         private Button btnManageAllExercises;
         private ListBox lbManageExercises;
-        private TextBox txbManageExercise;
         private ComboBox cmbNewDifficulty;
         private TabPage tabCompareExercises;
         private Button btnCompare;
         private ListBox lbTest;
         private Label lblDescriptionCompare;
         private TextBox txbPicture;
+        private ComboBox cmbSelectedEx;
+        private Label lblManageEx;
+        private ComboBox cmbManageEx;
     }
 }

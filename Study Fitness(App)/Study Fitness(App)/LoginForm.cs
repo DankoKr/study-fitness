@@ -38,7 +38,7 @@ namespace Study_Fitness_App_
 
                 if (reader.HasRows)
                 {
-                    AppForm fr = new AppForm();
+                    MainForm fr = new MainForm();
                     fr.Show();
                     this.Hide();
                 }
