@@ -3,18 +3,20 @@
 @{
 }
 
-<h1>Hi Admin!</h1>
-<p> Welcome, @HttpContext.Session.GetString("UserName")</p>
+<div class="header">
+    <h1 class="header-title">Hi Admin!</h1>
+    <p class="header-text">Welcome, @HttpContext.Session.GetString("UserName")!</p>
+</div>
 
-
-<a asp-area="" asp-page="/MyPages/AddexercisePage">Create a new Exercise</a>
+<a class="new-exercise-link" asp-area="" asp-page="/MyPages/AddexercisePage">Create a new Exercise</a>
 
 <br />
 
-<form method="post">
-    <p>Click here to logout</p>
-    <div>
+<form class="logout-form" method="post">
+    <p class="logout-text">Click here to logout</p>
+    <div class="logout-button">
         <button type="submit" value="Click">Log out</button>
     </div>
 </form>
+
 

@@ -4,19 +4,17 @@
 	ViewData["Title"] = "MyPage";
 }
 
-<h1> Welcome, @HttpContext.Session.GetString("Username")</h1>
-<h3>This is your personal page!</h3>
+<h1 class="welcome-message">Welcome, @HttpContext.Session.GetString("Username")!</h1>
+<h3 class="personal-page">This is your personal page!</h3>
 
-<h2>Your data: </h2>
-<p>First Name: </p>
-<p>Username: </p>
-<p>Password: </p>
+<h2 class="data-title">Your data: </h2>
+<p class="data-label">First Name: </p>
+<p class="data-label">Username: </p>
+<p class="data-label">Password: </p>
 
-
-
-<form method="post">
-    <p>Click here to logout</p>
-    <div>
+<form class="logout-form" method="post">
+    <p class="logout-text">Click here to logout</p>
+    <div class="logout-button">
         <button type="submit" value="Click">Log out</button>
     </div>
 </form>

@@ -35,6 +35,8 @@ namespace Study_Fitness_App_
 
         private void FillExercisesInBoxes()
         {
+            cmbSelectedEx.Items.Clear();
+            cmbManageEx.Items.Clear();
             foreach (Exercise ex in myAdministrator.GetExercises())
             {
                 cmbSelectedEx.Items.Add(ex.GetName());
@@ -63,6 +65,7 @@ namespace Study_Fitness_App_
 
             ClearFields();
             ShowAllExercises();
+            FillExercisesInBoxes();
         }
 
         private void ShowAllExercises()

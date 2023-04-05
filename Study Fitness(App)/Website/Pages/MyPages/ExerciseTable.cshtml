@@ -1,0 +1,37 @@
+﻿@page
+@model Website.Pages.MyPages.ExerciseTableModel
+@{
+}
+
+<h2>Exercise Table</h2>
+<br />
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Difficulty</th>
+			<th>Equipment</th>
+			<th>Reps</th>
+			<th>Weight</th>
+			<th>Picture</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var exercise in Model.myExercises)
+		{
+			<tr>
+				<td>@exercise.Name</td>
+				<td>@exercise.Difficulty</td>
+				<td>@exercise.Equipment</td>
+				<td>@exercise.RepRange</td>
+				<td>@exercise.Weight</td>
+				<td>@exercise.PictureUrl</td>
+				<td>
+					<a class="btn btn-primary btn-sm" href="/Clients/Edit?name=@exercise.Name">Edit</a>
+					<a class="btn btn-danger btn-sm" href="/Clients/Delete?name@exercise.Name">Delete</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

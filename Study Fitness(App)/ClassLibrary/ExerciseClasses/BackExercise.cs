@@ -9,6 +9,7 @@ namespace ClassLibrary.ExerciseClasses
     public class BackExercise : Exercise
     {
         private string backElement;
+        public string BackElemet { get { return this.backElement; } }
         public BackExercise(string name, string difficulty, string equipment, int reps, double weight, string backElement, string picture) : base(name, difficulty, equipment, reps, weight, picture)
         {
             this.backElement = backElement;

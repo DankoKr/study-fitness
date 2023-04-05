@@ -9,9 +9,10 @@ namespace Website.Pages.MyPages
     public class AddExercisePageModel : PageModel
     {
         ExerciseAdministration myManager = new ExerciseAdministration();
-        ExerciseDAL exData = new ExerciseDAL();
+        ExerciseDAL db = new ExerciseDAL();
 
-        public string? Message { get; set; }
+        public string Message = "";
+        public string Error = "";
         public string Name { get; set; }
         public string Difficulty { get; set; }
         public string Equipment { get; set; }
@@ -25,20 +26,25 @@ namespace Website.Pages.MyPages
         {
         }
 
-        public IActionResult OnPost()
+        public void OnPost() 
         {
-            if (ModelState.IsValid)
-            {
-                //if (TestEx != null)
-                //{
-                //    myManager.CreateExercise(TestEx.Type, TestEx.Name, TestEx.Difficulty, TestEx.Equipment, TestEx.RepRange, TestEx.Weight, TestEx.Specialty, TestEx.PictureUrl);
-                //    exData.AddExercise(myManager.GetExercise(TestEx.Name));
-                //    Message = "You just created an exercise!";
-                //}
-            }
+            Name = Request.Form["name"];
+            Difficulty = Request.Form["difficulty"];
+            Equipment = Request.Form["equipment"];
+            RepRange = Convert.ToInt32(Request.Form["repRange"]);
+            Weight = Convert.ToDouble(Request.Form["weight"]);
+            PictureUrl = Request.Form["pictureURL"];
+            Type = Request.Form["type"];
+            Specialty = Request.Form["specialty"];
 
-            return Page();
+            if (Name.Length == 0) { Error = "Missing data!"; return; }
 
+            //Add to database
+            myManager.CreateExercise(Type, Name, Difficulty, Equipment, RepRange, Weight, Specialty, PictureUrl);           
+            //
+
+            Message = "Exercise created!";
+            //Response.Redirect("/MyPages/ExerciseTable");
         }
     }
 }

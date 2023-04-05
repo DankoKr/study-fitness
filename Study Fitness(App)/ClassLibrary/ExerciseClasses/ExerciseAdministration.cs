@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 
@@ -58,9 +59,14 @@ namespace ClassLibrary.ExerciseClasses
         {
             if (ValidateExerciseIsUnique(newEx.Name))
             {
-                ExerciseDAL.AddExercise(newEx);
                 myExercises.Add(newEx);
+                ExerciseDAL.AddExercise(newEx);
             }
+        }
+
+        public void AddFromDatabase(Exercise loadEx) 
+        {
+            myExercises.Add(loadEx);
         }
 
         public bool ValidateExerciseIsUnique(string name)

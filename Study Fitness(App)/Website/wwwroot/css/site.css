@@ -330,5 +330,152 @@ input[type="submit"], button[type="reset"] {
     font-size: 1rem;
 }
 
-
+h1 {
+    text-align: center;
+}
 /*-----------End Exercise page---------*/
+/*----------Personal page--------------*/
+.welcome-message {
+    font-size: 2rem;
+    color: #333;
+}
+
+.personal-page {
+    font-size: 1.5rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+.data-title {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.data-label {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.logout-form {
+    margin-top: 1.5rem;
+}
+
+.logout-text {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.logout-button {
+    margin-top: 0.5rem;
+}
+/*----------End Personal page--------------*/
+/*---------Admin page----------------------*/
+.header {
+    background-color: #F5F5F5;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.header-title {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.header-text {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.new-exercise-link {
+    display: block;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    color: #333;
+    text-align: center;
+    text-decoration: none;
+    background-color: #F5F5F5;
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+
+.logout-form {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.logout-text {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.logout-button {
+    margin-top: 0.5rem;
+} 
+
+/*---------End Admin page------------------*/
+/*----------Food&Tips----------------------*/
+
+.header-food {
+    grid-area: header;
+    background-color: #f1f1f1;
+    padding: 30px;
+    text-align: center;
+    font-size: 35px;
+}
+
+
+.grid-container-food {
+    display: grid;
+    grid-template-areas:
+        'header header header header header header'
+        'left left middle middle right right'
+}
+
+.left-food,
+.right-food {
+    padding: 10px;
+    height: 650px;
+    background-color: aqua;
+}
+
+.left-food {
+    grid-area: left;
+}
+
+.middle-food {
+    grid-area: middle;
+    padding: 10px;
+    height: 650px;
+    background-color: pink;
+}
+
+.right-food {
+    grid-area: right;
+}
+
+.left-food img,
+.right-food img,
+.middle-food img {
+    width: 420px;
+    height: 350px;
+    align-content: center;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media (max-width: 600px) {
+    .grid-container-food {
+        grid-template-areas:
+            'header header header header header header'
+            'left left left left left left'
+            'middle middle middle middle middle middle'
+            'right right right right right right';
+    }
+}
+/*-----------End Food&Tips-----------------*/

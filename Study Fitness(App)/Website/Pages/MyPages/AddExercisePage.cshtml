@@ -4,72 +4,92 @@
     ViewData["Title"] = "Create Exercise";
 }
 
-<p class="create-exercise-Message">@Model.Message</p>
+<h1>Create Exercise</h1>
 
-<form class="create-exercise" method="post">
-    <fieldset>
-        <legend class="createExercise-legend">Create a new exercise:</legend>
+@if (Model.Error.Length > 0)
+{
+    <div class="row mb-3">
+        <div class="col-sm-9">
+            <div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                <strong>@Model.Error</strong>
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+            </div>
+        </div>
+    </div>
+}
 
-        <div>
-            <label asp-for="Name">Name:</label>
-            <span asp-validation-for="Name"></span>
-            <input asp-for="Name" />
+<form method="post">
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Name</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="name" value="@Model.Name" />
         </div>
-        <div>
-            <label asp-for="Type">Choose a type:</label>
-            <span asp-validation-for="Type"></span>
-            <select asp-for="Type">
-                <option value="ArmExercise">ArmExercise</option>
-                <option value="BackExercise">BackExercise</option>
-                <option value="CoreExercise">CoreExercise</option>
-                <option value="ShoulderExercise">ShoulderExercise</option>
-                <option value="ChestExercise">ChestExercise</option>
-                <option value="LegsExercise">LegsExercise</option>
-                <option value="NeckExercise">NeckExercise</option>
-            </select>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Type</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="type" value="@Model.Type" />
         </div>
-        <div>
-            <label asp-for="Difficulty">Choose a difficulty:</label>
-            <span asp-validation-for="Difficulty"></span>
-            <select asp-for="Difficulty">
-                <option value="Beginner">Beginner</option>
-                <option value="Intermediate">Intermediate</option>
-                <option value="Advanced">Advanced</option>
-                <option value="Athlete">Athlete</option>
-            </select>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Difficulty</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="difficulty" value="@Model.Difficulty" />
         </div>
-        <div>
-            <label asp-for="Equipment">Equipment:</label>
-            <span asp-validation-for="Equipment"></span>
-            <input asp-for="Equipment" />
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Equipment</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="equipment" value="@Model.Equipment" />
         </div>
-        <div>
-            <label asp-for="RepRange">RepRange:</label>
-            <span asp-validation-for="RepRange"></span>
-            <input asp-for="RepRange" />
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">RepRange</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="repRange" value="@Model.RepRange" />
         </div>
-        <div>
-            <label asp-for="Weight">Weight:</label>
-            <span asp-validation-for="Weight"></span>
-            <input asp-for="Weight" />
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Weight</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="weight" value="@Model.Weight" />
         </div>
-        <div>
-            <label asp-for="PictureUrl">PictureUrl:</label>
-            <span asp-validation-for="PictureUrl"></span>
-            <input asp-for="PictureUrl" />
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">PictureURL</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="pictureURL" value="@Model.PictureUrl" />
         </div>
-        <div>
-            <label asp-for="Specialty">Element:</label>
-            <span asp-validation-for="Specialty"></span>
-            <input asp-for="Specialty" />
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Specialty</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="specialty" value="@Model.Specialty" />
         </div>
-        <div>
-            <label class="createExercise-label">&nbsp;</label>
-            <input type="submit" value="Submit" class="submit" />
+    </div>
+
+    @if (Model.Message.Length > 0)
+    {
+        <div class="row mb-3">
+           <div class="col-sm-9">
+               <div class='alert alert-success alert-dismissible fade show' role='alert'>
+                   <strong>@Model.Message</strong>
+                   <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+               </div>
+           </div>
         </div>
-    </fieldset>
+    }
+
+
+    <div class="row mb-3">
+        <div class="offset-sm-3 col-sm-3 d-grid">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        <div class="col-sm-3 d-grid">
+            <a class="btn btn-outline-primary" href="/" role="button">Cancel</a>
+        </div>
+    </div>
 </form>
-
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
