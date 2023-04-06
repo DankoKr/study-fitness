@@ -207,6 +207,150 @@ namespace ClassLibrary.DatabaseClasses
                     _connection.Close();
                 }
             }
+
+            else if (ex is BackExercise)
+            {
+                BackExercise exBack = (BackExercise)ex;
+                string sql = (
+               $"UPDATE Exercise\r\nSET RepRange = @reps, Difficulty = @difficulty, Weight = @weight\r\nWHERE Name = '{exBack.Name}';");
+                try
+                {
+                    SqlCommand cmd = new SqlCommand(sql, _connection);
+                    cmd.Parameters.AddWithValue("@reps", reps);
+                    cmd.Parameters.AddWithValue("@difficulty", difficulty);
+                    cmd.Parameters.AddWithValue("@weight", weight);
+                    _connection.Open();
+                    cmd.ExecuteNonQuery();
+                }
+                catch (SqlException sqlEx)
+                {
+                    throw new Exception(sqlEx.Message);
+                }
+                finally
+                {
+                    _connection.Close();
+                }
+            }
+
+            else if (ex is ChestExercise)
+            {
+                ChestExercise exChest = (ChestExercise)ex;
+                string sql = (
+               $"UPDATE Exercise\r\nSET RepRange = @reps, Difficulty = @difficulty, Weight = @weight\r\nWHERE Name = '{exChest.Name}';");
+                try
+                {
+                    SqlCommand cmd = new SqlCommand(sql, _connection);
+                    cmd.Parameters.AddWithValue("@reps", reps);
+                    cmd.Parameters.AddWithValue("@difficulty", difficulty);
+                    cmd.Parameters.AddWithValue("@weight", weight);
+                    _connection.Open();
+                    cmd.ExecuteNonQuery();
+                }
+                catch (SqlException sqlEx)
+                {
+                    throw new Exception(sqlEx.Message);
+                }
+                finally
+                {
+                    _connection.Close();
+                }
+            }
+
+            else if (ex is CoreExercise)
+            {
+                CoreExercise exCore = (CoreExercise)ex;
+                string sql = (
+               $"UPDATE Exercise\r\nSET RepRange = @reps, Difficulty = @difficulty, Weight = @weight\r\nWHERE Name = '{exCore.Name}';");
+                try
+                {
+                    SqlCommand cmd = new SqlCommand(sql, _connection);
+                    cmd.Parameters.AddWithValue("@reps", reps);
+                    cmd.Parameters.AddWithValue("@difficulty", difficulty);
+                    cmd.Parameters.AddWithValue("@weight", weight);
+                    _connection.Open();
+                    cmd.ExecuteNonQuery();
+                }
+                catch (SqlException sqlEx)
+                {
+                    throw new Exception(sqlEx.Message);
+                }
+                finally
+                {
+                    _connection.Close();
+                }
+            }
+
+            else if (ex is LegsExercise)
+            {
+                LegsExercise exLegs = (LegsExercise)ex;
+                string sql = (
+               $"UPDATE Exercise\r\nSET RepRange = @reps, Difficulty = @difficulty, Weight = @weight\r\nWHERE Name = '{exLegs.Name}';");
+                try
+                {
+                    SqlCommand cmd = new SqlCommand(sql, _connection);
+                    cmd.Parameters.AddWithValue("@reps", reps);
+                    cmd.Parameters.AddWithValue("@difficulty", difficulty);
+                    cmd.Parameters.AddWithValue("@weight", weight);
+                    _connection.Open();
+                    cmd.ExecuteNonQuery();
+                }
+                catch (SqlException sqlEx)
+                {
+                    throw new Exception(sqlEx.Message);
+                }
+                finally
+                {
+                    _connection.Close();
+                }
+            }
+
+            else if (ex is NeckExercise)
+            {
+                NeckExercise exNeck = (NeckExercise)ex;
+                string sql = (
+               $"UPDATE Exercise\r\nSET RepRange = @reps, Difficulty = @difficulty, Weight = @weight\r\nWHERE Name = '{exNeck.Name}';");
+                try
+                {
+                    SqlCommand cmd = new SqlCommand(sql, _connection);
+                    cmd.Parameters.AddWithValue("@reps", reps);
+                    cmd.Parameters.AddWithValue("@difficulty", difficulty);
+                    cmd.Parameters.AddWithValue("@weight", weight);
+                    _connection.Open();
+                    cmd.ExecuteNonQuery();
+                }
+                catch (SqlException sqlEx)
+                {
+                    throw new Exception(sqlEx.Message);
+                }
+                finally
+                {
+                    _connection.Close();
+                }
+            }
+
+            else if (ex is ShoulderExercise)
+            {
+                ShoulderExercise exShoulder = (ShoulderExercise)ex;
+                string sql = (
+               $"UPDATE Exercise\r\nSET RepRange = @reps, Difficulty = @difficulty, Weight = @weight\r\nWHERE Name = '{exShoulder.Name}';");
+                try
+                {
+                    SqlCommand cmd = new SqlCommand(sql, _connection);
+                    cmd.Parameters.AddWithValue("@reps", reps);
+                    cmd.Parameters.AddWithValue("@difficulty", difficulty);
+                    cmd.Parameters.AddWithValue("@weight", weight);
+                    _connection.Open();
+                    cmd.ExecuteNonQuery();
+                }
+                catch (SqlException sqlEx)
+                {
+                    throw new Exception(sqlEx.Message);
+                }
+                finally
+                {
+                    _connection.Close();
+                }
+            }
         }
 
         public void LoadExercises(ExerciseAdministration myManager)
@@ -219,12 +363,16 @@ namespace ClassLibrary.DatabaseClasses
                 string sql3 = "SELECT  e.Name, e.Difficulty, e.Equipment, e.RepRange, e.Weight, e.PictureURL, sh.shoulderHead \r\nFROM Exercise e\r\nJOIN ShoulderExercise sh\r\non e.exercise_id = sh.exercise_id";
                 string sql4 = "SELECT  e.Name, e.Difficulty, e.Equipment, e.RepRange, e.Weight, e.PictureURL, l.legs\r\nFROM Exercise e\r\nJOIN LegsExercise l\r\non e.exercise_id = l.exercise_id";
                 string sql5 = "SELECT  e.Name, e.Difficulty, e.Equipment, e.RepRange, e.Weight, e.PictureURL, b.backElement\r\nFROM Exercise e\r\nJOIN BackExercise b\r\non e.exercise_id = b.exercise_id";
+                string sql6 = "SELECT Name, Difficulty, Equipment, RepRange, Weight, PictureURL\r\nFROM Exercise\r\nWHERE Type = 'NeckExercise'";
+                string sql7 = "SELECT Name, Difficulty, Equipment, RepRange, Weight, PictureURL\r\nFROM Exercise\r\nWHERE Type = 'CoreExercise'";
 
                 SqlCommand cmd1 = new SqlCommand(sql1, _connection);
                 SqlCommand cmd2 = new SqlCommand(sql2, _connection);
                 SqlCommand cmd3 = new SqlCommand(sql3, _connection);
                 SqlCommand cmd4 = new SqlCommand(sql4, _connection);
                 SqlCommand cmd5 = new SqlCommand(sql5, _connection);
+                SqlCommand cmd6 = new SqlCommand(sql6, _connection);
+                SqlCommand cmd7 = new SqlCommand(sql7, _connection);
 
                 _connection.Open();
                 SqlDataReader dr1 = cmd1.ExecuteReader();
@@ -266,7 +414,23 @@ namespace ClassLibrary.DatabaseClasses
                     myManager.AddFromDatabase(new BackExercise(Convert.ToString(dr1[0]), Convert.ToString(dr1[1]), Convert.ToString(dr1[2]), Convert.ToInt32(dr1[3]), Convert.ToDouble(dr1[4]), Convert.ToString(dr1[6]), Convert.ToString(dr1[5])));
                 }
 
-                dr1.Close();                
+                dr1.Close();
+                dr1 = cmd6.ExecuteReader();
+
+                while (dr1.Read())
+                {
+                    myManager.AddFromDatabase(new NeckExercise(Convert.ToString(dr1[0]), Convert.ToString(dr1[1]), Convert.ToString(dr1[2]), Convert.ToInt32(dr1[3]), Convert.ToDouble(dr1[4]), Convert.ToString(dr1[5])));
+                }
+
+                dr1.Close();
+                dr1 = cmd7.ExecuteReader();
+
+                while (dr1.Read())
+                {
+                    myManager.AddFromDatabase(new CoreExercise(Convert.ToString(dr1[0]), Convert.ToString(dr1[1]), Convert.ToString(dr1[2]), Convert.ToInt32(dr1[3]), Convert.ToDouble(dr1[4]), Convert.ToString(dr1[5])));
+                }
+
+                dr1.Close();
 
             }
             catch (SqlException sqlEx)
