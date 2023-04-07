@@ -159,12 +159,13 @@ namespace ClassLibrary.DatabaseClasses
         }
 
         public void DeleteExercise(Exercise ex) 
-        {//Needs to change
+        {
             SqlConnection _connection = db.GetSqlConnection();
             if (ex is ArmExercise)
             {
-                string sql = (
-               $"DELETE FROM ArmExercise WHERE nameEx = '{ex.Name}';\r\nDELETE FROM Exercise WHERE Name = '{ex.Name}';" );
+				ArmExercise exArm = (ArmExercise)ex;
+				string sql = (
+               $"DELETE ArmExercise\r\nFROM ArmExercise arm\r\nINNER JOIN Exercise e ON e.exercise_id = arm.exercise_id\r\nWHERE e.exercise_id IN (\r\n    SELECT exercise_id\r\n    FROM Exercise\r\n    WHERE Name = '{exArm.Name}'\r\n);\r\n\r\nDELETE Exercise\r\nFROM Exercise\r\nWHERE Name = '{exArm.Name}';" );
                 try
                 {
                     SqlCommand cmd = new SqlCommand(sql, _connection);
@@ -180,7 +181,133 @@ namespace ClassLibrary.DatabaseClasses
                     _connection.Close();
                 }
             }
-        }
+
+			else if (ex is BackExercise)
+			{
+				BackExercise exBack = (BackExercise)ex;
+				string sql = (
+			   $"DELETE BackExercise\r\nFROM BackExercise b\r\nINNER JOIN Exercise e ON e.exercise_id = b.exercise_id\r\nWHERE e.exercise_id IN (\r\n    SELECT exercise_id\r\n    FROM Exercise\r\n    WHERE Name = '{exBack.Name}'\r\n);\r\n\r\nDELETE Exercise\r\nFROM Exercise\r\nWHERE Name = '{exBack.Name}';");
+				try
+				{
+					SqlCommand cmd = new SqlCommand(sql, _connection);
+					_connection.Open();
+					cmd.ExecuteNonQuery();
+				}
+				catch (SqlException sqlEx)
+				{
+					throw new Exception(sqlEx.Message);
+				}
+				finally
+				{
+					_connection.Close();
+				}
+			}
+
+			else if (ex is ChestExercise)
+			{
+				ChestExercise exChest = (ChestExercise)ex;
+				string sql = (
+			   $"DELETE ChestExercise\r\nFROM ChestExercise c\r\nINNER JOIN Exercise e ON e.exercise_id = c.exercise_id\r\nWHERE e.exercise_id IN (\r\n    SELECT exercise_id\r\n    FROM Exercise\r\n    WHERE Name = '{exChest.Name}'\r\n);\r\n\r\nDELETE Exercise\r\nFROM Exercise\r\nWHERE Name = '{exChest.Name}';");
+				try
+				{
+					SqlCommand cmd = new SqlCommand(sql, _connection);
+					_connection.Open();
+					cmd.ExecuteNonQuery();
+				}
+				catch (SqlException sqlEx)
+				{
+					throw new Exception(sqlEx.Message);
+				}
+				finally
+				{
+					_connection.Close();
+				}
+			}
+
+			else if (ex is LegsExercise)
+			{
+				LegsExercise exLegs = (LegsExercise)ex;
+				string sql = (
+			   $"DELETE LegsExercise\r\nFROM LegsExercise l\r\nINNER JOIN Exercise e ON e.exercise_id = l.exercise_id\r\nWHERE e.exercise_id IN (\r\n    SELECT exercise_id\r\n    FROM Exercise\r\n    WHERE Name = '{exLegs.Name}'\r\n);\r\n\r\nDELETE Exercise\r\nFROM Exercise\r\nWHERE Name = '{exLegs.Name}';");
+				try
+				{
+					SqlCommand cmd = new SqlCommand(sql, _connection);
+					_connection.Open();
+					cmd.ExecuteNonQuery();
+				}
+				catch (SqlException sqlEx)
+				{
+					throw new Exception(sqlEx.Message);
+				}
+				finally
+				{
+					_connection.Close();
+				}
+			}
+
+			else if (ex is ShoulderExercise)
+			{
+				ShoulderExercise exShoulder = (ShoulderExercise)ex;
+				string sql = (
+			   $"DELETE ShoulderExercise\r\nFROM ShoulderExercise s\r\nINNER JOIN Exercise e ON e.exercise_id = s.exercise_id\r\nWHERE e.exercise_id IN (\r\n    SELECT exercise_id\r\n    FROM Exercise\r\n    WHERE Name = '{exShoulder.Name}'\r\n);\r\n\r\nDELETE Exercise\r\nFROM Exercise\r\nWHERE Name = '{exShoulder.Name}';");
+				try
+				{
+					SqlCommand cmd = new SqlCommand(sql, _connection);
+					_connection.Open();
+					cmd.ExecuteNonQuery();
+				}
+				catch (SqlException sqlEx)
+				{
+					throw new Exception(sqlEx.Message);
+				}
+				finally
+				{
+					_connection.Close();
+				}
+			}
+
+			else if (ex is NeckExercise)
+			{
+				NeckExercise exNeck = (NeckExercise)ex;
+				string sql = (
+			   $"DELETE Exercise\r\nFROM Exercise\r\nWHERE Name = '{exNeck.Name}';");
+				try
+				{
+					SqlCommand cmd = new SqlCommand(sql, _connection);
+					_connection.Open();
+					cmd.ExecuteNonQuery();
+				}
+				catch (SqlException sqlEx)
+				{
+					throw new Exception(sqlEx.Message);
+				}
+				finally
+				{
+					_connection.Close();
+				}
+			}
+
+			else if (ex is CoreExercise)
+			{
+				CoreExercise exCore = (CoreExercise)ex;
+				string sql = (
+			   $"DELETE Exercise\r\nFROM Exercise\r\nWHERE Name = '{exCore.Name}';");
+				try
+				{
+					SqlCommand cmd = new SqlCommand(sql, _connection);
+					_connection.Open();
+					cmd.ExecuteNonQuery();
+				}
+				catch (SqlException sqlEx)
+				{
+					throw new Exception(sqlEx.Message);
+				}
+				finally
+				{
+					_connection.Close();
+				}
+			}
+		}
 
         public void EditExercise(Exercise ex, string difficulty, int reps, double weight) 
         {
