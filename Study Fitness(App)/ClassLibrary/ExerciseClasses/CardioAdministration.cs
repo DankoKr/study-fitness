@@ -12,15 +12,22 @@ namespace ClassLibrary.ExerciseClasses
     public class CardioAdministration : IAdministration
     {
         List<Cardio> myCardios = new List<Cardio>();
+        CardioDAL db = new CardioDAL();
         public CardioAdministration() { }
 
-        public void AddCardio(string name, int calories, string difficulty, string picture) 
+        public void CreateCardio(string name, int calories, string difficulty, string picture) 
         {
             Cardio cardio = new Cardio(name, calories, difficulty, picture);
             if (ValidateExerciseIsUnique(cardio.Name))
             {
                 myCardios.Add(cardio);
+                db.AddCardio(cardio);
             }
+        }
+
+        public void AddCardioFromDatabase(Cardio c) 
+        {
+            myCardios.Add(c);
         }
 
         public bool ValidateExerciseIsUnique(string name) 
@@ -51,6 +58,7 @@ namespace ClassLibrary.ExerciseClasses
         {
             if (ExerciseExists(name))
             {
+                db.DeleteCardio(GetCardio(name));
                 myCardios.Remove(GetCardio(name));
             }
         }
@@ -76,7 +84,8 @@ namespace ClassLibrary.ExerciseClasses
         {
             if (newCalories > 0 && newName != "")
             {
-                c.Name = newName;
+				db.EditCardio(c, newName, newDifficulty, newCalories, newPicture);
+				c.Name = newName;
                 c.Calories = newCalories;
                 c.Difficulty = newDifficulty;
                 c.PictureURL = newPicture;

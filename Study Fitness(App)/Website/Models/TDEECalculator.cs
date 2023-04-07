@@ -32,20 +32,25 @@ namespace Website.Models
 
         public double myTDEE { get; set; }
 
-        //public void CalculateEEE(string level) 
-        //{
-        //    if (level == "low") { EEE = 250; }
-        //    else if (level == "medium") { EEE = 350; }
-        //    else { EEE = 500; }
-        //}
-
         public void Calculate()
         {
-            BMR = Weight * 20;
-            TEF = BMR * 0.1;
-            EEE = 250;
-            NEAT = EEE;
-            myTDEE = BMR + TEF + EEE + NEAT;
-        }
+			if (Activity == "low")
+			{
+				EEE = 250;
+			}
+			else if (Activity == "medium")
+			{
+				EEE = 350;
+			}
+			else if (Activity == "high")
+			{
+				EEE = 500;
+			}
+
+			BMR = Weight * 20;
+			TEF = BMR * 0.1;
+			NEAT = EEE;
+			myTDEE = BMR + TEF + EEE + NEAT;
+		}
     }
 }

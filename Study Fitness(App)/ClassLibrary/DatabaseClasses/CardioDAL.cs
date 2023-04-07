@@ -14,7 +14,7 @@ namespace ClassLibrary.DatabaseClasses
         MSSQL db = new MSSQL();
 
         public void LoadCardios(CardioAdministration myManager)
-        {//Cardio db not created
+        {
             SqlConnection _connection = db.GetSqlConnection();
 
             try
@@ -25,7 +25,7 @@ namespace ClassLibrary.DatabaseClasses
                 SqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
-                    myManager.AddCardio(Convert.ToString(dr[1]), Convert.ToInt32(dr[2]), Convert.ToString(dr[3]), Convert.ToString(dr[4]));
+                    myManager.AddCardioFromDatabase(new Cardio(Convert.ToString(dr[1]), Convert.ToInt32(dr[2]), Convert.ToString(dr[3]), Convert.ToString(dr[4])));
                 }
 
                 dr.Close();
@@ -38,8 +38,62 @@ namespace ClassLibrary.DatabaseClasses
             finally { _connection.Close(); }
         }
 
-        public void AddCardio(Cardio c) { }
-        public void DeleteCardio(Cardio c) { }
-        public void EditCardio(Cardio c, string difficulty, int calories) { }
+        public void AddCardio(Cardio c) 
+        {
+			SqlConnection _connection = db.GetSqlConnection();
+
+			try
+			{
+				string sql = $"INSERT INTO Cardio (name, calories, difficulty, pictureURL)\r\nVALUES ('{c.Name}', {c.Calories},'{c.Difficulty}', '{c.PictureURL}');";
+				SqlCommand cmd = new SqlCommand(sql, _connection);
+				_connection.Open();
+				cmd.ExecuteNonQuery();
+
+			}
+			catch (SqlException sqlEx)
+			{
+
+				throw new Exception(sqlEx.Message);
+			}
+			finally { _connection.Close(); }
+		}
+        public void DeleteCardio(Cardio c) 
+        {
+			SqlConnection _connection = db.GetSqlConnection();
+
+			try
+			{
+				string sql = $"DELETE FROM Cardio\r\nWHERE name = '{c.Name}';";
+				SqlCommand cmd = new SqlCommand(sql, _connection);
+				_connection.Open();
+				cmd.ExecuteNonQuery();
+
+			}
+			catch (SqlException sqlEx)
+			{
+
+				throw new Exception(sqlEx.Message);
+			}
+			finally { _connection.Close(); }
+		}
+        public void EditCardio(Cardio c, string name, string difficulty, int calories, string picture) 
+        {
+			SqlConnection _connection = db.GetSqlConnection();
+
+			try
+			{
+				string sql = $"UPDATE Cardio\r\nSET name = '{name}', difficulty = '{difficulty}', calories = {calories}, pictureURL = '{picture}'\r\nWHERE name = '{c.Name}';";
+				SqlCommand cmd = new SqlCommand(sql, _connection);
+				_connection.Open();
+				cmd.ExecuteNonQuery();
+
+			}
+			catch (SqlException sqlEx)
+			{
+
+				throw new Exception(sqlEx.Message);
+			}
+			finally { _connection.Close(); }
+		}
     }
 }

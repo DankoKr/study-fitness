@@ -1,4 +1,5 @@
-﻿using ClassLibrary.ExerciseClasses;
+﻿using ClassLibrary.DatabaseClasses;
+using ClassLibrary.ExerciseClasses;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,9 +16,11 @@ namespace Study_Fitness_App_
     public partial class CardioForm : Form
     {
         CardioAdministration myAdministration = new CardioAdministration();
+        CardioDAL db = new CardioDAL();
         public CardioForm()
         {
             InitializeComponent();
+            db.LoadCardios(myAdministration);
         }
 
         private void btnCreateCardio_Click(object sender, EventArgs e)
@@ -27,7 +30,7 @@ namespace Study_Fitness_App_
             int calories = Convert.ToInt32(numCalories.Text);
             string picture = txbPictureURL.Text;
 
-            myAdministration.AddCardio(name, calories, difficulty, picture);
+            myAdministration.CreateCardio(name, calories, difficulty, picture);
             ClearFields();
         }
 
