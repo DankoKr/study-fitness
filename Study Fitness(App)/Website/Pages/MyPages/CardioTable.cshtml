@@ -1,0 +1,33 @@
+﻿@page
+@model Website.Pages.MyPages.CardioTableModel
+@{
+}
+
+<h2>Cardio Table</h2>
+<br />
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Difficulty</th>
+			<th>Calories</th>
+			<th>Picture</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var cardio in Model.myCardios)
+		{
+			<tr>
+				<td>@cardio.Name</td>
+				<td>@cardio.Difficulty</td>
+				<td>@cardio.Calories</td>
+				<td>@cardio.PictureURL</td>
+				<td>
+					<a class="btn btn-primary btn-sm" href="/MyPages/EditCardioPage?name=@cardio.Name">Edit</a>
+					<a class="btn btn-danger btn-sm" href="/MyPages/DeleteCardioPage?name=@cardio.Name">Delete</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

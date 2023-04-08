@@ -1,0 +1,49 @@
+﻿@page
+@model Website.Pages.MyPages.CardioModel
+@{
+    ViewData["Title"] = "Cardios";
+}
+
+<br />
+<h1>Here are a bunch of cardios to help you with your goal</h1>
+
+<div class="column-row-exercise">
+    @foreach (var data in Model.PaginatedExercises)
+    {
+        <div class="column-container-exercise">
+            <div>
+                <p>@data.Name</p>
+                <p><img class="column-image-avatar" src="@data.PictureURL"></p>
+                <p><a asp-page="/MyPages/CardioDetails" asp-route-name=@data.Name>More details</a></p>
+            </div>
+        </div>
+
+    }
+</div>
+
+@if (Model.TotalPages > 1)
+{
+    <div class="pagination">
+        @if (Model.CurrentPage > 1)
+        {
+            <a href="?page=@(Model.CurrentPage - 1)">Previous</a>
+        }
+
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            if (i == Model.CurrentPage)
+            {
+                <span class="current-page">@i</span>
+            }
+            else
+            {
+                <a href="?page=@i">@i</a>
+            }
+        }
+
+        @if (Model.CurrentPage < Model.TotalPages)
+        {
+            <a href="?page=@(Model.CurrentPage + 1)">Next</a>
+        }
+    </div>
+}

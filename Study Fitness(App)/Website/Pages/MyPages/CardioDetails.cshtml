@@ -1,0 +1,17 @@
+﻿@page
+@model Website.Pages.MyPages.CardioDetailsModel
+@{
+}
+
+<h1> Details:</h1>
+
+
+
+<div class="column-container-exercise">
+    <div>
+        <p>Name: @Model.selectedC.Name</p>
+        <p>Difficulty: @Model.selectedC.Difficulty</p>
+        <p>Calories: @Model.selectedC.Calories</p>
+        <p><img class="column-image-avatar" src="@Model.selectedC.PictureURL"></p>
+    </div>
+</div>
