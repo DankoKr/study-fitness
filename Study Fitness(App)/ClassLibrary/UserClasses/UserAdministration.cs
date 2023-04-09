@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClassLibrary.DatabaseClasses;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,14 +10,22 @@ namespace ClassLibrary.UserClasses
     public class UserAdministration
     {
         List<User> myUsers = new List<User>();
+        UserDAL db = new UserDAL(); 
 
         public void AddUser(User user)
         {
             if (ValidateUserIsUnique(user.Username))
             {
                 myUsers.Add(user);
+                db.AddUser(user);
             }
         }
+
+        public void AddUserFromDatabase(User user) 
+        {
+            myUsers.Add(user);
+        }
+
 
         public void DeleteUser(User u)
         {
