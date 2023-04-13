@@ -25,7 +25,7 @@ namespace ClassLibrary.DatabaseClasses
                 SqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
-                    myManager.AddCardioFromDatabase(new Cardio(Convert.ToString(dr[1]), Convert.ToInt32(dr[2]), Convert.ToString(dr[3]), Convert.ToString(dr[4])));
+                    myManager.AddExistingCardio(new Cardio(Convert.ToString(dr[1]), Convert.ToInt32(dr[2]), Convert.ToString(dr[3]), Convert.ToString(dr[4])));
                 }
 
                 dr.Close();

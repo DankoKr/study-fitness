@@ -64,7 +64,7 @@ namespace ClassLibrary.ExerciseClasses
             }
         }
 
-        public void AddFromDatabase(Exercise loadEx) 
+        public void AddExistingEx(Exercise loadEx) 
         {
             myExercises.Add(loadEx);
         }

@@ -507,7 +507,7 @@ namespace ClassLibrary.DatabaseClasses
 
                 while (dr1.Read())
                 {//                                            nameEx,               difficulty,                equipment,                     numReps,                weight,                         specialty,                   picture
-                    myManager.AddFromDatabase(new ChestExercise(Convert.ToString(dr1[0]), Convert.ToString(dr1[1]), Convert.ToString(dr1[2]), Convert.ToInt32(dr1[3]), Convert.ToDouble(dr1[4]), Convert.ToString(dr1[6]), Convert.ToString(dr1[5])));
+                    myManager.AddExistingEx(new ChestExercise(Convert.ToString(dr1[0]), Convert.ToString(dr1[1]), Convert.ToString(dr1[2]), Convert.ToInt32(dr1[3]), Convert.ToDouble(dr1[4]), Convert.ToString(dr1[6]), Convert.ToString(dr1[5])));
                 }
 
                 dr1.Close();
@@ -515,7 +515,7 @@ namespace ClassLibrary.DatabaseClasses
 
                 while (dr1.Read())
                 {
-                    myManager.AddFromDatabase(new ArmExercise(Convert.ToString(dr1[0]), Convert.ToString(dr1[1]), Convert.ToString(dr1[2]), Convert.ToInt32(dr1[3]), Convert.ToDouble(dr1[4]), Convert.ToString(dr1[6]), Convert.ToString(dr1[5])));
+                    myManager.AddExistingEx(new ArmExercise(Convert.ToString(dr1[0]), Convert.ToString(dr1[1]), Convert.ToString(dr1[2]), Convert.ToInt32(dr1[3]), Convert.ToDouble(dr1[4]), Convert.ToString(dr1[6]), Convert.ToString(dr1[5])));
                 }
 
                 dr1.Close();
@@ -523,7 +523,7 @@ namespace ClassLibrary.DatabaseClasses
 
                 while (dr1.Read())
                 {
-                    myManager.AddFromDatabase(new ShoulderExercise(Convert.ToString(dr1[0]), Convert.ToString(dr1[1]), Convert.ToString(dr1[2]), Convert.ToInt32(dr1[3]), Convert.ToDouble(dr1[4]), Convert.ToString(dr1[6]), Convert.ToString(dr1[5])));
+                    myManager.AddExistingEx(new ShoulderExercise(Convert.ToString(dr1[0]), Convert.ToString(dr1[1]), Convert.ToString(dr1[2]), Convert.ToInt32(dr1[3]), Convert.ToDouble(dr1[4]), Convert.ToString(dr1[6]), Convert.ToString(dr1[5])));
                 }
 
                 dr1.Close();
@@ -531,7 +531,7 @@ namespace ClassLibrary.DatabaseClasses
 
                 while (dr1.Read())
                 {
-                    myManager.AddFromDatabase(new LegsExercise(Convert.ToString(dr1[0]), Convert.ToString(dr1[1]), Convert.ToString(dr1[2]), Convert.ToInt32(dr1[3]), Convert.ToDouble(dr1[4]), Convert.ToString(dr1[6]), Convert.ToString(dr1[5])));
+                    myManager.AddExistingEx(new LegsExercise(Convert.ToString(dr1[0]), Convert.ToString(dr1[1]), Convert.ToString(dr1[2]), Convert.ToInt32(dr1[3]), Convert.ToDouble(dr1[4]), Convert.ToString(dr1[6]), Convert.ToString(dr1[5])));
                 }
 
                 dr1.Close();
@@ -539,7 +539,7 @@ namespace ClassLibrary.DatabaseClasses
 
                 while (dr1.Read())
                 {
-                    myManager.AddFromDatabase(new BackExercise(Convert.ToString(dr1[0]), Convert.ToString(dr1[1]), Convert.ToString(dr1[2]), Convert.ToInt32(dr1[3]), Convert.ToDouble(dr1[4]), Convert.ToString(dr1[6]), Convert.ToString(dr1[5])));
+                    myManager.AddExistingEx(new BackExercise(Convert.ToString(dr1[0]), Convert.ToString(dr1[1]), Convert.ToString(dr1[2]), Convert.ToInt32(dr1[3]), Convert.ToDouble(dr1[4]), Convert.ToString(dr1[6]), Convert.ToString(dr1[5])));
                 }
 
                 dr1.Close();
@@ -547,7 +547,7 @@ namespace ClassLibrary.DatabaseClasses
 
                 while (dr1.Read())
                 {
-                    myManager.AddFromDatabase(new NeckExercise(Convert.ToString(dr1[0]), Convert.ToString(dr1[1]), Convert.ToString(dr1[2]), Convert.ToInt32(dr1[3]), Convert.ToDouble(dr1[4]), Convert.ToString(dr1[5])));
+                    myManager.AddExistingEx(new NeckExercise(Convert.ToString(dr1[0]), Convert.ToString(dr1[1]), Convert.ToString(dr1[2]), Convert.ToInt32(dr1[3]), Convert.ToDouble(dr1[4]), Convert.ToString(dr1[5])));
                 }
 
                 dr1.Close();
@@ -555,7 +555,7 @@ namespace ClassLibrary.DatabaseClasses
 
                 while (dr1.Read())
                 {
-                    myManager.AddFromDatabase(new CoreExercise(Convert.ToString(dr1[0]), Convert.ToString(dr1[1]), Convert.ToString(dr1[2]), Convert.ToInt32(dr1[3]), Convert.ToDouble(dr1[4]), Convert.ToString(dr1[5])));
+                    myManager.AddExistingEx(new CoreExercise(Convert.ToString(dr1[0]), Convert.ToString(dr1[1]), Convert.ToString(dr1[2]), Convert.ToInt32(dr1[3]), Convert.ToDouble(dr1[4]), Convert.ToString(dr1[5])));
                 }
 
                 dr1.Close();

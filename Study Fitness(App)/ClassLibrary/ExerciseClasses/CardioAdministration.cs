@@ -25,7 +25,7 @@ namespace ClassLibrary.ExerciseClasses
             }
         }
 
-        public void AddCardioFromDatabase(Cardio c) 
+        public void AddExistingCardio(Cardio c) 
         {
             myCardios.Add(c);
         }

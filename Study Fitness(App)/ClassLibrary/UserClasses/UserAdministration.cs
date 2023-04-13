@@ -21,7 +21,7 @@ namespace ClassLibrary.UserClasses
             }
         }
 
-        public void AddUserFromDatabase(User user) 
+        public void AddExistingUser(User user) 
         {
             myUsers.Add(user);
         }

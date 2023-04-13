@@ -24,7 +24,7 @@ namespace ClassLibrary.DatabaseClasses
                 SqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
-                    myManager.AddUserFromDatabase(new User(Convert.ToString(dr[1]), Convert.ToString(dr[2]), Convert.ToString(dr[3]), Convert.ToString(dr[4])));
+                    myManager.AddExistingUser(new User(Convert.ToString(dr[1]), Convert.ToString(dr[2]), Convert.ToString(dr[3]), Convert.ToString(dr[4])));
                 }
 
                 dr.Close();
