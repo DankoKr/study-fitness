@@ -41,7 +41,6 @@
             txbUsername = new TextBox();
             txbFirstName = new TextBox();
             tabEditUser = new TabPage();
-            txbNewPassword = new TextBox();
             lblNewDifficulty = new Label();
             txbNewUsername = new TextBox();
             lbManageUser = new ListBox();
@@ -177,7 +176,6 @@
             // 
             // tabEditUser
             // 
-            tabEditUser.Controls.Add(txbNewPassword);
             tabEditUser.Controls.Add(lblNewDifficulty);
             tabEditUser.Controls.Add(txbNewUsername);
             tabEditUser.Controls.Add(lbManageUser);
@@ -191,14 +189,6 @@
             tabEditUser.Text = "Edit/Delete";
             tabEditUser.UseVisualStyleBackColor = true;
             // 
-            // txbNewPassword
-            // 
-            txbNewPassword.Location = new Point(371, 140);
-            txbNewPassword.Name = "txbNewPassword";
-            txbNewPassword.PlaceholderText = "New Password";
-            txbNewPassword.Size = new Size(125, 27);
-            txbNewPassword.TabIndex = 13;
-            // 
             // lblNewDifficulty
             // 
             lblNewDifficulty.AutoSize = true;
@@ -209,7 +199,7 @@
             // 
             // txbNewUsername
             // 
-            txbNewUsername.Location = new Point(371, 92);
+            txbNewUsername.Location = new Point(370, 108);
             txbNewUsername.Name = "txbNewUsername";
             txbNewUsername.PlaceholderText = "New Username";
             txbNewUsername.Size = new Size(125, 27);
@@ -286,6 +276,5 @@
         private Button btnEditUser;
         private Button btnDeleteUser;
         private TextBox txbPassword;
-        private TextBox txbNewPassword;
     }
 }

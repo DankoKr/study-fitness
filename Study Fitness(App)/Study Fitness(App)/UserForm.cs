@@ -32,7 +32,6 @@ namespace Study_Fitness_App_
             txbNewUsername.Text = "";
             txbFirstName.Text = "";
             txbPassword.Text = "";
-            txbNewPassword.Text = "";
             cmbType.Text = "";
         }
 
@@ -93,7 +92,6 @@ namespace Study_Fitness_App_
             object obj = lbManageUser.SelectedItem;
             User selectedU = (User)obj;
             myManager.ChangeUsername(selectedU, txbNewUsername.Text);
-            myManager.ChangePassword(selectedU, txbNewPassword.Text);
             ClearFields();
             ShowData();
         }

@@ -17,7 +17,7 @@ namespace ClassLibrary.UserClasses
             if (ValidateUserIsUnique(user.Username))
             {
                 myUsers.Add(user);
-                db.AddUser(user);
+                db.CreateUser(user);
             }
         }
 
@@ -30,14 +30,6 @@ namespace ClassLibrary.UserClasses
         public void DeleteUser(User u)
         {
             myUsers.Remove(u);
-        }
-
-        public void EditPassword(string username, string newPassword)
-        {
-            User selectedUser = GetUser(username);
-            myUsers.Remove(GetUser(username));
-            ChangePassword(selectedUser, newPassword);
-            myUsers.Add(selectedUser);
         }
 
         public bool ValidateUserIsUnique(string username)
@@ -62,14 +54,6 @@ namespace ClassLibrary.UserClasses
                 }
             }
             return null;
-        }
-
-        public void ChangePassword(User user, string newPassword)
-        {
-            if (newPassword != "")
-            {
-                user.Password = newPassword;
-            }
         }
 
         public void ChangeUsername(User user, string newUsername) 

@@ -1,6 +1,9 @@
 ﻿using ClassLibrary.UserClasses;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
@@ -37,37 +40,37 @@ namespace ClassLibrary.DatabaseClasses
             finally { _connection.Close(); }
         }
 
-        public void AddUser(User u) 
+        public void DeleteUser(User u) { }
+        public void EditUser(User u, string name, string password) { }
+        //-----------------------
+        public void CreateUser(User user) 
         {
             SqlConnection _connection = db.GetSqlConnection();
-            string passwordToHash = u.Password;
-            string hashedPassword = PasswordHash.HashPassword(passwordToHash);
-
             try
             {
-                string query = "INSERT INTO Users (Username, HashedPassword, FirstName, Type) " +
-                "VALUES (@Username, @HashedPassword, @FirstName, @Type)";
+                _connection.Open();
+                string query = "INSERT INTO [User](FirstName, Username, PasswordHash, PasswordSalt, Role) " +
+               "VALUES(@FirstName, @Username, CONVERT(varbinary, @PasswordHash), CONVERT(varbinary, @PasswordSalt), @Role)";
 
                 using (SqlCommand command = new SqlCommand(query, _connection))
                 {
-                    command.Parameters.AddWithValue("@Username", u.Username);
-                    command.Parameters.AddWithValue("@HashedPassword", hashedPassword);
-                    command.Parameters.AddWithValue("@FirstName", u.FirstName);
-                    command.Parameters.AddWithValue("@Type", u.Type);
+                    command.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = user.FirstName;
+                    command.Parameters.Add("@Username", SqlDbType.NVarChar).Value = user.Username;
+                    command.Parameters.Add("@Role", SqlDbType.NVarChar).Value = user.UserRole;
+                    command.Parameters.Add("@PasswordHash", SqlDbType.VarBinary, 20).Value = Convert.FromBase64String(user.PasswordHash);
+                    command.Parameters.Add("@PasswordSalt", SqlDbType.VarBinary, 16).Value = Convert.FromBase64String(user.PasswordSalt);
 
-                    _connection.Open();
                     command.ExecuteNonQuery();
                 }
 
-            }
-            catch (SqlException sqlEx)
-            {
 
-                throw new Exception(sqlEx.Message);
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
             }
             finally { _connection.Close(); }
+
         }
-        public void DeleteUser(User u) { }
-        public void EditUser(User u, string name, string password) { }
     }
 }
