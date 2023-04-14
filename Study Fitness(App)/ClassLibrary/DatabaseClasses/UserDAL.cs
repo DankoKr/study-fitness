@@ -43,34 +43,80 @@ namespace ClassLibrary.DatabaseClasses
         public void DeleteUser(User u) { }
         public void EditUser(User u, string name, string password) { }
         //-----------------------
-        public void CreateUser(User user) 
-        {
-            SqlConnection _connection = db.GetSqlConnection();
-            try
+        public bool CreateUser(User user) 
+        { 
+            using (SqlConnection _connection = db.GetSqlConnection()) 
             {
-                _connection.Open();
-                string query = "INSERT INTO [User](FirstName, Username, PasswordHash, PasswordSalt, Role) " +
-               "VALUES(@FirstName, @Username, CONVERT(varbinary, @PasswordHash), CONVERT(varbinary, @PasswordSalt), @Role)";
-
-                using (SqlCommand command = new SqlCommand(query, _connection))
+                try
                 {
-                    command.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = user.FirstName;
-                    command.Parameters.Add("@Username", SqlDbType.NVarChar).Value = user.Username;
-                    command.Parameters.Add("@Role", SqlDbType.NVarChar).Value = user.UserRole;
-                    command.Parameters.Add("@PasswordHash", SqlDbType.VarBinary, 20).Value = Convert.FromBase64String(user.PasswordHash);
-                    command.Parameters.Add("@PasswordSalt", SqlDbType.VarBinary, 16).Value = Convert.FromBase64String(user.PasswordSalt);
+                    _connection.Open();
+                    string randomSalt = BCrypt.Net.BCrypt.GenerateSalt();
+                    string hashedPassword = BCrypt.Net.BCrypt.HashPassword(user.Password, randomSalt); 
+                    user.Password = hashedPassword;
+                    string query = $"INSERT INTO Users(FirstName, Username, PasswordHash, Salt, Role) " + $"VALUES('{user.FirstName}', '{user.Username}', '{user.Password}', '{randomSalt}', '{user.UserRole}')";
+                    using (SqlCommand command = new SqlCommand(query, _connection)) 
+                    { 
+                        command.ExecuteNonQuery(); 
+                    }
+                    return true; 
+                } 
+                catch (Exception) 
+                { return false; }
+                finally { _connection.Close(); }
 
-                    command.ExecuteNonQuery();
-                }
-
-
-            }
-            catch (SqlException ex)
-            {
-                throw ex;
-            }
-            finally { _connection.Close(); }
-
+            } 
         }
+
+        public bool CheckLogin(string username, string password)
+        {
+
+            string connection = $"Server = mssqlstud.fhict.local; Database = dbi500872; User Id =dbi500872; Password = Danko2003;";
+            using (SqlConnection _newConnection = new SqlConnection(connection))
+            {
+                try
+                {
+                    string salt = GetSalt(username);
+                    string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password, salt);
+
+                    _newConnection.Open();
+
+                    string query = $"SELECT * FROM Users " + $"WHERE Username = '{username}' AND PasswordHash = '{hashedPassword}'";
+                    using (SqlCommand command = new SqlCommand(query, _newConnection))
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read()) { return true; }
+                            else { return false; }
+                        }
+                    }
+                }
+                catch (Exception)
+                { return false; }
+                finally { _newConnection.Close(); }
+            }
+        }
+
+
+        public string GetSalt(string username)
+        {
+            using (SqlConnection _connection = db.GetSqlConnection())
+            {
+                try
+                {
+                    _connection.Open();
+                    SqlCommand cmd = new SqlCommand("SELECT Salt FROM Users WHERE Username = @username", _connection);
+                    cmd.Parameters.AddWithValue("@username", username);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        return reader.GetString("Salt");
+                    }
+                    return null;
+                }
+                catch (SqlException)
+                { return null; }
+            }
+        }
+
     }
 }

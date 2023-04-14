@@ -12,8 +12,7 @@ namespace ClassLibrary.UserClasses
     {
         public string FirstName { get; set; }
         public string Username { get; set; }
-        public string PasswordHash { get; set; }
-        public string PasswordSalt { get; set; }
+        public string Password { get; set; }
         public string UserRole { get; set; }
 
         public User()
@@ -26,14 +25,7 @@ namespace ClassLibrary.UserClasses
             FirstName = firstName;
             Username = username; 
             UserRole = userRole; 
-            var passwordHashData = PasswordEncryptor.HashPassword(password); 
-            PasswordHash = passwordHashData[0]; 
-            PasswordSalt = passwordHashData[1];
-        }
-
-        public bool VerifyPassword(string password) 
-        { 
-            return PasswordEncryptor.VerifyPassword(password, PasswordHash, PasswordSalt); 
+            Password = password;
         }
 
         public string GetInfo() 

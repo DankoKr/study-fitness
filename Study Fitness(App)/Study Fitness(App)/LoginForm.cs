@@ -17,7 +17,7 @@ namespace Study_Fitness_App_
 {
     public partial class LoginForm : Form
     {
-        MSSQL db = new MSSQL();
+        UserDAL db = new UserDAL();
         public LoginForm()
         {
             InitializeComponent();
@@ -25,34 +25,18 @@ namespace Study_Fitness_App_
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            SqlConnection _connection = db.GetSqlConnection();
-            try
-            {               
-                string sql = "SELECT * FROM Account WHERE username = @username AND password = @password";
-                SqlCommand command = new SqlCommand(sql, _connection);
-
-                command.Parameters.AddWithValue("@username", txbEmail.Text);
-                command.Parameters.AddWithValue("@password", txbPassword.Text);
-                _connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.HasRows)
-                {
-                    MainForm fr = new MainForm();
-                    fr.Show();
-                    this.Hide();
-                }
-                else
-                {
-                    MessageBox.Show("Invalid credentials!","ERROR");
-                }
-            }
-            catch (SqlException ex)
+            if (db.CheckLogin(txbEmail.Text, txbPassword.Text))
             {
-
-                MessageBox.Show("An error occurred while logging in: " + ex.Message);
+                MainForm frm = new MainForm();
+                frm.Show();
+                this.Hide();
             }
-            finally { _connection.Close(); }
+            else
+            {
+                MessageBox.Show("Incorrect credentials!", "ERROR");
+            }
+
         }
+
     }
 }

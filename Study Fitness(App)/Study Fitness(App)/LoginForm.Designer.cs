@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             grbLogin = new GroupBox();
-            btnLogin = new Button();
-            txbEmail = new TextBox();
             txbPassword = new TextBox();
+            txbEmail = new TextBox();
+            btnLogin = new Button();
             grbLogin.SuspendLayout();
             SuspendLayout();
             // 
@@ -46,6 +46,21 @@
             grbLogin.TabStop = false;
             grbLogin.Text = "Sign in";
             // 
+            // txbPassword
+            // 
+            txbPassword.Location = new Point(50, 83);
+            txbPassword.Name = "txbPassword";
+            txbPassword.PasswordChar = '*';
+            txbPassword.Size = new Size(149, 27);
+            txbPassword.TabIndex = 1;
+            // 
+            // txbEmail
+            // 
+            txbEmail.Location = new Point(50, 36);
+            txbEmail.Name = "txbEmail";
+            txbEmail.Size = new Size(149, 27);
+            txbEmail.TabIndex = 0;
+            // 
             // btnLogin
             // 
             btnLogin.Location = new Point(164, 214);
@@ -55,21 +70,6 @@
             btnLogin.Text = "Login";
             btnLogin.UseVisualStyleBackColor = true;
             btnLogin.Click += btnLogin_Click;
-            // 
-            // txbEmail
-            // 
-            txbEmail.Location = new Point(50, 36);
-            txbEmail.Name = "txbEmail";
-            txbEmail.Size = new Size(149, 27);
-            txbEmail.TabIndex = 0;
-            // 
-            // txbPassword
-            // 
-            txbPassword.Location = new Point(50, 83);
-            txbPassword.Name = "txbPassword";
-            txbPassword.PasswordChar = '*';
-            txbPassword.Size = new Size(149, 27);
-            txbPassword.TabIndex = 1;
             // 
             // LoginForm
             // 
