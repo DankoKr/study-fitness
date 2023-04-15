@@ -135,10 +135,10 @@ namespace Study_Fitness_App_
             FillExercisesInBoxes();
         }
 
-        private void btnCompare_Click(object sender, EventArgs e)
+        private void btnCustomCompare_Click(object sender, EventArgs e)
         {
-            (myAdministrator.GetExercisesList()).Sort();
             lbTest.Items.Clear();
+            myAdministrator.SortExercises(myAdministrator.GetExercisesList());
 
             foreach (Exercise ex in myAdministrator.GetExercises())
             {
@@ -146,5 +146,15 @@ namespace Study_Fitness_App_
             }
         }
 
+        private void btnSortExName_Click(object sender, EventArgs e)
+        {
+            lbTest.Items.Clear();
+            myAdministrator.SortExercisesByName(myAdministrator.GetExercisesList());
+
+            foreach (Exercise ex in myAdministrator.GetExercises())
+            {
+                lbTest.Items.Add(ex);
+            }
+        }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             tabconExercises = new TabControl();
             tabAllExercises = new TabPage();
             cmbSelectedEx = new ComboBox();
@@ -52,6 +53,8 @@
             cmbDifficulty = new ComboBox();
             cmbTypeEx = new ComboBox();
             tabManageExercises = new TabPage();
+            lblManageEx = new Label();
+            cmbManageEx = new ComboBox();
             tabconManageExercise = new TabControl();
             tabEditExercise = new TabPage();
             cmbNewDifficulty = new ComboBox();
@@ -63,11 +66,10 @@
             btnManageAllExercises = new Button();
             lbManageExercises = new ListBox();
             tabCompareExercises = new TabPage();
-            lblDescriptionCompare = new Label();
+            btnSortExName = new Button();
+            btnCustomCompare = new Button();
             lbTest = new ListBox();
-            btnCompare = new Button();
-            cmbManageEx = new ComboBox();
-            lblManageEx = new Label();
+            bindingSource1 = new BindingSource(components);
             tabconExercises.SuspendLayout();
             tabAllExercises.SuspendLayout();
             tabAddExercise.SuspendLayout();
@@ -78,6 +80,7 @@
             tabEditExercise.SuspendLayout();
             tabDeletExercise.SuspendLayout();
             tabCompareExercises.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
             SuspendLayout();
             // 
             // tabconExercises
@@ -323,6 +326,23 @@
             tabManageExercises.Text = "Manage Exercises";
             tabManageExercises.UseVisualStyleBackColor = true;
             // 
+            // lblManageEx
+            // 
+            lblManageEx.AutoSize = true;
+            lblManageEx.Location = new Point(385, 59);
+            lblManageEx.Name = "lblManageEx";
+            lblManageEx.Size = new Size(75, 20);
+            lblManageEx.TabIndex = 5;
+            lblManageEx.Text = "Select Ex :";
+            // 
+            // cmbManageEx
+            // 
+            cmbManageEx.FormattingEnabled = true;
+            cmbManageEx.Location = new Point(466, 56);
+            cmbManageEx.Name = "cmbManageEx";
+            cmbManageEx.Size = new Size(151, 28);
+            cmbManageEx.TabIndex = 4;
+            // 
             // tabconManageExercise
             // 
             tabconManageExercise.Controls.Add(tabEditExercise);
@@ -425,9 +445,9 @@
             // 
             // tabCompareExercises
             // 
-            tabCompareExercises.Controls.Add(lblDescriptionCompare);
+            tabCompareExercises.Controls.Add(btnSortExName);
+            tabCompareExercises.Controls.Add(btnCustomCompare);
             tabCompareExercises.Controls.Add(lbTest);
-            tabCompareExercises.Controls.Add(btnCompare);
             tabCompareExercises.Location = new Point(4, 29);
             tabCompareExercises.Name = "tabCompareExercises";
             tabCompareExercises.Padding = new Padding(3);
@@ -436,51 +456,35 @@
             tabCompareExercises.Text = "Compare";
             tabCompareExercises.UseVisualStyleBackColor = true;
             // 
-            // lblDescriptionCompare
+            // btnSortExName
             // 
-            lblDescriptionCompare.AutoSize = true;
-            lblDescriptionCompare.Location = new Point(290, 61);
-            lblDescriptionCompare.Name = "lblDescriptionCompare";
-            lblDescriptionCompare.Size = new Size(182, 20);
-            lblDescriptionCompare.TabIndex = 2;
-            lblDescriptionCompare.Text = "Exercises based on weight";
+            btnSortExName.Location = new Point(265, 276);
+            btnSortExName.Name = "btnSortExName";
+            btnSortExName.Size = new Size(109, 51);
+            btnSortExName.TabIndex = 4;
+            btnSortExName.Text = "Sort by Name";
+            btnSortExName.UseVisualStyleBackColor = true;
+            btnSortExName.Click += btnSortExName_Click;
+            // 
+            // btnCustomCompare
+            // 
+            btnCustomCompare.Location = new Point(396, 276);
+            btnCustomCompare.Name = "btnCustomCompare";
+            btnCustomCompare.Size = new Size(109, 51);
+            btnCustomCompare.TabIndex = 3;
+            btnCustomCompare.Text = "Sort by Weight";
+            btnCustomCompare.UseVisualStyleBackColor = true;
+            btnCustomCompare.Click += btnCustomCompare_Click;
             // 
             // lbTest
             // 
             lbTest.DisplayMember = "Name";
             lbTest.FormattingEnabled = true;
             lbTest.ItemHeight = 20;
-            lbTest.Location = new Point(265, 124);
+            lbTest.Location = new Point(265, 84);
             lbTest.Name = "lbTest";
-            lbTest.Size = new Size(242, 144);
+            lbTest.Size = new Size(242, 184);
             lbTest.TabIndex = 1;
-            // 
-            // btnCompare
-            // 
-            btnCompare.Location = new Point(340, 274);
-            btnCompare.Name = "btnCompare";
-            btnCompare.Size = new Size(94, 29);
-            btnCompare.TabIndex = 0;
-            btnCompare.Text = "Compare";
-            btnCompare.UseVisualStyleBackColor = true;
-            btnCompare.Click += btnCompare_Click;
-            // 
-            // cmbManageEx
-            // 
-            cmbManageEx.FormattingEnabled = true;
-            cmbManageEx.Location = new Point(466, 56);
-            cmbManageEx.Name = "cmbManageEx";
-            cmbManageEx.Size = new Size(151, 28);
-            cmbManageEx.TabIndex = 4;
-            // 
-            // lblManageEx
-            // 
-            lblManageEx.AutoSize = true;
-            lblManageEx.Location = new Point(385, 59);
-            lblManageEx.Name = "lblManageEx";
-            lblManageEx.Size = new Size(75, 20);
-            lblManageEx.TabIndex = 5;
-            lblManageEx.Text = "Select Ex :";
             // 
             // AppForm
             // 
@@ -505,7 +509,7 @@
             tabEditExercise.PerformLayout();
             tabDeletExercise.ResumeLayout(false);
             tabCompareExercises.ResumeLayout(false);
-            tabCompareExercises.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
             ResumeLayout(false);
         }
 
@@ -544,12 +548,13 @@
         private ListBox lbManageExercises;
         private ComboBox cmbNewDifficulty;
         private TabPage tabCompareExercises;
-        private Button btnCompare;
         private ListBox lbTest;
-        private Label lblDescriptionCompare;
         private TextBox txbPicture;
         private ComboBox cmbSelectedEx;
         private Label lblManageEx;
         private ComboBox cmbManageEx;
+        private Button btnCustomCompare;
+        private Button btnSortExName;
+        private BindingSource bindingSource1;
     }
 }

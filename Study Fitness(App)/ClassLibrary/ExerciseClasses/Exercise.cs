@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary.ExerciseClasses
 {
-    public abstract class Exercise : IComparable<Exercise>
+    public abstract class Exercise 
     {
         private string name;
         private string difficulty;
@@ -37,16 +37,6 @@ namespace ClassLibrary.ExerciseClasses
         public virtual string ToString()
         {
             return $"This is an exercise called {Name} (difficulty: {Difficulty}, required equipment: {Equipment}, rep range: {RepRange}, weight: {Weight})";
-        }
-
-        public int CompareTo(Exercise compareExercise)
-        {
-            if (compareExercise.Weight > Weight)
-                return -1;
-            else if (compareExercise.Weight < Weight)
-                return 1;
-
-            return string.Compare(Name, compareExercise.Name);
         }
 
         public string GetName() { return this.Name; }

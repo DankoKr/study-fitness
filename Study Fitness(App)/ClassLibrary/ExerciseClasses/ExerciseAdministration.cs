@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary.ExerciseClasses
 {
-    public class ExerciseAdministration : IAdministration
+    public class ExerciseAdministration : IAdministration, IExerciseComparer
     {
         List<Exercise> myExercises = new List<Exercise>();
         ExerciseDAL ExerciseDAL = new ExerciseDAL();
@@ -142,6 +142,37 @@ namespace ClassLibrary.ExerciseClasses
                 ex.Difficulty = difficulty;
                 ExerciseDAL.EditExercise(ex, difficulty, newReps, newWeight);
             }
+        }
+
+        public void SortExercises(List<Exercise> exercises)
+        {
+            // Use the List<T>.Sort method and pass in a lambda expression that calls CompareExercises
+            exercises.Sort((ex1, ex2) => CompareExercises(ex1, ex2));
+        }
+
+        private int CompareExercises(Exercise ex1, Exercise ex2)
+        {
+            // First, compare by weight
+            int weightComparison = ex1.Weight.CompareTo(ex2.Weight);
+            if (weightComparison != 0)
+            {
+                return weightComparison;
+            }
+
+            // If weights are the same, compare by reps
+            int repsComparison = ex1.RepRange.CompareTo(ex2.RepRange);
+            if (repsComparison != 0)
+            {
+                return repsComparison;
+            }
+
+            // If reps are the same, compare by name alphabetically
+            return string.Compare(ex1.Name, ex2.Name, StringComparison.OrdinalIgnoreCase);
+        }
+
+        public void SortExercisesByName(List<Exercise> exercises)
+        {
+            exercises.Sort((x, y) => string.Compare(x.Name, y.Name, StringComparison.OrdinalIgnoreCase));
         }
 
     }
