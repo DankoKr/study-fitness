@@ -146,7 +146,6 @@ namespace ClassLibrary.ExerciseClasses
 
         public void SortExercises(List<Exercise> exercises)
         {
-            // Use the List<T>.Sort method and pass in a lambda expression that calls CompareExercises
             exercises.Sort((ex1, ex2) => CompareExercises(ex1, ex2));
         }
 
@@ -172,7 +171,7 @@ namespace ClassLibrary.ExerciseClasses
 
         public void SortExercisesByName(List<Exercise> exercises)
         {
-            exercises.Sort((x, y) => string.Compare(x.Name, y.Name, StringComparison.OrdinalIgnoreCase));
+            exercises.Sort((ex1, ex2) => string.Compare(ex1.Name, ex2.Name, StringComparison.OrdinalIgnoreCase));
         }
 
     }

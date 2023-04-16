@@ -30,6 +30,7 @@ namespace ClassLibrary.UserClasses
         public void DeleteUser(User u)
         {
             myUsers.Remove(u);
+            db.DeleteUser(u);
         }
 
         public bool ValidateUserIsUnique(string username)
@@ -60,6 +61,7 @@ namespace ClassLibrary.UserClasses
         {
             if (newUsername != "")
             {
+                db.EditUser(user, newUsername);
                 user.Username = newUsername;
             }
         }

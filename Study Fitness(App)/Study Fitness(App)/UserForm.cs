@@ -1,4 +1,5 @@
-﻿using ClassLibrary.ExerciseClasses;
+﻿using ClassLibrary.DatabaseClasses;
+using ClassLibrary.ExerciseClasses;
 using ClassLibrary.UserClasses;
 using System;
 using System.Collections.Generic;
@@ -16,9 +17,11 @@ namespace Study_Fitness_App_
     public partial class UserForm : Form
     {
         UserAdministration myManager = new UserAdministration();
+        UserDAL db = new UserDAL();
         public UserForm()
         {
             InitializeComponent();
+            db.LoadUsers(myManager);
         }
 
         private void btnViewAllUsers_Click(object sender, EventArgs e)

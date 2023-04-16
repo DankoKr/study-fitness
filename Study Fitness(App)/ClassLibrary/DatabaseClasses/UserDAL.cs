@@ -21,13 +21,13 @@ namespace ClassLibrary.DatabaseClasses
 
             try
             {
-                string sql = "SELECT  * FROM Account ";
+                string sql = "SELECT FirstName, Username, PasswordHash, Role\r\nFROM Users";
                 SqlCommand cmd = new SqlCommand(sql, _connection);
                 _connection.Open();
                 SqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
-                    myManager.AddExistingUser(new User(Convert.ToString(dr[1]), Convert.ToString(dr[2]), Convert.ToString(dr[3]), Convert.ToString(dr[4])));
+                    myManager.AddExistingUser(new User(Convert.ToString(dr[0]), Convert.ToString(dr[1]), Convert.ToString(dr[2]), Convert.ToString(dr[3])));
                 }
 
                 dr.Close();
@@ -40,9 +40,47 @@ namespace ClassLibrary.DatabaseClasses
             finally { _connection.Close(); }
         }
 
-        public void DeleteUser(User u) { }
-        public void EditUser(User u, string name, string password) { }
-        //-----------------------
+        public void DeleteUser(User u) 
+        {
+            SqlConnection _connection = db.GetSqlConnection();
+
+            try
+            {
+                string sql = $"DELETE FROM Users\r\nWHERE Username = '{u.Username}';";
+                SqlCommand cmd = new SqlCommand(sql, _connection);
+                _connection.Open();
+                cmd.ExecuteNonQuery();
+
+            }
+            catch (SqlException sqlEx)
+            {
+
+                throw new Exception(sqlEx.Message);
+            }
+            finally { _connection.Close(); }
+        }
+
+        public void EditUser(User u, string name) 
+        {
+            SqlConnection _connection = db.GetSqlConnection();
+
+            try
+            {
+                string sql = $"UPDATE Users\r\nSET Username = '{name}'\r\nWHERE Username = '{u.Username}';";
+                SqlCommand cmd = new SqlCommand(sql, _connection);
+                _connection.Open();
+                cmd.ExecuteNonQuery();
+
+            }
+            catch (SqlException sqlEx)
+            {
+
+                throw new Exception(sqlEx.Message);
+            }
+            finally { _connection.Close(); }
+        }
+
+
         public bool CreateUser(User user) 
         { 
             using (SqlConnection _connection = db.GetSqlConnection()) 
