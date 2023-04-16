@@ -10,6 +10,11 @@ namespace ClassLibrary.UserClasses
 {
     public class User 
     {
+        private string firstName;
+        private string username;
+        private string password;
+        private string userRole;
+
         public string FirstName { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
