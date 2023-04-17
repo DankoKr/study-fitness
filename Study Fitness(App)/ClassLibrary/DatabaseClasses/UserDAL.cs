@@ -156,5 +156,31 @@ namespace ClassLibrary.DatabaseClasses
             }
         }
 
+        public void GetUserByUsername(UserAdministration myManager, string username) 
+        {
+            string connection = $"Server = mssqlstud.fhict.local; Database = dbi500872; User Id =dbi500872; Password = Danko2003;";
+            SqlConnection _newConnection = new SqlConnection(connection);
+
+            try
+            {
+                string sql = $"SELECT FirstName, Username, PasswordHash, Role\r\nFROM Users\r\nWHERE Username = '{username}'";
+                SqlCommand cmd = new SqlCommand(sql, _newConnection);
+                _newConnection.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    myManager.AddExistingUser(new User(Convert.ToString(dr[0]), Convert.ToString(dr[1]), Convert.ToString(dr[2]), Convert.ToString(dr[3])));
+                }
+
+                dr.Close();
+            }
+            catch (SqlException sqlEx)
+            {
+
+                throw new Exception(sqlEx.Message);
+            }
+            finally { _newConnection.Close(); }
+        }
+
     }
 }

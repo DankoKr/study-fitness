@@ -5,24 +5,28 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Website.Pages.MyPages
 {
-    [Authorize]
+    //[Authorize]
     public class PersonalPageModel : PageModel
     {
         public void OnGet()
         {
         }
 
-		public IActionResult OnPost()
-		{
-			HttpContext.Session.Remove("Username");
-			if (Request.Cookies.ContainsKey("Username"))
-			{
-				// remove the cookie upon logout
-				Response.Cookies.Append("Username", "");
-			}
+        public IActionResult OnPost()
+        {
+            // clear the session upon logout
+            HttpContext.Session.Remove("Username");
 
-			return new RedirectToPageResult("/MyPages/Login");
+            // check if a cookie exists and clear it
+            if (Request.Cookies.ContainsKey("Username"))
+            {
+                CookieOptions cOptions = new CookieOptions();
+                cOptions.Expires = DateTime.Now.AddDays(-1); // set cookie expiration date to yesterday
+                Response.Cookies.Append("Username", "", cOptions);
+            }
 
-		}
-	}
+            return new RedirectToPageResult("/MyPages/Login");
+        }
+
+    }
 }

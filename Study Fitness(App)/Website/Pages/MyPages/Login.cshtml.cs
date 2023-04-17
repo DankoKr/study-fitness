@@ -1,3 +1,4 @@
+using ClassLibrary.DatabaseClasses;
 using ClassLibrary.UserClasses;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -12,61 +13,75 @@ namespace Website.Pages.MyPages
 {
     public class LoginModel : PageModel
     {
-        [BindProperty]
-        public User user { get; set; }
+        UserDAL db = new UserDAL();
+        UserAdministration myManager = new UserAdministration();
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public User user = new User();
 
         [BindProperty]
         public bool KeepMeLoggedIn { get; set; }
 
-        public IActionResult OnGet()
+        public void OnGet()
         {
-            string username = HttpContext.Session.GetString("Username");
-
-            // Check for an existing cookie
-            if (string.IsNullOrEmpty(username) && Request.Cookies.ContainsKey("Username"))
+            // check if user is already logged in
+            if (HttpContext.Session.GetString("Username") != null)
             {
-                username = Request.Cookies["Username"];
-                HttpContext.Session.SetString("Username", username);
+                string name;
+                name = HttpContext.Session.GetString("Username");
+                db.GetUserByUsername(myManager, name);
+                user = myManager.GetUser(name);
+
+                if (user.UserRole == "Admin")
+                    Response.Redirect("/MyPages/AdminPage");
+                else
+                    Response.Redirect("/MyPages/PersonalPage");
             }
+            else
+            {
+                // check if a cookie exists and create a session
+                if (Request.Cookies.ContainsKey("Username"))
+                {
+                    string username = Request.Cookies["Username"];
+                    HttpContext.Session.SetString("Username", username);
+                    db.GetUserByUsername(myManager, username);
+                    user = myManager.GetUser(username);
 
-            // Redirect to the corresponding page
-            if (username == "user")
-                return new RedirectToPageResult("PersonalPage");
-            if (username == "admin")
-                return new RedirectToPageResult("AdminPage");
-
-            return Page();
+                    if (user.UserRole == "Admin")
+                        Response.Redirect("/MyPages/AdminPage");
+                    else
+                        Response.Redirect("/MyPages/PersonalPage");
+                }
+            }
         }
+
 
         public IActionResult OnPost()
         {
-            if (user.Username == "user" && user.Password == "1234" || user.Username == "admin")
+            Username = Request.Form["Username"];
+            Password = Request.Form["Password"];
+
+            if (db.CheckLogin(Username, Password))
             {
-                List<Claim> claims = new List<Claim>();
-                claims.Add(new Claim(ClaimTypes.Name, user.Username));
-                claims.Add(new Claim("id", "1"));
+                db.GetUserByUsername(myManager, Username);
+                user = myManager.GetUser(Username);
+
+                // store the username in the session
                 HttpContext.Session.SetString("Username", user.Username);
 
                 // Create a cookie
                 if (KeepMeLoggedIn)
                 {
                     CookieOptions cOptions = new CookieOptions();
-                    cOptions.Expires = DateTime.Now.AddMinutes(5); // expires after 5 minutes
+                    cOptions.Expires = DateTime.Now.AddMinutes(1); // expires after n minutes
                     Response.Cookies.Append("Username", user.Username, cOptions);
                 }
 
-                if (user.Username == "admin" && user.Password == "1234")
-                {
-                    claims.Add(new Claim(ClaimTypes.AuthorizationDecision, "admin"));
-                }
 
-                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                HttpContext.SignInAsync(new ClaimsPrincipal(claimsIdentity));
+                if (user.UserRole == "Admin")
+                    return new RedirectToPageResult("/MyPages/AdminPage");
 
-                if (user.Username == "admin")
-                    return new RedirectToPageResult("AdminPage");
-
-                return new RedirectToPageResult("PersonalPage");
+                return new RedirectToPageResult("/MyPages/PersonalPage");
 
             }
 

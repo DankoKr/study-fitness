@@ -12,14 +12,12 @@ namespace Website.Pages.MyPages
     public class CreateAccountModel : PageModel
     {
         UserAdministration myManager = new UserAdministration();
-        UserDAL db = new UserDAL();
 
         public string Error = "";
         public string Username { get; set; }
         public string Password { get; set; }
         public string FirstName { get; set; }
         public string Type = "member";
-        public string hashedPassword = "";
 
         public void OnGet()
         {
