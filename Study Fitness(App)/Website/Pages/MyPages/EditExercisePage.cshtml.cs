@@ -1,12 +1,14 @@
 using ClassLibrary.DatabaseClasses;
 using ClassLibrary.ExerciseClasses;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Xml.Linq;
 
 namespace Website.Pages.MyPages
 {
-    public class EditExercisePageModel : PageModel
+	[Authorize(Policy = "AdminOnly")]
+	public class EditExercisePageModel : PageModel
     {
         public string Error = "";
         public string Message = "";

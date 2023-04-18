@@ -1,12 +1,14 @@
 using ClassLibrary.DatabaseClasses;
 using ClassLibrary.ExerciseClasses;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Website.Models;
 
 namespace Website.Pages.MyPages
 {
-    public class AddExercisePageModel : PageModel
+	[Authorize(Policy = "AdminOnly")]
+	public class AddExercisePageModel : PageModel
     {
         ExerciseAdministration myManager = new ExerciseAdministration();
         ExerciseDAL db = new ExerciseDAL();

@@ -1,12 +1,14 @@
 using ClassLibrary.DatabaseClasses;
 using ClassLibrary.ExerciseClasses;
 using ClassLibrary.UserClasses;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Website.Pages.MyPages
 {
-    public class ChangeUserDataModel : PageModel
+	[Authorize]
+	public class ChangeUserDataModel : PageModel
     {
 		public string Error = "";
 		public string Message = "";

@@ -1,11 +1,13 @@
 using ClassLibrary.DatabaseClasses;
 using ClassLibrary.ExerciseClasses;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Website.Pages.MyPages
 {
-    public class EditCardioPageModel : PageModel
+	[Authorize(Policy = "AdminOnly")]
+	public class EditCardioPageModel : PageModel
     {
         public string Error = "";
         public string Message = "";
