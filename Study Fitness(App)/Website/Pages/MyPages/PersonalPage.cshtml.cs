@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Website.Pages.MyPages
 {
-    //[Authorize]
+    [Authorize]
     public class PersonalPageModel : PageModel
     {
         UserDAL db = new UserDAL();

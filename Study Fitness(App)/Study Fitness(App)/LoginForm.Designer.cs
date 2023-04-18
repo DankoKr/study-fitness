@@ -30,7 +30,7 @@
         {
             grbLogin = new GroupBox();
             txbPassword = new TextBox();
-            txbEmail = new TextBox();
+            txbUsername = new TextBox();
             btnLogin = new Button();
             grbLogin.SuspendLayout();
             SuspendLayout();
@@ -38,7 +38,7 @@
             // grbLogin
             // 
             grbLogin.Controls.Add(txbPassword);
-            grbLogin.Controls.Add(txbEmail);
+            grbLogin.Controls.Add(txbUsername);
             grbLogin.Location = new Point(90, 52);
             grbLogin.Name = "grbLogin";
             grbLogin.Size = new Size(250, 136);
@@ -54,12 +54,12 @@
             txbPassword.Size = new Size(149, 27);
             txbPassword.TabIndex = 1;
             // 
-            // txbEmail
+            // txbUsername
             // 
-            txbEmail.Location = new Point(50, 36);
-            txbEmail.Name = "txbEmail";
-            txbEmail.Size = new Size(149, 27);
-            txbEmail.TabIndex = 0;
+            txbUsername.Location = new Point(50, 36);
+            txbUsername.Name = "txbUsername";
+            txbUsername.Size = new Size(149, 27);
+            txbUsername.TabIndex = 0;
             // 
             // btnLogin
             // 
@@ -89,7 +89,7 @@
 
         private GroupBox grbLogin;
         private TextBox txbPassword;
-        private TextBox txbEmail;
+        private TextBox txbUsername;
         private Button btnLogin;
     }
 }
