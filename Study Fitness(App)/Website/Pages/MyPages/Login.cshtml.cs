@@ -56,15 +56,15 @@ namespace Website.Pages.MyPages
         }
 
 
-        public IActionResult OnPost()
-        {
-            Username = Request.Form["Username"];
-            Password = Request.Form["Password"];
+		public IActionResult OnPost()
+		{
+			Username = Request.Form["Username"];
+			Password = Request.Form["Password"];
 
-            if (db.CheckLogin(Username, Password))
-            {
-                db.GetUserByUsername(myManager, Username);
-                user = myManager.GetUser(Username);
+			if (db.CheckLogin(Username, Password))
+			{
+				db.GetUserByUsername(myManager, Username);
+				user = myManager.GetUser(Username);
 
 				List<Claim> claims = new List<Claim>();
 				claims.Add(new Claim(ClaimTypes.Name, Username));
@@ -72,17 +72,17 @@ namespace Website.Pages.MyPages
 				// store the username in the session
 				HttpContext.Session.SetString("Username", user.Username);
 
-                // Create a cookie
-                if (KeepMeLoggedIn)
-                {
-                    CookieOptions cOptions = new CookieOptions();
-                    cOptions.Expires = DateTime.Now.AddMinutes(1); // expires after n minutes
-                    Response.Cookies.Append("Username", user.Username, cOptions);
-                }
+				// add claim identity to cookie
+				if (KeepMeLoggedIn)
+				{
+					claims.Add(new Claim(ClaimTypes.AuthorizationDecision, "KeepMeLoggedIn"));
+					CookieOptions cOptions = new CookieOptions();
+					cOptions.Expires = DateTime.Now.AddMinutes(1); // expires after n minutes
+					Response.Cookies.Append("Username", user.Username, cOptions);
+				}
 
-
-                if (user.UserRole == "Admin") 
-                {
+				if (user.UserRole == "Admin")
+				{
 					claims.Add(new Claim(ClaimTypes.AuthorizationDecision, "Admin"));
 				}
 
@@ -96,8 +96,9 @@ namespace Website.Pages.MyPages
 				return new RedirectToPageResult("/MyPages/PersonalPage");
 			}
 
-            ViewData["LoginMessage"] = "Invalid credentials!";
-            return Page();
-        }
-    }
+			ViewData["LoginMessage"] = "Invalid credentials!";
+			return Page();
+		}
+
+	}
 }
