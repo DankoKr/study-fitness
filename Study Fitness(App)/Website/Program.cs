@@ -19,15 +19,15 @@ builder.Services.AddSession(options =>
 // Add these lines
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
 {
-    options.LoginPath = new PathString("/Login");
-    options.AccessDeniedPath = new PathString("/AccessDenied");
+	options.LoginPath = new PathString("/MyPages/Login");
+	options.AccessDeniedPath = new PathString("/MyPages/AccessDenied");
 }
 );
 
 // policy for only admin access
 builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy("OnlyAdminAccess", policy => policy.RequireClaim(ClaimTypes.AuthorizationDecision, "admin"));
+	options.AddPolicy("AdminOnly", policy => policy.RequireClaim(ClaimTypes.AuthorizationDecision, "Admin"));
 });
 
 var app = builder.Build();

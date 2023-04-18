@@ -1,15 +1,15 @@
 using ClassLibrary.DatabaseClasses;
 using ClassLibrary.ExerciseClasses;
 using ClassLibrary.UserClasses;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Website.Pages.MyPages
 {
-    //[Authorize(Policy = "OnlyAdminAccess")]
-
-    public class AdminPageModel : PageModel
+	[Authorize(Policy = "AdminOnly")]
+	public class AdminPageModel : PageModel
     {
         UserDAL db = new UserDAL();
         UserAdministration myManager = new UserAdministration();
@@ -38,8 +38,8 @@ namespace Website.Pages.MyPages
             }
         }
 
-        public IActionResult OnPost()
-        {
+		public async Task<IActionResult> OnPost()
+		{
             // clear the session upon logout
             HttpContext.Session.Remove("Username");
 
@@ -51,7 +51,9 @@ namespace Website.Pages.MyPages
                 Response.Cookies.Append("Username", "", cOptions);
             }
 
-            return new RedirectToPageResult("/MyPages/Login");
+			await HttpContext.SignOutAsync();
+
+			return new RedirectToPageResult("/MyPages/Login");
         }
 
     }

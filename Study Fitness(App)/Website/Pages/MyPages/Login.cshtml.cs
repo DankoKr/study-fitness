@@ -66,8 +66,11 @@ namespace Website.Pages.MyPages
                 db.GetUserByUsername(myManager, Username);
                 user = myManager.GetUser(Username);
 
-                // store the username in the session
-                HttpContext.Session.SetString("Username", user.Username);
+				List<Claim> claims = new List<Claim>();
+				claims.Add(new Claim(ClaimTypes.Name, Username));
+
+				// store the username in the session
+				HttpContext.Session.SetString("Username", user.Username);
 
                 // Create a cookie
                 if (KeepMeLoggedIn)
@@ -78,12 +81,20 @@ namespace Website.Pages.MyPages
                 }
 
 
-                if (user.UserRole == "Admin")
-                    return new RedirectToPageResult("/MyPages/AdminPage");
+                if (user.UserRole == "Admin") 
+                {
+					claims.Add(new Claim(ClaimTypes.AuthorizationDecision, "Admin"));
+				}
 
-                return new RedirectToPageResult("/MyPages/PersonalPage");
+				var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+				HttpContext.SignInAsync(new ClaimsPrincipal(claimsIdentity));
 
-            }
+				if (user.UserRole == "Admin")
+				{
+					return new RedirectToPageResult("/MyPages/AdminPage");
+				}
+				return new RedirectToPageResult("/MyPages/PersonalPage");
+			}
 
             ViewData["LoginMessage"] = "Invalid credentials!";
             return Page();
