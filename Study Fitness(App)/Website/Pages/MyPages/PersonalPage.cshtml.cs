@@ -1,4 +1,5 @@
 using ClassLibrary.DatabaseClasses;
+using ClassLibrary.ExerciseClasses;
 using ClassLibrary.UserClasses;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -15,7 +16,6 @@ namespace Website.Pages.MyPages
 
         public void OnGet()
         {
-            // check if user is already logged in
             if (HttpContext.Session.GetString("Username") != null)
             {
                 string name;
