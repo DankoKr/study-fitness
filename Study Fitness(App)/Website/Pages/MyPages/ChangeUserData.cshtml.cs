@@ -14,8 +14,9 @@ namespace Website.Pages.MyPages
 		UserAdministration myManager = new UserAdministration();
 		UserDAL db = new UserDAL();
 		public string? NewUsername { get; set; }
+        public string? NewFirstName { get; set; }
 
-		public void OnGet()
+        public void OnGet()
         {
             string nameUser = Request.Query["name"];
             db.GetUserByUsername(myManager, nameUser);
@@ -26,6 +27,7 @@ namespace Website.Pages.MyPages
 		{
 			string currentUsername = Request.Query["name"];
 			NewUsername = Request.Form["username"];
+            NewFirstName = Request.Form["firstname"];
 
             db.GetUserByUsername(myManager, currentUsername);
             user = myManager.GetUser(currentUsername);
@@ -38,6 +40,7 @@ namespace Website.Pages.MyPages
 			}
 
 			myManager.ChangeUsername(user, NewUsername);
+            myManager.ChangeFirstName(user, NewFirstName);
 
             // clear the old session 
             HttpContext.Session.Remove("Username");

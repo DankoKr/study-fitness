@@ -66,6 +66,15 @@ namespace ClassLibrary.UserClasses
             }
         }
 
+        public void ChangeFirstName(User user, string newFirstName) 
+        {
+            if (newFirstName != "")
+            {
+                db.EditUserFirstName(user, newFirstName);
+                user.FirstName = newFirstName;
+            }
+        }
+
         public User[] GetUsers() { return this.myUsers.ToArray(); }
 
     }

@@ -9,6 +9,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace ClassLibrary.DatabaseClasses
 {
@@ -80,7 +81,6 @@ namespace ClassLibrary.DatabaseClasses
             finally { _connection.Close(); }
         }
 
-
         public bool CreateUser(User user) 
         { 
             using (SqlConnection _connection = db.GetSqlConnection()) 
@@ -134,7 +134,6 @@ namespace ClassLibrary.DatabaseClasses
             }
         }
 
-
         public string GetSalt(string username)
         {
             using (SqlConnection _connection = db.GetSqlConnection())
@@ -180,6 +179,28 @@ namespace ClassLibrary.DatabaseClasses
                 throw new Exception(sqlEx.Message);
             }
             finally { _newConnection.Close(); }
+        }
+
+        public void EditUserFirstName(User u, string newFirstName) 
+        {
+            using (SqlConnection _connection = db.GetSqlConnection())
+            {
+                try
+                {
+                    string sql = $"UPDATE Users\r\nSET FirstName = '{newFirstName}'\r\nWHERE Username = '{u.Username}';";
+                    SqlCommand cmd = new SqlCommand(sql, _connection);
+                    _connection.Open();
+                    cmd.ExecuteNonQuery();
+
+                }
+                catch (SqlException sqlEx)
+                {
+
+                    throw new Exception(sqlEx.Message);
+                }
+                finally { _connection.Close(); }
+            }
+
         }
 
     }
