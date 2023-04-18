@@ -17,7 +17,7 @@ namespace Website.Pages.MyPages
         public string Username { get; set; }
         public string Password { get; set; }
         public string FirstName { get; set; }
-        public string Type = "member";
+        public string Type = "Member";
 
         public void OnGet()
         {

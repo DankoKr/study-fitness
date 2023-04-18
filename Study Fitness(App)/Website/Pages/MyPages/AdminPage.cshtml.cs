@@ -1,3 +1,4 @@
+using ClassLibrary.DatabaseClasses;
 using ClassLibrary.ExerciseClasses;
 using ClassLibrary.UserClasses;
 using Microsoft.AspNetCore.Authorization;
@@ -7,10 +8,34 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 namespace Website.Pages.MyPages
 {
     //[Authorize(Policy = "OnlyAdminAccess")]
+
     public class AdminPageModel : PageModel
     {
+        UserDAL db = new UserDAL();
+        UserAdministration myManager = new UserAdministration();
+        public User user = new User();
+
         public void OnGet()
         {
+            // check if user is already logged in
+            if (HttpContext.Session.GetString("Username") != null)
+            {
+                string name;
+                name = HttpContext.Session.GetString("Username");
+                db.GetUserByUsername(myManager, name);
+                user = myManager.GetUser(name);
+            }
+            else
+            {
+                // check if a cookie exists and create a session
+                if (Request.Cookies.ContainsKey("Username"))
+                {
+                    string username = Request.Cookies["Username"];
+                    HttpContext.Session.SetString("Username", username);
+                    db.GetUserByUsername(myManager, username);
+                    user = myManager.GetUser(username);
+                }
+            }
         }
 
         public IActionResult OnPost()

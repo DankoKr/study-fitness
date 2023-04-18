@@ -7,10 +7,10 @@
 <h1 class="welcome-message">Welcome, @HttpContext.Session.GetString("Username")!</h1>
 <h3 class="personal-page">This is your personal page!</h3>
 
-<h2 class="data-title">Your data: </h2>
-<p class="data-label">First Name: </p>
-<p class="data-label">Username: </p>
-<p class="data-label">Password: </p>
+<h2 class="data-title">Your data </h2>
+<p class="data-label">First Name: @Model.user.FirstName</p>
+<p class="data-label">Username: @Model.user.Username</p>
+
 
 <form class="logout-form" method="post">
     <p class="logout-text">Click here to logout</p>
