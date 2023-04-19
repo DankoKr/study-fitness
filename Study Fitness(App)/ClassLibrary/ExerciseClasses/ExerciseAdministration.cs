@@ -174,5 +174,12 @@ namespace ClassLibrary.ExerciseClasses
             exercises.Sort((ex1, ex2) => string.Compare(ex1.Name, ex2.Name, StringComparison.OrdinalIgnoreCase));
         }
 
-    }
+		public void SortExercisesDescending(List<Exercise> exercises, Func<Exercise, IComparable> keySelector)
+		{
+			exercises.Sort((ex1, ex2) => keySelector(ex2).CompareTo(keySelector(ex1)));
+		}
+
+
+
+	}
 }
