@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ClassLibrary.DatabaseClasses;
@@ -30,8 +31,15 @@ namespace Study_Fitness_App_
 			lbAllExercises.Items.Clear();
 
 			string searched = txbSearchBar.Text;
-			lbAllExercises.Items.Add(myAdministrator.GetExercise(searched));
-			txbSearchBar.Text = "";
+			string regexPattern = "\\b\\w*" + searched + "\\w*\\b";
+
+			foreach (Exercise ex in myAdministrator.GetExercises())
+			{
+				if (Regex.IsMatch(ex.Name, regexPattern, RegexOptions.IgnoreCase))
+				{
+					lbAllExercises.Items.Add(ex);
+				}
+			}
 		}
 
 		private void FillExercisesInBoxes()
@@ -62,11 +70,20 @@ namespace Study_Fitness_App_
 			string specialty = txbSpecialty.Text;
 			string picture = txbPicture.Text;
 
-			myAdministrator.CreateExercise(typeEx, nameEx, difficulty, equipment, numReps, weight, specialty, picture);
+			if (myAdministrator.IsPictureValid(picture))
+			{
+				myAdministrator.CreateExercise(typeEx, nameEx, difficulty, equipment, numReps, weight, specialty, picture);
 
-			ClearFields();
-			ShowAllExercises();
-			FillExercisesInBoxes();
+				ClearFields();
+				ShowAllExercises();
+				FillExercisesInBoxes();
+			}
+			else
+			{
+				MessageBox.Show("The URL is not in the correct format!", "ERROR");
+				txbPicture.Text = "";
+			}
+
 		}
 
 		private void ShowAllExercises()

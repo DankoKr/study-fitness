@@ -179,7 +179,21 @@ namespace ClassLibrary.ExerciseClasses
 			exercises.Sort((ex1, ex2) => keySelector(ex2).CompareTo(keySelector(ex1)));
 		}
 
+        public bool IsPictureValid(string pictureUrl) 
+        {
+			string pattern = @"^(http|https):\/\/.{1,140}$";
 
+
+			bool isValid = Regex.IsMatch(pictureUrl, pattern);
+			if (isValid)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
 
 	}
 }
