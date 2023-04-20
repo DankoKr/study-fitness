@@ -12,8 +12,11 @@ namespace ClassLibrary.ExerciseClasses
     public class CardioAdministration : IAdministration
     {
         List<Cardio> myCardios = new List<Cardio>();
-        CardioDAL db = new CardioDAL();
-        public CardioAdministration() { }
+        private readonly ICardioDAL db;
+        public CardioAdministration(ICardioDAL db) 
+        {
+            this.db = db;
+        }
 
         public void CreateCardio(string name, int calories, string difficulty, string picture) 
         {

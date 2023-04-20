@@ -8,12 +8,12 @@ namespace Website.Pages.MyPages
     public class DeleteCardioPageModel : PageModel
     {
 		public Cardio? selectedC { get; set; }
-		CardioAdministration myManager = new CardioAdministration();
+		CardioAdministration myManager;
 		public void OnGet()
         {
 			string nameEx = Request.Query["name"];
-			myManager = new CardioAdministration();
-			CardioDAL db = new CardioDAL();
+			ICardioDAL db = new CardioDAL();
+			myManager = new CardioAdministration(db);
 			db.LoadCardios(myManager);
 			myManager.RemoveExercise(nameEx);
 

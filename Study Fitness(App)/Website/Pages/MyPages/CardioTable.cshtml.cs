@@ -10,11 +10,13 @@ namespace Website.Pages.MyPages
 	public class CardioTableModel : PageModel
     {
 		public Cardio[] myCardios { get; set; }
-		CardioAdministration myManager = new CardioAdministration();
-		CardioDAL exData = new CardioDAL();
+		CardioAdministration myManager;
+
 		public void OnGet()
         {
-			exData.LoadCardios(myManager);
+			ICardioDAL db = new CardioDAL();
+			myManager = new CardioAdministration(db);
+			db.LoadCardios(myManager);
 			myCardios = myManager.GetCardios();
 		}
     }

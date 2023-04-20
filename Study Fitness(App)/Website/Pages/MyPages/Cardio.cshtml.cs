@@ -8,15 +8,17 @@ namespace Website.Pages.MyPages
     public class CardioModel : PageModel
     {
         public IEnumerable<Cardio> MyCardios { get; set; }
-        CardioAdministration myManager = new CardioAdministration();
-        CardioDAL exData = new CardioDAL();
+		ICardioDAL db = new CardioDAL();
+        CardioAdministration myManager;
+		
 
-        public int CurrentPage { get; set; } = 1;
+		public int CurrentPage { get; set; } = 1;
         public int PageSize { get; set; } = 10;
         public void OnGet(int? page)
         {
-            exData.LoadCardios(myManager);
-            MyCardios = myManager.GetCardios();
+			myManager = new CardioAdministration(db);
+			db.LoadCardios(myManager);
+			MyCardios = myManager.GetCardios();
 
             if (page != null)
             {

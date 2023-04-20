@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary.DatabaseClasses
 {
-    public class CardioDAL
+    public class CardioDAL : ICardioDAL
     {
         MSSQL db = new MSSQL();
 

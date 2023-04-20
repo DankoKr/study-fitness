@@ -9,10 +9,10 @@ namespace Website.Pages.MyPages
 	[Authorize(Policy = "AdminOnly")]
 	public class AddCardioModel : PageModel
     {
-        CardioAdministration myManager = new CardioAdministration();
-        ExerciseDAL db = new ExerciseDAL();
+        CardioAdministration myManager;
+		ICardioDAL db = new CardioDAL();
 
-        public string Message = "";
+		public string Message = "";
         public string Error = "";
         public string Name { get; set; }
         public string Difficulty { get; set; }
@@ -33,8 +33,10 @@ namespace Website.Pages.MyPages
 
             if (Name.Length == 0) { Error = "Missing data!"; return; }
 
-            //Add to database
-            myManager.CreateCardio(Name, Calories, Difficulty, PictureUrl);
+			//Add to database
+			myManager = new CardioAdministration(db);
+			db.LoadCardios(myManager);
+			myManager.CreateCardio(Name, Calories, Difficulty, PictureUrl);
             //
 
             Message = "Cardio created!";

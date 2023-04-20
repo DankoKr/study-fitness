@@ -15,13 +15,16 @@ namespace Study_Fitness_App_
 {
     public partial class CardioForm : Form
     {
-        CardioAdministration myAdministration = new CardioAdministration();
-        CardioDAL db = new CardioDAL();
+        CardioAdministration myAdministration;
         public CardioForm()
         {
             InitializeComponent();
-            db.LoadCardios(myAdministration);
-        }
+			ICardioDAL cardioDAL = new CardioDAL();
+			myAdministration = new CardioAdministration(cardioDAL);
+
+			// Load existing cardios from the database
+			cardioDAL.LoadCardios(myAdministration);
+		}
 
         private void btnCreateCardio_Click(object sender, EventArgs e)
         {

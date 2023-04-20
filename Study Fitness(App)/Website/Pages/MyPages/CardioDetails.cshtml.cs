@@ -8,14 +8,14 @@ namespace Website.Pages.MyPages
 {
     public class CardioDetailsModel : PageModel
     {
-        public CardioAdministration myManager = new CardioAdministration();
+        public CardioAdministration myManager;
         public Cardio? selectedC { get; set; }
         public void OnGet(string name)
         {
-            myManager = new CardioAdministration();
-            CardioDAL db = new CardioDAL();
+			ICardioDAL db = new CardioDAL();
+			myManager = new CardioAdministration(db);
             db.LoadCardios(myManager);
-            selectedC = myManager.GetCardio(name);
+			selectedC = myManager.GetCardio(name);
         }
     }
 }
