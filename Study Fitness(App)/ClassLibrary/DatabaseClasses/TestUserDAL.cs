@@ -17,14 +17,8 @@ namespace ClassLibrary.DatabaseClasses
 
 		public bool CreateUser(User u)
 		{
-			if (u != null)
-			{
-				string randomSalt = BCrypt.Net.BCrypt.GenerateSalt();
-				string hashedPassword = BCrypt.Net.BCrypt.HashPassword(u.Password, randomSalt);
-				u.Password = hashedPassword;
-				if (u.Password != null) { return true; }
-			}
-			return false;
+			myUsers.Add(u);
+			return true;
 		}
 
 		public void DeleteUser(User u)
