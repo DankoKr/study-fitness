@@ -13,7 +13,7 @@ using System.Xml.Linq;
 
 namespace ClassLibrary.DatabaseClasses
 {
-    public class UserDAL
+    public class UserDAL : IUserDAL
     {
         MSSQL db = new MSSQL();
         public void LoadUsers(UserAdministration myManager)
@@ -63,7 +63,8 @@ namespace ClassLibrary.DatabaseClasses
 
         public void EditUser(User u, string name) 
         {
-            SqlConnection _connection = db.GetSqlConnection();
+			MSSQL db = new MSSQL();
+			SqlConnection _connection = db.GetSqlConnection();
 
             try
             {

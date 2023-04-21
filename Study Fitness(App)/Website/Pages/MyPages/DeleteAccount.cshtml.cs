@@ -9,11 +9,13 @@ namespace Website.Pages.MyPages
     public class DeleteAccountModel : PageModel
     {
         public User? user { get; set; }
-        UserAdministration myManager = new UserAdministration();
-        UserDAL db = new UserDAL();
+        UserAdministration myManager;
+        IUserDAL db = new UserDAL();
 
         public void OnGet()
         {
+            myManager = new UserAdministration(db);
+
             string nameUser = Request.Query["name"];
             db.GetUserByUsername(myManager, nameUser);
             user = myManager.GetUser(nameUser);

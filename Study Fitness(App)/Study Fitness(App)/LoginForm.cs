@@ -19,12 +19,14 @@ namespace Study_Fitness_App_
 {
     public partial class LoginForm : Form
     {
-        UserDAL db = new UserDAL();
-        UserAdministration myManager = new UserAdministration();
+        IUserDAL db = new UserDAL();
+        UserAdministration myManager;
         public User user = new User();
         public LoginForm()
         {
             InitializeComponent();
+            myManager = new UserAdministration(db);
+            db.LoadUsers(myManager);
         }
 
         private void btnLogin_Click(object sender, EventArgs e)

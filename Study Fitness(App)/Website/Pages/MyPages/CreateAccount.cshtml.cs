@@ -11,9 +11,10 @@ namespace Website.Pages.MyPages
 {
     public class CreateAccountModel : PageModel
     {
-        UserAdministration myManager = new UserAdministration();
+        UserAdministration myManager;
+		IUserDAL db = new UserDAL();
 
-        public string Error = "";
+		public string Error = "";
         public string Username { get; set; }
         public string Password { get; set; }
         public string FirstName { get; set; }
@@ -25,7 +26,9 @@ namespace Website.Pages.MyPages
 
         public void OnPost()
         {
-            Username = Request.Form["username"];
+			myManager = new UserAdministration(db);
+
+			Username = Request.Form["username"];
             Password = Request.Form["password"];
             FirstName = Request.Form["firstname"];
 

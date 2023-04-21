@@ -10,7 +10,12 @@ namespace ClassLibrary.UserClasses
     public class UserAdministration
     {
         List<User> myUsers = new List<User>();
-        UserDAL db = new UserDAL(); 
+        private readonly IUserDAL db;
+
+        public UserAdministration(IUserDAL db) 
+        {
+			this.db = db;
+		}
 
         public void AddUser(User user)
         {

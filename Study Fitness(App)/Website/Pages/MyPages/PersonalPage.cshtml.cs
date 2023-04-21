@@ -11,12 +11,14 @@ namespace Website.Pages.MyPages
     [Authorize]
     public class PersonalPageModel : PageModel
     {
-        UserDAL db = new UserDAL();
-        UserAdministration myManager = new UserAdministration();
+        IUserDAL db = new UserDAL();
+        UserAdministration myManager;
         public User user = new User();
 
         public void OnGet()
         {
+            myManager = new UserAdministration(db);
+
             if (HttpContext.Session.GetString("Username") != null)
             {
                 string name;

@@ -16,13 +16,17 @@ namespace Study_Fitness_App_
 {
     public partial class UserForm : Form
     {
-        UserAdministration myManager = new UserAdministration();
+        UserAdministration myManager;
         UserDAL db = new UserDAL();
         public UserForm()
         {
             InitializeComponent();
-            db.LoadUsers(myManager);
-        }
+			IUserDAL db = new UserDAL();
+			myManager = new UserAdministration(db);
+
+			// Load existing cardios from the database
+			db.LoadUsers(myManager);
+		}
 
         private void btnViewAllUsers_Click(object sender, EventArgs e)
         {

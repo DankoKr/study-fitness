@@ -11,12 +11,14 @@ namespace Website.Pages.MyPages
 	[Authorize(Policy = "AdminOnly")]
 	public class AdminPageModel : PageModel
     {
-        UserDAL db = new UserDAL();
-        UserAdministration myManager = new UserAdministration();
+        UserAdministration myManager;
         public User user = new User();
 
         public void OnGet()
         {
+			IUserDAL db = new UserDAL();
+			myManager = new UserAdministration(db);
+
             // check if user is already logged in
             if (HttpContext.Session.GetString("Username") != null)
             {

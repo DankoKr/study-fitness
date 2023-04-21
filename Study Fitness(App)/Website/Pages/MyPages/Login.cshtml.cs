@@ -13,8 +13,8 @@ namespace Website.Pages.MyPages
 {
     public class LoginModel : PageModel
     {
-        UserDAL db = new UserDAL();
-        UserAdministration myManager = new UserAdministration();
+		IUserDAL db = new UserDAL();
+		UserAdministration myManager;
         public string Username { get; set; }
         public string Password { get; set; }
         public User user = new User();
@@ -24,6 +24,8 @@ namespace Website.Pages.MyPages
 
         public void OnGet()
         {
+			myManager = new UserAdministration(db);
+
             // check if user is already logged in
             if (HttpContext.Session.GetString("Username") != null)
             {
@@ -58,6 +60,8 @@ namespace Website.Pages.MyPages
 
 		public IActionResult OnPost()
 		{
+			myManager = new UserAdministration(db);
+
 			Username = Request.Form["Username"];
 			Password = Request.Form["Password"];
 

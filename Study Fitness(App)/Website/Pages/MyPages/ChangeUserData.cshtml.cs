@@ -13,20 +13,24 @@ namespace Website.Pages.MyPages
 		public string Error = "";
 		public string Message = "";
 		public User? user { get; set; }
-		UserAdministration myManager = new UserAdministration();
-		UserDAL db = new UserDAL();
+		UserAdministration myManager;
+		IUserDAL db = new UserDAL();
 		public string? NewUsername { get; set; }
         public string? NewFirstName { get; set; }
 
         public void OnGet()
         {
-            string nameUser = Request.Query["name"];
+			myManager = new UserAdministration(db);
+
+			string nameUser = Request.Query["name"];
             db.GetUserByUsername(myManager, nameUser);
             user = myManager.GetUser(nameUser);
         }
 
 		public void OnPost()
 		{
+			myManager = new UserAdministration(db);
+
 			string currentUsername = Request.Query["name"];
 			NewUsername = Request.Form["username"];
             NewFirstName = Request.Form["firstname"];
