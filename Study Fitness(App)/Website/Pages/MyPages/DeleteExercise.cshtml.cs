@@ -8,13 +8,13 @@ namespace Website.Pages.MyPages
     public class DeleteExerciseModel : PageModel
     {
 		public Exercise? selectedEx { get; set; }
-		ExerciseAdministration myManager = new ExerciseAdministration();
+		ExerciseAdministration myManager;
+		IExerciseDAL db = new ExerciseDAL();
 
 		public void OnGet()
         {
 			string nameEx = Request.Query["name"];
-			myManager = new ExerciseAdministration();
-			ExerciseDAL db = new ExerciseDAL();
+			myManager = new ExerciseAdministration(db);
 			db.LoadExercises(myManager);
 			myManager.RemoveExercise(nameEx);
 

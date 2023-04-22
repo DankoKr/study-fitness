@@ -10,10 +10,11 @@ namespace Website.Pages.MyPages
 	public class ExerciseTableModel : PageModel
     {
 		public Exercise[] myExercises { get; set; }
-		ExerciseAdministration myManager = new ExerciseAdministration();
-		ExerciseDAL exData = new ExerciseDAL();
+		ExerciseAdministration myManager;
+		IExerciseDAL exData = new ExerciseDAL();
 		public void OnGet()
         {
+			myManager = new ExerciseAdministration(exData);
 			exData.LoadExercises(myManager);
 			myExercises = myManager.GetExercises();
 		}

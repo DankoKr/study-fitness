@@ -10,13 +10,13 @@ namespace Website.Pages.MyPages
 {
     public class ExerciseDetailscshtmlModel : PageModel
     {
-        public ExerciseAdministration myManager = new ExerciseAdministration();
+        public ExerciseAdministration myManager;
         public Exercise? selectedEx { get; set; }
+		IExerciseDAL db = new ExerciseDAL();
 
-        public void OnGet(string name)
+		public void OnGet(string name)
         {
-            myManager = new ExerciseAdministration();
-            ExerciseDAL db = new ExerciseDAL();
+            myManager = new ExerciseAdministration(db);
             db.LoadExercises(myManager);
             selectedEx = myManager.GetExercise(name);
         }

@@ -16,12 +16,13 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 namespace Study_Fitness_App_
 {
 	public partial class AppForm : Form
-	{
-		ExerciseAdministration myAdministrator = new ExerciseAdministration();
-		ExerciseDAL exData = new ExerciseDAL();
+	{		
+		IExerciseDAL exData = new ExerciseDAL();
+		ExerciseAdministration myAdministrator;
 		public AppForm()
 		{
 			InitializeComponent();
+			myAdministrator = new ExerciseAdministration(exData);
 			exData.LoadExercises(myAdministrator);
 			FillExercisesInBoxes();
 		}

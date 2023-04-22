@@ -10,8 +10,8 @@ namespace Website.Pages.MyPages
 	[Authorize(Policy = "AdminOnly")]
 	public class AddExercisePageModel : PageModel
     {
-        ExerciseAdministration myManager = new ExerciseAdministration();
-        ExerciseDAL db = new ExerciseDAL();
+        ExerciseAdministration myManager;
+        IExerciseDAL db = new ExerciseDAL();
 
         public string Message = "";
         public string Error = "";
@@ -38,6 +38,7 @@ namespace Website.Pages.MyPages
             PictureUrl = Request.Form["pictureURL"];
             Type = Request.Form["type"];
             Specialty = Request.Form["specialty"];
+            myManager = new ExerciseAdministration(db);
 
             if (Name.Length == 0) { Error = "Missing data!"; return; }
 

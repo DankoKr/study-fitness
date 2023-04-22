@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary.DatabaseClasses
 {
-    public class ExerciseDAL 
+    public class ExerciseDAL : IExerciseDAL
     {
         MSSQL db = new MSSQL();
 

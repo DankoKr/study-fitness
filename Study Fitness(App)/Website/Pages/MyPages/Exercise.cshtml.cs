@@ -9,15 +9,17 @@ namespace Website.Pages.MyPages
     public class ExerciseModel : PageModel
     {        
         public IEnumerable<Exercise> MyExercises { get; set; }
-        ExerciseAdministration myManager = new ExerciseAdministration();
-        ExerciseDAL exData = new ExerciseDAL();
+        ExerciseAdministration myManager;
+        IExerciseDAL exData = new ExerciseDAL();
         
         public int CurrentPage { get; set; } = 1;
         public int PageSize { get; set; } = 10;
 
         public void OnGet(int? page)
         {
-            exData.LoadExercises(myManager);
+            myManager = new ExerciseAdministration(exData);
+
+			exData.LoadExercises(myManager);
             MyExercises = myManager.GetExercises();
 
             if (page != null)

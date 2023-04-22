@@ -12,9 +12,12 @@ namespace ClassLibrary.ExerciseClasses
     public class ExerciseAdministration : IAdministration, IExerciseComparer
     {
         List<Exercise> myExercises = new List<Exercise>();
-        ExerciseDAL ExerciseDAL = new ExerciseDAL();
+        IExerciseDAL ExerciseDAL = new ExerciseDAL();
 
-        public ExerciseAdministration() { }
+        public ExerciseAdministration(IExerciseDAL ExerciseDAL) 
+        {
+            this.ExerciseDAL = ExerciseDAL;
+        }
 
         public void CreateExercise(string typeEx, string nameEx, string difficulty, string equipment, int numReps, double weight, string specialty, string picture)
         {
