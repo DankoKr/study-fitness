@@ -37,12 +37,6 @@
             lblHeader = new Label();
             panelLogo = new Panel();
             pictureBox1 = new PictureBox();
-            lbCardios = new ListBox();
-            lbExercises = new ListBox();
-            lblCardios = new Label();
-            lblExercise = new Label();
-            lblUsers = new Label();
-            lbUsers = new ListBox();
             panelButtons.SuspendLayout();
             panelHeading.SuspendLayout();
             panelLogo.SuspendLayout();
@@ -139,71 +133,11 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
-            // lbCardios
-            // 
-            lbCardios.FormattingEnabled = true;
-            lbCardios.ItemHeight = 20;
-            lbCardios.Location = new Point(177, 167);
-            lbCardios.Name = "lbCardios";
-            lbCardios.Size = new Size(150, 184);
-            lbCardios.TabIndex = 3;
-            // 
-            // lbExercises
-            // 
-            lbExercises.FormattingEnabled = true;
-            lbExercises.ItemHeight = 20;
-            lbExercises.Location = new Point(396, 167);
-            lbExercises.Name = "lbExercises";
-            lbExercises.Size = new Size(150, 184);
-            lbExercises.TabIndex = 4;
-            // 
-            // lblCardios
-            // 
-            lblCardios.AutoSize = true;
-            lblCardios.Location = new Point(177, 144);
-            lblCardios.Name = "lblCardios";
-            lblCardios.Size = new Size(103, 20);
-            lblCardios.TabIndex = 5;
-            lblCardios.Text = "Total Cardios :";
-            // 
-            // lblExercise
-            // 
-            lblExercise.AutoSize = true;
-            lblExercise.Location = new Point(396, 144);
-            lblExercise.Name = "lblExercise";
-            lblExercise.Size = new Size(112, 20);
-            lblExercise.TabIndex = 6;
-            lblExercise.Text = "Total Exercises :";
-            // 
-            // lblUsers
-            // 
-            lblUsers.AutoSize = true;
-            lblUsers.Location = new Point(612, 144);
-            lblUsers.Name = "lblUsers";
-            lblUsers.Size = new Size(88, 20);
-            lblUsers.TabIndex = 7;
-            lblUsers.Text = "Total Users :";
-            // 
-            // lbUsers
-            // 
-            lbUsers.FormattingEnabled = true;
-            lbUsers.ItemHeight = 20;
-            lbUsers.Location = new Point(612, 167);
-            lbUsers.Name = "lbUsers";
-            lbUsers.Size = new Size(150, 184);
-            lbUsers.TabIndex = 8;
-            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(lbUsers);
-            Controls.Add(lblUsers);
-            Controls.Add(lblExercise);
-            Controls.Add(lblCardios);
-            Controls.Add(lbExercises);
-            Controls.Add(lbCardios);
             Controls.Add(panelLogo);
             Controls.Add(panelHeading);
             Controls.Add(panelButtons);
@@ -215,7 +149,6 @@
             panelLogo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -228,11 +161,5 @@
         private Panel panelLogo;
         private PictureBox pictureBox1;
         private Label lblHeader;
-        private ListBox lbCardios;
-        private ListBox lbExercises;
-        private Label lblCardios;
-        private Label lblExercise;
-        private Label lblUsers;
-        private ListBox lbUsers;
     }
 }

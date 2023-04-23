@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClassLibrary.UserClasses;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,12 @@ namespace Study_Fitness_App_
 {
     public partial class MainForm : Form
     {
-        public MainForm()
+        User user;
+        public MainForm(User user)
         {
             InitializeComponent();
+            this.user = user;
+            CheckRole(user);
         }
 
         private void btnToCardioForm_Click(object sender, EventArgs e)
@@ -33,6 +37,14 @@ namespace Study_Fitness_App_
         {
             UserForm frm = new UserForm();
             frm.Show();
+        }
+
+        private void CheckRole(User user)
+        {
+            if (user.UserRole == "Trainer")
+            {
+                btnToUserForm.Hide();
+            }
         }
     }
 }

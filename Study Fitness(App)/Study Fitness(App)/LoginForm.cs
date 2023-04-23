@@ -36,9 +36,9 @@ namespace Study_Fitness_App_
                 db.GetUserByUsername(myManager, txbUsername.Text);
                 user = myManager.GetUser(txbUsername.Text);
 
-                if (user.UserRole == "Admin")
+                if (user.UserRole == "Admin" || user.UserRole == "Trainer")
                 {
-                    MainForm frm = new MainForm();
+                    MainForm frm = new MainForm(user);
                     frm.Show();
                     this.Hide();
                 }
