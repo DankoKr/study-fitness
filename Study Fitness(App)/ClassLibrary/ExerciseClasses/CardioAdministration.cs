@@ -9,7 +9,7 @@ using System.Xml.Linq;
 
 namespace ClassLibrary.ExerciseClasses
 {
-    public class CardioAdministration : IAdministration
+    public class CardioAdministration 
     {
         List<Cardio> myCardios = new List<Cardio>();
         private readonly ICardioDAL db;

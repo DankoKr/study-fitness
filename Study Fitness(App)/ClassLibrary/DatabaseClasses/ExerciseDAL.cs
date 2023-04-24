@@ -80,7 +80,7 @@ namespace ClassLibrary.DatabaseClasses
             else if (ex is LegsExercise)
             {
                 LegsExercise exLegs = (LegsExercise)ex;
-                string sql = ($"INSERT INTO Exercise (Name, Difficulty, Equipment, RepRange, Weight, PictureURL, Type)\r\nVALUES ('{exLegs.Name}', '{exLegs.Difficulty}', '{exLegs.Equipment}', {exLegs.RepRange}, {exLegs.Weight}, '{exLegs.PictureUrl}', 'LegsExercise');\r\n\r\nINSERT INTO BackExercise (exercise_id, backElement)\r\nVALUES (SCOPE_IDENTITY(), '{exLegs.Legs}');");
+                string sql = ($"INSERT INTO Exercise (Name, Difficulty, Equipment, RepRange, Weight, PictureURL, Type)\r\nVALUES ('{exLegs.Name}', '{exLegs.Difficulty}', '{exLegs.Equipment}', {exLegs.RepRange}, {exLegs.Weight}, '{exLegs.PictureUrl}', 'LegsExercise');\r\n\r\nINSERT INTO LegsExercise (exercise_id, legs)\r\nVALUES (SCOPE_IDENTITY(), '{exLegs.Legs}');");
                 try
                 {
                     SqlCommand cmd = new SqlCommand(sql, _connection);
@@ -100,7 +100,7 @@ namespace ClassLibrary.DatabaseClasses
             else if (ex is ShoulderExercise)
             {
                 ShoulderExercise exShoulder = (ShoulderExercise)ex;
-                string sql = ($"INSERT INTO Exercise (Name, Difficulty, Equipment, RepRange, Weight, PictureURL, Type)\r\nVALUES ('{exShoulder.Name}', '{exShoulder.Difficulty}', '{exShoulder.Equipment}', {exShoulder.RepRange}, {exShoulder.Weight}, '{exShoulder.PictureUrl}', 'ShoulderExercise');\r\n\r\nINSERT INTO BackExercise (exercise_id, backElement)\r\nVALUES (SCOPE_IDENTITY(), '{exShoulder.ShoulderHead}');");
+                string sql = ($"INSERT INTO Exercise (Name, Difficulty, Equipment, RepRange, Weight, PictureURL, Type)\r\nVALUES ('{exShoulder.Name}', '{exShoulder.Difficulty}', '{exShoulder.Equipment}', {exShoulder.RepRange}, {exShoulder.Weight}, '{exShoulder.PictureUrl}', 'ShoulderExercise');\r\n\r\nINSERT INTO ShoulderExercise (exercise_id, shoulderHead)\r\nVALUES (SCOPE_IDENTITY(), '{exShoulder.ShoulderHead}');");
                 try
                 {
                     SqlCommand cmd = new SqlCommand(sql, _connection);
