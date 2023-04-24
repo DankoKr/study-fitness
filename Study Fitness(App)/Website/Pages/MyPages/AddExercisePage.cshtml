@@ -28,7 +28,16 @@
     <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Type</label>
         <div class="col-sm-6">
-            <input type="text" class="form-control" name="type" value="@Model.Type" />
+            <select name="type" class="form-control">
+                <option value="">Select Type</option>
+                <option value="Arm">Arm</option>
+                <option value="Back">Back</option>
+                <option value="Chest">Chest</option>
+                <option value="Core">Core</option>
+                <option value="Neck">Neck</option>
+                <option value="Shoulder">Shoulder</option>
+                <option value="Legs">Legs</option>
+            </select>
         </div>
     </div>
     <div class="row mb-3">

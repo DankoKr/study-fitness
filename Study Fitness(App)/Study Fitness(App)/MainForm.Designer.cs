@@ -37,6 +37,7 @@
             lblHeader = new Label();
             panelLogo = new Panel();
             pictureBox1 = new PictureBox();
+            btnToCommentsForm = new Button();
             panelButtons.SuspendLayout();
             panelHeading.SuspendLayout();
             panelLogo.SuspendLayout();
@@ -46,6 +47,7 @@
             // panelButtons
             // 
             panelButtons.BackColor = Color.Cyan;
+            panelButtons.Controls.Add(btnToCommentsForm);
             panelButtons.Controls.Add(btnToUserForm);
             panelButtons.Controls.Add(btnToExerciseForm);
             panelButtons.Controls.Add(btnToCardioForm);
@@ -133,6 +135,20 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
+            // btnToCommentsForm
+            // 
+            btnToCommentsForm.BackColor = SystemColors.ActiveCaption;
+            btnToCommentsForm.Dock = DockStyle.Top;
+            btnToCommentsForm.FlatAppearance.BorderSize = 0;
+            btnToCommentsForm.FlatStyle = FlatStyle.Flat;
+            btnToCommentsForm.Location = new Point(0, 180);
+            btnToCommentsForm.Name = "btnToCommentsForm";
+            btnToCommentsForm.Size = new Size(130, 60);
+            btnToCommentsForm.TabIndex = 3;
+            btnToCommentsForm.Text = "Comments";
+            btnToCommentsForm.UseVisualStyleBackColor = false;
+            btnToCommentsForm.Click += btnToCommentsForm_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -161,5 +177,6 @@
         private Panel panelLogo;
         private PictureBox pictureBox1;
         private Label lblHeader;
+        private Button btnToCommentsForm;
     }
 }

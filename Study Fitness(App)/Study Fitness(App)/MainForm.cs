@@ -44,7 +44,14 @@ namespace Study_Fitness_App_
             if (user.UserRole == "Trainer")
             {
                 btnToUserForm.Hide();
+                btnToCommentsForm.Hide();
             }
+        }
+
+        private void btnToCommentsForm_Click(object sender, EventArgs e)
+        {
+            CommentForm frm = new CommentForm();
+            frm.Show();
         }
     }
 }

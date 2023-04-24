@@ -108,9 +108,9 @@ namespace ClassLibrary.DatabaseClasses
 
         public bool CheckLogin(string username, string password)
         {
-
-            string connection = $"Server = mssqlstud.fhict.local; Database = dbi500872; User Id =dbi500872; Password = Danko2003;";
-            using (SqlConnection _newConnection = new SqlConnection(connection))
+            MSSQL db = new MSSQL();
+            
+            using (SqlConnection _newConnection = db.GetSqlConnection())
             {
                 try
                 {
@@ -158,8 +158,8 @@ namespace ClassLibrary.DatabaseClasses
 
         public void GetUserByUsername(UserAdministration myManager, string username) 
         {
-            string connection = $"Server = mssqlstud.fhict.local; Database = dbi500872; User Id =dbi500872; Password = Danko2003;";
-            SqlConnection _newConnection = new SqlConnection(connection);
+            MSSQL db = new MSSQL();
+            SqlConnection _newConnection = db.GetSqlConnection();
 
             try
             {
