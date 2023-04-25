@@ -15,7 +15,7 @@ namespace Website.Pages.MyPages
 			ICardioDAL db = new CardioDAL();
 			myManager = new CardioAdministration(db);
 			db.LoadCardios(myManager);
-			myManager.RemoveExercise(nameEx);
+			myManager.RemoveCardio(nameEx);
 
 			Response.Redirect("/MyPages/CardioTable");
 		}

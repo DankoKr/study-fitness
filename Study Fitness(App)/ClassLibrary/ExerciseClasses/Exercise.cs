@@ -39,8 +39,6 @@ namespace ClassLibrary.ExerciseClasses
             return $"This is an exercise called {Name} (difficulty: {Difficulty}, required equipment: {Equipment}, rep range: {RepRange}, weight: {Weight})";
         }
 
-        public string GetName() { return this.Name; }
-
 
     }
 }

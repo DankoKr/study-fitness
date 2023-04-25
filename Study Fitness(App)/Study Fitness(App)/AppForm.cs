@@ -49,8 +49,8 @@ namespace Study_Fitness_App_
 			cmbManageEx.Items.Clear();
 			foreach (Exercise ex in myAdministrator.GetExercises())
 			{
-				cmbSelectedEx.Items.Add(ex.GetName());
-				cmbManageEx.Items.Add(ex.GetName());
+				cmbSelectedEx.Items.Add(ex.Name);
+				cmbManageEx.Items.Add(ex.Name);
 			}
 		}
 

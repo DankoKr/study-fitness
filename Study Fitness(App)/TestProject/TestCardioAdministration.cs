@@ -65,7 +65,7 @@ namespace TestProject
 
 
 			//Act			
-			myManager.RemoveExercise("Cardio1");
+			myManager.RemoveCardio("Cardio1");
 
 			//Assert
 			Assert.AreEqual(0, myManager.GetCardios().Count());
@@ -101,7 +101,7 @@ namespace TestProject
 			Cardio uniqueC = new Cardio("Unique", 243, "Beginner", "pictureUrl");
 
 			//Act		
-			bool isUnique = myManager.ValidateExerciseIsUnique(uniqueC.Name);
+			bool isUnique = myManager.ValidateCardioIsUnique(uniqueC.Name);
 
 
 			//Assert

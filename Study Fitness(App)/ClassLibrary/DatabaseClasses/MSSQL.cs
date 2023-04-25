@@ -12,7 +12,7 @@ using System.Xml.Linq;
 
 namespace ClassLibrary.DatabaseClasses
 {
-    public class MSSQL : IDBconfig
+    public class MSSQL
     {
         private SqlConnection _connection;
         private string connection;

@@ -21,7 +21,7 @@ namespace ClassLibrary.ExerciseClasses
         public void CreateCardio(string name, int calories, string difficulty, string picture) 
         {
             Cardio cardio = new Cardio(name, calories, difficulty, picture);
-            if (ValidateExerciseIsUnique(cardio.Name))
+            if (ValidateCardioIsUnique(cardio.Name))
             {
                 myCardios.Add(cardio);
                 db.AddCardio(cardio);
@@ -33,7 +33,7 @@ namespace ClassLibrary.ExerciseClasses
             myCardios.Add(c);
         }
 
-        public bool ValidateExerciseIsUnique(string name) 
+        public bool ValidateCardioIsUnique(string name) 
         {
             foreach (Cardio cardio in myCardios)
             {
@@ -45,9 +45,9 @@ namespace ClassLibrary.ExerciseClasses
             return true;
         }
 
-        public bool ExerciseExists(string name) 
+        public bool CardioExists(string name) 
         {
-            if (ValidateExerciseIsUnique(name))
+            if (ValidateCardioIsUnique(name))
             {
                 return false;
             }
@@ -57,9 +57,9 @@ namespace ClassLibrary.ExerciseClasses
             }
         }
 
-        public void RemoveExercise(string name) 
+        public void RemoveCardio(string name) 
         {
-            if (ExerciseExists(name))
+            if (CardioExists(name))
             {
                 db.DeleteCardio(GetCardio(name));
                 myCardios.Remove(GetCardio(name));

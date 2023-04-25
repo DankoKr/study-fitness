@@ -90,7 +90,7 @@ namespace Study_Fitness_App_
 
             object obj = lbManageCardio.SelectedItem;
             Cardio selectedC = (Cardio)obj;
-            myAdministration.RemoveExercise(selectedC.Name);
+            myAdministration.RemoveCardio(selectedC.Name);
             ShowData();
         }
 

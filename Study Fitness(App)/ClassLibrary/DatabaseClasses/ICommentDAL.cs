@@ -11,7 +11,7 @@ namespace ClassLibrary.DatabaseClasses
     {
         void LoadComments(CommentAdministration myManager);
         void AddComment(Comment c, int userId);
-        public void DeleteComment(Comment c);
-        public void EditComment(Comment c, string title, string description, int rating);
+        void DeleteComment(Comment c);
+        void EditComment(Comment c, string title, string description, int rating);
     }
 }
