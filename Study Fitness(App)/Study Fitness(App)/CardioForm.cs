@@ -1,5 +1,5 @@
-﻿using ClassLibrary.DatabaseClasses;
-using ClassLibrary.ExerciseClasses;
+﻿using ClassLibrary.CardioClasses;
+using ClassLibrary.DatabaseClasses;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

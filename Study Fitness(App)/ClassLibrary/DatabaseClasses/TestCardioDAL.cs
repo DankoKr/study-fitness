@@ -1,4 +1,4 @@
-﻿using ClassLibrary.ExerciseClasses;
+﻿using ClassLibrary.CardioClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary.DatabaseClasses
 {
-	public class TestCardioDAL : ICardioDAL
+    public class TestCardioDAL : ICardioDAL
 	{
 		private List<Cardio> cardios = new List<Cardio>();
 		public void AddCardio(Cardio c)

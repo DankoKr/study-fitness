@@ -28,7 +28,7 @@ namespace Study_Fitness_App_
         {
             if (lbComments.SelectedIndex < 0)
             {
-                MessageBox.Show("Please choose a User!");
+                MessageBox.Show("Please choose a Comment!");
                 return;
             }
 
@@ -41,7 +41,7 @@ namespace Study_Fitness_App_
         {
             if (lbComments.SelectedIndex < 0)
             {
-                MessageBox.Show("Please choose a User!");
+                MessageBox.Show("Please choose a Comment!");
                 return;
             }
 

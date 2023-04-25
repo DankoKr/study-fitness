@@ -1,4 +1,4 @@
-﻿using ClassLibrary.ExerciseClasses;
+﻿using ClassLibrary.CardioClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using static System.Net.WebRequestMethods;
 
 namespace ClassLibrary.DatabaseClasses
 {
-	public interface ICardioDAL
+    public interface ICardioDAL
 	{
 		void AddCardio(Cardio c);
 		void DeleteCardio(Cardio c);

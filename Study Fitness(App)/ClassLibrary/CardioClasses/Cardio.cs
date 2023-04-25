@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClassLibrary.ExerciseClasses
+namespace ClassLibrary.CardioClasses
 {
     public class Cardio
     {
@@ -18,7 +18,7 @@ namespace ClassLibrary.ExerciseClasses
         public string Difficulty { get; set; }
         public string PictureURL { get; set; }
 
-        public Cardio(string name, int calories, string difficulty, string picture) 
+        public Cardio(string name, int calories, string difficulty, string picture)
         {
             Name = name;
             Calories = calories;
@@ -26,7 +26,7 @@ namespace ClassLibrary.ExerciseClasses
             PictureURL = picture;
         }
 
-        public string ToString() 
+        public string ToString()
         {
             return $"{Name} is a cardio activity which burns {Calories} calories and has a {Difficulty} difficulty";
         }

@@ -53,5 +53,11 @@ namespace Study_Fitness_App_
             CommentForm frm = new CommentForm();
             frm.Show();
         }
+
+        private void btnToScheduleForm_Click(object sender, EventArgs e)
+        {
+            ScheduleForm frm = new ScheduleForm();
+            frm.Show();
+        }
     }
 }

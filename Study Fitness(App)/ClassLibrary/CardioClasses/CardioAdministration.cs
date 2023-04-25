@@ -7,18 +7,18 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace ClassLibrary.ExerciseClasses
+namespace ClassLibrary.CardioClasses
 {
-    public class CardioAdministration 
+    public class CardioAdministration
     {
         List<Cardio> myCardios = new List<Cardio>();
         private readonly ICardioDAL db;
-        public CardioAdministration(ICardioDAL db) 
+        public CardioAdministration(ICardioDAL db)
         {
             this.db = db;
         }
 
-        public void CreateCardio(string name, int calories, string difficulty, string picture) 
+        public void CreateCardio(string name, int calories, string difficulty, string picture)
         {
             Cardio cardio = new Cardio(name, calories, difficulty, picture);
             if (ValidateCardioIsUnique(cardio.Name))
@@ -28,12 +28,12 @@ namespace ClassLibrary.ExerciseClasses
             }
         }
 
-        public void AddExistingCardio(Cardio c) 
+        public void AddExistingCardio(Cardio c)
         {
             myCardios.Add(c);
         }
 
-        public bool ValidateCardioIsUnique(string name) 
+        public bool ValidateCardioIsUnique(string name)
         {
             foreach (Cardio cardio in myCardios)
             {
@@ -45,7 +45,7 @@ namespace ClassLibrary.ExerciseClasses
             return true;
         }
 
-        public bool CardioExists(string name) 
+        public bool CardioExists(string name)
         {
             if (ValidateCardioIsUnique(name))
             {
@@ -57,7 +57,7 @@ namespace ClassLibrary.ExerciseClasses
             }
         }
 
-        public void RemoveCardio(string name) 
+        public void RemoveCardio(string name)
         {
             if (CardioExists(name))
             {
@@ -78,17 +78,17 @@ namespace ClassLibrary.ExerciseClasses
             return null;
         }
 
-        public Cardio[] GetCardios() 
+        public Cardio[] GetCardios()
         {
-            return this.myCardios.ToArray();
+            return myCardios.ToArray();
         }
 
-        public void EditCardioData(Cardio c, string newName, int newCalories, string newDifficulty, string newPicture) 
+        public void EditCardioData(Cardio c, string newName, int newCalories, string newDifficulty, string newPicture)
         {
             if (newCalories > 0 && newName != "")
             {
-				db.EditCardio(c, newName, newDifficulty, newCalories, newPicture);
-				c.Name = newName;
+                db.EditCardio(c, newName, newDifficulty, newCalories, newPicture);
+                c.Name = newName;
                 c.Calories = newCalories;
                 c.Difficulty = newDifficulty;
                 c.PictureURL = newPicture;

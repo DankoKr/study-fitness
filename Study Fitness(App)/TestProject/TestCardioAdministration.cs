@@ -1,5 +1,5 @@
+using ClassLibrary.CardioClasses;
 using ClassLibrary.DatabaseClasses;
-using ClassLibrary.ExerciseClasses;
 
 namespace TestProject
 {

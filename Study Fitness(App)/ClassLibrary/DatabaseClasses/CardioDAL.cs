@@ -1,4 +1,4 @@
-﻿using ClassLibrary.ExerciseClasses;
+﻿using ClassLibrary.CardioClasses;
 using ClassLibrary.UserClasses;
 using System;
 using System.Collections.Generic;
