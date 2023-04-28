@@ -1,0 +1,43 @@
+﻿@page
+@model Website.Pages.MyPages.CreateCommentModel
+@{
+	ViewData["Title"] = "Leave a Comment";
+}
+
+<form class="BMI" method="post">
+    <div>
+        <p class="BMI-Message">@Model.Message</p>
+    </div>
+    <fieldset>
+        <legend class="Bmi-legend">Please fill in the form</legend>
+
+        <div>
+            <label asp-for="comment.Title">Title:</label>
+            <span asp-validation-for="comment.Title"></span>
+            <input asp-for="comment.Title" />
+        </div>
+        <div>
+            <label asp-for="comment.Description">Feedback:</label>
+            <span asp-validation-for="comment.Description"></span>
+            <input asp-for="comment.Description" />
+        </div>
+        <div>
+            <label asp-for="comment.Rating">Rate:</label>
+            <span asp-validation-for="comment.Rating"></span>
+            <input asp-for="comment.Rating" />
+        </div>
+        <div>
+            <label class="Bmi-label">&nbsp;</label>
+            <input type="submit" value="Submit" class="submit" />
+        </div>
+        <div>
+            <button type="reset" value="Cancel">Cancel</button>
+        </div>
+    </fieldset>
+</form>
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

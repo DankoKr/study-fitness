@@ -10,7 +10,7 @@ namespace ClassLibrary.DatabaseClasses
     public class TestCommentDAL : ICommentDAL
     {
         List<Comment> comments = new List<Comment>();
-        public void AddComment(Comment c, int userId)
+        public void AddComment(Comment c, int userId, int exId)
         {
             comments.Add(c);
         }
@@ -25,6 +25,11 @@ namespace ClassLibrary.DatabaseClasses
             c.Title = title;
             c.Description = description;
             c.Rating = rating;
+        }
+
+        public int GetExerciseId(string nameEx, int exId)
+        {
+            throw new NotImplementedException();
         }
 
         public void LoadComments(CommentAdministration myManager)

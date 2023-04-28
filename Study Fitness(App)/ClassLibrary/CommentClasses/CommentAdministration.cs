@@ -16,12 +16,12 @@ namespace ClassLibrary.CommentClasses
             this.db = db;
         }
 
-        public void AddComment(Comment c, int userId)
+        public void AddComment(Comment c, int userId, int exId)
         {
             if (c.Rating < 6 && c.Rating >= 0 && c.Title != "")
             {
                 comments.Add(c);
-                db.AddComment(c, userId);
+                db.AddComment(c, userId, exId);
             }
         }
 
@@ -58,6 +58,11 @@ namespace ClassLibrary.CommentClasses
                 }
             }
             return null;
+        }
+        public int GetExerciseId(string nameEx, int id) 
+        {
+            int exId = db.GetExerciseId(nameEx, id);
+            return exId;
         }
     }
 }

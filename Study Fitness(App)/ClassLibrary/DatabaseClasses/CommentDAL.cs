@@ -12,7 +12,7 @@ namespace ClassLibrary.DatabaseClasses
 {
     public class CommentDAL : ICommentDAL
     {
-        MSSQL db = new MSSQL();
+        DatabaseRepo db = new DatabaseRepo();
         public void LoadComments(CommentAdministration myManager) 
         {
             SqlConnection _connection = db.GetSqlConnection();
@@ -37,13 +37,13 @@ namespace ClassLibrary.DatabaseClasses
             }
             finally { _connection.Close(); }
         }
-        public void AddComment(Comment c, int userId) 
+        public void AddComment(Comment c, int userId, int exId) 
         {//Not fully implemented
             SqlConnection _connection = db.GetSqlConnection();
 
             try
             {
-                string sql = $"INSERT INTO Comment (name, description, rating, user_id)\r\nVALUES ('{c.Title}', {c.Description},'{c.Rating}');";
+                string sql = $"INSERT INTO Comment (name, description, rating, user_id, exercise_id)\r\nVALUES ('{c.Title}', '{c.Description}','{c.Rating}', {userId}, {exId});";
                 SqlCommand cmd = new SqlCommand(sql, _connection);
                 _connection.Open();
                 cmd.ExecuteNonQuery();
@@ -93,6 +93,32 @@ namespace ClassLibrary.DatabaseClasses
                 throw new Exception(sqlEx.Message);
             }
             finally { _connection.Close(); }
+        }
+        public int GetExerciseId(string nameEx, int exId) 
+        {
+            SqlConnection _connection = db.GetSqlConnection();
+
+            try
+            {
+                string sql = $"SELECT exercise_id\r\nFROM Exercise\r\nWHERE Name = '{nameEx}'";
+                SqlCommand cmd = new SqlCommand(sql, _connection);
+                _connection.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    exId = Convert.ToInt32(Convert.ToString(dr[0]));
+                    return exId;
+                }
+
+                dr.Close();
+            }
+            catch (SqlException sqlEx)
+            {
+
+                throw new Exception(sqlEx.Message);
+            }
+            finally { _connection.Close(); }
+            return exId;
         }
     }
 }

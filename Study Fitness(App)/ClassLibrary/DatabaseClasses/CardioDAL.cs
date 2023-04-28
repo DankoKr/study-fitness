@@ -11,7 +11,7 @@ namespace ClassLibrary.DatabaseClasses
 {
     public class CardioDAL : ICardioDAL
     {
-        MSSQL db = new MSSQL();
+        DatabaseRepo db = new DatabaseRepo();
 
         public void LoadCardios(CardioAdministration myManager)
         {

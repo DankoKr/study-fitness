@@ -19,6 +19,8 @@ namespace ClassLibrary.CommentClasses
             Rating = rating;
         }
 
+        public Comment() { } 
+
         public string GetInfo()
         {
             return $"Rating: {Rating}/5. Description: {Description}";

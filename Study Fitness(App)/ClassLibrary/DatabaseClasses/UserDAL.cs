@@ -15,7 +15,7 @@ namespace ClassLibrary.DatabaseClasses
 {
     public class UserDAL : IUserDAL
     {
-        MSSQL db = new MSSQL();
+        DatabaseRepo db = new DatabaseRepo();
         public void LoadUsers(UserAdministration myManager)
         {
             SqlConnection _connection = db.GetSqlConnection();
@@ -63,7 +63,7 @@ namespace ClassLibrary.DatabaseClasses
 
         public void EditUser(User u, string name) 
         {
-			MSSQL db = new MSSQL();
+			DatabaseRepo db = new DatabaseRepo();
 			SqlConnection _connection = db.GetSqlConnection();
 
             try
@@ -108,7 +108,7 @@ namespace ClassLibrary.DatabaseClasses
 
         public bool CheckLogin(string username, string password)
         {
-            MSSQL db = new MSSQL();
+            DatabaseRepo db = new DatabaseRepo();
             
             using (SqlConnection _newConnection = db.GetSqlConnection())
             {
@@ -158,7 +158,7 @@ namespace ClassLibrary.DatabaseClasses
 
         public void GetUserByUsername(UserAdministration myManager, string username) 
         {
-            MSSQL db = new MSSQL();
+            DatabaseRepo db = new DatabaseRepo();
             SqlConnection _newConnection = db.GetSqlConnection();
 
             try

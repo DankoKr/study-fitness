@@ -12,7 +12,7 @@ namespace ClassLibrary.DatabaseClasses
 {
     public class ExerciseDAL : IExerciseDAL
     {
-        MSSQL db = new MSSQL();
+        DatabaseRepo db = new DatabaseRepo();
 
         public void AddExercise(Exercise ex) 
         {

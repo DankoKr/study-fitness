@@ -12,7 +12,7 @@ using System.Xml.Linq;
 
 namespace ClassLibrary.DatabaseClasses
 {
-    public class MSSQL
+    public class DatabaseRepo
     {
         private SqlConnection _connection;
         private string connection;
@@ -21,7 +21,7 @@ namespace ClassLibrary.DatabaseClasses
         private string user;
         private string password;
 
-        public MSSQL()
+        public DatabaseRepo()
         {
             CreateConnection();
             _connection = new SqlConnection(connection);
