@@ -16,12 +16,21 @@ namespace ClassLibrary.CommentClasses
             this.db = db;
         }
 
-        public void AddComment(Comment c, int userId, int exId)
+        public void AddCommentExercise(Comment c, int userId, int exId)
         {
             if (c.Rating < 6 && c.Rating >= 0 && c.Title != "")
             {
                 comments.Add(c);
-                db.AddComment(c, userId, exId);
+                db.AddCommentExercise(c, userId, exId);
+            }
+        }
+
+        public void AddCommentCardio(Comment c, int userId, int cId)
+        {
+            if (c.Rating < 6 && c.Rating >= 0 && c.Title != "")
+            {
+                comments.Add(c);
+                db.AddCommentCardio(c, userId, cId);
             }
         }
 
@@ -62,6 +71,11 @@ namespace ClassLibrary.CommentClasses
         public int GetExerciseId(string nameEx, int id) 
         {
             int exId = db.GetExerciseId(nameEx, id);
+            return exId;
+        }
+        public int GetCardioId(string nameCardio, int id)
+        {
+            int exId = db.GetCardioId(nameCardio, id);
             return exId;
         }
     }

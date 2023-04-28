@@ -14,7 +14,7 @@ namespace ClassLibrary.ExerciseClasses
         List<Exercise> myExercises = new List<Exercise>();
         IExerciseDAL ExerciseDAL = new ExerciseDAL();
 
-        public ExerciseAdministration(IExerciseDAL ExerciseDAL) 
+        public ExerciseAdministration(IExerciseDAL ExerciseDAL)
         {
             this.ExerciseDAL = ExerciseDAL;
         }
@@ -67,7 +67,7 @@ namespace ClassLibrary.ExerciseClasses
             }
         }
 
-        public void AddExistingEx(Exercise loadEx) 
+        public void AddExistingEx(Exercise loadEx)
         {
             myExercises.Add(loadEx);
         }
@@ -102,7 +102,7 @@ namespace ClassLibrary.ExerciseClasses
             {
                 ExerciseDAL.DeleteExercise(GetExercise(exName));
                 myExercises.Remove(GetExercise(exName));
-                
+
             }
         }
 
@@ -177,26 +177,38 @@ namespace ClassLibrary.ExerciseClasses
             exercises.Sort((ex1, ex2) => string.Compare(ex1.Name, ex2.Name, StringComparison.OrdinalIgnoreCase));
         }
 
-		public void SortExercisesDescending(List<Exercise> exercises, Func<Exercise, IComparable> keySelector)
-		{
-			exercises.Sort((ex1, ex2) => keySelector(ex2).CompareTo(keySelector(ex1)));
-		}
-
-        public bool IsPictureValid(string pictureUrl) 
+        public void SortExercisesDescending(List<Exercise> exercises, Func<Exercise, IComparable> keySelector)
         {
-			string pattern = @"^(http|https):\/\/.{1,140}$";
+            exercises.Sort((ex1, ex2) => keySelector(ex2).CompareTo(keySelector(ex1)));
+        }
+
+        public bool IsPictureValid(string pictureUrl)
+        {
+            string pattern = @"^(http|https):\/\/.{1,140}$";
 
 
-			bool isValid = Regex.IsMatch(pictureUrl, pattern);
-			if (isValid)
-			{
-				return true;
-			}
-			else
-			{
-				return false;
-			}
-		}
+            bool isValid = Regex.IsMatch(pictureUrl, pattern);
+            if (isValid)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
-	}
+        //public List<Exercise> GetExercisesByType(List<Exercise> exercises, string exerciseType)
+        //{
+        //    List<Exercise> filteredExercises = new List<Exercise>();
+
+        //    foreach (Exercise exercise in exercises)
+        //    {
+        //        if (exercise.Equals(exerciseType)) { }
+        //        filteredExercises.Add(exercise);
+        //    }
+
+        //    return filteredExercises;
+        //}
+    }
 }

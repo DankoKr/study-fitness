@@ -10,10 +10,12 @@ namespace ClassLibrary.DatabaseClasses
     public interface ICommentDAL
     {
         void LoadComments(CommentAdministration myManager);
-        void AddComment(Comment c, int userId, int exId);
+        void AddCommentExercise(Comment c, int userId, int exId);
         void DeleteComment(Comment c);
         void EditComment(Comment c, string title, string description, int rating);
         int GetExerciseId(string nameEx, int exId);
         int GetUserId(string username, int userId);
+        int GetCardioId(string nameCardio, int cId);
+        void AddCommentCardio(Comment c, int userId, int cId);
     }
 }

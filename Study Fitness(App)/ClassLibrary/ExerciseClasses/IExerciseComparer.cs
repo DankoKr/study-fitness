@@ -11,6 +11,7 @@ namespace ClassLibrary.ExerciseClasses
         void SortExercises(List<Exercise> exercises);
         void SortExercisesByName(List<Exercise> exercises);
 		void SortExercisesDescending(List<Exercise> exercises, Func<Exercise, IComparable> keySelector);
-	}
+        //List<Exercise> GetExercisesByType(List<Exercise> exercises, string exerciseType);
+    }
 }
 

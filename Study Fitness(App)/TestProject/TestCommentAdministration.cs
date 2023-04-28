@@ -31,7 +31,7 @@ namespace TestProject
             myManager = new CommentAdministration(testCommentDAL);
 
             //Act		
-            myManager.AddComment(new Comment("Test", "desc", 5), 1, 1);
+            myManager.AddCommentExercise(new Comment("Test", "desc", 5), 1, 1);
 
             //Assert
             Assert.AreEqual(1, myManager.GetComments().Count());

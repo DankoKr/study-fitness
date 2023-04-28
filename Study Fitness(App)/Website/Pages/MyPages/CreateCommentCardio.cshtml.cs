@@ -1,23 +1,20 @@
 using ClassLibrary.CommentClasses;
 using ClassLibrary.DatabaseClasses;
-using ClassLibrary.UserClasses;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Website.Models;
 
 namespace Website.Pages.MyPages
 {
     [Authorize]
-    public class CreateCommentModel : PageModel
+    public class CreateCommentCardioModel : PageModel
     {
         [BindProperty]
         public Comment? comment { get; set; }
         ICommentDAL db = new CommentDAL();
         CommentAdministration myManager;
-        public string exerciseName { get; set; }
-        public int exerciseId { get; set; }
+        public string cardioName { get; set; }
+        public int cardioId { get; set; }
         public int userId { get; set; }
 
         public String? Message { get; set; }
@@ -25,10 +22,10 @@ namespace Website.Pages.MyPages
         public void OnGet(string name)
         {
             int id = 0;
-            exerciseName = name;
+            cardioName = name;
             myManager = new CommentAdministration(db);
-            exerciseId = myManager.GetExerciseId(name, id);
-            TempData["ExerciseId"] = exerciseId;
+            cardioId = myManager.GetCardioId(name, id);
+            TempData["CardioId"] = cardioId;
 
             if (HttpContext.Session.GetString("Username") != null)
             {
@@ -47,9 +44,9 @@ namespace Website.Pages.MyPages
                 if (comment != null)
                 {
                     Message = "Thank you for your feedback!";
-                    exerciseId = (int)TempData["ExerciseId"];
+                    cardioId = (int)TempData["CardioId"];
                     userId = (int)TempData["UserId"];
-                    myManager.AddCommentExercise(comment, userId, exerciseId);
+                    myManager.AddCommentCardio(comment, userId, cardioId);
                 }
             }
             return Page();

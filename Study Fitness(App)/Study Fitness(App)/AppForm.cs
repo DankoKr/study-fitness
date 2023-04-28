@@ -15,176 +15,182 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace Study_Fitness_App_
 {
-	public partial class AppForm : Form
-	{		
-		IExerciseDAL exData = new ExerciseDAL();
-		ExerciseAdministration myAdministrator;
-		public AppForm()
-		{
-			InitializeComponent();
-			myAdministrator = new ExerciseAdministration(exData);
-			exData.LoadExercises(myAdministrator);
-			FillExercisesInBoxes();
-		}
+    public partial class AppForm : Form
+    {
+        IExerciseDAL exData = new ExerciseDAL();
+        ExerciseAdministration myAdministrator;
+        public AppForm()
+        {
+            InitializeComponent();
+            myAdministrator = new ExerciseAdministration(exData);
+            exData.LoadExercises(myAdministrator);
+            FillExercisesInBoxes();
+        }
 
-		private void btnSearch_Click(object sender, EventArgs e)
-		{
-			lbAllExercises.Items.Clear();
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            lbAllExercises.Items.Clear();
 
-			string searched = txbSearchBar.Text;
-			string regexPattern = "\\b\\w*" + searched + "\\w*\\b";
+            string searched = txbSearchBar.Text;
+            string regexPattern = "\\b\\w*" + searched + "\\w*\\b";
 
-			foreach (Exercise ex in myAdministrator.GetExercises())
-			{
-				if (Regex.IsMatch(ex.Name, regexPattern, RegexOptions.IgnoreCase))
-				{
-					lbAllExercises.Items.Add(ex);
-				}
-			}
-		}
+            foreach (Exercise ex in myAdministrator.GetExercises())
+            {
+                if (Regex.IsMatch(ex.Name, regexPattern, RegexOptions.IgnoreCase))
+                {
+                    lbAllExercises.Items.Add(ex);
+                }
+            }
+        }
 
-		private void FillExercisesInBoxes()
-		{
-			cmbSelectedEx.Items.Clear();
-			cmbManageEx.Items.Clear();
-			foreach (Exercise ex in myAdministrator.GetExercises())
-			{
-				cmbSelectedEx.Items.Add(ex.Name);
-				cmbManageEx.Items.Add(ex.Name);
-			}
-		}
+        private void FillExercisesInBoxes()
+        {
+            cmbSelectedEx.Items.Clear();
+            cmbManageEx.Items.Clear();
+            foreach (Exercise ex in myAdministrator.GetExercises())
+            {
+                cmbSelectedEx.Items.Add(ex.Name);
+                cmbManageEx.Items.Add(ex.Name);
+            }
+        }
 
-		private void btnViewExercise_Click(object sender, EventArgs e)
-		{
-			string wantedExercise = cmbSelectedEx.Text;
-			MessageBox.Show((myAdministrator.GetExercise(wantedExercise)).ToString(), "Description");
-		}
+        private void btnViewExercise_Click(object sender, EventArgs e)
+        {
+            string wantedExercise = cmbSelectedEx.Text;
+            MessageBox.Show((myAdministrator.GetExercise(wantedExercise)).ToString(), "Description");
+        }
 
-		private void btnCreateExercise_Click(object sender, EventArgs e)
-		{
-			string typeEx = cmbTypeEx.Text;
-			string nameEx = txbName.Text;
-			string difficulty = cmbDifficulty.Text;
-			string equipment = txbEquipment.Text;
-			int numReps = Convert.ToInt32(txbNumReps.Text);
-			double weight = Convert.ToDouble(txbWeight.Text);
-			string specialty = txbSpecialty.Text;
-			string picture = txbPicture.Text;
+        private void btnCreateExercise_Click(object sender, EventArgs e)
+        {
+            string typeEx = cmbTypeEx.Text;
+            string nameEx = txbName.Text;
+            string difficulty = cmbDifficulty.Text;
+            string equipment = txbEquipment.Text;
+            int numReps = Convert.ToInt32(txbNumReps.Text);
+            double weight = Convert.ToDouble(txbWeight.Text);
+            string specialty = txbSpecialty.Text;
+            string picture = txbPicture.Text;
 
-			if (myAdministrator.IsPictureValid(picture))
-			{
-				myAdministrator.CreateExercise(typeEx, nameEx, difficulty, equipment, numReps, weight, specialty, picture);
+            if (myAdministrator.IsPictureValid(picture))
+            {
+                myAdministrator.CreateExercise(typeEx, nameEx, difficulty, equipment, numReps, weight, specialty, picture);
 
-				ClearFields();
-				ShowAllExercises();
-				FillExercisesInBoxes();
-			}
-			else
-			{
-				MessageBox.Show("The URL is not in the correct format!", "ERROR");
-				txbPicture.Text = "";
-			}
+                ClearFields();
+                ShowAllExercises();
+                FillExercisesInBoxes();
+            }
+            else
+            {
+                MessageBox.Show("The URL is not in the correct format!", "ERROR");
+                txbPicture.Text = "";
+            }
 
-		}
+        }
 
-		private void ShowAllExercises()
-		{
-			lbAllExercises.Items.Clear();
-			foreach (Exercise ex in myAdministrator.GetExercises())
-			{
-				lbAllExercises.Items.Add(ex);
-			}
-		}
+        private void ShowAllExercises()
+        {
+            lbAllExercises.Items.Clear();
+            foreach (Exercise ex in myAdministrator.GetExercises())
+            {
+                lbAllExercises.Items.Add(ex);
+            }
+        }
 
-		private void ShowExercisesToManage()
-		{
-			lbManageExercises.Items.Clear();
-			foreach (Exercise ex in myAdministrator.GetExercises())
-			{
-				lbManageExercises.Items.Add(ex);
-			}
-		}
+        private void ShowExercisesToManage()
+        {
+            lbManageExercises.Items.Clear();
+            foreach (Exercise ex in myAdministrator.GetExercises())
+            {
+                lbManageExercises.Items.Add(ex);
+            }
+        }
 
-		private void ClearFields()
-		{
-			cmbTypeEx.Text = "";
-			txbName.Text = "";
-			cmbDifficulty.Text = "";
-			txbEquipment.Text = "";
-			txbNumReps.Text = "";
-			txbWeight.Text = "";
-			txbSpecialty.Text = "";
-			cmbManageEx.Text = "";
-			cmbNewDifficulty.Text = "";
-			txbNewReps.Text = "";
-			txbNewWeight.Text = "";
-			txbPicture.Text = "";
-		}
+        private void ClearFields()
+        {
+            cmbTypeEx.Text = "";
+            txbName.Text = "";
+            cmbDifficulty.Text = "";
+            txbEquipment.Text = "";
+            txbNumReps.Text = "";
+            txbWeight.Text = "";
+            txbSpecialty.Text = "";
+            cmbManageEx.Text = "";
+            cmbNewDifficulty.Text = "";
+            txbNewReps.Text = "";
+            txbNewWeight.Text = "";
+            txbPicture.Text = "";
+        }
 
-		private void btnShowExercises_Click(object sender, EventArgs e)
-		{
-			ShowAllExercises();
-		}
+        private void btnShowExercises_Click(object sender, EventArgs e)
+        {
+            ShowAllExercises();
+        }
 
-		private void btnManageAllExercises_Click(object sender, EventArgs e)
-		{
-			ShowExercisesToManage();
-		}
+        private void btnManageAllExercises_Click(object sender, EventArgs e)
+        {
+            ShowExercisesToManage();
+        }
 
-		private void btnDelete_Click(object sender, EventArgs e)
-		{
-			string exName = cmbManageEx.Text;
-			myAdministrator.RemoveExercise(exName);
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            string exName = cmbManageEx.Text;
+            myAdministrator.RemoveExercise(exName);
 
-			ShowExercisesToManage();
-			ShowAllExercises();
+            ShowExercisesToManage();
+            ShowAllExercises();
 
-			ClearFields();
-			FillExercisesInBoxes();
-		}
+            ClearFields();
+            FillExercisesInBoxes();
+        }
 
-		private void btnEdit_Click(object sender, EventArgs e)
-		{
-			string exName = cmbManageEx.Text;
-			int newReps = Convert.ToInt32(txbNewReps.Text);
-			double newWeight = Convert.ToDouble(txbNewWeight.Text);
-			string newDifficulty = cmbNewDifficulty.Text;
-			myAdministrator.EditExercise(exName, newReps, newWeight, newDifficulty);
-			ClearFields();
-			FillExercisesInBoxes();
-		}
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            string exName = cmbManageEx.Text;
+            int newReps = Convert.ToInt32(txbNewReps.Text);
+            double newWeight = Convert.ToDouble(txbNewWeight.Text);
+            string newDifficulty = cmbNewDifficulty.Text;
+            myAdministrator.EditExercise(exName, newReps, newWeight, newDifficulty);
+            ClearFields();
+            FillExercisesInBoxes();
+        }
 
-		private void btnCustomCompare_Click(object sender, EventArgs e)
-		{
-			lbExerciseSorted.Items.Clear();
-			myAdministrator.SortExercises(myAdministrator.GetExercisesList());
+        private void btnCustomCompare_Click(object sender, EventArgs e)
+        {
+            lbExerciseSorted.Items.Clear();
+            myAdministrator.SortExercises(myAdministrator.GetExercisesList());
 
-			foreach (Exercise ex in myAdministrator.GetExercises())
-			{
-				lbExerciseSorted.Items.Add(ex);
-			}
-		}
+            foreach (Exercise ex in myAdministrator.GetExercises())
+            {
+                lbExerciseSorted.Items.Add(ex);
+            }
+        }
 
-		private void btnSortExName_Click(object sender, EventArgs e)
-		{
-			lbExerciseSorted.Items.Clear();
-			myAdministrator.SortExercisesByName(myAdministrator.GetExercisesList());
+        private void btnSortExName_Click(object sender, EventArgs e)
+        {
+            lbExerciseSorted.Items.Clear();
+            myAdministrator.SortExercisesByName(myAdministrator.GetExercisesList());
 
-			foreach (Exercise ex in myAdministrator.GetExercises())
-			{
-				lbExerciseSorted.Items.Add(ex);
-			}
-		}
+            foreach (Exercise ex in myAdministrator.GetExercises())
+            {
+                lbExerciseSorted.Items.Add(ex);
+            }
+        }
 
-		private void btnSortDescendingName_Click(object sender, EventArgs e)
-		{
-			lbExerciseSorted.Items.Clear();
-			myAdministrator.SortExercisesDescending(myAdministrator.GetExercisesList(), exercise => exercise.Name);
+        private void btnSortDescendingName_Click(object sender, EventArgs e)
+        {
+            lbExerciseSorted.Items.Clear();
+            myAdministrator.SortExercisesDescending(myAdministrator.GetExercisesList(), exercise => exercise.Name);
 
-			foreach (Exercise ex in myAdministrator.GetExercises())
-			{
-				lbExerciseSorted.Items.Add(ex);
-			}
-		}
-	}
+            foreach (Exercise ex in myAdministrator.GetExercises())
+            {
+                lbExerciseSorted.Items.Add(ex);
+            }
+        }
+
+        //private void btnSortType_Click(object sender, EventArgs e)
+        //{
+        //    string type = cmbExTypeToSort.Text;
+        //    myAdministrator.GetExercisesByType(myAdministrator.GetExercisesList(), type);
+        //}
+    }
 }

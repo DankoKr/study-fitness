@@ -37,8 +37,8 @@ namespace ClassLibrary.DatabaseClasses
             }
             finally { _connection.Close(); }
         }
-        public void AddComment(Comment c, int userId, int exId) 
-        {//Not fully implemented
+        public void AddCommentExercise(Comment c, int userId, int exId) 
+        {
             SqlConnection _connection = db.GetSqlConnection();
 
             try
@@ -146,6 +146,51 @@ namespace ClassLibrary.DatabaseClasses
             }
             finally { _connection.Close(); }
             return userId;
+        }
+        public int GetCardioId(string nameCardio, int cId)
+        {
+            SqlConnection _connection = db.GetSqlConnection();
+
+            try
+            {
+                string sql = $"SELECT cardio_id\r\nFROM Cardio\r\nWHERE name = '{nameCardio}'";
+                SqlCommand cmd = new SqlCommand(sql, _connection);
+                _connection.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    cId = Convert.ToInt32(Convert.ToString(dr[0]));
+                    return cId;
+                }
+
+                dr.Close();
+            }
+            catch (SqlException sqlEx)
+            {
+
+                throw new Exception(sqlEx.Message);
+            }
+            finally { _connection.Close(); }
+            return cId;
+        }
+        public void AddCommentCardio(Comment c, int userId, int cId)
+        {
+            SqlConnection _connection = db.GetSqlConnection();
+
+            try
+            {
+                string sql = $"INSERT INTO Comment (name, description, rating, user_id, cardio_id)\r\nVALUES ('{c.Title}', '{c.Description}','{c.Rating}', {userId}, {cId});";
+                SqlCommand cmd = new SqlCommand(sql, _connection);
+                _connection.Open();
+                cmd.ExecuteNonQuery();
+
+            }
+            catch (SqlException sqlEx)
+            {
+
+                throw new Exception(sqlEx.Message);
+            }
+            finally { _connection.Close(); }
         }
     }
 }
