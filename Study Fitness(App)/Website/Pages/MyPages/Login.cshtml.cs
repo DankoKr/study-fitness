@@ -22,7 +22,7 @@ namespace Website.Pages.MyPages
         [BindProperty]
         public bool KeepMeLoggedIn { get; set; }
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
 			myManager = new UserAdministration(db);
 
@@ -42,9 +42,8 @@ namespace Website.Pages.MyPages
             else
             {
                 // check if a cookie exists and create a session
-                if (Request.Cookies.ContainsKey("Username"))
+                if (Request.Cookies.TryGetValue("Username", out string username))
                 {
-                    string username = Request.Cookies["Username"];
                     HttpContext.Session.SetString("Username", username);
                     db.GetUserByUsername(myManager, username);
                     user = myManager.GetUser(username);
@@ -54,7 +53,9 @@ namespace Website.Pages.MyPages
                     else
                         Response.Redirect("/MyPages/PersonalPage");
                 }
+
             }
+            return Page();
         }
 
 
