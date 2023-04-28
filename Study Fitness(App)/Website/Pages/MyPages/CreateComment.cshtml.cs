@@ -1,5 +1,6 @@
 using ClassLibrary.CommentClasses;
 using ClassLibrary.DatabaseClasses;
+using ClassLibrary.UserClasses;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -15,6 +16,7 @@ namespace Website.Pages.MyPages
         CommentAdministration myManager;
         public string exerciseName { get; set; }
         public int exerciseId { get; set; }
+        public int userId { get; set; }
 
         public String? Message { get; set; }
 
@@ -25,6 +27,14 @@ namespace Website.Pages.MyPages
             myManager = new CommentAdministration(db);
             exerciseId = myManager.GetExerciseId(name, id);
             TempData["ExerciseId"] = exerciseId;
+
+            if (HttpContext.Session.GetString("Username") != null)
+            {
+                int uId = 0;
+                string nameUser = HttpContext.Session.GetString("Username");
+                userId = db.GetUserId(nameUser, uId);
+                TempData["UserId"] = userId;
+            }
         }
 
         public IActionResult OnPost()
@@ -36,7 +46,8 @@ namespace Website.Pages.MyPages
                 {
                     Message = "Thank you for your feedback!";
                     exerciseId = (int)TempData["ExerciseId"];
-                    myManager.AddComment(comment, 1, exerciseId);
+                    userId = (int)TempData["UserId"];
+                    myManager.AddComment(comment, userId, exerciseId);
                 }
             }
             return Page();

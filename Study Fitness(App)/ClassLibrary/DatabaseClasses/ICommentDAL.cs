@@ -14,5 +14,6 @@ namespace ClassLibrary.DatabaseClasses
         void DeleteComment(Comment c);
         void EditComment(Comment c, string title, string description, int rating);
         int GetExerciseId(string nameEx, int exId);
+        int GetUserId(string username, int userId);
     }
 }

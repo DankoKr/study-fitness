@@ -32,6 +32,11 @@ namespace ClassLibrary.DatabaseClasses
             throw new NotImplementedException();
         }
 
+        public int GetUserId(string username, int userId)
+        {
+            throw new NotImplementedException();
+        }
+
         public void LoadComments(CommentAdministration myManager)
         {
             Comment c1 = new Comment("Com1", "desc1", 1);

@@ -120,5 +120,32 @@ namespace ClassLibrary.DatabaseClasses
             finally { _connection.Close(); }
             return exId;
         }
+
+        public int GetUserId(string username, int userId)
+        {
+            SqlConnection _connection = db.GetSqlConnection();
+
+            try
+            {
+                string sql = $"SELECT Id\r\nFROM Users\r\nWHERE Username = '{username}'";
+                SqlCommand cmd = new SqlCommand(sql, _connection);
+                _connection.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    userId = Convert.ToInt32(Convert.ToString(dr[0]));
+                    return userId;
+                }
+
+                dr.Close();
+            }
+            catch (SqlException sqlEx)
+            {
+
+                throw new Exception(sqlEx.Message);
+            }
+            finally { _connection.Close(); }
+            return userId;
+        }
     }
 }
