@@ -18,3 +18,26 @@
 </div>
 
 <p><a asp-page="/MyPages/CreateComment" asp-route-name=@Model.selectedEx.Name>Leave a review!</a></p>
+
+
+<h1 class="comment">Exercise reviews</h1>
+<div class="column-row-comment">
+    @if (Model.myComments.GetComments().Count() > 0)
+    {
+        @foreach (var comment in Model.myComments.GetComments())
+        {
+            <div class="column-container-comment">
+                <div>
+                    <p>@comment.Title</p>
+                    <p>Rating: @comment.Rating/5</p>
+                    <p>@comment.Description</p>
+                </div>
+            </div>
+
+        }
+    }
+    else
+    {
+        <p>No reviews</p>
+    }
+</div>

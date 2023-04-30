@@ -17,5 +17,8 @@ namespace ClassLibrary.DatabaseClasses
         int GetUserId(string username, int userId);
         int GetCardioId(string nameCardio, int cId);
         void AddCommentCardio(Comment c, int userId, int cId);
+        void GetExerciseComments(int exercise_id, CommentAdministration myManager);
+        void GetUserComments(int user_id, CommentAdministration myManager);
+        Comment GetComment(string title, Comment c);
     }
 }

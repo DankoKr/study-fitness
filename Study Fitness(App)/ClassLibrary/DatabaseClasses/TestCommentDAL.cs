@@ -38,7 +38,27 @@ namespace ClassLibrary.DatabaseClasses
             throw new NotImplementedException();
         }
 
+        public Comment GetComment(string title)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Comment GetComment(string title, Comment c)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void GetExerciseComments(int exercise_id, CommentAdministration myManager)
+        {
+            throw new NotImplementedException();
+        }
+
         public int GetExerciseId(string nameEx, int exId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void GetUserComments(int user_id, CommentAdministration myManager)
         {
             throw new NotImplementedException();
         }

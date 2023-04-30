@@ -1,5 +1,6 @@
 ﻿using ClassLibrary.CommentClasses;
 using ClassLibrary.ExerciseClasses;
+using ClassLibrary.UserClasses;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -191,6 +192,80 @@ namespace ClassLibrary.DatabaseClasses
                 throw new Exception(sqlEx.Message);
             }
             finally { _connection.Close(); }
+        }
+        public void GetExerciseComments(int exercise_id, CommentAdministration myManager) 
+        {
+            SqlConnection _connection = db.GetSqlConnection();
+
+            try
+            {
+                string sql = $"SELECT  name, description, rating FROM Comment WHERE exercise_id = {exercise_id}";
+                SqlCommand cmd = new SqlCommand(sql, _connection);
+                _connection.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    myManager.AddExistingComment(new Comment(Convert.ToString(dr[0]), Convert.ToString(dr[1]), Convert.ToInt32(dr[2])));
+                }
+
+                dr.Close();
+            }
+            catch (SqlException sqlEx)
+            {
+
+                throw new Exception(sqlEx.Message);
+            }
+            finally { _connection.Close(); }
+        }
+        public void GetUserComments(int user_id, CommentAdministration myManager)
+        {
+            SqlConnection _connection = db.GetSqlConnection();
+
+            try
+            {
+                string sql = $"SELECT  name, description, rating FROM Comment WHERE user_id = {user_id}";
+                SqlCommand cmd = new SqlCommand(sql, _connection);
+                _connection.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    myManager.AddExistingComment(new Comment(Convert.ToString(dr[0]), Convert.ToString(dr[1]), Convert.ToInt32(dr[2])));
+                }
+
+                dr.Close();
+            }
+            catch (SqlException sqlEx)
+            {
+
+                throw new Exception(sqlEx.Message);
+            }
+            finally { _connection.Close(); }
+        }
+        public Comment GetComment(string title, Comment c) 
+        {
+            SqlConnection _connection = db.GetSqlConnection();
+
+            try
+            {
+                string sql = $"SELECT  name, description, rating FROM Comment WHERE name = '{title}'";
+                SqlCommand cmd = new SqlCommand(sql, _connection);
+                _connection.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    c = new Comment(Convert.ToString(dr[0]), Convert.ToString(dr[1]), Convert.ToInt32(dr[2]));
+                    return c;
+                }
+
+                dr.Close();
+            }
+            catch (SqlException sqlEx)
+            {
+
+                throw new Exception(sqlEx.Message);
+            }
+            finally { _connection.Close(); }
+            return c;
         }
     }
 }

@@ -10,6 +10,8 @@
 <p class="data-label">First Name: @Model.user.FirstName</p>
 <p class="data-label">Username: @Model.user.Username</p>
 
+<p><a asp-page="/MyPages/MyComments">Manage my reviews</a></p>
+
 <a class="btn btn-primary btn-sm" href="/MyPages/ChangeUserData?name=@Model.user.Username">Change Account data?</a>
 
 <form class="logout-form" method="post">

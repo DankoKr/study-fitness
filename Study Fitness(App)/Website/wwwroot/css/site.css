@@ -479,3 +479,44 @@ h1 {
     }
 }
 /*-----------End Food&Tips-----------------*/
+/*Comments---------------------------------*/
+/* Style for the exercise review section */
+
+h1.comment {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.column-row-comment {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.column-container-comment {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    margin-bottom: 20px;
+    width: calc(50% - 10px);
+}
+
+.column-container-comment p {
+    margin: 0;
+    line-height: 1.5;
+}
+
+.column-container-comment p:first-child {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.column-container-comment p:nth-child(2) {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 5px;
+}
+/*---------------------------------------------------------------*/
