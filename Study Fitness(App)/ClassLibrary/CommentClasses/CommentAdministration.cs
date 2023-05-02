@@ -49,10 +49,10 @@ namespace ClassLibrary.CommentClasses
         {
             if (newTtile != "" && newDescription != "" && newRate < 6)
             {
+                db.EditComment(c, newTtile, newDescription, newRate);
                 c.Description = newDescription;
                 c.Title = newTtile;
                 c.Rating = newRate;
-                db.EditComment(c, newTtile, newDescription, newRate);
             }
         }
 

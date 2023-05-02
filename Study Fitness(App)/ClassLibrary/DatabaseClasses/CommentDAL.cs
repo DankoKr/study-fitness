@@ -82,7 +82,7 @@ namespace ClassLibrary.DatabaseClasses
 
             try
             {
-                string sql = $"UPDATE Comment\r\nSET name = '{title}', descrition = '{description}', rating = {rating}\r\nWHERE name = '{c.Title}';";
+                string sql = $"UPDATE Comment\r\nSET name = '{title}', description = '{description}', rating = {rating}\r\nWHERE name = '{c.Title}';";
                 SqlCommand cmd = new SqlCommand(sql, _connection);
                 _connection.Open();
                 cmd.ExecuteNonQuery();
