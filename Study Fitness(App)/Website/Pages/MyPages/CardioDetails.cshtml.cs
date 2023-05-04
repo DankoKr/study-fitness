@@ -6,7 +6,7 @@ using System.Xml.Linq;
 
 namespace Website.Pages.MyPages
 {
-    public class CardioDetailsModel : PageModel
+    public class CardioDetailsModel : Microsoft.AspNetCore.Mvc.RazorPages.PageModel
     {
         public CardioAdministration myManager;
         public Cardio? selectedC { get; set; }

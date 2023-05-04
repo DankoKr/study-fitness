@@ -10,7 +10,7 @@ using Website.Models;
 namespace Website.Pages.MyPages
 {
     [Authorize]
-    public class CreateCommentModel : PageModel
+    public class CreateCommentModel : Microsoft.AspNetCore.Mvc.RazorPages.PageModel
     {
         [BindProperty]
         public Comment? comment { get; set; }

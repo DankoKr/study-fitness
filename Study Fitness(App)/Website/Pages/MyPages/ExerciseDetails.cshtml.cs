@@ -9,7 +9,7 @@ using Website.Models;
 
 namespace Website.Pages.MyPages
 {
-    public class ExerciseDetailscshtmlModel : PageModel
+    public class ExerciseDetailscshtmlModel : Microsoft.AspNetCore.Mvc.RazorPages.PageModel
     {
         public ExerciseAdministration myManager;
         public Exercise? selectedEx { get; set; }

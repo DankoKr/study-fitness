@@ -1,0 +1,47 @@
+﻿@page
+@model Website.Pages.MyPages.PageModel
+@{
+    ViewData["Title"] = "Quiz";
+}
+
+@{
+    var showPopup = Model.Points.HasValue && Model.Prize != null;
+}
+
+<h1 class="question">Quiz</h1>
+
+@if (Model.Questions != null && Model.Questions.Any())
+{
+    <form class="quiz" method="post">
+        @for (var i = 0; i < Model.Questions.Count; i++)
+        {
+            <h2 class="question">@Model.Questions[i].Text</h2>
+            <div class="question">
+                @for (var j = 0; j < Model.Questions[i].Options.Length; j++)
+                {
+                    <div class="option">
+                        <input type="radio" name="QuestionResponses[@i]" value="@j" />
+                        <label>@Model.Questions[i].Options[j]</label>
+                    </div>
+                }
+            </div>
+        }
+        <input type="submit" value="Submit" />
+    </form>
+}
+else
+{
+    <p>No questions found.</p>
+}
+
+@if (Model.Points.HasValue && Model.Prize != null)
+{
+    <div class="popup @(showPopup ? "show" : "")" id="popup">
+        <div class="popup-content">
+            <h2 class="question">Results</h2>
+            <p>You scored @Model.Points.Value points!</p>
+            <p>You have won the @Model.Prize prize!</p>
+            <button id="closePopup">Close</button>
+        </div>
+    </div>
+}

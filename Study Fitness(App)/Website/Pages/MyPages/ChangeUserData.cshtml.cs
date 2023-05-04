@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 namespace Website.Pages.MyPages
 {
 	[Authorize]
-	public class ChangeUserDataModel : PageModel
+	public class ChangeUserDataModel : Microsoft.AspNetCore.Mvc.RazorPages.PageModel
     {
 		public string Error = "";
 		public string Message = "";

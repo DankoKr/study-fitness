@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Website.Pages.MyPages
 {
-    public class DeleteAccountModel : PageModel
+    public class DeleteAccountModel : Microsoft.AspNetCore.Mvc.RazorPages.PageModel
     {
         public User? user { get; set; }
         UserAdministration myManager;

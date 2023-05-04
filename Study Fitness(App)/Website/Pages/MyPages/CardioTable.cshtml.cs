@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 namespace Website.Pages.MyPages
 {
     [Authorize(Policy = "AdminOnly")]
-	public class CardioTableModel : PageModel
+	public class CardioTableModel : Microsoft.AspNetCore.Mvc.RazorPages.PageModel
     {
 		public Cardio[] myCardios { get; set; }
 		CardioAdministration myManager;

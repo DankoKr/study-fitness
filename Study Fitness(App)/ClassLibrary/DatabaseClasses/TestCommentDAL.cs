@@ -13,7 +13,7 @@ namespace ClassLibrary.DatabaseClasses
 
         public void AddCommentCardio(Comment c, int userId, int cId)
         {
-            throw new NotImplementedException();
+            comments.Add(c);
         }
 
         public void AddCommentExercise(Comment c, int userId, int exId)
@@ -40,12 +40,27 @@ namespace ClassLibrary.DatabaseClasses
 
         public Comment GetComment(string title)
         {
-            throw new NotImplementedException();
+            foreach (Comment comment in comments)
+            {
+                if (title == comment.Title)
+                {
+                    return comment;
+                }
+            }
+            return null;
         }
 
         public Comment GetComment(string title, Comment c)
         {
-            throw new NotImplementedException();
+            foreach (Comment comment in  comments)
+            {
+                if (title == comment.Title)
+                {
+                    c = comment;
+                    return c;
+                }
+            }
+            return c;
         }
 
         public void GetExerciseComments(int exercise_id, CommentAdministration myManager)

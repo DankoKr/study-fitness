@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 namespace Website.Pages.MyPages
 {
 	[Authorize(Policy = "AdminOnly")]
-	public class ExerciseTableModel : PageModel
+	public class ExerciseTableModel : Microsoft.AspNetCore.Mvc.RazorPages.PageModel
     {
 		public Exercise[] myExercises { get; set; }
 		ExerciseAdministration myManager;

@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 namespace Website.Pages.MyPages
 {
 	[Authorize(Policy = "AdminOnly")]
-	public class AdminPageModel : PageModel
+	public class AdminPageModel : Microsoft.AspNetCore.Mvc.RazorPages.PageModel
     {
         UserAdministration myManager;
         public User user = new User();

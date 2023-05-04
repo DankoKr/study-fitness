@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Website.Pages.MyPages
 {
-    public class DeleteExerciseModel : PageModel
+    public class DeleteExerciseModel : Microsoft.AspNetCore.Mvc.RazorPages.PageModel
     {
 		public Exercise? selectedEx { get; set; }
 		ExerciseAdministration myManager;

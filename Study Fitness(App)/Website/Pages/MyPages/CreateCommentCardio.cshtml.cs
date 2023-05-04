@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 namespace Website.Pages.MyPages
 {
     [Authorize]
-    public class CreateCommentCardioModel : PageModel
+    public class CreateCommentCardioModel : Microsoft.AspNetCore.Mvc.RazorPages.PageModel
     {
         [BindProperty]
         public Comment? comment { get; set; }

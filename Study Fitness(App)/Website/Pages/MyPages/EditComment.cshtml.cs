@@ -9,7 +9,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Website.Pages.MyPages
 {
     [Authorize]
-    public class EditCommentModel : PageModel
+    public class EditCommentModel : Microsoft.AspNetCore.Mvc.RazorPages.PageModel
     {
         public string Error = "";
         public string SelectedName { get; set; }

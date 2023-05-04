@@ -11,7 +11,7 @@ using System.Security.Claims;
 
 namespace Website.Pages.MyPages
 {
-    public class LoginModel : PageModel
+    public class LoginModel : Microsoft.AspNetCore.Mvc.RazorPages.PageModel
     {
 		IUserDAL db = new UserDAL();
 		UserAdministration myManager;

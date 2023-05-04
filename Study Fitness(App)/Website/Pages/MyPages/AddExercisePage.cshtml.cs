@@ -8,7 +8,7 @@ using Website.Models;
 namespace Website.Pages.MyPages
 {
 	[Authorize(Policy = "AdminOnly")]
-	public class AddExercisePageModel : PageModel
+	public class AddExercisePageModel : Microsoft.AspNetCore.Mvc.RazorPages.PageModel
     {
         ExerciseAdministration myManager;
         IExerciseDAL db = new ExerciseDAL();

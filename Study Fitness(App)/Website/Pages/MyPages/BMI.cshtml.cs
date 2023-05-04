@@ -4,7 +4,7 @@ using Website.Models;
 
 namespace Website.Pages.MyPages
 {
-    public class BMIModel : PageModel
+    public class BMIModel : Microsoft.AspNetCore.Mvc.RazorPages.PageModel
     {
         [BindProperty]
         public BMICalculator? calculator { get; set; }

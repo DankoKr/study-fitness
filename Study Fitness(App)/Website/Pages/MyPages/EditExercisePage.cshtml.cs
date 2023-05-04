@@ -8,7 +8,7 @@ using System.Xml.Linq;
 namespace Website.Pages.MyPages
 {
 	[Authorize(Policy = "AdminOnly")]
-	public class EditExercisePageModel : PageModel
+	public class EditExercisePageModel : Microsoft.AspNetCore.Mvc.RazorPages.PageModel
     {
         public string Error = "";
         public string Message = "";

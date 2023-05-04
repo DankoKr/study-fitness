@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Website.Pages.MyPages
 {
-    public class ExerciseModel : PageModel
+    public class ExerciseModel : Microsoft.AspNetCore.Mvc.RazorPages.PageModel
     {        
         public IEnumerable<Exercise> MyExercises { get; set; }
         ExerciseAdministration myManager;

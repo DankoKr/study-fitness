@@ -9,7 +9,7 @@ using Website.Models;
 
 namespace Website.Pages.MyPages
 {
-    public class CreateAccountModel : PageModel
+    public class CreateAccountModel : Microsoft.AspNetCore.Mvc.RazorPages.PageModel
     {
         UserAdministration myManager;
 		IUserDAL db = new UserDAL();

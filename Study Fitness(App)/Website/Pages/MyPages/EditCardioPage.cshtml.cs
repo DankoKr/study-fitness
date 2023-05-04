@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 namespace Website.Pages.MyPages
 {
     [Authorize(Policy = "AdminOnly")]
-	public class EditCardioPageModel : PageModel
+	public class EditCardioPageModel : Microsoft.AspNetCore.Mvc.RazorPages.PageModel
     {
         public string Error = "";
         public string Message = "";

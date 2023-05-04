@@ -10,7 +10,7 @@ using System.Xml.Linq;
 namespace Website.Pages.MyPages
 {
     [Authorize]
-    public class MyCommentsModel : PageModel
+    public class MyCommentsModel : Microsoft.AspNetCore.Mvc.RazorPages.PageModel
     {
         public CommentAdministration myComments;
         ICommentDAL comments = new CommentDAL();

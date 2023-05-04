@@ -7,7 +7,7 @@ using System.Xml.Linq;
 
 namespace Website.Pages.MyPages
 {
-    public class DeleteCommentModel : PageModel
+    public class DeleteCommentModel : Microsoft.AspNetCore.Mvc.RazorPages.PageModel
     {
         CommentAdministration myManager;
         ICommentDAL db = new CommentDAL();

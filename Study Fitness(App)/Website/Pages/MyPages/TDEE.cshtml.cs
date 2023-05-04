@@ -4,7 +4,7 @@ using Website.Models;
 
 namespace Website.Pages.MyPages
 {
-    public class TDEEModel : PageModel
+    public class TDEEModel : Microsoft.AspNetCore.Mvc.RazorPages.PageModel
     {
         [BindProperty]
         public TDEECalculator? calculator { get; set; }

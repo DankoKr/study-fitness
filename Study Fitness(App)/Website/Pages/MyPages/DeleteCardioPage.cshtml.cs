@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Website.Pages.MyPages
 {
-    public class DeleteCardioPageModel : PageModel
+    public class DeleteCardioPageModel : Microsoft.AspNetCore.Mvc.RazorPages.PageModel
     {
 		public Cardio? selectedC { get; set; }
 		CardioAdministration myManager;

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 namespace Website.Pages.MyPages
 {
     [Authorize(Policy = "AdminOnly")]
-	public class AddCardioModel : PageModel
+	public class AddCardioModel : Microsoft.AspNetCore.Mvc.RazorPages.PageModel
     {
         CardioAdministration myManager;
 		ICardioDAL db = new CardioDAL();

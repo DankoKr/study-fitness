@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Website.Pages.MyPages
 {
-    public class CardioModel : PageModel
+    public class CardioModel : Microsoft.AspNetCore.Mvc.RazorPages.PageModel
     {
         public IEnumerable<Cardio> MyCardios { get; set; }
 		ICardioDAL db = new CardioDAL();
