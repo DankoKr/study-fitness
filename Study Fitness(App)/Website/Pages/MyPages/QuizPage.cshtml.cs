@@ -21,7 +21,7 @@ namespace Website.Pages.MyPages
 
         public int? Points { get; private set; }
 
-        public string Prize { get; private set; }
+        public string TrainerName { get; private set; }
 
         public async Task<IActionResult> OnGetAsync()
         {
@@ -39,7 +39,7 @@ namespace Website.Pages.MyPages
             }
 
             Points = _quizService.CalculatePoints(QuestionResponses);
-            Prize = _quizService.GetPrize(Points.Value);
+            TrainerName = _quizService.GetTrainer(Points.Value);
 
             return Page();
         }

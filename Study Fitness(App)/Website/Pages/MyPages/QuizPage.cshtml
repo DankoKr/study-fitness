@@ -5,7 +5,7 @@
 }
 
 @{
-    var showPopup = Model.Points.HasValue && Model.Prize != null;
+    var showPopup = Model.Points.HasValue && Model.TrainerName != null;
 }
 
 <h1 class="question">Quiz</h1>
@@ -34,13 +34,24 @@ else
     <p>No questions found.</p>
 }
 
-@if (Model.Points.HasValue && Model.Prize != null)
+@if (Model.Points.HasValue && Model.TrainerName != "")
 {
     <div class="popup @(showPopup ? "show" : "")" id="popup">
         <div class="popup-content">
             <h2 class="question">Results</h2>
             <p>You scored @Model.Points.Value points!</p>
-            <p>You have won the @Model.Prize prize!</p>
+            <p>We suggest you to schedule an appointment with one of these trainers: @Model.TrainerName</p>
+            <button id="closePopup">Close</button>
+        </div>
+    </div>
+}
+else if (Model.Points.HasValue && Model.TrainerName == "")
+{
+    <div class="popup @(showPopup ? "show" : "")" id="popup">
+        <div class="popup-content">
+            <h2 class="question">Results</h2>
+            <p>You scored @Model.Points.Value points!</p>
+            <p>It seems that we do not have the needed trainer for your level</p>
             <button id="closePopup">Close</button>
         </div>
     </div>

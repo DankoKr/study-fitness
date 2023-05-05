@@ -17,5 +17,7 @@ namespace ClassLibrary.DatabaseClasses
 		void EditUserFirstName(User u, string newFirstName);
 		bool CheckLogin(string username, string password);
 		string GetSalt(String username);
-	}
+		void GetTrainerNameByPoints(int points, List<string> trainers);
+
+    }
 }

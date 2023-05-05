@@ -41,7 +41,12 @@ namespace ClassLibrary.DatabaseClasses
 			throw new NotImplementedException();
 		}
 
-		public void GetUserByUsername(UserAdministration myManager, string username)
+        public void GetTrainerNameByPoints(int points, List<string> trainers)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void GetUserByUsername(UserAdministration myManager, string username)
 		{
 			foreach (var user in myUsers) 
 			{

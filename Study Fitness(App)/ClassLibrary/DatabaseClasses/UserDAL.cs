@@ -204,5 +204,29 @@ namespace ClassLibrary.DatabaseClasses
 
         }
 
+        public void GetTrainerNameByPoints(int points, List<string> trainers) 
+        {
+            SqlConnection _connection = db.GetSqlConnection();
+
+            try
+            {
+                string sql = $"SELECT FirstName\r\nFROM Users\r\nWHERE TrainerLevel = {points};";
+                SqlCommand cmd = new SqlCommand(sql, _connection);
+                _connection.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    trainers.Add(Convert.ToString(dr[0]));
+                }
+
+                dr.Close();
+            }
+            catch (SqlException sqlEx)
+            {
+
+                throw new Exception(sqlEx.Message);
+            }
+            finally { _connection.Close(); }
+        }
     }
 }
