@@ -64,7 +64,7 @@ namespace ClassLibrary.QuizClasses
             {
                 trainersNames += trainer + "\n";
             }
-
+            trainersNames += $" (level{result} trainers)";
             return trainersNames;
         }
     }

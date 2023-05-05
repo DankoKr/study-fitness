@@ -112,7 +112,7 @@ p.about-text {
 .left-trainer,
 .right-trainer {
     padding: 10px;
-    height: 650px;
+    height: 500px;
     background-color: aqua;
 }
 
@@ -123,7 +123,7 @@ p.about-text {
 .middle-trainer {
     grid-area: middle;
     padding: 10px;
-    height: 650px;
+    height: 500px;
     background-color: pink;
 }
 
