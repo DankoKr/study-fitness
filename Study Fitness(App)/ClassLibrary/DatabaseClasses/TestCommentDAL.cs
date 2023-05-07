@@ -63,6 +63,11 @@ namespace ClassLibrary.DatabaseClasses
             return c;
         }
 
+        public int GetCommentsByRating(int rating)
+        {
+            throw new NotImplementedException();
+        }
+
         public void GetExerciseComments(int exercise_id, CommentAdministration myManager)
         {
             throw new NotImplementedException();

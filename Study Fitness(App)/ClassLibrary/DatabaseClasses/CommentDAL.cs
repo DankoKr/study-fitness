@@ -267,5 +267,32 @@ namespace ClassLibrary.DatabaseClasses
             finally { _connection.Close(); }
             return c;
         }
+        public int GetCommentsByRating(int rating) 
+        {
+            SqlConnection _connection = db.GetSqlConnection();
+            int numComments = 0;
+
+            try
+            {
+                string sql = $"SELECT COUNT(*) FROM Comment WHERE rating = {rating}";
+                SqlCommand cmd = new SqlCommand(sql, _connection);
+                _connection.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    numComments = Convert.ToInt32(dr[0]);
+                    return numComments;
+                }
+
+                dr.Close();
+            }
+            catch (SqlException sqlEx)
+            {
+
+                throw new Exception(sqlEx.Message);
+            }
+            finally { _connection.Close(); }
+            return numComments;
+        }
     }
 }

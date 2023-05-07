@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             panelButtons = new Panel();
+            btnToScheduleForm = new Button();
             btnToCommentsForm = new Button();
             btnToUserForm = new Button();
             btnToExerciseForm = new Button();
@@ -38,7 +39,7 @@
             lblHeader = new Label();
             panelLogo = new Panel();
             pictureBox1 = new PictureBox();
-            btnToScheduleForm = new Button();
+            ToChartForm = new Button();
             panelButtons.SuspendLayout();
             panelHeading.SuspendLayout();
             panelLogo.SuspendLayout();
@@ -57,6 +58,20 @@
             panelButtons.Name = "panelButtons";
             panelButtons.Size = new Size(130, 367);
             panelButtons.TabIndex = 0;
+            // 
+            // btnToScheduleForm
+            // 
+            btnToScheduleForm.BackColor = SystemColors.ActiveCaption;
+            btnToScheduleForm.Dock = DockStyle.Top;
+            btnToScheduleForm.FlatAppearance.BorderSize = 0;
+            btnToScheduleForm.FlatStyle = FlatStyle.Flat;
+            btnToScheduleForm.Location = new Point(0, 240);
+            btnToScheduleForm.Name = "btnToScheduleForm";
+            btnToScheduleForm.Size = new Size(130, 60);
+            btnToScheduleForm.TabIndex = 4;
+            btnToScheduleForm.Text = "Schedules";
+            btnToScheduleForm.UseVisualStyleBackColor = false;
+            btnToScheduleForm.Click += btnToScheduleForm_Click;
             // 
             // btnToCommentsForm
             // 
@@ -151,25 +166,23 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
-            // btnToScheduleForm
+            // ToChartForm
             // 
-            btnToScheduleForm.BackColor = SystemColors.ActiveCaption;
-            btnToScheduleForm.Dock = DockStyle.Top;
-            btnToScheduleForm.FlatAppearance.BorderSize = 0;
-            btnToScheduleForm.FlatStyle = FlatStyle.Flat;
-            btnToScheduleForm.Location = new Point(0, 240);
-            btnToScheduleForm.Name = "btnToScheduleForm";
-            btnToScheduleForm.Size = new Size(130, 60);
-            btnToScheduleForm.TabIndex = 4;
-            btnToScheduleForm.Text = "Schedules";
-            btnToScheduleForm.UseVisualStyleBackColor = false;
-            btnToScheduleForm.Click += btnToScheduleForm_Click;
+            ToChartForm.BackColor = SystemColors.ActiveCaption;
+            ToChartForm.Location = new Point(408, 219);
+            ToChartForm.Name = "ToChartForm";
+            ToChartForm.Size = new Size(94, 56);
+            ToChartForm.TabIndex = 3;
+            ToChartForm.Text = "Statistics";
+            ToChartForm.UseVisualStyleBackColor = false;
+            ToChartForm.Click += ToChartForm_Click;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(ToChartForm);
             Controls.Add(panelLogo);
             Controls.Add(panelHeading);
             Controls.Add(panelButtons);
@@ -195,5 +208,6 @@
         private Label lblHeader;
         private Button btnToCommentsForm;
         private Button btnToScheduleForm;
+        private Button ToChartForm;
     }
 }

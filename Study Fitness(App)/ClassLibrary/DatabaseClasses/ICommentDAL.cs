@@ -20,5 +20,6 @@ namespace ClassLibrary.DatabaseClasses
         void GetExerciseComments(int exercise_id, CommentAdministration myManager);
         void GetUserComments(int user_id, CommentAdministration myManager);
         Comment GetComment(string title, Comment c);
+        int GetCommentsByRating(int rating);
     }
 }
