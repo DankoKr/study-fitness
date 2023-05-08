@@ -10,6 +10,8 @@
 
 <h1 class="question">Quiz</h1>
 
+<div asp-validation-summary="All" class="text-danger"></div> 
+
 @if (Model.Questions != null && Model.Questions.Any())
 {
     <form class="quiz" method="post">

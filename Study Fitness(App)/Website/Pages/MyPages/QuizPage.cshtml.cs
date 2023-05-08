@@ -35,11 +35,15 @@ namespace Website.Pages.MyPages
 
             if (QuestionResponses == null || QuestionResponses.Count != Questions.Count)
             {
-                return Page();
+                ModelState.AddModelError("", "Please answer all the questions.");
+                //return Page();
             }
+            else if(QuestionResponses != null || QuestionResponses.Count == Questions.Count)
+            {
+                Points = _quizService.CalculatePoints(QuestionResponses);
+                TrainerName = _quizService.GetTrainer(Points.Value);
 
-            Points = _quizService.CalculatePoints(QuestionResponses);
-            TrainerName = _quizService.GetTrainer(Points.Value);
+            }
 
             return Page();
         }
