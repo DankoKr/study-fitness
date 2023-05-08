@@ -9,25 +9,25 @@ namespace ClassLibrary.ScheduleClasses
 {
     public class Schedule
     {
-        private string trainerName;
+        private string trainerId;
         private string title;
         private string description;
 
-        public string TrainerName { get; set; }
+        public int TrainerId { get; set; }
         public string Title { get; set; }
-        public int Time { get; set; }
+        public DateTime Date { get; set; }
         public string Description { get; set; }
-        public User? Client { get; set; }
+        public string ClientName { get; set; }
 
-        public Schedule(string title, int time, string description, string trainerName) 
+        public Schedule(string title, DateTime time, string description, int trainerId) 
         {
             Title = title;
-            Time = time;
+            Date = time;
             Description = description;
-            TrainerName = trainerName;
-            Client = null;
+            TrainerId = trainerId;
+            ClientName = null;
         }
 
-        public string GetInfo() { return $"Booked by {Client?.FirstName} for {Time}."; }
+        public string GetInfo() { return $"Booked by {ClientName} for {Date}."; }
     }
 }

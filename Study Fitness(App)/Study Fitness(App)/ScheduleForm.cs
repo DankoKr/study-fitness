@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,14 +46,12 @@ namespace Study_Fitness_App_
             }
         }
 
-        public void ClearFields() 
+        public void ClearFields()
         {
             txbDescription.Text = "";
             txbNewDescription.Text = "";
             txbNewTitle.Text = "";
             txbTitle.Text = "";
-            numNewTime.Text = "0";
-            numTime.Text = "0";
         }
 
         private void btnViewAllSchedules_Click(object sender, EventArgs e)
@@ -62,7 +61,7 @@ namespace Study_Fitness_App_
 
         private void btnCreateSchedule_Click(object sender, EventArgs e)
         {
-            myManager.AddSchedule(new Schedule(txbTitle.Text, Convert.ToInt32(numTime.Text), txbDescription.Text, cmbTrainer.Text));
+            myManager.AddSchedule(new Schedule(txbTitle.Text, Convert.ToDateTime(dateTime.Value), txbDescription.Text, Convert.ToInt32(cmbTrainer.Text)));
             ClearFields();
         }
 
@@ -76,7 +75,7 @@ namespace Study_Fitness_App_
 
             object obj = lbManageSchedule.SelectedItem;
             Schedule selectedS = (Schedule)obj;
-            myManager.EditSchedule(selectedS, cmbNewTrainer.Text, txbNewTitle.Text, Convert.ToInt32(numNewTime.Text), txbNewDescription.Text);
+            myManager.EditSchedule(selectedS, Convert.ToInt32(cmbNewTrainer.Text), txbNewTitle.Text, DateTime.ParseExact(dateTime.Text, "yyyy-MM-dd", CultureInfo.InvariantCulture), txbNewDescription.Text);
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -91,5 +90,6 @@ namespace Study_Fitness_App_
             Schedule selectedS = (Schedule)obj;
             myManager.RemoveSchedule(selectedS);
         }
+
     }
 }

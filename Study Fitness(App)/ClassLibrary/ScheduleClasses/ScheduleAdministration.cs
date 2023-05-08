@@ -1,4 +1,5 @@
-﻿using ClassLibrary.UserClasses;
+﻿using ClassLibrary.DatabaseClasses;
+using ClassLibrary.UserClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +11,15 @@ namespace ClassLibrary.ScheduleClasses
     public class ScheduleAdministration
     {
         List<Schedule> schedules = new List<Schedule>();
+        IScheduleDAL db = new ScheduleDAL();
         public ScheduleAdministration() { }
 
         public void AddSchedule(Schedule s) 
         {
-            if (s.TrainerName != "" && s.Title != "")
+            if (s.TrainerId != 0 && s.Title != "")
             {
                 schedules.Add(s);
+                db.AddSchedule(s);
             }
         }
 
@@ -25,14 +28,14 @@ namespace ClassLibrary.ScheduleClasses
             schedules.Remove(s);
         }
 
-        public void EditSchedule(Schedule s, string trainerName, string title, int time, string description) 
+        public void EditSchedule(Schedule s, int trainerId, string title, DateTime time, string description) 
         {
-            if (title != "" && trainerName != "") 
+            if (title != "" && trainerId != 0) 
             { 
-                s.TrainerName = trainerName;
+                s.TrainerId = trainerId;
                 s.Title = title;
                 s.Description = description;
-                s.Time = time;
+                s.Date = time;
             }
         }
 
@@ -48,21 +51,13 @@ namespace ClassLibrary.ScheduleClasses
             }
             return null;
         }
-        public User GetClient(Schedule s) 
-        {
-            if (s.Client != null)
-            {
-                return s.Client;
-            }
-            return null;
-        }
 
-        public void AssignSchedule(User client, string scheduleTitle) 
+        public void AssignSchedule(string client, string scheduleTitle) 
         {
             if (client != null)
             {
                 Schedule s = GetSchedule(scheduleTitle);    
-                s.Client = client;
+                s.ClientName = client;
             }
         }
     }

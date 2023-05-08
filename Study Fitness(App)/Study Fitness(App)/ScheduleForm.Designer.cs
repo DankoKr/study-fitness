@@ -38,25 +38,23 @@
             lblTrainer = new Label();
             lblCalories = new Label();
             cmbTrainer = new ComboBox();
-            numTime = new NumericUpDown();
             txbDescription = new TextBox();
             txbTitle = new TextBox();
             tabEditCardio = new TabPage();
+            dateNewTime = new DateTimePicker();
             lblNewTrainer = new Label();
             lblNewCalories = new Label();
             cmbNewTrainer = new ComboBox();
-            numNewTime = new NumericUpDown();
             txbNewDescription = new TextBox();
             txbNewTitle = new TextBox();
             lbManageSchedule = new ListBox();
             btnEdit = new Button();
             btnDelete = new Button();
+            dateTime = new DateTimePicker();
             tabConCardio.SuspendLayout();
             tabViewCardio.SuspendLayout();
             tabAddCardio.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numTime).BeginInit();
             tabEditCardio.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numNewTime).BeginInit();
             SuspendLayout();
             // 
             // tabConCardio
@@ -89,7 +87,7 @@
             btnViewAllSchedules.Name = "btnViewAllSchedules";
             btnViewAllSchedules.Size = new Size(94, 60);
             btnViewAllSchedules.TabIndex = 2;
-            btnViewAllSchedules.Text = "View All Cardios";
+            btnViewAllSchedules.Text = "View All Schedules";
             btnViewAllSchedules.UseVisualStyleBackColor = true;
             btnViewAllSchedules.Click += btnViewAllSchedules_Click;
             // 
@@ -115,11 +113,11 @@
             // 
             // tabAddCardio
             // 
+            tabAddCardio.Controls.Add(dateTime);
             tabAddCardio.Controls.Add(btnCreateSchedule);
             tabAddCardio.Controls.Add(lblTrainer);
             tabAddCardio.Controls.Add(lblCalories);
             tabAddCardio.Controls.Add(cmbTrainer);
-            tabAddCardio.Controls.Add(numTime);
             tabAddCardio.Controls.Add(txbDescription);
             tabAddCardio.Controls.Add(txbTitle);
             tabAddCardio.Location = new Point(4, 29);
@@ -167,14 +165,6 @@
             cmbTrainer.Size = new Size(151, 28);
             cmbTrainer.TabIndex = 4;
             // 
-            // numTime
-            // 
-            numTime.Location = new Point(106, 123);
-            numTime.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
-            numTime.Name = "numTime";
-            numTime.Size = new Size(150, 27);
-            numTime.TabIndex = 3;
-            // 
             // txbDescription
             // 
             txbDescription.Location = new Point(375, 123);
@@ -193,10 +183,10 @@
             // 
             // tabEditCardio
             // 
+            tabEditCardio.Controls.Add(dateNewTime);
             tabEditCardio.Controls.Add(lblNewTrainer);
             tabEditCardio.Controls.Add(lblNewCalories);
             tabEditCardio.Controls.Add(cmbNewTrainer);
-            tabEditCardio.Controls.Add(numNewTime);
             tabEditCardio.Controls.Add(txbNewDescription);
             tabEditCardio.Controls.Add(txbNewTitle);
             tabEditCardio.Controls.Add(lbManageSchedule);
@@ -209,6 +199,15 @@
             tabEditCardio.TabIndex = 2;
             tabEditCardio.Text = "Edit/Delete";
             tabEditCardio.UseVisualStyleBackColor = true;
+            // 
+            // dateNewTime
+            // 
+            dateNewTime.Format = DateTimePickerFormat.Short;
+            dateNewTime.Location = new Point(283, 154);
+            dateNewTime.Name = "dateNewTime";
+            dateNewTime.Size = new Size(125, 27);
+            dateNewTime.TabIndex = 13;
+            dateNewTime.Value = new DateTime(2023, 5, 20, 0, 0, 0, 0);
             // 
             // lblNewTrainer
             // 
@@ -236,14 +235,6 @@
             cmbNewTrainer.Name = "cmbNewTrainer";
             cmbNewTrainer.Size = new Size(125, 28);
             cmbNewTrainer.TabIndex = 10;
-            // 
-            // numNewTime
-            // 
-            numNewTime.Location = new Point(283, 149);
-            numNewTime.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
-            numNewTime.Name = "numNewTime";
-            numNewTime.Size = new Size(125, 27);
-            numNewTime.TabIndex = 9;
             // 
             // txbNewDescription
             // 
@@ -291,6 +282,15 @@
             btnDelete.UseVisualStyleBackColor = true;
             btnDelete.Click += btnDelete_Click;
             // 
+            // dateTime
+            // 
+            dateTime.Format = DateTimePickerFormat.Short;
+            dateTime.Location = new Point(106, 125);
+            dateTime.Name = "dateTime";
+            dateTime.Size = new Size(125, 27);
+            dateTime.TabIndex = 14;
+            dateTime.Value = new DateTime(2023, 5, 20, 0, 0, 0, 0);
+            // 
             // ScheduleForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -303,10 +303,8 @@
             tabViewCardio.ResumeLayout(false);
             tabAddCardio.ResumeLayout(false);
             tabAddCardio.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numTime).EndInit();
             tabEditCardio.ResumeLayout(false);
             tabEditCardio.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numNewTime).EndInit();
             ResumeLayout(false);
         }
 
@@ -322,18 +320,18 @@
         private Label lblTrainer;
         private Label lblCalories;
         private ComboBox cmbTrainer;
-        private NumericUpDown numTime;
         private TextBox txbDescription;
         private TextBox txbTitle;
         private TabPage tabEditCardio;
         private Label lblNewTrainer;
         private Label lblNewCalories;
         private ComboBox cmbNewTrainer;
-        private NumericUpDown numNewTime;
         private TextBox txbNewDescription;
         private TextBox txbNewTitle;
         private ListBox lbManageSchedule;
         private Button btnEdit;
         private Button btnDelete;
+        private DateTimePicker dateNewTime;
+        private DateTimePicker dateTime;
     }
 }
