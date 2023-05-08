@@ -9,6 +9,10 @@ namespace ClassLibrary.ScheduleClasses
 {
     public class Schedule
     {
+        private string trainerName;
+        private string title;
+        private string description;
+
         public string TrainerName { get; set; }
         public string Title { get; set; }
         public int Time { get; set; }

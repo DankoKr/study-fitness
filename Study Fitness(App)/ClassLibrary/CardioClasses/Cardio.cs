@@ -13,10 +13,29 @@ namespace ClassLibrary.CardioClasses
         private string difficulty;
         private string pictureURL;
 
-        public string Name { get; set; }
-        public int Calories { get; set; }
-        public string Difficulty { get; set; }
-        public string PictureURL { get; set; }
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+
+        public int Calories
+        {
+            get { return calories; }
+            set { calories = value; }
+        }
+
+        public string Difficulty
+        {
+            get { return difficulty; }
+            set { difficulty = value; }
+        }
+
+        public string PictureURL
+        {
+            get { return pictureURL; }
+            set { pictureURL = value; }
+        }
 
         public Cardio(string name, int calories, string difficulty, string picture)
         {

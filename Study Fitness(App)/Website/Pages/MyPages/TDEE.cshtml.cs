@@ -22,7 +22,7 @@ namespace Website.Pages.MyPages
                 if (calculator != null)
                 {
                     calculator.Calculate();
-                    Message = "You are a " + calculator.Sex + " (age: " + calculator.Age + ")" + " with TDEE: " + calculator.myTDEE;
+                    Message = "You are a " + calculator.Sex + " (age: " + calculator.Age + ")" + " with TDEE: " + calculator.MyTDEE;
                 }
             }
             return Page();

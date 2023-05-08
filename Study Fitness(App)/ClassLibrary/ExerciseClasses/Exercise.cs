@@ -15,12 +15,41 @@ namespace ClassLibrary.ExerciseClasses
         private double weight;
         private string pictureUrl;
 
-        public string Name { get; set; }
-        public string Difficulty { get; set; }
-        public string Equipment { get; set; }
-        public int RepRange { get; set; }
-        public double Weight { get; set; }
-        public string PictureUrl { get; set; }
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+
+        public string Difficulty
+        {
+            get { return difficulty; }
+            set { difficulty = value; }
+        }
+
+        public string Equipment
+        {
+            get { return equipment; }
+            set { equipment = value; }
+        }
+
+        public int RepRange
+        {
+            get { return repRange; }
+            set { repRange = value; }
+        }
+
+        public double Weight
+        {
+            get { return weight; }
+            set { weight = value; }
+        }
+
+        public string PictureUrl
+        {
+            get { return pictureUrl; }
+            set { pictureUrl = value; }
+        }
 
         public Exercise() { }
 

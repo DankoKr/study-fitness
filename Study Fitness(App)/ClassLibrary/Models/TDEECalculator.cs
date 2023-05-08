@@ -4,6 +4,16 @@ namespace Website.Models
 {
     public class TDEECalculator
     {
+        private string sex;
+        private int age;
+        private double height;
+        private double weight;
+        private string activity;
+        private double tEF;
+        private double bMR;
+        private double eEE;
+        private double nEAT;
+        private double myTDEE;
         public TDEECalculator() { }
 
         public TDEECalculator(string sex, int age, double height, double weight, string activity)
@@ -16,21 +26,69 @@ namespace Website.Models
         }
 
         [Required]
-        public string Sex { get; set; }
-        [Required]
-        public int Age { get; set; }
-        [Required]
-        public double Height { get; set; }
-        [Required]
-        public double Weight { get; set; }
-        [Required]
-        public string Activity { get; set; }
-        public double TEF { get; set; }
-        public double BMR { get; set; }
-        public double EEE { get; set; }
-        public double NEAT { get; set; }
+        public string Sex
+        {
+            get { return sex; }
+            set { sex = value; }
+        }
 
-        public double myTDEE { get; set; }
+        [Required]
+        public int Age
+        {
+            get { return age; }
+            set { age = value; }
+        }
+
+        [Required]
+        public double Height
+        {
+            get { return height; }
+            set { height = value; }
+        }
+
+        [Required]
+        public double Weight
+        {
+            get { return weight; }
+            set { weight = value; }
+        }
+
+        [Required]
+        public string Activity
+        {
+            get { return activity; }
+            set { activity = value; }
+        }
+
+        public double TEF
+        {
+            get { return tEF; }
+            set { tEF = value; }
+        }
+
+        public double BMR
+        {
+            get { return bMR; }
+            set { bMR = value; }
+        }
+
+        public double EEE
+        {
+            get { return eEE; }
+            set { eEE = value; }
+        }
+
+        public double NEAT
+        {
+            get { return nEAT; }
+            set { nEAT = value; }
+        }
+
+        public double MyTDEE
+        {
+            get { return myTDEE; }
+            set { myTDEE = value; }
+        }
 
         public void Calculate()
         {
@@ -50,7 +108,7 @@ namespace Website.Models
 			BMR = Weight * 20;
 			TEF = BMR * 0.1;
 			NEAT = EEE;
-			myTDEE = BMR + TEF + EEE + NEAT;
+			MyTDEE = BMR + TEF + EEE + NEAT;
 		}
     }
 }

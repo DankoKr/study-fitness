@@ -9,10 +9,27 @@ namespace ClassLibrary.CommentClasses
 {
     public class Comment
     {
-        public string Title { get; set; }
-        public string Description { get; set; }
+        private string title;
+        private string description;
+        private int rating;
+        public string Title
+        {
+            get { return title; }
+            set { title = value; }
+        }
+
+        public string Description
+        {
+            get { return description; }
+            set { description = value; }
+        }
+
         [Range(0, 5, ErrorMessage = "Please supply a rating between 0 and 5")]
-        public int Rating { get; set; }
+        public int Rating
+        {
+            get { return rating; }
+            set { rating = value; }
+        }
 
         public Comment(string title, string description, int rating)
         {

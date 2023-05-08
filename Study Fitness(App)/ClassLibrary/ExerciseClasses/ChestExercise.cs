@@ -9,7 +9,11 @@ namespace ClassLibrary.ExerciseClasses
     public class ChestExercise : Exercise
     {
         private string chestElement;
-        public string ChestElemet { get { return this.chestElement; } }
+        public string ChestElemet 
+        {
+            get { return this.chestElement; } 
+            set { this.chestElement = value;}
+        }
 
         public ChestExercise(string name, string difficulty, string equipment, int reps, double weight, string chestElement, string picture) : base(name, difficulty, equipment, reps, weight, picture)
         {

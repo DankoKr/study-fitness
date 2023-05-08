@@ -8,8 +8,25 @@ namespace ClassLibrary.QuizClasses
 {
     public class Question
     {
-        public string Text { get; set; }
-        public string[] Options { get; set; }
-        public int OptionPointsIndex { get; set; }
+        private string text;
+        private int optionPointsIndex;
+        private string[] options;
+        public string Text
+        {
+            get { return text; }
+            set { text = value; }
+        }
+
+        public string[] Options
+        {
+            get { return options; }
+            set { options = value; }
+        }
+
+        public int OptionPointsIndex
+        {
+            get { return optionPointsIndex; }
+            set { optionPointsIndex = value; }
+        }
     }
 }

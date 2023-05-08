@@ -15,10 +15,29 @@ namespace ClassLibrary.UserClasses
         private string password;
         private string userRole;
 
-        public string FirstName { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public string UserRole { get; set; }
+        public string FirstName
+        {
+            get { return firstName; }
+            set { firstName = value; }
+        }
+
+        public string Username
+        {
+            get { return username; }
+            set { username = value; }
+        }
+
+        public string Password
+        {
+            get { return password; }
+            set { password = value; }
+        }
+
+        public string UserRole
+        {
+            get { return userRole; }
+            set { userRole = value; }
+        }
 
         public User()
         {
