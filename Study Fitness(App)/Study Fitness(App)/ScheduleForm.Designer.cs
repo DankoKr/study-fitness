@@ -34,6 +34,7 @@
             btnViewDetails = new Button();
             lbSchedule = new ListBox();
             tabAddCardio = new TabPage();
+            dateTime = new DateTimePicker();
             btnCreateSchedule = new Button();
             lblTrainer = new Label();
             lblCalories = new Label();
@@ -50,7 +51,6 @@
             lbManageSchedule = new ListBox();
             btnEdit = new Button();
             btnDelete = new Button();
-            dateTime = new DateTimePicker();
             tabConCardio.SuspendLayout();
             tabViewCardio.SuspendLayout();
             tabAddCardio.SuspendLayout();
@@ -103,7 +103,7 @@
             // 
             // lbSchedule
             // 
-            lbSchedule.DisplayMember = "Name";
+            lbSchedule.DisplayMember = "Title";
             lbSchedule.FormattingEnabled = true;
             lbSchedule.ItemHeight = 20;
             lbSchedule.Location = new Point(42, 25);
@@ -128,6 +128,15 @@
             tabAddCardio.Text = "Add";
             tabAddCardio.UseVisualStyleBackColor = true;
             // 
+            // dateTime
+            // 
+            dateTime.Format = DateTimePickerFormat.Short;
+            dateTime.Location = new Point(106, 125);
+            dateTime.Name = "dateTime";
+            dateTime.Size = new Size(125, 27);
+            dateTime.TabIndex = 14;
+            dateTime.Value = new DateTime(2023, 5, 20, 0, 0, 0, 0);
+            // 
             // btnCreateSchedule
             // 
             btnCreateSchedule.Location = new Point(259, 196);
@@ -141,11 +150,11 @@
             // lblTrainer
             // 
             lblTrainer.AutoSize = true;
-            lblTrainer.Location = new Point(308, 70);
+            lblTrainer.Location = new Point(289, 71);
             lblTrainer.Name = "lblTrainer";
-            lblTrainer.Size = new Size(61, 20);
+            lblTrainer.Size = new Size(80, 20);
             lblTrainer.TabIndex = 6;
-            lblTrainer.Text = "Trainer :";
+            lblTrainer.Text = "Trainer ID :";
             // 
             // lblCalories
             // 
@@ -159,7 +168,6 @@
             // cmbTrainer
             // 
             cmbTrainer.FormattingEnabled = true;
-            cmbTrainer.Items.AddRange(new object[] { "Beginner", "Intermediate", "Advanced", "Athlete" });
             cmbTrainer.Location = new Point(375, 67);
             cmbTrainer.Name = "cmbTrainer";
             cmbTrainer.Size = new Size(151, 28);
@@ -214,9 +222,9 @@
             lblNewTrainer.AutoSize = true;
             lblNewTrainer.Location = new Point(455, 53);
             lblNewTrainer.Name = "lblNewTrainer";
-            lblNewTrainer.Size = new Size(95, 20);
+            lblNewTrainer.Size = new Size(114, 20);
             lblNewTrainer.TabIndex = 12;
-            lblNewTrainer.Text = "New Trainer :";
+            lblNewTrainer.Text = "New Trainer ID :";
             // 
             // lblNewCalories
             // 
@@ -230,7 +238,6 @@
             // cmbNewTrainer
             // 
             cmbNewTrainer.FormattingEnabled = true;
-            cmbNewTrainer.Items.AddRange(new object[] { "Beginner", "Intermediate", "Advanced", "Athlete" });
             cmbNewTrainer.Location = new Point(455, 76);
             cmbNewTrainer.Name = "cmbNewTrainer";
             cmbNewTrainer.Size = new Size(125, 28);
@@ -254,12 +261,12 @@
             // 
             // lbManageSchedule
             // 
-            lbManageSchedule.DisplayMember = "Name";
+            lbManageSchedule.DisplayMember = "Title";
             lbManageSchedule.FormattingEnabled = true;
             lbManageSchedule.ItemHeight = 20;
             lbManageSchedule.Location = new Point(49, 39);
             lbManageSchedule.Name = "lbManageSchedule";
-            lbManageSchedule.Size = new Size(150, 264);
+            lbManageSchedule.Size = new Size(183, 264);
             lbManageSchedule.TabIndex = 2;
             // 
             // btnEdit
@@ -281,15 +288,6 @@
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = true;
             btnDelete.Click += btnDelete_Click;
-            // 
-            // dateTime
-            // 
-            dateTime.Format = DateTimePickerFormat.Short;
-            dateTime.Location = new Point(106, 125);
-            dateTime.Name = "dateTime";
-            dateTime.Size = new Size(125, 27);
-            dateTime.TabIndex = 14;
-            dateTime.Value = new DateTime(2023, 5, 20, 0, 0, 0, 0);
             // 
             // ScheduleForm
             // 

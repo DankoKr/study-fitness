@@ -28,6 +28,22 @@ namespace ClassLibrary.ScheduleClasses
             ClientName = null;
         }
 
-        public string GetInfo() { return $"Booked by {ClientName} for {Date}."; }
+        public Schedule(string title, DateTime time, string description, int trainerId, string name)
+        {
+            Title = title;
+            Date = time;
+            Description = description;
+            TrainerId = trainerId;
+            ClientName = name;
+        }
+
+        public string GetInfo() 
+        {
+            if (ClientName != "" && ClientName != null)
+            {
+                return $"Booked by {ClientName} for {Date}.";
+            }
+            else { return $"Empty for {Date}"; }            
+        }
     }
 }

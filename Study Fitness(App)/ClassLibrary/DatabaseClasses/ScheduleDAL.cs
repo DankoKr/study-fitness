@@ -1,10 +1,12 @@
-﻿using ClassLibrary.ScheduleClasses;
+﻿using ClassLibrary.CardioClasses;
+using ClassLibrary.ScheduleClasses;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace ClassLibrary.DatabaseClasses
 {
@@ -36,19 +38,106 @@ namespace ClassLibrary.DatabaseClasses
             finally { _connection.Close(); }
         }
 
+        public void GetTrainersId(List<int> ids)
+        {
+            SqlConnection _connection = db.GetSqlConnection();
+
+            try
+            {
+                string sql = "SELECT  Id FROM Users WHERE Role = 'Trainer'";
+                SqlCommand cmd = new SqlCommand(sql, _connection);
+                _connection.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    ids.Add(Convert.ToInt32(dr[0]));                   
+                }
+
+                dr.Close();
+            }
+            catch (SqlException sqlEx)
+            {
+
+                throw new Exception(sqlEx.Message);
+            }
+            finally { _connection.Close(); }
+        }
+
         public void LoadSchedules(ScheduleAdministration myManager)
         {
-            throw new NotImplementedException();
+            SqlConnection _connection = db.GetSqlConnection();
+
+            try
+            {
+                string sql = "SELECT  * FROM Schedule ";
+                SqlCommand cmd = new SqlCommand(sql, _connection);
+                _connection.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    if (dr[5] != null)
+                    {
+                        myManager.AddExistingSchedule(new Schedule(Convert.ToString(dr[1]), Convert.ToDateTime(dr[3]).Date, Convert.ToString(dr[2]), Convert.ToInt32(dr[4]), Convert.ToString(dr[5])));
+                    }
+                    else
+                    {
+                        myManager.AddExistingSchedule(new Schedule(Convert.ToString(dr[1]), Convert.ToDateTime(dr[3]).Date, Convert.ToString(dr[2]), Convert.ToInt32(dr[4])));
+                    }
+                }
+
+                dr.Close();
+            }
+            catch (SqlException sqlEx)
+            {
+
+                throw new Exception(sqlEx.Message);
+            }
+            finally { _connection.Close(); }
         }
 
         public void RemoveSchedule(Schedule s)
         {
-            throw new NotImplementedException();
+            SqlConnection _connection = db.GetSqlConnection();
+
+            try
+            {
+                string sql = $"DELETE FROM Schedule\r\nWHERE title = '{s.Title}';";
+                SqlCommand cmd = new SqlCommand(sql, _connection);
+                _connection.Open();
+                cmd.ExecuteNonQuery();
+
+            }
+            catch (SqlException sqlEx)
+            {
+
+                throw new Exception(sqlEx.Message);
+            }
+            finally { _connection.Close(); }
         }
 
-        public void UpdateSchedule(Schedule s, string trainerName, string title, int time, string description)
+        public void UpdateSchedule(Schedule s, int trainerId, string title, DateTime time, string description)
         {
-            throw new NotImplementedException();
+            SqlConnection _connection = db.GetSqlConnection();
+
+            try
+            {
+                string sql = "UPDATE Schedule SET title = @title, description = @description, date = @date, trainer_id = @trainer_id WHERE title = @titleSchedule";
+                SqlCommand cmd = new SqlCommand(sql, _connection);
+                cmd.Parameters.AddWithValue("@title", title);
+                cmd.Parameters.AddWithValue("@description", description);
+                cmd.Parameters.AddWithValue("@date", time.Date);
+                cmd.Parameters.AddWithValue("@trainer_id", trainerId);
+                cmd.Parameters.AddWithValue("@titleSchedule", s.Title);
+                _connection.Open();
+                cmd.ExecuteNonQuery();
+
+            }
+            catch (SqlException sqlEx)
+            {
+
+                throw new Exception(sqlEx.Message);
+            }
+            finally { _connection.Close(); }
         }
     }
 }

@@ -23,15 +23,22 @@ namespace ClassLibrary.ScheduleClasses
             }
         }
 
+        public void AddExistingSchedule(Schedule s) 
+        {
+            schedules.Add(s);
+        }
+
         public void RemoveSchedule(Schedule s) 
         {
             schedules.Remove(s);
+            db.RemoveSchedule(s);
         }
 
         public void EditSchedule(Schedule s, int trainerId, string title, DateTime time, string description) 
         {
             if (title != "" && trainerId != 0) 
-            { 
+            {
+                db.UpdateSchedule(s, trainerId, title, time, description);
                 s.TrainerId = trainerId;
                 s.Title = title;
                 s.Description = description;

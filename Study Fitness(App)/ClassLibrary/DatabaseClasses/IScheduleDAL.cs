@@ -12,6 +12,7 @@ namespace ClassLibrary.DatabaseClasses
         void LoadSchedules(ScheduleAdministration myManager);
         void AddSchedule(Schedule s);
         void RemoveSchedule(Schedule s);
-        void UpdateSchedule(Schedule s, string trainerName, string title, int time, string description);
+        void UpdateSchedule(Schedule s, int trainerId, string title, DateTime time, string description);
+        void GetTrainersId(List<int> ids);
     }
 }

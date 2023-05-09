@@ -1,4 +1,5 @@
 ﻿using ClassLibrary.CommentClasses;
+using ClassLibrary.DatabaseClasses;
 using ClassLibrary.ScheduleClasses;
 using System;
 using System.Collections.Generic;
@@ -16,10 +17,24 @@ namespace Study_Fitness_App_
     public partial class ScheduleForm : Form
     {
         ScheduleAdministration myManager = new ScheduleAdministration();
+        IScheduleDAL db = new ScheduleDAL();
+        List<int> ids = new List<int>();
         public ScheduleForm()
         {
             InitializeComponent();
+            db.LoadSchedules(myManager);
+            db.GetTrainersId(ids);
             ShowData();
+            FillTrainerCombos();
+        }
+
+        private void FillTrainerCombos()
+        {
+            foreach (int id in ids)
+            {
+                cmbTrainer.Items.Add(id);
+                cmbNewTrainer.Items.Add(id);
+            }
         }
 
         private void btnViewDetails_Click(object sender, EventArgs e)
@@ -63,6 +78,7 @@ namespace Study_Fitness_App_
         {
             myManager.AddSchedule(new Schedule(txbTitle.Text, Convert.ToDateTime(dateTime.Value), txbDescription.Text, Convert.ToInt32(cmbTrainer.Text)));
             ClearFields();
+            ShowData();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -75,20 +91,22 @@ namespace Study_Fitness_App_
 
             object obj = lbManageSchedule.SelectedItem;
             Schedule selectedS = (Schedule)obj;
-            myManager.EditSchedule(selectedS, Convert.ToInt32(cmbNewTrainer.Text), txbNewTitle.Text, DateTime.ParseExact(dateTime.Text, "yyyy-MM-dd", CultureInfo.InvariantCulture), txbNewDescription.Text);
+            myManager.EditSchedule(selectedS, Convert.ToInt32(cmbNewTrainer.Text), txbNewTitle.Text, Convert.ToDateTime(dateTime.Value), txbNewDescription.Text);
+            ShowData();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (lbSchedule.SelectedIndex < 0)
+            if (lbManageSchedule.SelectedIndex < 0)
             {
                 MessageBox.Show("Please choose a Schedule!");
                 return;
             }
 
-            object obj = lbSchedule.SelectedItem;
+            object obj = lbManageSchedule.SelectedItem;
             Schedule selectedS = (Schedule)obj;
             myManager.RemoveSchedule(selectedS);
+            ShowData();
         }
 
     }
