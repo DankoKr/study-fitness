@@ -38,6 +38,29 @@ namespace ClassLibrary.DatabaseClasses
             finally { _connection.Close(); }
         }
 
+        public void AssignSchedule(Schedule s, string name)
+        {
+            SqlConnection _connection = db.GetSqlConnection();
+
+            try
+            {
+                string sql = $"INSERT INTO Schedule (client_name)"
+                    + "VALUES (@client_name)"
+                    + $"WHERE title = '{s.Title}'";
+                SqlCommand cmd = new SqlCommand(sql, _connection);
+                _connection.Open();
+                cmd.Parameters.AddWithValue("@client_name", name);
+                cmd.ExecuteNonQuery();
+
+            }
+            catch (SqlException sqlEx)
+            {
+
+                throw new Exception(sqlEx.Message);
+            }
+            finally { _connection.Close(); }
+        }
+
         public void GetTrainersId(List<int> ids)
         {
             SqlConnection _connection = db.GetSqlConnection();
@@ -93,6 +116,43 @@ namespace ClassLibrary.DatabaseClasses
                 throw new Exception(sqlEx.Message);
             }
             finally { _connection.Close(); }
+        }
+
+        public void LoadSchedulesTrainerLevel(int level, ScheduleAdministration myManager)
+        {
+            SqlConnection _connection = db.GetSqlConnection();
+
+            try
+            {
+                string sql = $"SELECT s.title, s.description, s.date, s.trainer_id, s.client_name, u.Trainerlevel \r\nFROM Schedule s\r\nJOIN Users u\r\nON s.trainer_id = u.Id\r\nWHERE u.TrainerLevel = {level}";
+                SqlCommand cmd = new SqlCommand(sql, _connection);
+                _connection.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    if (dr[4] != null)
+                    {
+                        myManager.AddExistingSchedule(new Schedule(Convert.ToString(dr[0]), Convert.ToDateTime(dr[2]).Date, Convert.ToString(dr[1]), Convert.ToInt32(dr[3]), Convert.ToString(dr[4])));
+                    }
+                    else
+                    {
+                        myManager.AddExistingSchedule(new Schedule(Convert.ToString(dr[0]), Convert.ToDateTime(dr[2]).Date, Convert.ToString(dr[1]), Convert.ToInt32(dr[3])));
+                    }
+                }
+
+                dr.Close();
+            }
+            catch (SqlException sqlEx)
+            {
+
+                throw new Exception(sqlEx.Message);
+            }
+            finally { _connection.Close(); }
+        }
+
+        public void LoadTrainerSchedules(int trainer_id)
+        {
+            throw new NotImplementedException();
         }
 
         public void RemoveSchedule(Schedule s)

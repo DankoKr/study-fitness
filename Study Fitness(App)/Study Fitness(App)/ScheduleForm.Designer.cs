@@ -37,14 +37,14 @@
             dateTime = new DateTimePicker();
             btnCreateSchedule = new Button();
             lblTrainer = new Label();
-            lblCalories = new Label();
+            lblTime = new Label();
             cmbTrainer = new ComboBox();
             txbDescription = new TextBox();
             txbTitle = new TextBox();
             tabEditCardio = new TabPage();
             dateNewTime = new DateTimePicker();
             lblNewTrainer = new Label();
-            lblNewCalories = new Label();
+            lblNewTime = new Label();
             cmbNewTrainer = new ComboBox();
             txbNewDescription = new TextBox();
             txbNewTitle = new TextBox();
@@ -116,7 +116,7 @@
             tabAddCardio.Controls.Add(dateTime);
             tabAddCardio.Controls.Add(btnCreateSchedule);
             tabAddCardio.Controls.Add(lblTrainer);
-            tabAddCardio.Controls.Add(lblCalories);
+            tabAddCardio.Controls.Add(lblTime);
             tabAddCardio.Controls.Add(cmbTrainer);
             tabAddCardio.Controls.Add(txbDescription);
             tabAddCardio.Controls.Add(txbTitle);
@@ -156,14 +156,14 @@
             lblTrainer.TabIndex = 6;
             lblTrainer.Text = "Trainer ID :";
             // 
-            // lblCalories
+            // lblTime
             // 
-            lblCalories.AutoSize = true;
-            lblCalories.Location = new Point(51, 125);
-            lblCalories.Name = "lblCalories";
-            lblCalories.Size = new Size(49, 20);
-            lblCalories.TabIndex = 5;
-            lblCalories.Text = "Time :";
+            lblTime.AutoSize = true;
+            lblTime.Location = new Point(51, 125);
+            lblTime.Name = "lblTime";
+            lblTime.Size = new Size(49, 20);
+            lblTime.TabIndex = 5;
+            lblTime.Text = "Time :";
             // 
             // cmbTrainer
             // 
@@ -193,7 +193,7 @@
             // 
             tabEditCardio.Controls.Add(dateNewTime);
             tabEditCardio.Controls.Add(lblNewTrainer);
-            tabEditCardio.Controls.Add(lblNewCalories);
+            tabEditCardio.Controls.Add(lblNewTime);
             tabEditCardio.Controls.Add(cmbNewTrainer);
             tabEditCardio.Controls.Add(txbNewDescription);
             tabEditCardio.Controls.Add(txbNewTitle);
@@ -226,14 +226,14 @@
             lblNewTrainer.TabIndex = 12;
             lblNewTrainer.Text = "New Trainer ID :";
             // 
-            // lblNewCalories
+            // lblNewTime
             // 
-            lblNewCalories.AutoSize = true;
-            lblNewCalories.Location = new Point(283, 126);
-            lblNewCalories.Name = "lblNewCalories";
-            lblNewCalories.Size = new Size(45, 20);
-            lblNewCalories.TabIndex = 11;
-            lblNewCalories.Text = "Title :";
+            lblNewTime.AutoSize = true;
+            lblNewTime.Location = new Point(283, 126);
+            lblNewTime.Name = "lblNewTime";
+            lblNewTime.Size = new Size(49, 20);
+            lblNewTime.TabIndex = 11;
+            lblNewTime.Text = "Time :";
             // 
             // cmbNewTrainer
             // 
@@ -316,13 +316,13 @@
         private TabPage tabAddCardio;
         private Button btnCreateSchedule;
         private Label lblTrainer;
-        private Label lblCalories;
+        private Label lblTime;
         private ComboBox cmbTrainer;
         private TextBox txbDescription;
         private TextBox txbTitle;
         private TabPage tabEditCardio;
         private Label lblNewTrainer;
-        private Label lblNewCalories;
+        private Label lblNewTime;
         private ComboBox cmbNewTrainer;
         private TextBox txbNewDescription;
         private TextBox txbNewTitle;
