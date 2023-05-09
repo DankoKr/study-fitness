@@ -12,7 +12,10 @@ namespace ClassLibrary.ScheduleClasses
     {
         List<Schedule> schedules = new List<Schedule>();
         IScheduleDAL db = new ScheduleDAL();
-        public ScheduleAdministration() { }
+        public ScheduleAdministration(IScheduleDAL db) 
+        {
+            this.db = db;
+        }
 
         public void AddSchedule(Schedule s) 
         {

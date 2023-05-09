@@ -16,12 +16,13 @@ namespace Study_Fitness_App_
 {
     public partial class ScheduleForm : Form
     {
-        ScheduleAdministration myManager = new ScheduleAdministration();
+        ScheduleAdministration myManager;
         IScheduleDAL db = new ScheduleDAL();
         List<int> ids = new List<int>();
         public ScheduleForm()
         {
             InitializeComponent();
+            myManager = new ScheduleAdministration(db);
             db.LoadSchedules(myManager);
             db.GetTrainersId(ids);
             ShowData();
