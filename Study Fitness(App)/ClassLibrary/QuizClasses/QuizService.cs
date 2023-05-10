@@ -25,6 +25,11 @@ namespace ClassLibrary.QuizClasses
 
         public int CalculatePoints(IList<int> userAnswers)
         {
+            if (userAnswers == null || userAnswers.Count == 0)
+            {
+                throw new ArgumentException("Empty list of user answers is not allowed.");
+            }
+
             int points = 0;
 
             for (int i = 0; i < questions.Count; i++)
