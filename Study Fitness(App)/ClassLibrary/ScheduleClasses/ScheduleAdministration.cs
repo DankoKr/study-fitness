@@ -70,5 +70,10 @@ namespace ClassLibrary.ScheduleClasses
                 s.ClientName = client;
             }
         }
+
+        public void GetTrainersSchedules(int trainer_id, List<Schedule> trainerSchedules) 
+        {
+            db.LoadTrainerSchedules(trainer_id, trainerSchedules);
+        }
     }
 }

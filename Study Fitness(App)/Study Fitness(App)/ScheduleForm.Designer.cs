@@ -51,10 +51,16 @@
             lbManageSchedule = new ListBox();
             btnEdit = new Button();
             btnDelete = new Button();
+            tabTrainerSchedule = new TabPage();
+            btnShowTrainerSchedules = new Button();
+            cmbTrainerId = new ComboBox();
+            lbScheduleTrainer = new ListBox();
+            btnViewTrainerSchedule = new Button();
             tabConCardio.SuspendLayout();
             tabViewCardio.SuspendLayout();
             tabAddCardio.SuspendLayout();
             tabEditCardio.SuspendLayout();
+            tabTrainerSchedule.SuspendLayout();
             SuspendLayout();
             // 
             // tabConCardio
@@ -62,6 +68,7 @@
             tabConCardio.Controls.Add(tabViewCardio);
             tabConCardio.Controls.Add(tabAddCardio);
             tabConCardio.Controls.Add(tabEditCardio);
+            tabConCardio.Controls.Add(tabTrainerSchedule);
             tabConCardio.Location = new Point(12, 5);
             tabConCardio.Name = "tabConCardio";
             tabConCardio.SelectedIndex = 0;
@@ -289,6 +296,58 @@
             btnDelete.UseVisualStyleBackColor = true;
             btnDelete.Click += btnDelete_Click;
             // 
+            // tabTrainerSchedule
+            // 
+            tabTrainerSchedule.Controls.Add(btnViewTrainerSchedule);
+            tabTrainerSchedule.Controls.Add(btnShowTrainerSchedules);
+            tabTrainerSchedule.Controls.Add(cmbTrainerId);
+            tabTrainerSchedule.Controls.Add(lbScheduleTrainer);
+            tabTrainerSchedule.Location = new Point(4, 29);
+            tabTrainerSchedule.Name = "tabTrainerSchedule";
+            tabTrainerSchedule.Padding = new Padding(3);
+            tabTrainerSchedule.Size = new Size(624, 335);
+            tabTrainerSchedule.TabIndex = 3;
+            tabTrainerSchedule.Text = "Trainer Schedule";
+            tabTrainerSchedule.UseVisualStyleBackColor = true;
+            // 
+            // btnShowTrainerSchedules
+            // 
+            btnShowTrainerSchedules.Location = new Point(375, 146);
+            btnShowTrainerSchedules.Name = "btnShowTrainerSchedules";
+            btnShowTrainerSchedules.Size = new Size(94, 58);
+            btnShowTrainerSchedules.TabIndex = 3;
+            btnShowTrainerSchedules.Text = "Show Schedules";
+            btnShowTrainerSchedules.UseVisualStyleBackColor = true;
+            btnShowTrainerSchedules.Click += btnShowTrainerSchedules_Click;
+            // 
+            // cmbTrainerId
+            // 
+            cmbTrainerId.FormattingEnabled = true;
+            cmbTrainerId.Location = new Point(345, 93);
+            cmbTrainerId.Name = "cmbTrainerId";
+            cmbTrainerId.Size = new Size(151, 28);
+            cmbTrainerId.TabIndex = 2;
+            // 
+            // lbScheduleTrainer
+            // 
+            lbScheduleTrainer.DisplayMember = "Title";
+            lbScheduleTrainer.FormattingEnabled = true;
+            lbScheduleTrainer.ItemHeight = 20;
+            lbScheduleTrainer.Location = new Point(94, 74);
+            lbScheduleTrainer.Name = "lbScheduleTrainer";
+            lbScheduleTrainer.Size = new Size(150, 204);
+            lbScheduleTrainer.TabIndex = 0;
+            // 
+            // btnViewTrainerSchedule
+            // 
+            btnViewTrainerSchedule.Location = new Point(375, 210);
+            btnViewTrainerSchedule.Name = "btnViewTrainerSchedule";
+            btnViewTrainerSchedule.Size = new Size(94, 60);
+            btnViewTrainerSchedule.TabIndex = 4;
+            btnViewTrainerSchedule.Text = "View Details";
+            btnViewTrainerSchedule.UseVisualStyleBackColor = true;
+            btnViewTrainerSchedule.Click += btnViewTrainerSchedule_Click;
+            // 
             // ScheduleForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -303,6 +362,7 @@
             tabAddCardio.PerformLayout();
             tabEditCardio.ResumeLayout(false);
             tabEditCardio.PerformLayout();
+            tabTrainerSchedule.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -331,5 +391,10 @@
         private Button btnDelete;
         private DateTimePicker dateNewTime;
         private DateTimePicker dateTime;
+        private TabPage tabTrainerSchedule;
+        private ListBox lbScheduleTrainer;
+        private Button btnShowTrainerSchedules;
+        private ComboBox cmbTrainerId;
+        private Button btnViewTrainerSchedule;
     }
 }

@@ -43,7 +43,7 @@ namespace ClassLibrary.DatabaseClasses
             throw new NotImplementedException();
         }
 
-        public void LoadTrainerSchedules(int trainer_id)
+        public void LoadTrainerSchedules(int trainer_id, List<Schedule> s)
         {
             throw new NotImplementedException();
         }

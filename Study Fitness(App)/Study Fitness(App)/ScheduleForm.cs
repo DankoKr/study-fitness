@@ -1,6 +1,7 @@
 ﻿using ClassLibrary.CommentClasses;
 using ClassLibrary.DatabaseClasses;
 using ClassLibrary.ScheduleClasses;
+using ClassLibrary.UserClasses;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,6 +20,8 @@ namespace Study_Fitness_App_
         ScheduleAdministration myManager;
         IScheduleDAL db = new ScheduleDAL();
         List<int> ids = new List<int>();
+        IUserDAL userDb = new UserDAL();
+        UserAdministration userManager;
         public ScheduleForm()
         {
             InitializeComponent();
@@ -35,6 +38,7 @@ namespace Study_Fitness_App_
             {
                 cmbTrainer.Items.Add(id);
                 cmbNewTrainer.Items.Add(id);
+                cmbTrainerId.Items.Add(id);
             }
         }
 
@@ -110,5 +114,35 @@ namespace Study_Fitness_App_
             ShowData();
         }
 
+        private void btnShowTrainerSchedules_Click(object sender, EventArgs e)
+        {
+            if (cmbTrainerId.Text != "")
+            {
+                lbScheduleTrainer.Items.Clear();
+                List<Schedule> trainerSchedules = new List<Schedule>();
+                myManager.GetTrainersSchedules(Convert.ToInt32(cmbTrainerId.Text), trainerSchedules);
+                foreach (Schedule schedule in trainerSchedules)
+                {
+                    lbScheduleTrainer.Items.Add(schedule);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Select a trainer Id!", "ERROR");
+            }
+        }
+
+        private void btnViewTrainerSchedule_Click(object sender, EventArgs e)
+        {
+            if (lbScheduleTrainer.SelectedIndex < 0)
+            {
+                MessageBox.Show("Please choose a Schedule!");
+                return;
+            }
+
+            object obj = lbScheduleTrainer.SelectedItem;
+            Schedule selectedS = (Schedule)obj;
+            MessageBox.Show(selectedS.GetInfo(), "Data");
+        }
     }
 }
