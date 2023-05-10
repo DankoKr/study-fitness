@@ -53,6 +53,11 @@ namespace ClassLibrary.DatabaseClasses
             schedules.Remove(s);
         }
 
+        public void UnAssignSchedule(Schedule s)
+        {
+            throw new NotImplementedException();
+        }
+
         public void UpdateSchedule(Schedule s, int trainerId, string title, DateTime time, string description)
         {
             s.Title = title;

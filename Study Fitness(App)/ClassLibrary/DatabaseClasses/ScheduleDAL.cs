@@ -45,9 +45,8 @@ namespace ClassLibrary.DatabaseClasses
 
             try
             {
-                string sql = $"INSERT INTO Schedule (client_name)"
-                    + "VALUES (@client_name)"
-                    + $"WHERE title = '{s.Title}'";
+                string sql = $"UPDATE Schedule SET client_name = @client_name WHERE title = '{s.Title}'";
+
                 SqlCommand cmd = new SqlCommand(sql, _connection);
                 _connection.Open();
                 cmd.Parameters.AddWithValue("@client_name", name);
@@ -216,6 +215,26 @@ namespace ClassLibrary.DatabaseClasses
                 cmd.Parameters.AddWithValue("@date", time.Date);
                 cmd.Parameters.AddWithValue("@trainer_id", trainerId);
                 cmd.Parameters.AddWithValue("@titleSchedule", s.Title);
+                _connection.Open();
+                cmd.ExecuteNonQuery();
+
+            }
+            catch (SqlException sqlEx)
+            {
+
+                throw new Exception(sqlEx.Message);
+            }
+            finally { _connection.Close(); }
+        }
+        public void UnAssignSchedule(Schedule s)
+        {
+            SqlConnection _connection = db.GetSqlConnection();
+
+            try
+            {
+                string sql = $"UPDATE Schedule SET client_name = NULL WHERE title = '{s.Title}'";
+
+                SqlCommand cmd = new SqlCommand(sql, _connection);
                 _connection.Open();
                 cmd.ExecuteNonQuery();
 

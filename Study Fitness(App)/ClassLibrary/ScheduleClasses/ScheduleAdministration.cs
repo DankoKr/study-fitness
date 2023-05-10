@@ -62,18 +62,25 @@ namespace ClassLibrary.ScheduleClasses
             return null;
         }
 
-        public void AssignSchedule(string client, string scheduleTitle) 
+        public void AssignSchedule(Schedule s,string client, string scheduleTitle) 
         {
             if (client != null)
-            {
-                Schedule s = GetSchedule(scheduleTitle);    
+            {   
                 s.ClientName = client;
+                db.AssignSchedule(s, client);
             }
+        }
+
+        public void UnAssignSchedule(Schedule s) 
+        {
+            s.ClientName = null;
+            db.UnAssignSchedule(s);
         }
 
         public void GetTrainersSchedules(int trainer_id, List<Schedule> trainerSchedules) 
         {
             db.LoadTrainerSchedules(trainer_id, trainerSchedules);
         }
+
     }
 }

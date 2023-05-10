@@ -17,5 +17,6 @@ namespace ClassLibrary.DatabaseClasses
         void AssignSchedule(Schedule s, string name);
         void LoadSchedulesTrainerLevel(int level, ScheduleAdministration myManager);
         void LoadTrainerSchedules(int trainer_id, List<Schedule> schedules);
+        void UnAssignSchedule(Schedule s);
     }
 }

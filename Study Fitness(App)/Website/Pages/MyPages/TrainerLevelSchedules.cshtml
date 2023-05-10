@@ -3,17 +3,37 @@
 @{
 }
 
-<h1>Hui</h1>
+<h1>Schedules</h1>
 
 <div class="column-row-exercise">
     @foreach (var data in Model.myManager.GetSchedules())
     {
-        <div class="column-container-exercise">
-            <div>
-                <p>@data.Title</p>
-                <p>Date: @data.Date</p>
+        if (data.ClientName == "")
+        {
+            <form method="post">
+                <div class="column-container-exercise">
+                    <div>
+                        <p>@data.Title</p>
+                        <p>Date: @data.Date</p>
+                        <p>Description: @data.Description</p>
+                        <p>Status: Empty</p>
+                    </div>
+                    <input type="hidden" name="scheduleTitle" value="@data.Title" />
+                    <input type="submit" value="Enroll" class="submit" />
+                </div>
+            </form>
+        }
+        else
+        {
+            <div class="column-container-exercise">
+                <div>
+                    <p>@data.Title</p>
+                    <p>Date: @data.Date</p>
+                    <p>Description: @data.Description</p>
+                    <p>Status: Booked</p>
+                </div>
             </div>
-        </div>
+        }
 
     }
 </div>
