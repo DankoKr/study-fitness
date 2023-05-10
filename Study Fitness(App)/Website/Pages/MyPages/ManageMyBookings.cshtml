@@ -1,0 +1,32 @@
+﻿@page
+@model Website.Pages.MyPages.ManageMyBookingsModel
+@{
+	ViewData["Title"] = "My Bookings";
+}
+
+<h1>My Bookings</h1>
+<div class="column-row-exercise">
+    @if (Model.myManager.GetSchedules().Count() > 0)
+    {
+        @foreach (var data in Model.myManager.GetSchedules())
+        {
+            <form method="post">
+                <div class="column-container-exercise">
+                    <div>
+                        <p>@data.Title</p>
+                        <p>Date: @data.Date</p>
+                        <p>Description: @data.Description</p>
+                    </div>
+                    <input type="hidden" name="scheduleTitle" value="@data.Title" />
+                    <input type="submit" value="Cancel" class="submit" />
+                </div>
+            </form>
+        }
+    }
+    else
+    {
+        <p><a asp-page="/MyPages/Trainers">Book a meeting</a></p>
+    }
+
+ 
+</div>

@@ -48,6 +48,11 @@ namespace ClassLibrary.DatabaseClasses
             throw new NotImplementedException();
         }
 
+        public void LoadUserBookings(ScheduleAdministration myManager, string username)
+        {
+            throw new NotImplementedException();
+        }
+
         public void RemoveSchedule(Schedule s)
         {
             schedules.Remove(s);

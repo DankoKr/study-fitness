@@ -1,12 +1,14 @@
 using ClassLibrary.CardioClasses;
 using ClassLibrary.DatabaseClasses;
 using ClassLibrary.ScheduleClasses;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Xml.Linq;
 
 namespace Website.Pages.MyPages
 {
+    [Authorize]
     public class TrainerLevelSchedulesModel : Microsoft.AspNetCore.Mvc.RazorPages.PageModel
     {
         IScheduleDAL db = new ScheduleDAL();
