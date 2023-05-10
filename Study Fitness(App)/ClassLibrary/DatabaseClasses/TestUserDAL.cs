@@ -69,5 +69,10 @@ namespace ClassLibrary.DatabaseClasses
 			myManager.AddExistingUser(u2);
 			myManager.AddExistingUser(u3);
 		}
-	}
+
+        public void SetTrainerLevel(string trainerUsername, int level)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

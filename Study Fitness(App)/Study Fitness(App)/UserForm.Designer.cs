@@ -46,10 +46,16 @@
             lbManageUser = new ListBox();
             btnEditUser = new Button();
             btnDeleteUser = new Button();
+            tabTrainerLevel = new TabPage();
+            cmbTrainerName = new ComboBox();
+            btnSetLevel = new Button();
+            numLevel = new NumericUpDown();
             tabConUsers.SuspendLayout();
             tabViewUsers.SuspendLayout();
             tabAddUser.SuspendLayout();
             tabEditUser.SuspendLayout();
+            tabTrainerLevel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numLevel).BeginInit();
             SuspendLayout();
             // 
             // tabConUsers
@@ -57,6 +63,7 @@
             tabConUsers.Controls.Add(tabViewUsers);
             tabConUsers.Controls.Add(tabAddUser);
             tabConUsers.Controls.Add(tabEditUser);
+            tabConUsers.Controls.Add(tabTrainerLevel);
             tabConUsers.Location = new Point(6, 7);
             tabConUsers.Name = "tabConUsers";
             tabConUsers.SelectedIndex = 0;
@@ -235,6 +242,45 @@
             btnDeleteUser.UseVisualStyleBackColor = true;
             btnDeleteUser.Click += btnDeleteUser_Click;
             // 
+            // tabTrainerLevel
+            // 
+            tabTrainerLevel.Controls.Add(numLevel);
+            tabTrainerLevel.Controls.Add(cmbTrainerName);
+            tabTrainerLevel.Controls.Add(btnSetLevel);
+            tabTrainerLevel.Location = new Point(4, 29);
+            tabTrainerLevel.Name = "tabTrainerLevel";
+            tabTrainerLevel.Padding = new Padding(3);
+            tabTrainerLevel.Size = new Size(624, 335);
+            tabTrainerLevel.TabIndex = 3;
+            tabTrainerLevel.Text = "Trainer level";
+            tabTrainerLevel.UseVisualStyleBackColor = true;
+            // 
+            // cmbTrainerName
+            // 
+            cmbTrainerName.FormattingEnabled = true;
+            cmbTrainerName.Location = new Point(241, 91);
+            cmbTrainerName.Name = "cmbTrainerName";
+            cmbTrainerName.Size = new Size(151, 28);
+            cmbTrainerName.TabIndex = 1;
+            // 
+            // btnSetLevel
+            // 
+            btnSetLevel.Location = new Point(271, 192);
+            btnSetLevel.Name = "btnSetLevel";
+            btnSetLevel.Size = new Size(94, 55);
+            btnSetLevel.TabIndex = 0;
+            btnSetLevel.Text = "Set level";
+            btnSetLevel.UseVisualStyleBackColor = true;
+            btnSetLevel.Click += btnSetLevel_Click;
+            // 
+            // numLevel
+            // 
+            numLevel.Location = new Point(242, 142);
+            numLevel.Maximum = new decimal(new int[] { 2, 0, 0, 0 });
+            numLevel.Name = "numLevel";
+            numLevel.Size = new Size(150, 27);
+            numLevel.TabIndex = 2;
+            // 
             // UserForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -249,6 +295,8 @@
             tabAddUser.PerformLayout();
             tabEditUser.ResumeLayout(false);
             tabEditUser.PerformLayout();
+            tabTrainerLevel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)numLevel).EndInit();
             ResumeLayout(false);
         }
 
@@ -276,5 +324,9 @@
         private Button btnEditUser;
         private Button btnDeleteUser;
         private TextBox txbPassword;
+        private TabPage tabTrainerLevel;
+        private ComboBox cmbTrainerName;
+        private Button btnSetLevel;
+        private NumericUpDown numLevel;
     }
 }

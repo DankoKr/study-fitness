@@ -228,5 +228,26 @@ namespace ClassLibrary.DatabaseClasses
             }
             finally { _connection.Close(); }
         }
+
+        public void SetTrainerLevel(string trainerUsername, int level)
+        {
+            using (SqlConnection _connection = db.GetSqlConnection())
+            {
+                try
+                {
+                    string sql = $"UPDATE Users\r\nSET TrainerLevel = '{level}'\r\nWHERE Username = '{trainerUsername}';";
+                    SqlCommand cmd = new SqlCommand(sql, _connection);
+                    _connection.Open();
+                    cmd.ExecuteNonQuery();
+
+                }
+                catch (SqlException sqlEx)
+                {
+
+                    throw new Exception(sqlEx.Message);
+                }
+                finally { _connection.Close(); }
+            }
+        }
     }
 }

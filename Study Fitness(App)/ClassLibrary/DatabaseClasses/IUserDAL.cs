@@ -18,6 +18,6 @@ namespace ClassLibrary.DatabaseClasses
 		bool CheckLogin(string username, string password);
 		string GetSalt(String username);
 		void GetTrainerNameByPoints(int points, List<string> trainers);
-
+		void SetTrainerLevel(string trainerUsername, int level);
     }
 }

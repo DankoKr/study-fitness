@@ -21,12 +21,11 @@ namespace Study_Fitness_App_
         public UserForm()
         {
             InitializeComponent();
-			IUserDAL db = new UserDAL();
-			myManager = new UserAdministration(db);
-
-			// Load existing cardios from the database
-			db.LoadUsers(myManager);
-		}
+            IUserDAL db = new UserDAL();
+            myManager = new UserAdministration(db);
+            db.LoadUsers(myManager);
+            FillComboBox();
+        }
 
         private void btnViewAllUsers_Click(object sender, EventArgs e)
         {
@@ -51,6 +50,19 @@ namespace Study_Fitness_App_
             {
                 lbUsers.Items.Add(u);
                 lbManageUser.Items.Add(u);
+            }
+        }
+
+        private void FillComboBox()
+        {
+            cmbTrainerName.Items.Clear();
+
+            foreach (User trainer in myManager.GetUsers())
+            {
+                if (trainer.UserRole == "Trainer")
+                {
+                    cmbTrainerName.Items.Add(trainer.Username);
+                }
             }
         }
 
@@ -101,6 +113,15 @@ namespace Study_Fitness_App_
             myManager.ChangeUsername(selectedU, txbNewUsername.Text);
             ClearFields();
             ShowData();
+        }
+
+        private void btnSetLevel_Click(object sender, EventArgs e)
+        {
+            if (Convert.ToInt32(numLevel.Text) >= 0 && cmbTrainerName.Text != "")
+            {
+                db.SetTrainerLevel(cmbTrainerName.Text, Convert.ToInt32(numLevel.Text));
+            }
+            else { MessageBox.Show("Choose a trainer!", "ERROR"); }
         }
     }
 }
