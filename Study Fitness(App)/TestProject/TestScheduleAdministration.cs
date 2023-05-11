@@ -1,6 +1,7 @@
 using ClassLibrary.CardioClasses;
 using ClassLibrary.DatabaseClasses;
 using ClassLibrary.ScheduleClasses;
+using ClassLibrary.UserClasses;
 
 namespace TestProject
 {
@@ -74,6 +75,45 @@ namespace TestProject
 
             //Assert
             Assert.IsFalse(isOne);
+        }
+
+        [TestMethod]
+        public void AssignScheduleTest()
+        {
+            //Arrange
+            ScheduleAdministration myManager;
+            IScheduleDAL testScheduleDAL = new TestScheduleDAL();
+            myManager = new ScheduleAdministration(testScheduleDAL);
+            Schedule s1 = new Schedule("Title", Convert.ToDateTime("2023-01-12"), "desc", 1);
+            User u = new User("John","johny", "1234", "Member");
+
+            //Act			
+            myManager.AddSchedule(s1);
+            myManager.AssignSchedule(s1,u.FirstName,"Schedule Title");
+
+
+            //Assert
+            Assert.IsNotNull(s1.ClientName);
+        }
+
+        [TestMethod]
+        public void UnAssignScheduleTest()
+        {
+            //Arrange
+            ScheduleAdministration myManager;
+            IScheduleDAL testScheduleDAL = new TestScheduleDAL();
+            myManager = new ScheduleAdministration(testScheduleDAL);
+            Schedule s1 = new Schedule("Title", Convert.ToDateTime("2023-01-12"), "desc", 1);
+            User u = new User("John", "johny", "1234", "Member");
+
+            //Act			
+            myManager.AddSchedule(s1);
+            myManager.AssignSchedule(s1, u.FirstName, "Schedule Title");
+            myManager.UnAssignSchedule(s1);
+
+
+            //Assert
+            Assert.IsNull(s1.ClientName);
         }
     }
 }

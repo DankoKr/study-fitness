@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace ClassLibrary.DatabaseClasses
 {
@@ -60,7 +61,7 @@ namespace ClassLibrary.DatabaseClasses
 
         public void UnAssignSchedule(Schedule s)
         {
-            throw new NotImplementedException();
+            s.ClientName = null;
         }
 
         public void UpdateSchedule(Schedule s, int trainerId, string title, DateTime time, string description)
