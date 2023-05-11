@@ -93,7 +93,7 @@ namespace ClassLibrary.ScheduleClasses
         }
         public bool IsDumblicatedScheduleTime(DateTime date, string username) 
         {
-            bool isDublicated = db.IsDumblicatedScheduleTime(date, username);
+            bool isDublicated = db.IsDublicatedScheduleTime(date, username);
             return isDublicated;
         }
     }

@@ -33,7 +33,7 @@ namespace ClassLibrary.DatabaseClasses
             ids.Add(3);
         }
 
-        public bool IsDumblicatedScheduleTime(DateTime date, string username)
+        public bool IsDublicatedScheduleTime(DateTime date, string username)
         {
             throw new NotImplementedException();
         }

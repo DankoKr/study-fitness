@@ -20,6 +20,6 @@ namespace ClassLibrary.DatabaseClasses
         void UnAssignSchedule(Schedule s);
         void LoadUserBookings(ScheduleAdministration myManager, string username);
         int GetTotalUserBookings(string name);
-        bool IsDumblicatedScheduleTime(DateTime date, string username);
+        bool IsDublicatedScheduleTime(DateTime date, string username);
     }
 }

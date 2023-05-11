@@ -301,7 +301,7 @@ namespace ClassLibrary.DatabaseClasses
             }
             finally { _connection.Close(); }
         }
-        public bool IsDumblicatedScheduleTime(DateTime date, string username) 
+        public bool IsDublicatedScheduleTime(DateTime date, string username) 
         {
             SqlConnection _connection = db.GetSqlConnection();
 
