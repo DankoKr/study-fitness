@@ -38,11 +38,19 @@ namespace Website.Pages.MyPages
                 string scheduleTitle = Request.Form["scheduleTitle"];
                 int counter = db.GetTotalUserBookings(ClientName);
 
-
                 if (scheduleTitle != "" && counter < 3)
                 {
-                    schedule = myManager.GetSchedule(scheduleTitle);
-                    myManager.AssignSchedule(schedule, ClientName, scheduleTitle);
+                    Schedule s = myManager.GetSchedule(scheduleTitle);
+                    bool dublicatedTime = db.IsDumblicatedScheduleTime(s.Date, ClientName);
+                    if (!dublicatedTime)
+                    {
+                        schedule = myManager.GetSchedule(scheduleTitle);
+                        myManager.AssignSchedule(schedule, ClientName, scheduleTitle);
+                    }
+                    else
+                    {
+                        Message = "You cannot sign for two different schedules that are at the same time!";
+                    }
                 }
                 else 
                 {

@@ -301,5 +301,34 @@ namespace ClassLibrary.DatabaseClasses
             }
             finally { _connection.Close(); }
         }
+        public bool IsDumblicatedScheduleTime(DateTime date, string username) 
+        {
+            SqlConnection _connection = db.GetSqlConnection();
+
+            try
+            {
+                string sql = $"SELECT COUNT(*) FROM Schedule WHERE [date] = @date AND client_name = @username";
+                SqlCommand cmd = new SqlCommand(sql, _connection);
+                cmd.Parameters.AddWithValue("@date", date.Date);
+                cmd.Parameters.AddWithValue("@username", username);
+                _connection.Open();
+                int count = (int)cmd.ExecuteScalar();
+                _connection.Close();
+
+                if (count != 0)
+                {
+                    return true;
+                }
+                return false;
+
+
+            }
+            catch (SqlException sqlEx)
+            {
+
+                throw new Exception(sqlEx.Message);
+            }
+            finally { _connection.Close(); }
+        }
     }
 }

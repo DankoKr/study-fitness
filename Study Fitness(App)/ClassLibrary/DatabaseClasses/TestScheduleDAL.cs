@@ -33,6 +33,11 @@ namespace ClassLibrary.DatabaseClasses
             ids.Add(3);
         }
 
+        public bool IsDumblicatedScheduleTime(DateTime date, string username)
+        {
+            throw new NotImplementedException();
+        }
+
         public void LoadSchedules(ScheduleAdministration myManager)
         {
             string date = "2023-08-12";
