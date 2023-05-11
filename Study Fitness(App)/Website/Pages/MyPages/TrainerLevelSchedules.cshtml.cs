@@ -36,12 +36,12 @@ namespace Website.Pages.MyPages
                 db.LoadSchedulesTrainerLevel(level, myManager);   
                 ClientName = HttpContext.Session.GetString("Username");
                 string scheduleTitle = Request.Form["scheduleTitle"];
-                int counter = db.GetTotalUserBookings(ClientName);
+                int counter = myManager.GetTotalUserBookings(ClientName);
 
                 if (scheduleTitle != "" && counter < 3)
                 {
                     Schedule s = myManager.GetSchedule(scheduleTitle);
-                    bool dublicatedTime = db.IsDumblicatedScheduleTime(s.Date, ClientName);
+                    bool dublicatedTime = myManager.IsDumblicatedScheduleTime(s.Date, ClientName);
                     if (!dublicatedTime)
                     {
                         schedule = myManager.GetSchedule(scheduleTitle);

@@ -65,9 +65,14 @@ namespace ClassLibrary.ScheduleClasses
         public void AssignSchedule(Schedule s,string client, string scheduleTitle) 
         {
             if (client != null)
-            {   
-                s.ClientName = client;
-                db.AssignSchedule(s, client);
+            {
+                bool isDublicated = IsDumblicatedScheduleTime(s.Date, client);
+                int counter = GetTotalUserBookings(client);
+                if (!isDublicated && counter < 3)
+                {
+                    s.ClientName = client;
+                    db.AssignSchedule(s, client);
+                }
             }
         }
 
@@ -81,6 +86,15 @@ namespace ClassLibrary.ScheduleClasses
         {
             db.LoadTrainerSchedules(trainer_id, trainerSchedules);
         }
-
+        public int GetTotalUserBookings(string name) 
+        {
+            int counter = db.GetTotalUserBookings(name);
+            return counter;
+        }
+        public bool IsDumblicatedScheduleTime(DateTime date, string username) 
+        {
+            bool isDublicated = db.IsDumblicatedScheduleTime(date, username);
+            return isDublicated;
+        }
     }
 }
