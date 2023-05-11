@@ -31,7 +31,9 @@ namespace Website.Pages.MyPages
             if (ModelState.IsValid)
             {
                 myManager = new ScheduleAdministration(db);
-                db.LoadSchedules(myManager);   
+                string num = Request.Query["level"];
+                int level = Convert.ToInt32(num);
+                db.LoadSchedulesTrainerLevel(level, myManager);   
                 ClientName = HttpContext.Session.GetString("Username");
                 string scheduleTitle = Request.Form["scheduleTitle"];
                 int counter = db.GetTotalUserBookings(ClientName);
