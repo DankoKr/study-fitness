@@ -274,5 +274,32 @@ namespace ClassLibrary.DatabaseClasses
             }
             finally { _connection.Close(); }
         }
+
+        public int GetTotalUserBookings(string name)
+        {
+            SqlConnection _connection = db.GetSqlConnection();
+            int counter = 0;
+
+            try
+            {
+                string sql = $"SELECT COUNT(*) \r\nFROM Schedule s\r\nJOIN Users u ON u.Id = s.trainer_id\r\nWHERE client_name = '{name}';";
+                SqlCommand cmd = new SqlCommand(sql, _connection);
+                _connection.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    counter = Convert.ToInt32(dr[0]);
+                    return counter;
+                }
+                dr.Close();
+                return counter;
+            }
+            catch (SqlException sqlEx)
+            {
+
+                throw new Exception(sqlEx.Message);
+            }
+            finally { _connection.Close(); }
+        }
     }
 }

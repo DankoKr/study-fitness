@@ -21,6 +21,11 @@ namespace ClassLibrary.DatabaseClasses
             s.ClientName = name;
         }
 
+        public int GetTotalUserBookings(string name)
+        {
+            throw new NotImplementedException();
+        }
+
         public void GetTrainersId(List<int> ids)
         {
             ids.Add(1);

@@ -16,6 +16,8 @@ namespace Website.Pages.MyPages
         public Schedule? schedule { get; set; }
         public string? ClientName { get; set; }
         public string? ScheduleTitle { get; set; }
+        public String? Message { get; set; }
+
         public void OnGet()
         {
             myManager = new ScheduleAdministration(db);
@@ -32,11 +34,17 @@ namespace Website.Pages.MyPages
                 db.LoadSchedules(myManager);   
                 ClientName = HttpContext.Session.GetString("Username");
                 string scheduleTitle = Request.Form["scheduleTitle"];
+                int counter = db.GetTotalUserBookings(ClientName);
 
-                if (scheduleTitle != "")
+
+                if (scheduleTitle != "" && counter < 3)
                 {
                     schedule = myManager.GetSchedule(scheduleTitle);
                     myManager.AssignSchedule(schedule, ClientName, scheduleTitle);
+                }
+                else 
+                {
+                    Message = "You have reached the maximum Bookings per member!";
                 }
             }
             return Page();

@@ -120,6 +120,7 @@ namespace Study_Fitness_App_
             if (Convert.ToInt32(numLevel.Text) >= 0 && cmbTrainerName.Text != "")
             {
                 db.SetTrainerLevel(cmbTrainerName.Text, Convert.ToInt32(numLevel.Text));
+                MessageBox.Show("Trainer level changed!", "Done");
             }
             else { MessageBox.Show("Choose a trainer!", "ERROR"); }
         }

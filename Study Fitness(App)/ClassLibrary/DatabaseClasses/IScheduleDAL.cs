@@ -19,5 +19,6 @@ namespace ClassLibrary.DatabaseClasses
         void LoadTrainerSchedules(int trainer_id, List<Schedule> schedules);
         void UnAssignSchedule(Schedule s);
         void LoadUserBookings(ScheduleAdministration myManager, string username);
+        int GetTotalUserBookings(string name);
     }
 }
