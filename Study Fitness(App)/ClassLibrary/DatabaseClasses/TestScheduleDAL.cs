@@ -1,6 +1,7 @@
 ﻿using ClassLibrary.ScheduleClasses;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,15 @@ namespace ClassLibrary.DatabaseClasses
 
         public int GetTotalUserBookings(string name)
         {
-            throw new NotImplementedException();
+            int counter = 0;
+            foreach (Schedule schedule in schedules) 
+            {
+                if (schedule.ClientName == name) 
+                {
+                    counter++;
+                }
+            }
+            return counter;
         }
 
         public void GetTrainersId(List<int> ids)
@@ -35,7 +44,14 @@ namespace ClassLibrary.DatabaseClasses
 
         public bool IsDublicatedScheduleTime(DateTime date, string username)
         {
-            throw new NotImplementedException();
+            foreach (Schedule s in schedules)
+            {
+                if (date == s.Date && username == s.ClientName)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public void LoadSchedules(ScheduleAdministration myManager)
