@@ -80,6 +80,11 @@ namespace ClassLibrary.DatabaseClasses
             throw new NotImplementedException();
         }
 
+        public string MostBookedTrainer()
+        {
+            throw new NotImplementedException();
+        }
+
         public void RemoveSchedule(Schedule s)
         {
             schedules.Remove(s);

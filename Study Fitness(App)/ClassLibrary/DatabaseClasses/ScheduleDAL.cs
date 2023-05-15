@@ -330,5 +330,33 @@ namespace ClassLibrary.DatabaseClasses
             }
             finally { _connection.Close(); }
         }
+        public string MostBookedTrainer() 
+        {
+            SqlConnection _connection = db.GetSqlConnection();
+            string trainerName = "";
+
+            try
+            {
+                string sql = $"SELECT TOP 1 u.FirstName, COUNT(*) AS schedule_count\r\nFROM Schedule s\r\nJOIN Users u ON s.trainer_id = u.Id\r\nWHERE s.client_name IS NOT NULL\r\nGROUP BY s.trainer_id, u.FirstName\r\nORDER BY schedule_count DESC;";
+                SqlCommand cmd = new SqlCommand(sql, _connection);
+                _connection.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    trainerName = Convert.ToString(dr[0]);
+                    trainerName += " - ";
+                    trainerName += Convert.ToString(dr[1]);
+                    return trainerName;
+                }
+                dr.Close();
+                return trainerName;
+            }
+            catch (SqlException sqlEx)
+            {
+
+                throw new Exception(sqlEx.Message);
+            }
+            finally { _connection.Close(); }
+        }
     }
 }

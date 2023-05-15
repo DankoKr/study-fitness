@@ -40,6 +40,7 @@
             panelLogo = new Panel();
             pictureBox1 = new PictureBox();
             ToChartForm = new Button();
+            btnToScheduleStats = new Button();
             panelButtons.SuspendLayout();
             panelHeading.SuspendLayout();
             panelLogo.SuspendLayout();
@@ -169,19 +170,31 @@
             // ToChartForm
             // 
             ToChartForm.BackColor = SystemColors.ActiveCaption;
-            ToChartForm.Location = new Point(408, 219);
+            ToChartForm.Location = new Point(318, 227);
             ToChartForm.Name = "ToChartForm";
-            ToChartForm.Size = new Size(94, 56);
+            ToChartForm.Size = new Size(101, 80);
             ToChartForm.TabIndex = 3;
-            ToChartForm.Text = "Statistics";
+            ToChartForm.Text = "Statistics Comments";
             ToChartForm.UseVisualStyleBackColor = false;
             ToChartForm.Click += ToChartForm_Click;
+            // 
+            // btnToScheduleStats
+            // 
+            btnToScheduleStats.BackColor = SystemColors.ActiveCaption;
+            btnToScheduleStats.Location = new Point(474, 227);
+            btnToScheduleStats.Name = "btnToScheduleStats";
+            btnToScheduleStats.Size = new Size(101, 80);
+            btnToScheduleStats.TabIndex = 4;
+            btnToScheduleStats.Text = "Statistics Schedules";
+            btnToScheduleStats.UseVisualStyleBackColor = false;
+            btnToScheduleStats.Click += btnToScheduleStats_Click;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnToScheduleStats);
             Controls.Add(ToChartForm);
             Controls.Add(panelLogo);
             Controls.Add(panelHeading);
@@ -209,5 +222,6 @@
         private Button btnToCommentsForm;
         private Button btnToScheduleForm;
         private Button ToChartForm;
+        private Button btnToScheduleStats;
     }
 }

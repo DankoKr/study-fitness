@@ -65,5 +65,11 @@ namespace Study_Fitness_App_
             ChartForm frm = new ChartForm();
             frm.Show();
         }
+
+        private void btnToScheduleStats_Click(object sender, EventArgs e)
+        {
+            ScheduleStatsForm frm = new ScheduleStatsForm();
+            frm.Show();
+        }
     }
 }

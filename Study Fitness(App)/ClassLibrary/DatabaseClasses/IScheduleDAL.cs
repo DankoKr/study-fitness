@@ -21,5 +21,6 @@ namespace ClassLibrary.DatabaseClasses
         void LoadUserBookings(ScheduleAdministration myManager, string username);
         int GetTotalUserBookings(string name);
         bool IsDublicatedScheduleTime(DateTime date, string username);
+        string MostBookedTrainer();
     }
 }
