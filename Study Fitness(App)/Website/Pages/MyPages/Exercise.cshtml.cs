@@ -15,18 +15,47 @@ namespace Website.Pages.MyPages
         public int CurrentPage { get; set; } = 1;
         public int PageSize { get; set; } = 10;
 
-        public void OnGet(int? page)
+        public void OnGet(int? page, string sort)
         {
             myManager = new ExerciseAdministration(exData);
 
-			exData.LoadExercises(myManager);
+            exData.LoadExercises(myManager);
             MyExercises = myManager.GetExercises();
 
             if (page != null)
             {
                 CurrentPage = page.Value;
             }
+
+            if (!string.IsNullOrEmpty(sort))
+            {
+                MyExercises = SortExercises(sort);
+            }
         }
+
+        private IEnumerable<Exercise> SortExercises(string sort)
+        {
+            var sortedExercises = MyExercises.ToList();
+
+            switch (sort.ToLower())
+            {
+                case "weight":
+                    myManager.SortExercises(sortedExercises);
+                    break;
+                case "name":
+                    myManager.SortExercisesByName(sortedExercises);
+                    break;
+                case "reps":
+                    myManager.SortExercises(sortedExercises);
+                    break;
+                default:
+                    break;
+            }
+
+            return sortedExercises;
+        }
+
+
 
         public IEnumerable<Exercise> PaginatedExercises
         {

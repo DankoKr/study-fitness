@@ -7,6 +7,15 @@
 <br />
 <h1>Here are a bunch of exercises to help you with your goal</h1>
 <a class="new-exercise-link" asp-area="" asp-page="/MyPages/Cardio">View Cardios</a>
+<br />
+
+<!-- Buttons -->
+<div>
+    <button onclick="sortByWeight()">Sort by Weight</button>
+    <button onclick="sortByName()">Sort by Name</button>
+    <button onclick="sortByReps()">Sort by Reps</button>
+</div>
+
 
 <div class="column-row-exercise">
     @foreach (var data in Model.PaginatedExercises)
@@ -18,7 +27,6 @@
                 <p><a asp-page="/MyPages/ExerciseDetails" asp-route-name=@data.Name>More details</a></p>
             </div>
         </div>
-        
     }
 </div>
 
@@ -48,3 +56,4 @@
         }
     </div>
 }
+
