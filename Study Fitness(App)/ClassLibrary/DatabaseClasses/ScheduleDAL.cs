@@ -358,5 +358,32 @@ namespace ClassLibrary.DatabaseClasses
             }
             finally { _connection.Close(); }
         }
+
+        public int NumBookedSchedulesPerTrainerLevel(int level)
+        {
+            SqlConnection _connection = db.GetSqlConnection();
+            int bookings = 0;
+
+            try
+            {
+                string sql = $"SELECT U.TrainerLevel, COUNT(*) AS schedule_count\r\nFROM Schedule S\r\nJOIN Users U ON S.trainer_id = U.Id\r\nWHERE S.client_name IS NOT NULL AND U.TrainerLevel = {level}\r\nGROUP BY U.TrainerLevel\r\nORDER BY schedule_count DESC;";
+                SqlCommand cmd = new SqlCommand(sql, _connection);
+                _connection.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    bookings = Convert.ToInt32(dr[1]);
+                    return bookings;
+                }
+                dr.Close();
+                return bookings;
+            }
+            catch (SqlException sqlEx)
+            {
+
+                throw new Exception(sqlEx.Message);
+            }
+            finally { _connection.Close(); }
+        }
     }
 }

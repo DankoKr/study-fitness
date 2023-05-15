@@ -85,6 +85,11 @@ namespace ClassLibrary.DatabaseClasses
             throw new NotImplementedException();
         }
 
+        public int NumBookedSchedulesPerTrainerLevel(int level)
+        {
+            throw new NotImplementedException();
+        }
+
         public void RemoveSchedule(Schedule s)
         {
             schedules.Remove(s);

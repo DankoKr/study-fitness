@@ -22,5 +22,6 @@ namespace ClassLibrary.DatabaseClasses
         int GetTotalUserBookings(string name);
         bool IsDublicatedScheduleTime(DateTime date, string username);
         string MostBookedTrainer();
+        int NumBookedSchedulesPerTrainerLevel(int level);
     }
 }
