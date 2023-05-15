@@ -24,20 +24,19 @@ namespace Website.Pages.MyPages
 
         public IActionResult OnGet()
         {
-			myManager = new UserAdministration(db);
+            myManager = new UserAdministration(db);
 
             // check if user is already logged in
             if (HttpContext.Session.GetString("Username") != null)
             {
-                string name;
-                name = HttpContext.Session.GetString("Username");
+                string name = HttpContext.Session.GetString("Username");
                 db.GetUserByUsername(myManager, name);
                 user = myManager.GetUser(name);
 
                 if (user.UserRole == "Admin")
-                    Response.Redirect("/MyPages/AdminPage");
+                    return RedirectToPage("/MyPages/AdminPage");
                 else
-                    Response.Redirect("/MyPages/PersonalPage");
+                    return RedirectToPage("/MyPages/PersonalPage");
             }
             else
             {
@@ -49,17 +48,17 @@ namespace Website.Pages.MyPages
                     user = myManager.GetUser(username);
 
                     if (user.UserRole == "Admin")
-                        Response.Redirect("/MyPages/AdminPage");
+                        return RedirectToPage("/MyPages/AdminPage");
                     else
-                        Response.Redirect("/MyPages/PersonalPage");
+                        return RedirectToPage("/MyPages/PersonalPage");
                 }
-
             }
             return Page();
         }
 
 
-		public IActionResult OnPost()
+
+        public IActionResult OnPost()
 		{
 			myManager = new UserAdministration(db);
 
