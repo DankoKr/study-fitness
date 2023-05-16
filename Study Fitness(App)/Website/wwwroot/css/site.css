@@ -592,3 +592,51 @@ input[type="submit"]:hover {
 }
 
 /*---------------------------------------------------*/
+/*-----Sorting/Searching-------------*/
+/* Search Bar */
+.search-form {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.search-input {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+    width: 300px;
+    font-size: 16px;
+}
+
+.search-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+    .search-button:hover {
+        background-color: #0056b3;
+    }
+
+/* Sort Buttons */
+.sort-button {
+    margin: 5px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+    .sort-button:hover {
+        background-color: #1c7430;
+    }
+
+/*----------------------------------*/

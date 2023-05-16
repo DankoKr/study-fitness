@@ -1,5 +1,6 @@
 using ClassLibrary.CardioClasses;
 using ClassLibrary.DatabaseClasses;
+using ClassLibrary.ExerciseClasses;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -14,7 +15,8 @@ namespace Website.Pages.MyPages
 
 		public int CurrentPage { get; set; } = 1;
         public int PageSize { get; set; } = 10;
-        public void OnGet(int? page)
+        public string SearchTerm { get; set; } = "";
+        public void OnGet(int? page, string sort, string search)
         {
 			myManager = new CardioAdministration(db);
 			db.LoadCardios(myManager);
@@ -24,6 +26,16 @@ namespace Website.Pages.MyPages
             {
                 CurrentPage = page.Value;
             }
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                MyCardios = SearchExercises(search);
+            }
+        }
+
+        private IEnumerable<Cardio> SearchExercises(string search)
+        {
+            return MyCardios.Where(e => e.Name.Contains(search, StringComparison.OrdinalIgnoreCase));
         }
 
         public IEnumerable<Cardio> PaginatedExercises

@@ -7,6 +7,14 @@
 <br />
 <h1>Here are a bunch of cardios to help you with your goal</h1>
 <a class="new-exercise-link" asp-area="" asp-page="/MyPages/Exercise">View Exercises</a>
+<br />
+
+<!-- Search Bar -->
+<form class="search-form" method="get">
+    <input class="search-input" type="text" name="search" placeholder="Search" value="@Model.SearchTerm">
+    <button class="search-button" type="submit">Search</button>
+</form>
+
 
 <div class="column-row-exercise">
     @foreach (var data in Model.PaginatedExercises)

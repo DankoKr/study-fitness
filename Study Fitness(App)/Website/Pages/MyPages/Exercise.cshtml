@@ -9,12 +9,19 @@
 <a class="new-exercise-link" asp-area="" asp-page="/MyPages/Cardio">View Cardios</a>
 <br />
 
+<!-- Search Bar -->
+<form class="search-form" method="get">
+    <input class="search-input" type="text" name="search" placeholder="Search" value="@Model.SearchTerm">
+    <button class="search-button" type="submit">Search</button>
+</form>
+
 <!-- Buttons -->
-<div>
-    <button onclick="sortByWeight()">Sort by Weight</button>
-    <button onclick="sortByName()">Sort by Name</button>
-    <button onclick="sortByReps()">Sort by Reps</button>
+<div class="sort-buttons">
+    <button class="sort-button" onclick="sortByWeight()">Sort by Weight</button>
+    <button class="sort-button" onclick="sortByName()">Sort by Name</button>
+    <button class="sort-button" onclick="sortByReps()">Sort by Reps</button>
 </div>
+
 
 
 <div class="column-row-exercise">

@@ -14,8 +14,9 @@ namespace Website.Pages.MyPages
         
         public int CurrentPage { get; set; } = 1;
         public int PageSize { get; set; } = 10;
+        public string SearchTerm { get; set; } = "";
 
-        public void OnGet(int? page, string sort)
+        public void OnGet(int? page, string sort, string search)
         {
             myManager = new ExerciseAdministration(exData);
 
@@ -30,6 +31,11 @@ namespace Website.Pages.MyPages
             if (!string.IsNullOrEmpty(sort))
             {
                 MyExercises = SortExercises(sort);
+            }
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                MyExercises = SearchExercises(search);
             }
         }
 
@@ -55,7 +61,10 @@ namespace Website.Pages.MyPages
             return sortedExercises;
         }
 
-
+        private IEnumerable<Exercise> SearchExercises(string search)
+        {
+            return MyExercises.Where(e => e.Name.Contains(search, StringComparison.OrdinalIgnoreCase));
+        }
 
         public IEnumerable<Exercise> PaginatedExercises
         {
