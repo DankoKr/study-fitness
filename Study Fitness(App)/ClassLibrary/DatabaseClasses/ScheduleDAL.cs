@@ -330,35 +330,32 @@ namespace ClassLibrary.DatabaseClasses
             }
             finally { _connection.Close(); }
         }
-        public string MostBookedTrainer() 
+        public Dictionary<string, int> GetTrainersBookings()
         {
             SqlConnection _connection = db.GetSqlConnection();
-            string trainerName = "";
+            Dictionary<string, int> trainersBookings = new Dictionary<string, int>();
 
             try
             {
-                string sql = $"SELECT TOP 1 u.FirstName, COUNT(*) AS schedule_count\r\nFROM Schedule s\r\nJOIN Users u ON s.trainer_id = u.Id\r\nWHERE s.client_name IS NOT NULL\r\nGROUP BY s.trainer_id, u.FirstName\r\nORDER BY schedule_count DESC;";
+                string sql = $"SELECT u.FirstName, COUNT(*) AS schedule_count\r\nFROM Schedule s\r\nJOIN Users u ON s.trainer_id = u.Id\r\nWHERE s.client_name IS NOT NULL\r\nGROUP BY s.trainer_id, u.FirstName;";
                 SqlCommand cmd = new SqlCommand(sql, _connection);
                 _connection.Open();
                 SqlDataReader dr = cmd.ExecuteReader();
-                if (dr.Read())
+                while (dr.Read())
                 {
-                    trainerName = Convert.ToString(dr[0]);
-                    trainerName += " - ";
-                    trainerName += Convert.ToString(dr[1]);
-                    return trainerName;
+                    string trainerName = dr.GetString(0);
+                    int scheduleCount = dr.GetInt32(1);
+                    trainersBookings[trainerName] = scheduleCount;
                 }
                 dr.Close();
-                return trainerName;
+                return trainersBookings;
             }
             catch (SqlException sqlEx)
             {
-
                 throw new Exception(sqlEx.Message);
             }
             finally { _connection.Close(); }
         }
-
         public int NumBookedSchedulesPerTrainerLevel(int level)
         {
             SqlConnection _connection = db.GetSqlConnection();

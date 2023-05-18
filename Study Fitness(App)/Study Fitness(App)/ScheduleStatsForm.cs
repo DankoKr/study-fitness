@@ -17,7 +17,18 @@ namespace Study_Fitness_App_
         {
             InitializeComponent();
             IScheduleDAL db = new ScheduleDAL();
-            lblFamousTrainer.Text += db.MostBookedTrainer();
+            Dictionary<string, int> trainersBookings = db.GetTrainersBookings();
+
+            if (trainersBookings.Count > 0)
+            {
+                var mostBookedTrainer = trainersBookings.OrderByDescending(x => x.Value).First();
+                lblFamousTrainer.Text += $"{mostBookedTrainer.Key} - {mostBookedTrainer.Value}";
+            }
+            else
+            {
+                lblFamousTrainer.Text = "No trainers found";
+            }
+
 
             chartSchedules.Titles.Add("Schedules booked by trainer level");
             chartSchedules.ChartAreas[0].AxisX.Title = "trainer level";

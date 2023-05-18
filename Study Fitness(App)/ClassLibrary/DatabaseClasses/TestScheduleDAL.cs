@@ -35,6 +35,11 @@ namespace ClassLibrary.DatabaseClasses
             return counter;
         }
 
+        public Dictionary<string, int> GetTrainersBookings()
+        {
+            throw new NotImplementedException();
+        }
+
         public void GetTrainersId(List<int> ids)
         {
             ids.Add(1);
@@ -76,11 +81,6 @@ namespace ClassLibrary.DatabaseClasses
         }
 
         public void LoadUserBookings(ScheduleAdministration myManager, string username)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string MostBookedTrainer()
         {
             throw new NotImplementedException();
         }
