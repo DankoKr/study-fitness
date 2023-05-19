@@ -42,7 +42,7 @@ namespace Study_Fitness_App_
                     frm.Show();
                     this.Hide();
                 }
-                else 
+                else
                 {
                     MessageBox.Show("Sorry, but you don't have access!", "ERROR");
                 }

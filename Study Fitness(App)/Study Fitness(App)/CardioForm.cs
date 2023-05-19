@@ -19,12 +19,12 @@ namespace Study_Fitness_App_
         public CardioForm()
         {
             InitializeComponent();
-			ICardioDAL cardioDAL = new CardioDAL();
-			myAdministration = new CardioAdministration(cardioDAL);
+            ICardioDAL cardioDAL = new CardioDAL();
+            myAdministration = new CardioAdministration(cardioDAL);
 
-			// Load existing cardios from the database
-			cardioDAL.LoadCardios(myAdministration);
-		}
+            // Load existing cardios from the database
+            cardioDAL.LoadCardios(myAdministration);
+        }
 
         private void btnCreateCardio_Click(object sender, EventArgs e)
         {
@@ -49,7 +49,7 @@ namespace Study_Fitness_App_
             cmbNewDifficulty.Text = "";
         }
 
-        private void ShowData() 
+        private void ShowData()
         {
             lbCardios.Items.Clear();
             lbManageCardio.Items.Clear();

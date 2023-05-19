@@ -35,22 +35,26 @@
             // 
             // btnView
             // 
-            btnView.Location = new Point(104, 256);
+            btnView.BackColor = Color.Violet;
+            btnView.FlatStyle = FlatStyle.Flat;
+            btnView.Location = new Point(220, 252);
             btnView.Name = "btnView";
             btnView.Size = new Size(94, 57);
             btnView.TabIndex = 0;
             btnView.Text = "View details";
-            btnView.UseVisualStyleBackColor = true;
+            btnView.UseVisualStyleBackColor = false;
             btnView.Click += btnView_Click;
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(284, 256);
+            btnDelete.BackColor = Color.Violet;
+            btnDelete.FlatStyle = FlatStyle.Flat;
+            btnDelete.Location = new Point(385, 252);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(94, 57);
             btnDelete.TabIndex = 1;
             btnDelete.Text = "Delete";
-            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.UseVisualStyleBackColor = false;
             btnDelete.Click += btnDelete_Click;
             // 
             // lbComments
@@ -58,7 +62,7 @@
             lbComments.DisplayMember = "Title";
             lbComments.FormattingEnabled = true;
             lbComments.ItemHeight = 20;
-            lbComments.Location = new Point(84, 59);
+            lbComments.Location = new Point(185, 55);
             lbComments.Name = "lbComments";
             lbComments.Size = new Size(328, 144);
             lbComments.TabIndex = 2;
@@ -67,7 +71,8 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(490, 362);
+            BackColor = Color.Cyan;
+            ClientSize = new Size(673, 370);
             Controls.Add(lbComments);
             Controls.Add(btnDelete);
             Controls.Add(btnView);

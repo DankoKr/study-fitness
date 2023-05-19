@@ -42,7 +42,7 @@
             legend1.Name = "CommentsLegend";
             legend1.Title = "Legend Rating";
             chartComments.Legends.Add(legend1);
-            chartComments.Location = new Point(12, 12);
+            chartComments.Location = new Point(141, 12);
             chartComments.Name = "chartComments";
             chartComments.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.SeaGreen;
             series1.ChartArea = "ChartArea1";
@@ -50,7 +50,7 @@
             series1.Legend = "CommentsLegend";
             series1.Name = "Comments";
             chartComments.Series.Add(series1);
-            chartComments.Size = new Size(375, 375);
+            chartComments.Size = new Size(413, 336);
             chartComments.TabIndex = 0;
             chartComments.Text = "Comments";
             // 
@@ -58,7 +58,8 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(395, 394);
+            BackColor = Color.Cyan;
+            ClientSize = new Size(673, 370);
             Controls.Add(chartComments);
             Name = "ChartForm";
             Text = "ChartForm";

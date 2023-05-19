@@ -21,7 +21,7 @@ namespace Study_Fitness_App_
             InitializeComponent();
             myManager = new CommentAdministration(db);
             db.LoadComments(myManager);
-            ShowData(); 
+            ShowData();
         }
 
         private void btnView_Click(object sender, EventArgs e)

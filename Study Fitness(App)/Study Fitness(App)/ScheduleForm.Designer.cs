@@ -52,10 +52,10 @@
             btnEdit = new Button();
             btnDelete = new Button();
             tabTrainerSchedule = new TabPage();
+            btnViewTrainerSchedule = new Button();
             btnShowTrainerSchedules = new Button();
             cmbTrainerId = new ComboBox();
             lbScheduleTrainer = new ListBox();
-            btnViewTrainerSchedule = new Button();
             tabConCardio.SuspendLayout();
             tabViewCardio.SuspendLayout();
             tabAddCardio.SuspendLayout();
@@ -69,10 +69,10 @@
             tabConCardio.Controls.Add(tabAddCardio);
             tabConCardio.Controls.Add(tabEditCardio);
             tabConCardio.Controls.Add(tabTrainerSchedule);
-            tabConCardio.Location = new Point(12, 5);
+            tabConCardio.Location = new Point(12, 2);
             tabConCardio.Name = "tabConCardio";
             tabConCardio.SelectedIndex = 0;
-            tabConCardio.Size = new Size(632, 368);
+            tabConCardio.Size = new Size(632, 356);
             tabConCardio.TabIndex = 1;
             // 
             // tabViewCardio
@@ -83,29 +83,33 @@
             tabViewCardio.Location = new Point(4, 29);
             tabViewCardio.Name = "tabViewCardio";
             tabViewCardio.Padding = new Padding(3);
-            tabViewCardio.Size = new Size(624, 335);
+            tabViewCardio.Size = new Size(624, 323);
             tabViewCardio.TabIndex = 0;
             tabViewCardio.Text = "View All";
             tabViewCardio.UseVisualStyleBackColor = true;
             // 
             // btnViewAllSchedules
             // 
+            btnViewAllSchedules.BackColor = Color.Violet;
+            btnViewAllSchedules.FlatStyle = FlatStyle.Flat;
             btnViewAllSchedules.Location = new Point(409, 104);
             btnViewAllSchedules.Name = "btnViewAllSchedules";
             btnViewAllSchedules.Size = new Size(94, 60);
             btnViewAllSchedules.TabIndex = 2;
             btnViewAllSchedules.Text = "View All Schedules";
-            btnViewAllSchedules.UseVisualStyleBackColor = true;
+            btnViewAllSchedules.UseVisualStyleBackColor = false;
             btnViewAllSchedules.Click += btnViewAllSchedules_Click;
             // 
             // btnViewDetails
             // 
+            btnViewDetails.BackColor = Color.Violet;
+            btnViewDetails.FlatStyle = FlatStyle.Flat;
             btnViewDetails.Location = new Point(409, 170);
             btnViewDetails.Name = "btnViewDetails";
             btnViewDetails.Size = new Size(94, 60);
             btnViewDetails.TabIndex = 1;
             btnViewDetails.Text = "View Details";
-            btnViewDetails.UseVisualStyleBackColor = true;
+            btnViewDetails.UseVisualStyleBackColor = false;
             btnViewDetails.Click += btnViewDetails_Click;
             // 
             // lbSchedule
@@ -130,7 +134,7 @@
             tabAddCardio.Location = new Point(4, 29);
             tabAddCardio.Name = "tabAddCardio";
             tabAddCardio.Padding = new Padding(3);
-            tabAddCardio.Size = new Size(624, 335);
+            tabAddCardio.Size = new Size(624, 323);
             tabAddCardio.TabIndex = 1;
             tabAddCardio.Text = "Add";
             tabAddCardio.UseVisualStyleBackColor = true;
@@ -146,12 +150,14 @@
             // 
             // btnCreateSchedule
             // 
+            btnCreateSchedule.BackColor = Color.Violet;
+            btnCreateSchedule.FlatStyle = FlatStyle.Flat;
             btnCreateSchedule.Location = new Point(259, 196);
             btnCreateSchedule.Name = "btnCreateSchedule";
             btnCreateSchedule.Size = new Size(94, 54);
             btnCreateSchedule.TabIndex = 7;
             btnCreateSchedule.Text = "Create";
-            btnCreateSchedule.UseVisualStyleBackColor = true;
+            btnCreateSchedule.UseVisualStyleBackColor = false;
             btnCreateSchedule.Click += btnCreateSchedule_Click;
             // 
             // lblTrainer
@@ -210,7 +216,7 @@
             tabEditCardio.Location = new Point(4, 29);
             tabEditCardio.Name = "tabEditCardio";
             tabEditCardio.Padding = new Padding(3);
-            tabEditCardio.Size = new Size(624, 335);
+            tabEditCardio.Size = new Size(624, 323);
             tabEditCardio.TabIndex = 2;
             tabEditCardio.Text = "Edit/Delete";
             tabEditCardio.UseVisualStyleBackColor = true;
@@ -278,22 +284,26 @@
             // 
             // btnEdit
             // 
+            btnEdit.BackColor = Color.Violet;
+            btnEdit.FlatStyle = FlatStyle.Flat;
             btnEdit.Location = new Point(314, 222);
             btnEdit.Name = "btnEdit";
             btnEdit.Size = new Size(94, 44);
             btnEdit.TabIndex = 1;
             btnEdit.Text = "Edit";
-            btnEdit.UseVisualStyleBackColor = true;
+            btnEdit.UseVisualStyleBackColor = false;
             btnEdit.Click += btnEdit_Click;
             // 
             // btnDelete
             // 
+            btnDelete.BackColor = Color.Violet;
+            btnDelete.FlatStyle = FlatStyle.Flat;
             btnDelete.Location = new Point(455, 222);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(94, 44);
             btnDelete.TabIndex = 0;
             btnDelete.Text = "Delete";
-            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.UseVisualStyleBackColor = false;
             btnDelete.Click += btnDelete_Click;
             // 
             // tabTrainerSchedule
@@ -305,19 +315,33 @@
             tabTrainerSchedule.Location = new Point(4, 29);
             tabTrainerSchedule.Name = "tabTrainerSchedule";
             tabTrainerSchedule.Padding = new Padding(3);
-            tabTrainerSchedule.Size = new Size(624, 335);
+            tabTrainerSchedule.Size = new Size(624, 323);
             tabTrainerSchedule.TabIndex = 3;
             tabTrainerSchedule.Text = "Trainer Schedule";
             tabTrainerSchedule.UseVisualStyleBackColor = true;
             // 
+            // btnViewTrainerSchedule
+            // 
+            btnViewTrainerSchedule.BackColor = Color.Violet;
+            btnViewTrainerSchedule.FlatStyle = FlatStyle.Flat;
+            btnViewTrainerSchedule.Location = new Point(375, 210);
+            btnViewTrainerSchedule.Name = "btnViewTrainerSchedule";
+            btnViewTrainerSchedule.Size = new Size(94, 60);
+            btnViewTrainerSchedule.TabIndex = 4;
+            btnViewTrainerSchedule.Text = "View Details";
+            btnViewTrainerSchedule.UseVisualStyleBackColor = false;
+            btnViewTrainerSchedule.Click += btnViewTrainerSchedule_Click;
+            // 
             // btnShowTrainerSchedules
             // 
+            btnShowTrainerSchedules.BackColor = Color.Violet;
+            btnShowTrainerSchedules.FlatStyle = FlatStyle.Flat;
             btnShowTrainerSchedules.Location = new Point(375, 146);
             btnShowTrainerSchedules.Name = "btnShowTrainerSchedules";
             btnShowTrainerSchedules.Size = new Size(94, 58);
             btnShowTrainerSchedules.TabIndex = 3;
             btnShowTrainerSchedules.Text = "Show Schedules";
-            btnShowTrainerSchedules.UseVisualStyleBackColor = true;
+            btnShowTrainerSchedules.UseVisualStyleBackColor = false;
             btnShowTrainerSchedules.Click += btnShowTrainerSchedules_Click;
             // 
             // cmbTrainerId
@@ -338,21 +362,12 @@
             lbScheduleTrainer.Size = new Size(150, 204);
             lbScheduleTrainer.TabIndex = 0;
             // 
-            // btnViewTrainerSchedule
-            // 
-            btnViewTrainerSchedule.Location = new Point(375, 210);
-            btnViewTrainerSchedule.Name = "btnViewTrainerSchedule";
-            btnViewTrainerSchedule.Size = new Size(94, 60);
-            btnViewTrainerSchedule.TabIndex = 4;
-            btnViewTrainerSchedule.Text = "View Details";
-            btnViewTrainerSchedule.UseVisualStyleBackColor = true;
-            btnViewTrainerSchedule.Click += btnViewTrainerSchedule_Click;
-            // 
             // ScheduleForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(652, 381);
+            BackColor = Color.Cyan;
+            ClientSize = new Size(673, 370);
             Controls.Add(tabConCardio);
             Name = "ScheduleForm";
             Text = "ScheduleForm";

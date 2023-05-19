@@ -51,14 +51,14 @@
             chartSchedules.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             chartSchedules.Legends.Add(legend1);
-            chartSchedules.Location = new Point(363, 36);
+            chartSchedules.Location = new Point(285, 36);
             chartSchedules.Name = "chartSchedules";
             chartSchedules.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Schedules";
             chartSchedules.Series.Add(series1);
-            chartSchedules.Size = new Size(375, 375);
+            chartSchedules.Size = new Size(338, 313);
             chartSchedules.TabIndex = 1;
             chartSchedules.Text = "Schedules";
             // 
@@ -66,7 +66,8 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            BackColor = Color.Cyan;
+            ClientSize = new Size(673, 370);
             Controls.Add(chartSchedules);
             Controls.Add(lblFamousTrainer);
             Name = "ScheduleStatsForm";

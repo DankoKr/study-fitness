@@ -28,68 +28,71 @@
         /// </summary>
         private void InitializeComponent()
         {
-            grbLogin = new GroupBox();
             txbPassword = new TextBox();
             txbUsername = new TextBox();
             btnLogin = new Button();
-            grbLogin.SuspendLayout();
+            lblLogin = new Label();
             SuspendLayout();
-            // 
-            // grbLogin
-            // 
-            grbLogin.Controls.Add(txbPassword);
-            grbLogin.Controls.Add(txbUsername);
-            grbLogin.Location = new Point(90, 52);
-            grbLogin.Name = "grbLogin";
-            grbLogin.Size = new Size(250, 136);
-            grbLogin.TabIndex = 0;
-            grbLogin.TabStop = false;
-            grbLogin.Text = "Sign in";
             // 
             // txbPassword
             // 
-            txbPassword.Location = new Point(50, 83);
+            txbPassword.Location = new Point(152, 154);
             txbPassword.Name = "txbPassword";
             txbPassword.PasswordChar = '*';
+            txbPassword.PlaceholderText = "Password";
             txbPassword.Size = new Size(149, 27);
             txbPassword.TabIndex = 1;
             // 
             // txbUsername
             // 
-            txbUsername.Location = new Point(50, 36);
+            txbUsername.Location = new Point(152, 97);
             txbUsername.Name = "txbUsername";
+            txbUsername.PlaceholderText = "Username";
             txbUsername.Size = new Size(149, 27);
             txbUsername.TabIndex = 0;
             // 
             // btnLogin
             // 
-            btnLogin.Location = new Point(164, 214);
+            btnLogin.BackColor = Color.Violet;
+            btnLogin.FlatStyle = FlatStyle.Flat;
+            btnLogin.Location = new Point(180, 213);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(94, 54);
             btnLogin.TabIndex = 1;
             btnLogin.Text = "Login";
-            btnLogin.UseVisualStyleBackColor = true;
+            btnLogin.UseVisualStyleBackColor = false;
             btnLogin.Click += btnLogin_Click;
+            // 
+            // lblLogin
+            // 
+            lblLogin.AutoSize = true;
+            lblLogin.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            lblLogin.Location = new Point(200, 39);
+            lblLogin.Name = "lblLogin";
+            lblLogin.Size = new Size(62, 28);
+            lblLogin.TabIndex = 2;
+            lblLogin.Text = "Login";
             // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Cyan;
             ClientSize = new Size(444, 310);
+            Controls.Add(lblLogin);
+            Controls.Add(txbPassword);
             Controls.Add(btnLogin);
-            Controls.Add(grbLogin);
+            Controls.Add(txbUsername);
             Name = "LoginForm";
             Text = "LoginForm";
-            grbLogin.ResumeLayout(false);
-            grbLogin.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
-
-        private GroupBox grbLogin;
         private TextBox txbPassword;
         private TextBox txbUsername;
         private Button btnLogin;
+        private Label lblLogin;
     }
 }

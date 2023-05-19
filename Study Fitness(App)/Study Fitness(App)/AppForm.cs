@@ -187,10 +187,5 @@ namespace Study_Fitness_App_
             }
         }
 
-        //private void btnSortType_Click(object sender, EventArgs e)
-        //{
-        //    string type = cmbExTypeToSort.Text;
-        //    myAdministrator.GetExercisesByType(myAdministrator.GetExercisesList(), type);
-        //}
     }
 }

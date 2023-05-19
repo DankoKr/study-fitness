@@ -30,45 +30,75 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             panelButtons = new Panel();
+            ToChartForm = new Button();
+            btnToScheduleStats = new Button();
             btnToScheduleForm = new Button();
             btnToCommentsForm = new Button();
             btnToUserForm = new Button();
             btnToExerciseForm = new Button();
             btnToCardioForm = new Button();
             panelHeading = new Panel();
+            pictureBox = new PictureBox();
             lblHeader = new Label();
-            panelLogo = new Panel();
-            pictureBox1 = new PictureBox();
-            ToChartForm = new Button();
-            btnToScheduleStats = new Button();
+            panelFormsContent = new Panel();
             panelButtons.SuspendLayout();
             panelHeading.SuspendLayout();
-            panelLogo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox).BeginInit();
             SuspendLayout();
             // 
             // panelButtons
             // 
             panelButtons.BackColor = Color.Cyan;
+            panelButtons.Controls.Add(ToChartForm);
+            panelButtons.Controls.Add(btnToScheduleStats);
             panelButtons.Controls.Add(btnToScheduleForm);
             panelButtons.Controls.Add(btnToCommentsForm);
             panelButtons.Controls.Add(btnToUserForm);
             panelButtons.Controls.Add(btnToExerciseForm);
             panelButtons.Controls.Add(btnToCardioForm);
-            panelButtons.Location = new Point(1, 82);
+            panelButtons.Dock = DockStyle.Left;
+            panelButtons.Location = new Point(0, 0);
             panelButtons.Name = "panelButtons";
-            panelButtons.Size = new Size(130, 367);
+            panelButtons.Size = new Size(130, 449);
             panelButtons.TabIndex = 0;
+            // 
+            // ToChartForm
+            // 
+            ToChartForm.BackColor = Color.Violet;
+            ToChartForm.Dock = DockStyle.Top;
+            ToChartForm.FlatAppearance.BorderSize = 0;
+            ToChartForm.FlatStyle = FlatStyle.Flat;
+            ToChartForm.Location = new Point(0, 384);
+            ToChartForm.Name = "ToChartForm";
+            ToChartForm.Size = new Size(130, 64);
+            ToChartForm.TabIndex = 3;
+            ToChartForm.Text = "Statistics Comments";
+            ToChartForm.UseVisualStyleBackColor = false;
+            ToChartForm.Click += ToChartForm_Click;
+            // 
+            // btnToScheduleStats
+            // 
+            btnToScheduleStats.BackColor = Color.Violet;
+            btnToScheduleStats.Dock = DockStyle.Top;
+            btnToScheduleStats.FlatAppearance.BorderSize = 0;
+            btnToScheduleStats.FlatStyle = FlatStyle.Flat;
+            btnToScheduleStats.Location = new Point(0, 320);
+            btnToScheduleStats.Name = "btnToScheduleStats";
+            btnToScheduleStats.Size = new Size(130, 64);
+            btnToScheduleStats.TabIndex = 4;
+            btnToScheduleStats.Text = "Statistics Schedules";
+            btnToScheduleStats.UseVisualStyleBackColor = false;
+            btnToScheduleStats.Click += btnToScheduleStats_Click;
             // 
             // btnToScheduleForm
             // 
-            btnToScheduleForm.BackColor = SystemColors.ActiveCaption;
+            btnToScheduleForm.BackColor = Color.Violet;
             btnToScheduleForm.Dock = DockStyle.Top;
             btnToScheduleForm.FlatAppearance.BorderSize = 0;
             btnToScheduleForm.FlatStyle = FlatStyle.Flat;
-            btnToScheduleForm.Location = new Point(0, 240);
+            btnToScheduleForm.Location = new Point(0, 256);
             btnToScheduleForm.Name = "btnToScheduleForm";
-            btnToScheduleForm.Size = new Size(130, 60);
+            btnToScheduleForm.Size = new Size(130, 64);
             btnToScheduleForm.TabIndex = 4;
             btnToScheduleForm.Text = "Schedules";
             btnToScheduleForm.UseVisualStyleBackColor = false;
@@ -76,13 +106,13 @@
             // 
             // btnToCommentsForm
             // 
-            btnToCommentsForm.BackColor = SystemColors.ActiveCaption;
+            btnToCommentsForm.BackColor = Color.Violet;
             btnToCommentsForm.Dock = DockStyle.Top;
             btnToCommentsForm.FlatAppearance.BorderSize = 0;
             btnToCommentsForm.FlatStyle = FlatStyle.Flat;
-            btnToCommentsForm.Location = new Point(0, 180);
+            btnToCommentsForm.Location = new Point(0, 192);
             btnToCommentsForm.Name = "btnToCommentsForm";
-            btnToCommentsForm.Size = new Size(130, 60);
+            btnToCommentsForm.Size = new Size(130, 64);
             btnToCommentsForm.TabIndex = 3;
             btnToCommentsForm.Text = "Comments";
             btnToCommentsForm.UseVisualStyleBackColor = false;
@@ -90,13 +120,13 @@
             // 
             // btnToUserForm
             // 
-            btnToUserForm.BackColor = SystemColors.ActiveCaption;
+            btnToUserForm.BackColor = Color.Violet;
             btnToUserForm.Dock = DockStyle.Top;
             btnToUserForm.FlatAppearance.BorderSize = 0;
             btnToUserForm.FlatStyle = FlatStyle.Flat;
-            btnToUserForm.Location = new Point(0, 120);
+            btnToUserForm.Location = new Point(0, 128);
             btnToUserForm.Name = "btnToUserForm";
-            btnToUserForm.Size = new Size(130, 60);
+            btnToUserForm.Size = new Size(130, 64);
             btnToUserForm.TabIndex = 2;
             btnToUserForm.Text = "Users";
             btnToUserForm.UseVisualStyleBackColor = false;
@@ -104,13 +134,13 @@
             // 
             // btnToExerciseForm
             // 
-            btnToExerciseForm.BackColor = SystemColors.ActiveCaption;
+            btnToExerciseForm.BackColor = Color.Violet;
             btnToExerciseForm.Dock = DockStyle.Top;
             btnToExerciseForm.FlatAppearance.BorderSize = 0;
             btnToExerciseForm.FlatStyle = FlatStyle.Flat;
-            btnToExerciseForm.Location = new Point(0, 60);
+            btnToExerciseForm.Location = new Point(0, 64);
             btnToExerciseForm.Name = "btnToExerciseForm";
-            btnToExerciseForm.Size = new Size(130, 60);
+            btnToExerciseForm.Size = new Size(130, 64);
             btnToExerciseForm.TabIndex = 1;
             btnToExerciseForm.Text = "Exercise";
             btnToExerciseForm.UseVisualStyleBackColor = false;
@@ -118,13 +148,13 @@
             // 
             // btnToCardioForm
             // 
-            btnToCardioForm.BackColor = SystemColors.ActiveCaption;
+            btnToCardioForm.BackColor = Color.Violet;
             btnToCardioForm.Dock = DockStyle.Top;
             btnToCardioForm.FlatAppearance.BorderSize = 0;
             btnToCardioForm.FlatStyle = FlatStyle.Flat;
             btnToCardioForm.Location = new Point(0, 0);
             btnToCardioForm.Name = "btnToCardioForm";
-            btnToCardioForm.Size = new Size(130, 60);
+            btnToCardioForm.Size = new Size(130, 64);
             btnToCardioForm.TabIndex = 0;
             btnToCardioForm.Text = "Cardio";
             btnToCardioForm.UseVisualStyleBackColor = false;
@@ -133,70 +163,50 @@
             // panelHeading
             // 
             panelHeading.BackColor = Color.Cyan;
+            panelHeading.Controls.Add(pictureBox);
             panelHeading.Controls.Add(lblHeader);
-            panelHeading.Location = new Point(131, -1);
+            panelHeading.Dock = DockStyle.Top;
+            panelHeading.Location = new Point(130, 0);
             panelHeading.Name = "panelHeading";
             panelHeading.Size = new Size(670, 84);
             panelHeading.TabIndex = 1;
+            // 
+            // pictureBox
+            // 
+            pictureBox.Dock = DockStyle.Right;
+            pictureBox.Image = (Image)resources.GetObject("pictureBox.Image");
+            pictureBox.InitialImage = (Image)resources.GetObject("pictureBox.InitialImage");
+            pictureBox.Location = new Point(540, 0);
+            pictureBox.Name = "pictureBox";
+            pictureBox.Size = new Size(130, 84);
+            pictureBox.TabIndex = 0;
+            pictureBox.TabStop = false;
             // 
             // lblHeader
             // 
             lblHeader.AutoSize = true;
             lblHeader.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            lblHeader.Location = new Point(276, 31);
+            lblHeader.Location = new Point(237, 26);
             lblHeader.Name = "lblHeader";
-            lblHeader.Size = new Size(95, 28);
+            lblHeader.Size = new Size(168, 28);
             lblHeader.TabIndex = 0;
-            lblHeader.Text = "Welcome";
+            lblHeader.Text = "Study Fitness App";
             // 
-            // panelLogo
+            // panelFormsContent
             // 
-            panelLogo.Controls.Add(pictureBox1);
-            panelLogo.Location = new Point(1, -1);
-            panelLogo.Name = "panelLogo";
-            panelLogo.Size = new Size(130, 84);
-            panelLogo.TabIndex = 2;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.InitialImage = (Image)resources.GetObject("pictureBox1.InitialImage");
-            pictureBox1.Location = new Point(0, 0);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(130, 84);
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
-            // 
-            // ToChartForm
-            // 
-            ToChartForm.BackColor = SystemColors.ActiveCaption;
-            ToChartForm.Location = new Point(318, 227);
-            ToChartForm.Name = "ToChartForm";
-            ToChartForm.Size = new Size(101, 80);
-            ToChartForm.TabIndex = 3;
-            ToChartForm.Text = "Statistics Comments";
-            ToChartForm.UseVisualStyleBackColor = false;
-            ToChartForm.Click += ToChartForm_Click;
-            // 
-            // btnToScheduleStats
-            // 
-            btnToScheduleStats.BackColor = SystemColors.ActiveCaption;
-            btnToScheduleStats.Location = new Point(474, 227);
-            btnToScheduleStats.Name = "btnToScheduleStats";
-            btnToScheduleStats.Size = new Size(101, 80);
-            btnToScheduleStats.TabIndex = 4;
-            btnToScheduleStats.Text = "Statistics Schedules";
-            btnToScheduleStats.UseVisualStyleBackColor = false;
-            btnToScheduleStats.Click += btnToScheduleStats_Click;
+            panelFormsContent.BackColor = Color.Cyan;
+            panelFormsContent.Dock = DockStyle.Fill;
+            panelFormsContent.Location = new Point(130, 84);
+            panelFormsContent.Name = "panelFormsContent";
+            panelFormsContent.Size = new Size(670, 365);
+            panelFormsContent.TabIndex = 3;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(btnToScheduleStats);
-            Controls.Add(ToChartForm);
-            Controls.Add(panelLogo);
+            ClientSize = new Size(800, 449);
+            Controls.Add(panelFormsContent);
             Controls.Add(panelHeading);
             Controls.Add(panelButtons);
             Name = "MainForm";
@@ -204,8 +214,7 @@
             panelButtons.ResumeLayout(false);
             panelHeading.ResumeLayout(false);
             panelHeading.PerformLayout();
-            panelLogo.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox).EndInit();
             ResumeLayout(false);
         }
 
@@ -217,11 +226,12 @@
         private Button btnToCardioForm;
         private Panel panelHeading;
         private Panel panelLogo;
-        private PictureBox pictureBox1;
+        private PictureBox pictureBox;
         private Label lblHeader;
         private Button btnToCommentsForm;
         private Button btnToScheduleForm;
         private Button ToChartForm;
         private Button btnToScheduleStats;
+        private Panel panelFormsContent;
     }
 }

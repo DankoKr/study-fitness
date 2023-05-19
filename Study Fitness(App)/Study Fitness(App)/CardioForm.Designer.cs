@@ -67,7 +67,7 @@
             tabConCardio.Location = new Point(12, 12);
             tabConCardio.Name = "tabConCardio";
             tabConCardio.SelectedIndex = 0;
-            tabConCardio.Size = new Size(632, 368);
+            tabConCardio.Size = new Size(632, 346);
             tabConCardio.TabIndex = 0;
             // 
             // tabViewCardio
@@ -78,29 +78,33 @@
             tabViewCardio.Location = new Point(4, 29);
             tabViewCardio.Name = "tabViewCardio";
             tabViewCardio.Padding = new Padding(3);
-            tabViewCardio.Size = new Size(624, 335);
+            tabViewCardio.Size = new Size(624, 313);
             tabViewCardio.TabIndex = 0;
             tabViewCardio.Text = "View All";
             tabViewCardio.UseVisualStyleBackColor = true;
             // 
             // btnViewAllCardios
             // 
+            btnViewAllCardios.BackColor = Color.Violet;
+            btnViewAllCardios.FlatStyle = FlatStyle.Flat;
             btnViewAllCardios.Location = new Point(409, 104);
             btnViewAllCardios.Name = "btnViewAllCardios";
             btnViewAllCardios.Size = new Size(94, 60);
             btnViewAllCardios.TabIndex = 2;
             btnViewAllCardios.Text = "View All Cardios";
-            btnViewAllCardios.UseVisualStyleBackColor = true;
+            btnViewAllCardios.UseVisualStyleBackColor = false;
             btnViewAllCardios.Click += btnViewAllCardios_Click;
             // 
             // btnViewDetails
             // 
+            btnViewDetails.BackColor = Color.Violet;
+            btnViewDetails.FlatStyle = FlatStyle.Flat;
             btnViewDetails.Location = new Point(409, 170);
             btnViewDetails.Name = "btnViewDetails";
             btnViewDetails.Size = new Size(94, 60);
             btnViewDetails.TabIndex = 1;
             btnViewDetails.Text = "View Details";
-            btnViewDetails.UseVisualStyleBackColor = true;
+            btnViewDetails.UseVisualStyleBackColor = false;
             btnViewDetails.Click += btnViewDetails_Click;
             // 
             // lbCardios
@@ -125,19 +129,21 @@
             tabAddCardio.Location = new Point(4, 29);
             tabAddCardio.Name = "tabAddCardio";
             tabAddCardio.Padding = new Padding(3);
-            tabAddCardio.Size = new Size(624, 335);
+            tabAddCardio.Size = new Size(624, 313);
             tabAddCardio.TabIndex = 1;
             tabAddCardio.Text = "Add";
             tabAddCardio.UseVisualStyleBackColor = true;
             // 
             // btnCreateCardio
             // 
+            btnCreateCardio.BackColor = Color.Violet;
+            btnCreateCardio.FlatStyle = FlatStyle.Flat;
             btnCreateCardio.Location = new Point(259, 196);
             btnCreateCardio.Name = "btnCreateCardio";
             btnCreateCardio.Size = new Size(94, 54);
             btnCreateCardio.TabIndex = 7;
             btnCreateCardio.Text = "Create";
-            btnCreateCardio.UseVisualStyleBackColor = true;
+            btnCreateCardio.UseVisualStyleBackColor = false;
             btnCreateCardio.Click += btnCreateCardio_Click;
             // 
             // lblDifficulty
@@ -205,7 +211,7 @@
             tabEditCardio.Location = new Point(4, 29);
             tabEditCardio.Name = "tabEditCardio";
             tabEditCardio.Padding = new Padding(3);
-            tabEditCardio.Size = new Size(624, 335);
+            tabEditCardio.Size = new Size(624, 313);
             tabEditCardio.TabIndex = 2;
             tabEditCardio.Text = "Edit/Delete";
             tabEditCardio.UseVisualStyleBackColor = true;
@@ -273,29 +279,34 @@
             // 
             // btnEdit
             // 
+            btnEdit.BackColor = Color.Violet;
+            btnEdit.FlatStyle = FlatStyle.Flat;
             btnEdit.Location = new Point(314, 222);
             btnEdit.Name = "btnEdit";
             btnEdit.Size = new Size(94, 44);
             btnEdit.TabIndex = 1;
             btnEdit.Text = "Edit";
-            btnEdit.UseVisualStyleBackColor = true;
+            btnEdit.UseVisualStyleBackColor = false;
             btnEdit.Click += btnEdit_Click;
             // 
             // btnDelete
             // 
+            btnDelete.BackColor = Color.Violet;
+            btnDelete.FlatStyle = FlatStyle.Flat;
             btnDelete.Location = new Point(455, 222);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(94, 44);
             btnDelete.TabIndex = 0;
             btnDelete.Text = "Delete";
-            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.UseVisualStyleBackColor = false;
             btnDelete.Click += btnDelete_Click;
             // 
             // CardioForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(645, 383);
+            BackColor = Color.Cyan;
+            ClientSize = new Size(673, 370);
             Controls.Add(tabConCardio);
             Name = "CardioForm";
             Text = "CardioForm";
