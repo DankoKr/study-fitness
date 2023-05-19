@@ -16,7 +16,12 @@ namespace ClassLibrary.DatabaseClasses
 			cardios.Add(c);
 		}
 
-		public void DeleteCardio(Cardio c)
+        public int CardioId(string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteCardio(Cardio c)
 		{
 			cardios.Remove(c);
 		}

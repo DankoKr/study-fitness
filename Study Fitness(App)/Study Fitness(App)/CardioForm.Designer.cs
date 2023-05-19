@@ -34,6 +34,7 @@
             btnViewDetails = new Button();
             lbCardios = new ListBox();
             tabAddCardio = new TabPage();
+            btnBrowseImage = new Button();
             btnCreateCardio = new Button();
             lblDifficulty = new Label();
             lblCalories = new Label();
@@ -51,6 +52,7 @@
             lbManageCardio = new ListBox();
             btnEdit = new Button();
             btnDelete = new Button();
+            btnSaveFileImage = new Button();
             tabConCardio.SuspendLayout();
             tabViewCardio.SuspendLayout();
             tabAddCardio.SuspendLayout();
@@ -119,6 +121,8 @@
             // 
             // tabAddCardio
             // 
+            tabAddCardio.Controls.Add(btnSaveFileImage);
+            tabAddCardio.Controls.Add(btnBrowseImage);
             tabAddCardio.Controls.Add(btnCreateCardio);
             tabAddCardio.Controls.Add(lblDifficulty);
             tabAddCardio.Controls.Add(lblCalories);
@@ -134,11 +138,23 @@
             tabAddCardio.Text = "Add";
             tabAddCardio.UseVisualStyleBackColor = true;
             // 
+            // btnBrowseImage
+            // 
+            btnBrowseImage.BackColor = Color.Violet;
+            btnBrowseImage.FlatStyle = FlatStyle.Flat;
+            btnBrowseImage.Location = new Point(275, 198);
+            btnBrowseImage.Name = "btnBrowseImage";
+            btnBrowseImage.Size = new Size(94, 54);
+            btnBrowseImage.TabIndex = 8;
+            btnBrowseImage.Text = "Browse Image";
+            btnBrowseImage.UseVisualStyleBackColor = false;
+            btnBrowseImage.Click += btnBrowseImage_Click;
+            // 
             // btnCreateCardio
             // 
             btnCreateCardio.BackColor = Color.Violet;
             btnCreateCardio.FlatStyle = FlatStyle.Flat;
-            btnCreateCardio.Location = new Point(259, 196);
+            btnCreateCardio.Location = new Point(130, 198);
             btnCreateCardio.Name = "btnCreateCardio";
             btnCreateCardio.Size = new Size(94, 54);
             btnCreateCardio.TabIndex = 7;
@@ -301,6 +317,18 @@
             btnDelete.UseVisualStyleBackColor = false;
             btnDelete.Click += btnDelete_Click;
             // 
+            // btnSaveFileImage
+            // 
+            btnSaveFileImage.BackColor = Color.Violet;
+            btnSaveFileImage.FlatStyle = FlatStyle.Flat;
+            btnSaveFileImage.Location = new Point(414, 198);
+            btnSaveFileImage.Name = "btnSaveFileImage";
+            btnSaveFileImage.Size = new Size(94, 54);
+            btnSaveFileImage.TabIndex = 9;
+            btnSaveFileImage.Text = "Save File Image";
+            btnSaveFileImage.UseVisualStyleBackColor = false;
+            btnSaveFileImage.Click += btnSaveFileImage_Click;
+            // 
             // CardioForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -346,5 +374,7 @@
         private TextBox txbNewPicURL;
         private TextBox txbNewName;
         private Button btnViewAllCardios;
+        private Button btnBrowseImage;
+        private Button btnSaveFileImage;
     }
 }

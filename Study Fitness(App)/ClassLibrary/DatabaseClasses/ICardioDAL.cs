@@ -14,5 +14,6 @@ namespace ClassLibrary.DatabaseClasses
 		void DeleteCardio(Cardio c);
 		void EditCardio(Cardio c, string name, string difficulty, int calories, string picture);
 		void LoadCardios(CardioAdministration myManager);
+		int CardioId(string name);
 	}
 }

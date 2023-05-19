@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -60,10 +61,13 @@ namespace ClassLibrary.DatabaseClasses
         public void DeleteCardio(Cardio c) 
         {
 			SqlConnection _connection = db.GetSqlConnection();
+            int cId = CardioId(c.Name);
 
 			try
 			{
-				string sql = $"DELETE FROM Cardio\r\nWHERE name = '{c.Name}';";
+				string sql = (
+                    $"DELETE Comment\r\nFROM Comment\r\nWHERE cardio_id = {cId}" +
+                    $"DELETE FROM Cardio\r\nWHERE name = '{c.Name}';");
 				SqlCommand cmd = new SqlCommand(sql, _connection);
 				_connection.Open();
 				cmd.ExecuteNonQuery();
@@ -95,5 +99,33 @@ namespace ClassLibrary.DatabaseClasses
 			}
 			finally { _connection.Close(); }
 		}
+
+        public int CardioId(string name)
+        {
+            SqlConnection _connection = db.GetSqlConnection();
+            int cId = 0;
+
+            try
+            {
+                string sql = $"SELECT cardio_id\r\nFROM Cardio\r\nWHERE name = '{name}'";
+                SqlCommand cmd = new SqlCommand(sql, _connection);
+                _connection.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    cId = Convert.ToInt32(Convert.ToString(dr[0]));
+                    return cId;
+                }
+
+                dr.Close();
+            }
+            catch (SqlException sqlEx)
+            {
+
+                throw new Exception(sqlEx.Message);
+            }
+            finally { _connection.Close(); }
+            return cId;
+        }
     }
 }

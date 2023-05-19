@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -21,8 +22,6 @@ namespace Study_Fitness_App_
             InitializeComponent();
             ICardioDAL cardioDAL = new CardioDAL();
             myAdministration = new CardioAdministration(cardioDAL);
-
-            // Load existing cardios from the database
             cardioDAL.LoadCardios(myAdministration);
         }
 
@@ -107,6 +106,33 @@ namespace Study_Fitness_App_
             myAdministration.EditCardioData(selectedC, txbNewName.Text, Convert.ToInt32(numNewCalories.Text), cmbNewDifficulty.Text, txbNewPicURL.Text);
             ClearFields();
             ShowData();
+        }
+
+        private void btnBrowseImage_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp; *.png)|*.jpg; *.jpeg; *.gif; *.bmp; *.png";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                // Get the path of selected file
+                string filePath = openFileDialog.FileName;
+
+                // Display the path of image file in the textbox
+                txbPictureURL.Text = filePath;
+            }
+        }
+
+        private void btnSaveFileImage_Click(object sender, EventArgs e)
+        {
+            File.Copy(txbPictureURL.Text, Path.Combine(@"C:\Users\panay\Desktop\Study Fitness\study-fitness\Study Fitness(App)\Website\wwwroot\Images\", Path.GetFileName(txbPictureURL.Text)), true);
+            MessageBox.Show("Picture saved!","Done");
+
+            // Extract image file name from path
+            string imageName = Path.GetFileName(txbPictureURL.Text);
+
+            // Display the name of the image file in the textbox
+            txbPictureURL.Text = imageName;
         }
     }
 }

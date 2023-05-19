@@ -198,17 +198,5 @@ namespace ClassLibrary.ExerciseClasses
             }
         }
 
-        //public List<Exercise> GetExercisesByType(List<Exercise> exercises, string exerciseType)
-        //{
-        //    List<Exercise> filteredExercises = new List<Exercise>();
-
-        //    foreach (Exercise exercise in exercises)
-        //    {
-        //        if (exercise.Equals(exerciseType)) { }
-        //        filteredExercises.Add(exercise);
-        //    }
-
-        //    return filteredExercises;
-        //}
     }
 }

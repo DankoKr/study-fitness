@@ -19,5 +19,6 @@ namespace ClassLibrary.DatabaseClasses
 		string GetSalt(String username);
 		void GetTrainerNameByPoints(int points, List<string> trainers);
 		void SetTrainerLevel(string trainerUsername, int level);
+		int UserId(string username);
     }
 }

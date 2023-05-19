@@ -44,10 +44,15 @@ namespace ClassLibrary.DatabaseClasses
         public void DeleteUser(User u) 
         {
             SqlConnection _connection = db.GetSqlConnection();
+            int userId = UserId(u.Username);
 
             try
             {
-                string sql = $"DELETE FROM Users\r\nWHERE Username = '{u.Username}';";
+                string sql = (
+                    $"DELETE Comment\r\nFROM Comment\r\nWHERE user_id = {userId}" +
+                    $"UPDATE Schedule SET client_name = NULL WHERE client_name = '{u.FirstName}'" +
+                    $"DELETE Schedule\r\nFROM Schedule\r\nWHERE trainer_id = {userId}" +
+                    $"DELETE FROM Users\r\nWHERE Username = '{u.Username}';");
                 SqlCommand cmd = new SqlCommand(sql, _connection);
                 _connection.Open();
                 cmd.ExecuteNonQuery();
@@ -248,6 +253,34 @@ namespace ClassLibrary.DatabaseClasses
                 }
                 finally { _connection.Close(); }
             }
+        }
+
+        public int UserId(string username)
+        {
+            SqlConnection _connection = db.GetSqlConnection();
+            int userId = 0;
+
+            try
+            {
+                string sql = $"SELECT Id\r\nFROM Users\r\nWHERE Username = '{username}'";
+                SqlCommand cmd = new SqlCommand(sql, _connection);
+                _connection.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    userId = Convert.ToInt32(Convert.ToString(dr[0]));
+                    return userId;
+                }
+
+                dr.Close();
+            }
+            catch (SqlException sqlEx)
+            {
+
+                throw new Exception(sqlEx.Message);
+            }
+            finally { _connection.Close(); }
+            return userId;
         }
     }
 }

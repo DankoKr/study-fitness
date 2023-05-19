@@ -21,8 +21,17 @@
     {
         <div class="column-container-exercise">
             <div>
-                <p>@data.Name</p>
-                <p><img class="column-image-avatar" src="@data.PictureURL"></p>
+                <p>@data.Name</p>  
+
+                @if (data.PictureURL.Length < 30)
+                {
+                    <p><img class="column-image-avatar" src="/images/@data.PictureURL"></p>
+                }
+                else
+                {
+                    <p><img class="column-image-avatar" src="@data.PictureURL"></p>
+                }
+
                 <p><a asp-page="/MyPages/CardioDetails" asp-route-name=@data.Name>More details</a></p>
             </div>
         </div>

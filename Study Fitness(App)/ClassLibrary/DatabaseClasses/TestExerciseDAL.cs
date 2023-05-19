@@ -28,7 +28,12 @@ namespace ClassLibrary.DatabaseClasses
 			ex.Weight = weight;
 		}
 
-		public void LoadExercises(ExerciseAdministration myManager)
+        public int ExerciseId(string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void LoadExercises(ExerciseAdministration myManager)
 		{
 			Exercise ex1 = new ChestExercise("Pushup", "Beginner", "No", 5, 50.5, "Upper chest", "picture");
 			Exercise ex2 = new ShoulderExercise("Vikingpress", "Advanced", "Yes", 7, 30, "Upper head", "picture");

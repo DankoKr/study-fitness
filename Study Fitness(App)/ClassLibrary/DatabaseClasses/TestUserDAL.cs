@@ -74,5 +74,10 @@ namespace ClassLibrary.DatabaseClasses
         {
             throw new NotImplementedException();
         }
+
+        public int UserId(string username)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

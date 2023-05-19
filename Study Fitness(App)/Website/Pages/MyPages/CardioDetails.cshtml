@@ -12,7 +12,16 @@
         <p>Name: @Model.selectedC.Name</p>
         <p>Difficulty: @Model.selectedC.Difficulty</p>
         <p>Calories: @Model.selectedC.Calories</p>
-        <p><img class="column-image-avatar" src="@Model.selectedC.PictureURL"></p>
+
+        @if (@Model.selectedC.PictureURL.Length < 30)
+        {
+            <p><img class="column-image-avatar" src="/images/@Model.selectedC.PictureURL"></p>
+        }
+        else
+        {
+            <p><img class="column-image-avatar" src="@Model.selectedC.PictureURL"></p>
+        }
+
     </div>
 </div>
 
