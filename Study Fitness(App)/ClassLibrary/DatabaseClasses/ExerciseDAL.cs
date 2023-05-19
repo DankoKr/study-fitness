@@ -167,7 +167,7 @@ namespace ClassLibrary.DatabaseClasses
                 int exId = ExerciseId(exArm.Name);
                 string sql = (
                 $"DELETE Comment\r\nFROM Comment\r\nWHERE exercise_id = {exId}" +
-               $"DELETE ArmExercise\r\nFROM ArmExercise arm\r\nINNER JOIN Exercise e ON e.exercise_id = arm.exercise_id\r\nWHERE e.exercise_id IN (\r\n    SELECT exercise_id\r\n    FROM Exercise\r\n    WHERE Name = '{exArm.Name}'\r\n);\r\n\r\nDELETE Exercise\r\nFROM Exercise\r\nWHERE Name = '{exArm.Name}';" );
+               $"DELETE FROM ArmExercise\r\nWHERE exercise_id IN (\r\n    SELECT exercise_id\r\n    FROM Exercise\r\n    WHERE Name = '{exArm.Name}'\r\n);\r\n\r\nDELETE FROM Exercise\r\nWHERE Name = '{exArm.Name}';" );
                 try
                 {
                     SqlCommand cmd = new SqlCommand(sql, _connection);
@@ -190,7 +190,7 @@ namespace ClassLibrary.DatabaseClasses
                 int exId = ExerciseId(exBack.Name);
                 string sql = (
                 $"DELETE Comment\r\nFROM Comment\r\nWHERE exercise_id = {exId}" +
-               $"DELETE BackExercise\r\nFROM BackExercise b\r\nINNER JOIN Exercise e ON e.exercise_id = b.exercise_id\r\nWHERE e.exercise_id IN (\r\n    SELECT exercise_id\r\n    FROM Exercise\r\n    WHERE Name = '{exBack.Name}'\r\n);\r\n\r\nDELETE Exercise\r\nFROM Exercise\r\nWHERE Name = '{exBack.Name}';");
+               $"DELETE FROM BackExercise\r\nWHERE exercise_id IN (\r\n    SELECT exercise_id\r\n    FROM Exercise\r\n    WHERE Name = '{exBack.Name}'\r\n);\r\n\r\nDELETE FROM Exercise\r\nWHERE Name = '{exBack.Name}';");
 				try
 				{
 					SqlCommand cmd = new SqlCommand(sql, _connection);
@@ -213,7 +213,7 @@ namespace ClassLibrary.DatabaseClasses
                 int exId = ExerciseId(exChest.Name);
                 string sql = (
                 $"DELETE Comment\r\nFROM Comment\r\nWHERE exercise_id = {exId}" +
-               $"DELETE ChestExercise\r\nFROM ChestExercise c\r\nINNER JOIN Exercise e ON e.exercise_id = c.exercise_id\r\nWHERE e.exercise_id IN (\r\n    SELECT exercise_id\r\n    FROM Exercise\r\n    WHERE Name = '{exChest.Name}'\r\n);\r\n\r\nDELETE Exercise\r\nFROM Exercise\r\nWHERE Name = '{exChest.Name}';");
+               $"DELETE FROM ChestExercise\r\nWHERE exercise_id IN (\r\n    SELECT exercise_id\r\n    FROM Exercise\r\n    WHERE Name = '{exChest.Name}'\r\n);\r\n\r\nDELETE FROM Exercise\r\nWHERE Name = '{exChest.Name}';");
 				try
 				{
 					SqlCommand cmd = new SqlCommand(sql, _connection);
@@ -236,7 +236,7 @@ namespace ClassLibrary.DatabaseClasses
                 int exId = ExerciseId(exLegs.Name);
                 string sql = (
                 $"DELETE Comment\r\nFROM Comment\r\nWHERE exercise_id = {exId}" +
-               $"DELETE LegsExercise\r\nFROM LegsExercise l\r\nINNER JOIN Exercise e ON e.exercise_id = l.exercise_id\r\nWHERE e.exercise_id IN (\r\n    SELECT exercise_id\r\n    FROM Exercise\r\n    WHERE Name = '{exLegs.Name}'\r\n);\r\n\r\nDELETE Exercise\r\nFROM Exercise\r\nWHERE Name = '{exLegs.Name}';");
+               $"DELETE FROM LegsExercise\r\nWHERE exercise_id IN (\r\n    SELECT exercise_id\r\n    FROM Exercise\r\n    WHERE Name = '{exLegs.Name}'\r\n);\r\n\r\nDELETE FROM Exercise\r\nWHERE Name = '{exLegs.Name}';");
 				try
 				{
 					SqlCommand cmd = new SqlCommand(sql, _connection);
@@ -259,7 +259,7 @@ namespace ClassLibrary.DatabaseClasses
                 int exId = ExerciseId(exShoulder.Name);
                 string sql = (
                 $"DELETE Comment\r\nFROM Comment\r\nWHERE exercise_id = {exId}" +
-               $"DELETE ShoulderExercise\r\nFROM ShoulderExercise s\r\nINNER JOIN Exercise e ON e.exercise_id = s.exercise_id\r\nWHERE e.exercise_id IN (\r\n    SELECT exercise_id\r\n    FROM Exercise\r\n    WHERE Name = '{exShoulder.Name}'\r\n);\r\n\r\nDELETE Exercise\r\nFROM Exercise\r\nWHERE Name = '{exShoulder.Name}';");
+               $"DELETE FROM ShoulderExercise\r\nWHERE exercise_id IN (\r\n    SELECT exercise_id\r\n    FROM Exercise\r\n    WHERE Name = '{exShoulder.Name}'\r\n);\r\n\r\nDELETE FROM Exercise\r\nWHERE Name = '{exShoulder.Name}';");
 				try
 				{
 					SqlCommand cmd = new SqlCommand(sql, _connection);
