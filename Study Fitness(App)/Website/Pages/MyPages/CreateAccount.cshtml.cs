@@ -27,14 +27,20 @@ namespace Website.Pages.MyPages
         public void OnPost()
         {
 			myManager = new UserAdministration(db);
+            db.LoadUsers(myManager);
 
 			Username = Request.Form["username"];
             Password = Request.Form["password"];
             FirstName = Request.Form["firstname"];
 
-            if (Username.Length == 0 || Password.Length == 0) { Error = "Missing data!"; return; }
+            if (Username.Length == 0 || Password.Length == 0)
+            { Error = "Missing data!"; return; }
 
-            //Add to database
+            if (!myManager.ValidateUserIsUnique(Username))
+            {
+                Error = "Username has already been used. Please choose a new one!"; return;
+            }
+
             myManager.AddUser(new User(FirstName, Username, Password, Type));
                
 

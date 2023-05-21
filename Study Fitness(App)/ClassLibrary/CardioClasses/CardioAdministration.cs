@@ -96,5 +96,23 @@ namespace ClassLibrary.CardioClasses
 
         }
 
+        public bool IsPictureValid(string pictureUrl)
+        {
+            string pattern = @"^(http|https):\/\/.{1,140}$";
+            string extractedFilePattern = @"^.*\.(?:png|jpg|jpeg|gif|bmp)$";
+
+
+            bool isValid = Regex.IsMatch(pictureUrl, pattern);
+            bool isFileValid = Regex.IsMatch(pictureUrl, extractedFilePattern);
+
+            if (isValid || isFileValid)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

@@ -30,11 +30,14 @@ namespace Website.Pages.MyPages
             Calories = Convert.ToInt32(Request.Form["calories"]);
             PictureUrl = Request.Form["pictureURL"];
 
+            myManager = new CardioAdministration(db);
+            db.LoadCardios(myManager);
 
-            if (Name.Length == 0) { Error = "Missing data!"; return; }
+            if (Name.Length == 0)
+            { Error = "Missing data!"; return; }
+            else if (!myManager.IsPictureValid(PictureUrl))
+            { Error = "Incorrect URL!"; return; }
 
-			myManager = new CardioAdministration(db);
-			db.LoadCardios(myManager);
 			myManager.CreateCardio(Name, Calories, Difficulty, PictureUrl);
             
 

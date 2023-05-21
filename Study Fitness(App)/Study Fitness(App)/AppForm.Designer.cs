@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             tabconExercises = new TabControl();
             tabAllExercises = new TabPage();
             cmbSelectedEx = new ComboBox();
@@ -70,7 +69,6 @@
             btnSortExName = new Button();
             btnCustomCompare = new Button();
             lbExerciseSorted = new ListBox();
-            bindingSource1 = new BindingSource(components);
             tabconExercises.SuspendLayout();
             tabAllExercises.SuspendLayout();
             tabAddExercise.SuspendLayout();
@@ -81,7 +79,6 @@
             tabEditExercise.SuspendLayout();
             tabDeletExercise.SuspendLayout();
             tabCompareExercises.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
             SuspendLayout();
             // 
             // tabconExercises
@@ -542,7 +539,6 @@
             tabEditExercise.PerformLayout();
             tabDeletExercise.ResumeLayout(false);
             tabCompareExercises.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
             ResumeLayout(false);
         }
 
@@ -588,7 +584,6 @@
         private ComboBox cmbManageEx;
         private Button btnCustomCompare;
         private Button btnSortExName;
-        private BindingSource bindingSource1;
         private Button btnSortDescendingName;
     }
 }

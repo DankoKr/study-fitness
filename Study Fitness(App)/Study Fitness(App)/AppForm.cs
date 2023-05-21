@@ -92,12 +92,12 @@ namespace Study_Fitness_App_
                 }
                 else
                 {
-                    MessageBox.Show("Exercise exists!","ERROR");
+                    MessageBox.Show("Exercise exists!", "ERROR");
                 }
             }
             else
             {
-                MessageBox.Show("Incorrect exercise type!","ERROR");
+                MessageBox.Show("Incorrect exercise type!", "ERROR");
             }
 
         }

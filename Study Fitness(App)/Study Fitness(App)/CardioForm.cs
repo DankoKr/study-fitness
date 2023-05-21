@@ -1,5 +1,6 @@
 ﻿using ClassLibrary.CardioClasses;
 using ClassLibrary.DatabaseClasses;
+using ClassLibrary.ExerciseClasses;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -30,7 +32,7 @@ namespace Study_Fitness_App_
             string name = txbName.Text;
             if (name != "")
             {
-                if (myAdministration.ValidateCardioIsUnique(name))
+                if (myAdministration.ValidateCardioIsUnique(name) && myAdministration.IsPictureValid(txbPictureURL.Text))
                 {
                     string difficulty = cmbDifficulty.Text;
                     int calories = Convert.ToInt32(numCalories.Text);
@@ -42,7 +44,7 @@ namespace Study_Fitness_App_
                 }
                 else
                 {
-                    MessageBox.Show("Dublication of name!","ERROR");
+                    MessageBox.Show("Dublication of name or incorrect URL!", "ERROR");
                 }
             }
             else
@@ -119,10 +121,18 @@ namespace Study_Fitness_App_
 
             object obj = lbManageCardio.SelectedItem;
             Cardio selectedC = (Cardio)obj;
-            myAdministration.EditCardioData(selectedC, txbNewName.Text, Convert.ToInt32(numNewCalories.Text), cmbNewDifficulty.Text, txbNewPicURL.Text);
-            ClearFields();
-            ShowData();
-            MessageBox.Show("Cardio changed!", "Done");
+            if (myAdministration.IsPictureValid(txbNewPicURL.Text))
+            {
+                myAdministration.EditCardioData(selectedC, txbNewName.Text, Convert.ToInt32(numNewCalories.Text), cmbNewDifficulty.Text, txbNewPicURL.Text);
+                ClearFields();
+                ShowData();
+                MessageBox.Show("Cardio changed!", "Done");
+            }
+            else
+            {
+                MessageBox.Show("Incorrect URL!", "ERROR");
+            }
+
         }
 
         private void btnBrowseImage_Click(object sender, EventArgs e)
@@ -143,13 +153,29 @@ namespace Study_Fitness_App_
         private void btnSaveFileImage_Click(object sender, EventArgs e)
         {
             File.Copy(txbPictureURL.Text, Path.Combine(@"C:\Users\panay\Desktop\Study Fitness\study-fitness\Study Fitness(App)\Website\wwwroot\Images\", Path.GetFileName(txbPictureURL.Text)), true);
-            MessageBox.Show("Picture saved!","Done");
+            MessageBox.Show("Picture saved!", "Done");
 
             // Extract image file name from path
             string imageName = Path.GetFileName(txbPictureURL.Text);
 
             // Display the name of the image file in the textbox
             txbPictureURL.Text = imageName;
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            lbCardios.Items.Clear();
+
+            string searched = txbSearchBar.Text;
+            string regexPattern = "\\b\\w*" + searched + "\\w*\\b";
+
+            foreach (Cardio ex in myAdministration.GetCardios())
+            {
+                if (Regex.IsMatch(ex.Name, regexPattern, RegexOptions.IgnoreCase))
+                {
+                    lbCardios.Items.Add(ex);
+                }
+            }
         }
     }
 }
