@@ -81,9 +81,21 @@ namespace Study_Fitness_App_
 
         private void btnCreateUser_Click(object sender, EventArgs e)
         {
-            User newUser = new User(txbFirstName.Text, txbUsername.Text, txbPassword.Text, cmbType.Text);
-            myManager.AddUser(newUser);
-            ClearFields();
+            if (txbUsername.Text != "")
+            {
+                if (myManager.ValidateUserIsUnique(txbUsername.Text))
+                {
+                    User newUser = new User(txbFirstName.Text, txbUsername.Text, txbPassword.Text, cmbType.Text);
+                    myManager.AddUser(newUser);
+                    ClearFields();
+                    MessageBox.Show("User created!", "Done");
+                }
+                else { MessageBox.Show("Dublication of username!", "ERROR"); }
+            }
+            else
+            {
+                MessageBox.Show("Incorrect data!", "ERROR");
+            }
         }
 
         private void btnDeleteUser_Click(object sender, EventArgs e)
@@ -98,6 +110,7 @@ namespace Study_Fitness_App_
             User selectedU = (User)obj;
             myManager.DeleteUser(selectedU);
             ShowData();
+            MessageBox.Show("User deleted!", "Done");
         }
 
         private void btnEditUser_Click(object sender, EventArgs e)
@@ -110,9 +123,13 @@ namespace Study_Fitness_App_
 
             object obj = lbManageUser.SelectedItem;
             User selectedU = (User)obj;
-            myManager.ChangeUsername(selectedU, txbNewUsername.Text);
-            ClearFields();
-            ShowData();
+            if (txbNewUsername.Text != "" && myManager.ValidateUserIsUnique(txbNewUsername.Text))
+            {
+                myManager.ChangeUsername(selectedU, txbNewUsername.Text);
+                ClearFields();
+                ShowData();
+                MessageBox.Show("User changed!", "Done");
+            }
         }
 
         private void btnSetLevel_Click(object sender, EventArgs e)

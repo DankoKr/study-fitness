@@ -71,18 +71,33 @@ namespace Study_Fitness_App_
             string specialty = txbSpecialty.Text;
             string picture = txbPicture.Text;
 
-            if (myAdministrator.IsPictureValid(picture))
+            if (myAdministrator.isExerciseTypeValid(typeEx))
             {
-                myAdministrator.CreateExercise(typeEx, nameEx, difficulty, equipment, numReps, weight, specialty, picture);
+                if (myAdministrator.ValidateExerciseIsUnique(nameEx))
+                {
+                    if (myAdministrator.IsPictureValid(picture))
+                    {
+                        myAdministrator.CreateExercise(typeEx, nameEx, difficulty, equipment, numReps, weight, specialty, picture);
 
-                ClearFields();
-                ShowAllExercises();
-                FillExercisesInBoxes();
+                        ClearFields();
+                        ShowAllExercises();
+                        FillExercisesInBoxes();
+                        MessageBox.Show("Exercise created!", "Done");
+                    }
+                    else
+                    {
+                        MessageBox.Show("The URL is not in the correct format!", "ERROR");
+                        txbPicture.Text = "";
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Exercise exists!","ERROR");
+                }
             }
             else
             {
-                MessageBox.Show("The URL is not in the correct format!", "ERROR");
-                txbPicture.Text = "";
+                MessageBox.Show("Incorrect exercise type!","ERROR");
             }
 
         }
@@ -134,24 +149,35 @@ namespace Study_Fitness_App_
         private void btnDelete_Click(object sender, EventArgs e)
         {
             string exName = cmbManageEx.Text;
-            myAdministrator.RemoveExercise(exName);
+            if (exName != "")
+            {
+                myAdministrator.RemoveExercise(exName);
 
-            ShowExercisesToManage();
-            ShowAllExercises();
+                ShowExercisesToManage();
+                ShowAllExercises();
 
-            ClearFields();
-            FillExercisesInBoxes();
+                ClearFields();
+                FillExercisesInBoxes();
+                MessageBox.Show("Exercise is deleted!", "Done");
+            }
+            else { MessageBox.Show("Select an exercise name!", "ERROR"); }
+
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
             string exName = cmbManageEx.Text;
-            int newReps = Convert.ToInt32(txbNewReps.Text);
-            double newWeight = Convert.ToDouble(txbNewWeight.Text);
-            string newDifficulty = cmbNewDifficulty.Text;
-            myAdministrator.EditExercise(exName, newReps, newWeight, newDifficulty);
-            ClearFields();
-            FillExercisesInBoxes();
+            if (exName != "")
+            {
+                int newReps = Convert.ToInt32(txbNewReps.Text);
+                double newWeight = Convert.ToDouble(txbNewWeight.Text);
+                string newDifficulty = cmbNewDifficulty.Text;
+                myAdministrator.EditExercise(exName, newReps, newWeight, newDifficulty);
+                ClearFields();
+                FillExercisesInBoxes();
+            }
+            else { MessageBox.Show("Select an exercise name!", "ERROR"); }
+
         }
 
         private void btnCustomCompare_Click(object sender, EventArgs e)

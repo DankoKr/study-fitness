@@ -33,14 +33,13 @@ namespace Website.Pages.MyPages
 
             if (Name.Length == 0) { Error = "Missing data!"; return; }
 
-			//Add to database
 			myManager = new CardioAdministration(db);
 			db.LoadCardios(myManager);
 			myManager.CreateCardio(Name, Calories, Difficulty, PictureUrl);
-            //
+            
 
             Message = "Cardio created!";
-            //Response.Redirect("/MyPages/CardioTable");
+
         }
     }
 }

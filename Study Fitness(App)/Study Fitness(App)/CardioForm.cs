@@ -28,12 +28,27 @@ namespace Study_Fitness_App_
         private void btnCreateCardio_Click(object sender, EventArgs e)
         {
             string name = txbName.Text;
-            string difficulty = cmbDifficulty.Text;
-            int calories = Convert.ToInt32(numCalories.Text);
-            string picture = txbPictureURL.Text;
+            if (name != "")
+            {
+                if (myAdministration.ValidateCardioIsUnique(name))
+                {
+                    string difficulty = cmbDifficulty.Text;
+                    int calories = Convert.ToInt32(numCalories.Text);
+                    string picture = txbPictureURL.Text;
 
-            myAdministration.CreateCardio(name, calories, difficulty, picture);
-            ClearFields();
+                    myAdministration.CreateCardio(name, calories, difficulty, picture);
+                    ClearFields();
+                    MessageBox.Show("Cardio created!", "Done");
+                }
+                else
+                {
+                    MessageBox.Show("Dublication of name!","ERROR");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Incorrect data!", "ERROR");
+            }
         }
 
         private void ClearFields()
@@ -91,6 +106,7 @@ namespace Study_Fitness_App_
             Cardio selectedC = (Cardio)obj;
             myAdministration.RemoveCardio(selectedC.Name);
             ShowData();
+            MessageBox.Show("Cardio deleted!", "Done");
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -106,6 +122,7 @@ namespace Study_Fitness_App_
             myAdministration.EditCardioData(selectedC, txbNewName.Text, Convert.ToInt32(numNewCalories.Text), cmbNewDifficulty.Text, txbNewPicURL.Text);
             ClearFields();
             ShowData();
+            MessageBox.Show("Cardio changed!", "Done");
         }
 
         private void btnBrowseImage_Click(object sender, EventArgs e)

@@ -40,14 +40,16 @@ namespace Website.Pages.MyPages
             Specialty = Request.Form["specialty"];
             myManager = new ExerciseAdministration(db);
 
-            if (Name.Length == 0) { Error = "Missing data!"; return; }
+            if (Name.Length == 0) 
+            { Error = "Missing data!"; return; }
+            else if (!myManager.IsPictureValid(PictureUrl)) 
+            { Error = "Incorrect URL!"; return; }
 
-            //Add to database
             myManager.CreateExercise(Type, Name, Difficulty, Equipment, RepRange, Weight, Specialty, PictureUrl);           
-            //
+
 
             Message = "Exercise created!";
-            //Response.Redirect("/MyPages/ExerciseTable");
+
         }
     }
 }

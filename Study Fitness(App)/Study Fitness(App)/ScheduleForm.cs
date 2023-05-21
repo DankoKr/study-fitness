@@ -20,8 +20,7 @@ namespace Study_Fitness_App_
         ScheduleAdministration myManager;
         IScheduleDAL db = new ScheduleDAL();
         List<int> ids = new List<int>();
-        IUserDAL userDb = new UserDAL();
-        UserAdministration userManager;
+
         public ScheduleForm()
         {
             InitializeComponent();
@@ -81,9 +80,18 @@ namespace Study_Fitness_App_
 
         private void btnCreateSchedule_Click(object sender, EventArgs e)
         {
-            myManager.AddSchedule(new Schedule(txbTitle.Text, Convert.ToDateTime(dateTime.Value), txbDescription.Text, Convert.ToInt32(cmbTrainer.Text)));
-            ClearFields();
-            ShowData();
+            if (txbTitle.Text != "")
+            {
+                myManager.AddSchedule(new Schedule(txbTitle.Text, Convert.ToDateTime(dateTime.Value), txbDescription.Text, Convert.ToInt32(cmbTrainer.Text)));
+                ClearFields();
+                ShowData();
+                MessageBox.Show("Schedule created!", "Done");
+            }
+            else
+            {
+                MessageBox.Show("Incorrect data!","ERROR");
+            }
+
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -98,6 +106,7 @@ namespace Study_Fitness_App_
             Schedule selectedS = (Schedule)obj;
             myManager.EditSchedule(selectedS, Convert.ToInt32(cmbNewTrainer.Text), txbNewTitle.Text, Convert.ToDateTime(dateTime.Value), txbNewDescription.Text);
             ShowData();
+            MessageBox.Show("Schedule changed!", "Done");
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -112,6 +121,7 @@ namespace Study_Fitness_App_
             Schedule selectedS = (Schedule)obj;
             myManager.RemoveSchedule(selectedS);
             ShowData();
+            MessageBox.Show("Schedule deleted!", "Done");
         }
 
         private void btnShowTrainerSchedules_Click(object sender, EventArgs e)

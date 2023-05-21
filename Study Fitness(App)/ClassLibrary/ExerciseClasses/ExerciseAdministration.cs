@@ -197,6 +197,14 @@ namespace ClassLibrary.ExerciseClasses
                 return false;
             }
         }
+        public bool isExerciseTypeValid(string type) 
+        {
+            if (type != "Arm" && type != "Chest" && type != "Shoulder" && type != "Back" && type != "Core" && type != "Legs" && type != "Neck")
+            {
+                return false;
+            }
+            return true;
+        }
 
     }
 }
