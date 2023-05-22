@@ -52,7 +52,7 @@ namespace Website.Pages.MyPages
                     myManager.SortExercisesByName(sortedExercises);
                     break;
                 case "reps":
-                    myManager.SortExercises(sortedExercises);
+                    myManager.SortExercisesByReps(sortedExercises);
                     break;
                 default:
                     break;

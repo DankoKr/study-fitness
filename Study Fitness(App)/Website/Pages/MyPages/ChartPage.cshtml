@@ -1,0 +1,50 @@
+﻿@page
+@model Website.Pages.MyPages.ChartPageModel
+@{
+}
+
+<!-- Include Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<h1>Statistics based on Comments</h1>
+
+<div class="container">
+    <canvas id="commentRatingsChart"></canvas>
+</div>
+
+<script>
+    var ctx = document.getElementById('commentRatingsChart').getContext('2d');
+
+    var data = {
+        labels: Object.keys(@Json.Serialize(Model.CommentCounts)),
+        datasets: [{
+            label: 'Comments',
+            data: Object.values(@Json.Serialize(Model.CommentCounts)),
+            backgroundColor: ['Red', 'Orange', 'Yellow', 'Blue', 'Green'],
+            borderColor: ['Red', 'Orange', 'Yellow', 'Blue', 'Green'],
+            borderWidth: 1
+        }]
+    };
+
+    var options = {
+        scales: {
+            y: {
+                beginAtZero: true,
+                ticks: {
+                    stepSize: 1, // Set the step size between each tick
+                    callback: function (value, index, values) {
+                        return value; // Display the value as is
+                    }
+                }
+            }
+        }
+    };
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: data,
+        options: options
+    });
+</script>
+
+

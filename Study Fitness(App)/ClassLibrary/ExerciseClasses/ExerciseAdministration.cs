@@ -182,6 +182,11 @@ namespace ClassLibrary.ExerciseClasses
             exercises.Sort((ex1, ex2) => keySelector(ex2).CompareTo(keySelector(ex1)));
         }
 
+        public void SortExercisesByReps(List<Exercise> exercises)
+        {
+            exercises.Sort((ex1, ex2) => ex1.RepRange.CompareTo(ex2.RepRange));
+        }
+
         public bool IsPictureValid(string pictureUrl)
         {
             string pattern = @"^(http|https):\/\/.{1,140}$";
