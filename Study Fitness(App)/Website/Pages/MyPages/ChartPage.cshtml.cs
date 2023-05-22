@@ -1,9 +1,11 @@
 using ClassLibrary.DatabaseClasses;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Website.Pages.MyPages
 {
+    [Authorize(Policy = "AdminOnly")]
     public class ChartPageModel : Microsoft.AspNetCore.Mvc.RazorPages.PageModel
     {
         public Dictionary<string, int> CommentCounts { get; private set; }
