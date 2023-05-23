@@ -10,12 +10,15 @@ namespace Website.Pages.MyPages
 		public Exercise? selectedEx { get; set; }
 		ExerciseAdministration myManager;
 		IExerciseDAL db = new ExerciseDAL();
+        private int currentPage = 1;
+        private const int pageSize = 8;
+        private bool hasRows;
 
-		public void OnGet()
+        public void OnGet()
         {
 			string nameEx = Request.Query["name"];
 			myManager = new ExerciseAdministration(db);
-			db.LoadExercises(myManager);
+			db.LoadExercises(myManager, currentPage, pageSize, hasRows);
 			myManager.RemoveExercise(nameEx);
 
 			Response.Redirect("/MyPages/ExerciseTable");

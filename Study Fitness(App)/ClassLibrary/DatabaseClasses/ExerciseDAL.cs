@@ -523,85 +523,107 @@ namespace ClassLibrary.DatabaseClasses
             return exId;
         }
 
-        public void LoadExercises(ExerciseAdministration myManager)
+        public void LoadExercises(ExerciseAdministration myManager, int pageNumber, int pageSize, bool hasMoreRows)
         {
             SqlConnection _connection = db.GetSqlConnection();
             try
             {
-                string sql1 = "SELECT  e.Name, e.Difficulty, e.Equipment, e.RepRange, e.Weight, e.PictureURL, ch.chestElement \r\nFROM Exercise e\r\nJOIN ChestExercise ch\r\non e.exercise_id = ch.exercise_id";
-                string sql2 = "SELECT  e.Name, e.Difficulty, e.Equipment, e.RepRange, e.Weight, e.PictureURL, arm.armElement \r\nFROM Exercise e\r\nJOIN ArmExercise arm\r\non e.exercise_id = arm.exercise_id";
-                string sql3 = "SELECT  e.Name, e.Difficulty, e.Equipment, e.RepRange, e.Weight, e.PictureURL, sh.shoulderHead \r\nFROM Exercise e\r\nJOIN ShoulderExercise sh\r\non e.exercise_id = sh.exercise_id";
-                string sql4 = "SELECT  e.Name, e.Difficulty, e.Equipment, e.RepRange, e.Weight, e.PictureURL, l.legs\r\nFROM Exercise e\r\nJOIN LegsExercise l\r\non e.exercise_id = l.exercise_id";
-                string sql5 = "SELECT  e.Name, e.Difficulty, e.Equipment, e.RepRange, e.Weight, e.PictureURL, b.backElement\r\nFROM Exercise e\r\nJOIN BackExercise b\r\non e.exercise_id = b.exercise_id";
-                string sql6 = "SELECT Name, Difficulty, Equipment, RepRange, Weight, PictureURL\r\nFROM Exercise\r\nWHERE Type = 'NeckExercise'";
-                string sql7 = "SELECT Name, Difficulty, Equipment, RepRange, Weight, PictureURL\r\nFROM Exercise\r\nWHERE Type = 'CoreExercise'";
+                string sql = @"
+            SELECT Name, Difficulty, Equipment, RepRange, Weight, PictureURL, SpecialElement, ExerciseType
+            FROM (
+                SELECT e.Name, e.Difficulty, e.Equipment, e.RepRange, e.Weight, e.PictureURL, ch.chestElement as SpecialElement, 'ChestExercise' as ExerciseType
+                FROM Exercise e
+                JOIN ChestExercise ch on e.exercise_id = ch.exercise_id
 
-                SqlCommand cmd1 = new SqlCommand(sql1, _connection);
-                SqlCommand cmd2 = new SqlCommand(sql2, _connection);
-                SqlCommand cmd3 = new SqlCommand(sql3, _connection);
-                SqlCommand cmd4 = new SqlCommand(sql4, _connection);
-                SqlCommand cmd5 = new SqlCommand(sql5, _connection);
-                SqlCommand cmd6 = new SqlCommand(sql6, _connection);
-                SqlCommand cmd7 = new SqlCommand(sql7, _connection);
+                UNION ALL
 
-                _connection.Open();
-                SqlDataReader dr1 = cmd1.ExecuteReader();
+                SELECT e.Name, e.Difficulty, e.Equipment, e.RepRange, e.Weight, e.PictureURL, arm.armElement, 'ArmExercise'
+                FROM Exercise e
+                JOIN ArmExercise arm on e.exercise_id = arm.exercise_id
 
-                while (dr1.Read())
-                {//                                            nameEx,               difficulty,                equipment,                     numReps,                weight,                         specialty,                   picture
-                    myManager.AddExistingEx(new ChestExercise(Convert.ToString(dr1[0]), Convert.ToString(dr1[1]), Convert.ToString(dr1[2]), Convert.ToInt32(dr1[3]), Convert.ToDouble(dr1[4]), Convert.ToString(dr1[6]), Convert.ToString(dr1[5])));
-                }
+                UNION ALL
 
-                dr1.Close();
-                dr1 = cmd2.ExecuteReader();
+                SELECT e.Name, e.Difficulty, e.Equipment, e.RepRange, e.Weight, e.PictureURL, sh.shoulderHead, 'ShoulderExercise'
+                FROM Exercise e
+                JOIN ShoulderExercise sh on e.exercise_id = sh.exercise_id
 
-                while (dr1.Read())
+                UNION ALL
+
+                SELECT e.Name, e.Difficulty, e.Equipment, e.RepRange, e.Weight, e.PictureURL, l.legs, 'LegsExercise'
+                FROM Exercise e
+                JOIN LegsExercise l on e.exercise_id = l.exercise_id
+
+                UNION ALL
+
+                SELECT e.Name, e.Difficulty, e.Equipment, e.RepRange, e.Weight, e.PictureURL, b.backElement, 'BackExercise'
+                FROM Exercise e
+                JOIN BackExercise b on e.exercise_id = b.exercise_id
+
+                UNION ALL
+
+                SELECT Name, Difficulty, Equipment, RepRange, Weight, PictureURL, NULL, 'NeckExercise'
+                FROM Exercise
+                WHERE Type = 'NeckExercise'
+
+                UNION ALL
+
+                SELECT Name, Difficulty, Equipment, RepRange, Weight, PictureURL, NULL, 'CoreExercise'
+                FROM Exercise
+                WHERE Type = 'CoreExercise'
+            ) AS AllExercises
+            ORDER BY Name
+            OFFSET @offset ROWS FETCH NEXT @pageSize ROWS ONLY;
+        ";
+
+                int offset = (pageNumber - 1) * pageSize;
+
+                using (SqlCommand cmd = new SqlCommand(sql, _connection))
                 {
-                    myManager.AddExistingEx(new ArmExercise(Convert.ToString(dr1[0]), Convert.ToString(dr1[1]), Convert.ToString(dr1[2]), Convert.ToInt32(dr1[3]), Convert.ToDouble(dr1[4]), Convert.ToString(dr1[6]), Convert.ToString(dr1[5])));
+                    cmd.Parameters.AddWithValue("@offset", offset);
+                    cmd.Parameters.AddWithValue("@pageSize", pageSize);
+
+                    _connection.Open();
+
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            string name = Convert.ToString(dr[0]);
+                            string difficulty = Convert.ToString(dr[1]);
+                            string equipment = Convert.ToString(dr[2]);
+                            int numReps = Convert.ToInt32(dr[3]);
+                            double weight = Convert.ToDouble(dr[4]);
+                            string picture = Convert.ToString(dr[5]);
+                            string specialElement = Convert.ToString(dr[6]);
+                            string exerciseType = Convert.ToString(dr[7]);
+
+                            switch (exerciseType)
+                            {
+                                case "ChestExercise":
+                                    myManager.AddExistingEx(new ChestExercise(name, difficulty, equipment, numReps, weight, specialElement, picture));
+                                    break;
+                                case "ArmExercise":
+                                    myManager.AddExistingEx(new ArmExercise(name, difficulty, equipment, numReps, weight, specialElement, picture));
+                                    break;
+                                case "ShoulderExercise":
+                                    myManager.AddExistingEx(new ShoulderExercise(name, difficulty, equipment, numReps, weight, specialElement, picture));
+                                    break;
+                                case "LegsExercise":
+                                    myManager.AddExistingEx(new LegsExercise(name, difficulty, equipment, numReps, weight, specialElement, picture));
+                                    break;
+                                case "BackExercise":
+                                    myManager.AddExistingEx(new BackExercise(name, difficulty, equipment, numReps, weight, specialElement, picture));
+                                    break;
+                                case "NeckExercise":
+                                    myManager.AddExistingEx(new NeckExercise(name, difficulty, equipment, numReps, weight, picture));
+                                    break;
+                                case "CoreExercise":
+                                    myManager.AddExistingEx(new CoreExercise(name, difficulty, equipment, numReps, weight, picture));
+                                    break;
+                            }
+                        }
+                    }
                 }
-
-                dr1.Close();
-                dr1 = cmd3.ExecuteReader();
-
-                while (dr1.Read())
-                {
-                    myManager.AddExistingEx(new ShoulderExercise(Convert.ToString(dr1[0]), Convert.ToString(dr1[1]), Convert.ToString(dr1[2]), Convert.ToInt32(dr1[3]), Convert.ToDouble(dr1[4]), Convert.ToString(dr1[6]), Convert.ToString(dr1[5])));
-                }
-
-                dr1.Close();
-                dr1 = cmd4.ExecuteReader();
-
-                while (dr1.Read())
-                {
-                    myManager.AddExistingEx(new LegsExercise(Convert.ToString(dr1[0]), Convert.ToString(dr1[1]), Convert.ToString(dr1[2]), Convert.ToInt32(dr1[3]), Convert.ToDouble(dr1[4]), Convert.ToString(dr1[6]), Convert.ToString(dr1[5])));
-                }
-
-                dr1.Close();
-                dr1 = cmd5.ExecuteReader();
-
-                while (dr1.Read())
-                {
-                    myManager.AddExistingEx(new BackExercise(Convert.ToString(dr1[0]), Convert.ToString(dr1[1]), Convert.ToString(dr1[2]), Convert.ToInt32(dr1[3]), Convert.ToDouble(dr1[4]), Convert.ToString(dr1[6]), Convert.ToString(dr1[5])));
-                }
-
-                dr1.Close();
-                dr1 = cmd6.ExecuteReader();
-
-                while (dr1.Read())
-                {
-                    myManager.AddExistingEx(new NeckExercise(Convert.ToString(dr1[0]), Convert.ToString(dr1[1]), Convert.ToString(dr1[2]), Convert.ToInt32(dr1[3]), Convert.ToDouble(dr1[4]), Convert.ToString(dr1[5])));
-                }
-
-                dr1.Close();
-                dr1 = cmd7.ExecuteReader();
-
-                while (dr1.Read())
-                {
-                    myManager.AddExistingEx(new CoreExercise(Convert.ToString(dr1[0]), Convert.ToString(dr1[1]), Convert.ToString(dr1[2]), Convert.ToInt32(dr1[3]), Convert.ToDouble(dr1[4]), Convert.ToString(dr1[5])));
-                }
-
-                dr1.Close();
-
             }
             catch (SqlException sqlEx)
             {
@@ -612,6 +634,7 @@ namespace ClassLibrary.DatabaseClasses
                 _connection.Close();
             }
         }
+
 
     }
 }

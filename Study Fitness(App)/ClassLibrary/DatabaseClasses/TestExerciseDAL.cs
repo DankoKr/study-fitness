@@ -33,7 +33,7 @@ namespace ClassLibrary.DatabaseClasses
             throw new NotImplementedException();
         }
 
-        public void LoadExercises(ExerciseAdministration myManager)
+        public void LoadExercises(ExerciseAdministration myManager, int pageNumber, int pageSize, bool hasMoreRows)
 		{
 			Exercise ex1 = new ChestExercise("Pushup", "Beginner", "No", 5, 50.5, "Upper chest", "picture");
 			Exercise ex2 = new ShoulderExercise("Vikingpress", "Advanced", "Yes", 7, 30, "Upper head", "picture");

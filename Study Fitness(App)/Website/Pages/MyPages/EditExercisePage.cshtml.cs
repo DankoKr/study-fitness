@@ -15,7 +15,10 @@ namespace Website.Pages.MyPages
         public Exercise? selectedEx { get; set; }
         ExerciseAdministration myManager;
 		IExerciseDAL db = new ExerciseDAL();
-		public string? NewDifficulty { get; set; }
+        private int currentPage = 1;
+        private const int pageSize = 8;
+        private bool hasRows;
+        public string? NewDifficulty { get; set; }
         public int NewRepRange { get; set; }
         public double NewWeight { get; set; }
         public string? SelectedName { get; set; }
@@ -24,7 +27,7 @@ namespace Website.Pages.MyPages
         {
             string nameEx = Request.Query["name"];
             myManager = new ExerciseAdministration(db);
-            db.LoadExercises(myManager);
+            db.LoadExercises(myManager, currentPage, pageSize, hasRows);
             selectedEx = myManager.GetExercise(nameEx);
         }
 
@@ -36,7 +39,7 @@ namespace Website.Pages.MyPages
             NewWeight = Convert.ToDouble(Request.Form["weight"]);
 
 			myManager = new ExerciseAdministration(db);
-			db.LoadExercises(myManager);
+			db.LoadExercises(myManager, currentPage, pageSize, hasRows);
 			selectedEx = myManager.GetExercise(SelectedName);
 
 

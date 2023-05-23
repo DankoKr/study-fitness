@@ -11,7 +11,10 @@ namespace Website.Pages.MyPages
         public IEnumerable<Exercise> MyExercises { get; set; }
         ExerciseAdministration myManager;
         IExerciseDAL exData = new ExerciseDAL();
-        
+        private int currentPage = 1;
+        private const int pageSize = 8;
+        private bool hasRows;
+
         public int CurrentPage { get; set; } = 1;
         public int PageSize { get; set; } = 10;
         public string SearchTerm { get; set; } = "";
@@ -20,7 +23,7 @@ namespace Website.Pages.MyPages
         {
             myManager = new ExerciseAdministration(exData);
 
-            exData.LoadExercises(myManager);
+            exData.LoadExercises(myManager, currentPage, pageSize, hasRows);
             MyExercises = myManager.GetExercises();
 
             if (page != null)

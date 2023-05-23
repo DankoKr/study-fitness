@@ -16,11 +16,14 @@ namespace Website.Pages.MyPages
 		IExerciseDAL db = new ExerciseDAL();
         public CommentAdministration myComments;
         ICommentDAL comments = new CommentDAL();
+        private int currentPage = 1;
+        private const int pageSize = 8;
+        private bool hasRows;
 
-		public void OnGet(string name)
+        public void OnGet(string name)
         {
             myManager = new ExerciseAdministration(db);
-            db.LoadExercises(myManager);
+            db.LoadExercises(myManager, currentPage, pageSize, hasRows);
             selectedEx = myManager.GetExercise(name);
             myComments = new CommentAdministration(comments);
             int id = 0;

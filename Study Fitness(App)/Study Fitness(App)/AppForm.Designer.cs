@@ -30,11 +30,22 @@
         {
             tabconExercises = new TabControl();
             tabAllExercises = new TabPage();
-            cmbSelectedEx = new ComboBox();
-            lblExName = new Label();
-            btnViewExercise = new Button();
-            btnShowExercises = new Button();
-            lbAllExercises = new ListBox();
+            tabconManageExercise = new TabControl();
+            tabEditExercise = new TabPage();
+            cmbNewDifficulty = new ComboBox();
+            btnEdit = new Button();
+            txbNewWeight = new TextBox();
+            txbNewReps = new TextBox();
+            tabDeleteAndViewExercise = new TabPage();
+            btnDelete = new Button();
+            btnViewDetails = new Button();
+            tabSortExercises = new TabPage();
+            btnSortDescendingName = new Button();
+            btnSortExName = new Button();
+            btnCustomCompare = new Button();
+            btnNext = new Button();
+            btnPrevious = new Button();
+            lbExercises = new ListBox();
             btnSearch = new Button();
             txbSearchBar = new TextBox();
             tabAddExercise = new TabPage();
@@ -51,42 +62,21 @@
             txbName = new TextBox();
             cmbDifficulty = new ComboBox();
             cmbTypeEx = new ComboBox();
-            tabManageExercises = new TabPage();
-            lblManageEx = new Label();
-            cmbManageEx = new ComboBox();
-            tabconManageExercise = new TabControl();
-            tabEditExercise = new TabPage();
-            cmbNewDifficulty = new ComboBox();
-            btnEdit = new Button();
-            txbNewWeight = new TextBox();
-            txbNewReps = new TextBox();
-            tabDeletExercise = new TabPage();
-            btnDelete = new Button();
-            btnManageAllExercises = new Button();
-            lbManageExercises = new ListBox();
-            tabCompareExercises = new TabPage();
-            btnSortDescendingName = new Button();
-            btnSortExName = new Button();
-            btnCustomCompare = new Button();
-            lbExerciseSorted = new ListBox();
             tabconExercises.SuspendLayout();
             tabAllExercises.SuspendLayout();
+            tabconManageExercise.SuspendLayout();
+            tabEditExercise.SuspendLayout();
+            tabDeleteAndViewExercise.SuspendLayout();
+            tabSortExercises.SuspendLayout();
             tabAddExercise.SuspendLayout();
             grbSpecifics.SuspendLayout();
             grbInformation.SuspendLayout();
-            tabManageExercises.SuspendLayout();
-            tabconManageExercise.SuspendLayout();
-            tabEditExercise.SuspendLayout();
-            tabDeletExercise.SuspendLayout();
-            tabCompareExercises.SuspendLayout();
             SuspendLayout();
             // 
             // tabconExercises
             // 
             tabconExercises.Controls.Add(tabAllExercises);
             tabconExercises.Controls.Add(tabAddExercise);
-            tabconExercises.Controls.Add(tabManageExercises);
-            tabconExercises.Controls.Add(tabCompareExercises);
             tabconExercises.Location = new Point(12, 12);
             tabconExercises.Name = "tabconExercises";
             tabconExercises.SelectedIndex = 0;
@@ -95,11 +85,10 @@
             // 
             // tabAllExercises
             // 
-            tabAllExercises.Controls.Add(cmbSelectedEx);
-            tabAllExercises.Controls.Add(lblExName);
-            tabAllExercises.Controls.Add(btnViewExercise);
-            tabAllExercises.Controls.Add(btnShowExercises);
-            tabAllExercises.Controls.Add(lbAllExercises);
+            tabAllExercises.Controls.Add(tabconManageExercise);
+            tabAllExercises.Controls.Add(btnNext);
+            tabAllExercises.Controls.Add(btnPrevious);
+            tabAllExercises.Controls.Add(lbExercises);
             tabAllExercises.Controls.Add(btnSearch);
             tabAllExercises.Controls.Add(txbSearchBar);
             tabAllExercises.Location = new Point(4, 29);
@@ -110,64 +99,194 @@
             tabAllExercises.Text = "All Exercises";
             tabAllExercises.UseVisualStyleBackColor = true;
             // 
-            // cmbSelectedEx
+            // tabconManageExercise
             // 
-            cmbSelectedEx.FormattingEnabled = true;
-            cmbSelectedEx.Location = new Point(447, 115);
-            cmbSelectedEx.Name = "cmbSelectedEx";
-            cmbSelectedEx.Size = new Size(151, 28);
-            cmbSelectedEx.TabIndex = 6;
+            tabconManageExercise.Controls.Add(tabEditExercise);
+            tabconManageExercise.Controls.Add(tabDeleteAndViewExercise);
+            tabconManageExercise.Controls.Add(tabSortExercises);
+            tabconManageExercise.Location = new Point(332, 38);
+            tabconManageExercise.Name = "tabconManageExercise";
+            tabconManageExercise.SelectedIndex = 0;
+            tabconManageExercise.Size = new Size(275, 210);
+            tabconManageExercise.TabIndex = 11;
             // 
-            // lblExName
+            // tabEditExercise
             // 
-            lblExName.AutoSize = true;
-            lblExName.Location = new Point(366, 118);
-            lblExName.Name = "lblExName";
-            lblExName.Size = new Size(75, 20);
-            lblExName.TabIndex = 5;
-            lblExName.Text = "Select Ex :";
+            tabEditExercise.Controls.Add(cmbNewDifficulty);
+            tabEditExercise.Controls.Add(btnEdit);
+            tabEditExercise.Controls.Add(txbNewWeight);
+            tabEditExercise.Controls.Add(txbNewReps);
+            tabEditExercise.Location = new Point(4, 29);
+            tabEditExercise.Name = "tabEditExercise";
+            tabEditExercise.Padding = new Padding(3);
+            tabEditExercise.Size = new Size(267, 177);
+            tabEditExercise.TabIndex = 0;
+            tabEditExercise.Text = "Edit";
+            tabEditExercise.UseVisualStyleBackColor = true;
             // 
-            // btnViewExercise
+            // cmbNewDifficulty
             // 
-            btnViewExercise.BackColor = Color.Violet;
-            btnViewExercise.FlatStyle = FlatStyle.Flat;
-            btnViewExercise.Location = new Point(461, 165);
-            btnViewExercise.Name = "btnViewExercise";
-            btnViewExercise.Size = new Size(115, 29);
-            btnViewExercise.TabIndex = 4;
-            btnViewExercise.Text = "View Exercise";
-            btnViewExercise.UseVisualStyleBackColor = false;
-            btnViewExercise.Click += btnViewExercise_Click;
+            cmbNewDifficulty.FormattingEnabled = true;
+            cmbNewDifficulty.Items.AddRange(new object[] { "Beginner", "Intermediate", "Advanced", "Athlete" });
+            cmbNewDifficulty.Location = new Point(35, 104);
+            cmbNewDifficulty.Name = "cmbNewDifficulty";
+            cmbNewDifficulty.Size = new Size(125, 28);
+            cmbNewDifficulty.TabIndex = 4;
             // 
-            // btnShowExercises
+            // btnEdit
             // 
-            btnShowExercises.BackColor = Color.Violet;
-            btnShowExercises.FlatStyle = FlatStyle.Flat;
-            btnShowExercises.Location = new Point(91, 263);
-            btnShowExercises.Name = "btnShowExercises";
-            btnShowExercises.Size = new Size(128, 29);
-            btnShowExercises.TabIndex = 3;
-            btnShowExercises.Text = "Show Exercises";
-            btnShowExercises.UseVisualStyleBackColor = false;
-            btnShowExercises.Click += btnShowExercises_Click;
+            btnEdit.BackColor = Color.Violet;
+            btnEdit.FlatStyle = FlatStyle.Flat;
+            btnEdit.Location = new Point(185, 67);
+            btnEdit.Name = "btnEdit";
+            btnEdit.Size = new Size(66, 35);
+            btnEdit.TabIndex = 3;
+            btnEdit.Text = "Edit";
+            btnEdit.UseVisualStyleBackColor = false;
+            btnEdit.Click += btnEdit_Click;
             // 
-            // lbAllExercises
+            // txbNewWeight
             // 
-            lbAllExercises.DisplayMember = "Name";
-            lbAllExercises.FormattingEnabled = true;
-            lbAllExercises.ItemHeight = 20;
-            lbAllExercises.Location = new Point(43, 84);
-            lbAllExercises.Name = "lbAllExercises";
-            lbAllExercises.Size = new Size(214, 164);
-            lbAllExercises.TabIndex = 2;
+            txbNewWeight.Location = new Point(35, 71);
+            txbNewWeight.Name = "txbNewWeight";
+            txbNewWeight.PlaceholderText = "New Weight";
+            txbNewWeight.Size = new Size(125, 27);
+            txbNewWeight.TabIndex = 1;
+            // 
+            // txbNewReps
+            // 
+            txbNewReps.Location = new Point(35, 38);
+            txbNewReps.Name = "txbNewReps";
+            txbNewReps.PlaceholderText = "New Reps";
+            txbNewReps.Size = new Size(125, 27);
+            txbNewReps.TabIndex = 0;
+            // 
+            // tabDeleteAndViewExercise
+            // 
+            tabDeleteAndViewExercise.Controls.Add(btnDelete);
+            tabDeleteAndViewExercise.Controls.Add(btnViewDetails);
+            tabDeleteAndViewExercise.Location = new Point(4, 29);
+            tabDeleteAndViewExercise.Name = "tabDeleteAndViewExercise";
+            tabDeleteAndViewExercise.Padding = new Padding(3);
+            tabDeleteAndViewExercise.Size = new Size(267, 177);
+            tabDeleteAndViewExercise.TabIndex = 1;
+            tabDeleteAndViewExercise.Text = "View/Delete";
+            tabDeleteAndViewExercise.UseVisualStyleBackColor = true;
+            // 
+            // btnDelete
+            // 
+            btnDelete.BackColor = Color.Violet;
+            btnDelete.FlatStyle = FlatStyle.Flat;
+            btnDelete.Location = new Point(151, 54);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(75, 58);
+            btnDelete.TabIndex = 0;
+            btnDelete.Text = "Delete";
+            btnDelete.UseVisualStyleBackColor = false;
+            btnDelete.Click += btnDelete_Click;
+            // 
+            // btnViewDetails
+            // 
+            btnViewDetails.BackColor = Color.Violet;
+            btnViewDetails.FlatStyle = FlatStyle.Flat;
+            btnViewDetails.Location = new Point(40, 54);
+            btnViewDetails.Name = "btnViewDetails";
+            btnViewDetails.Size = new Size(75, 58);
+            btnViewDetails.TabIndex = 4;
+            btnViewDetails.Text = "View Details";
+            btnViewDetails.UseVisualStyleBackColor = false;
+            btnViewDetails.Click += btnViewExercise_Click;
+            // 
+            // tabSortExercises
+            // 
+            tabSortExercises.Controls.Add(btnSortDescendingName);
+            tabSortExercises.Controls.Add(btnSortExName);
+            tabSortExercises.Controls.Add(btnCustomCompare);
+            tabSortExercises.Location = new Point(4, 29);
+            tabSortExercises.Name = "tabSortExercises";
+            tabSortExercises.Padding = new Padding(3);
+            tabSortExercises.Size = new Size(267, 177);
+            tabSortExercises.TabIndex = 2;
+            tabSortExercises.Text = "Sort ex";
+            tabSortExercises.UseVisualStyleBackColor = true;
+            // 
+            // btnSortDescendingName
+            // 
+            btnSortDescendingName.BackColor = Color.Violet;
+            btnSortDescendingName.FlatStyle = FlatStyle.Flat;
+            btnSortDescendingName.Location = new Point(59, 110);
+            btnSortDescendingName.Name = "btnSortDescendingName";
+            btnSortDescendingName.Size = new Size(156, 35);
+            btnSortDescendingName.TabIndex = 8;
+            btnSortDescendingName.Text = "Sort by Name (desc)";
+            btnSortDescendingName.UseVisualStyleBackColor = false;
+            btnSortDescendingName.Click += btnSortDescendingName_Click;
+            // 
+            // btnSortExName
+            // 
+            btnSortExName.BackColor = Color.Violet;
+            btnSortExName.FlatStyle = FlatStyle.Flat;
+            btnSortExName.Location = new Point(59, 28);
+            btnSortExName.Name = "btnSortExName";
+            btnSortExName.Size = new Size(156, 35);
+            btnSortExName.TabIndex = 7;
+            btnSortExName.Text = "Sort by Name";
+            btnSortExName.UseVisualStyleBackColor = false;
+            btnSortExName.Click += btnSortExName_Click;
+            // 
+            // btnCustomCompare
+            // 
+            btnCustomCompare.BackColor = Color.Violet;
+            btnCustomCompare.FlatStyle = FlatStyle.Flat;
+            btnCustomCompare.Location = new Point(59, 69);
+            btnCustomCompare.Name = "btnCustomCompare";
+            btnCustomCompare.Size = new Size(156, 35);
+            btnCustomCompare.TabIndex = 6;
+            btnCustomCompare.Text = "Sort by Weight";
+            btnCustomCompare.UseVisualStyleBackColor = false;
+            btnCustomCompare.Click += btnCustomCompare_Click;
+            // 
+            // btnNext
+            // 
+            btnNext.BackColor = Color.Violet;
+            btnNext.FlatStyle = FlatStyle.Flat;
+            btnNext.Location = new Point(176, 254);
+            btnNext.Name = "btnNext";
+            btnNext.Size = new Size(94, 34);
+            btnNext.TabIndex = 10;
+            btnNext.Text = "next";
+            btnNext.UseVisualStyleBackColor = false;
+            btnNext.Click += btnNext_Click;
+            // 
+            // btnPrevious
+            // 
+            btnPrevious.BackColor = Color.Violet;
+            btnPrevious.FlatStyle = FlatStyle.Flat;
+            btnPrevious.Location = new Point(42, 254);
+            btnPrevious.Name = "btnPrevious";
+            btnPrevious.Size = new Size(94, 34);
+            btnPrevious.TabIndex = 9;
+            btnPrevious.Text = "previous";
+            btnPrevious.UseVisualStyleBackColor = false;
+            btnPrevious.Click += btnPrevious_Click;
+            // 
+            // lbExercises
+            // 
+            lbExercises.DisplayMember = "Name";
+            lbExercises.FormattingEnabled = true;
+            lbExercises.ItemHeight = 20;
+            lbExercises.Location = new Point(33, 84);
+            lbExercises.Name = "lbExercises";
+            lbExercises.Size = new Size(246, 164);
+            lbExercises.TabIndex = 2;
             // 
             // btnSearch
             // 
             btnSearch.BackColor = Color.Violet;
             btnSearch.FlatStyle = FlatStyle.Flat;
-            btnSearch.Location = new Point(268, 35);
+            btnSearch.Location = new Point(207, 38);
             btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(94, 29);
+            btnSearch.Size = new Size(72, 29);
             btnSearch.TabIndex = 1;
             btnSearch.Text = "Search";
             btnSearch.UseVisualStyleBackColor = false;
@@ -175,7 +294,7 @@
             // 
             // txbSearchBar
             // 
-            txbSearchBar.Location = new Point(66, 37);
+            txbSearchBar.Location = new Point(33, 38);
             txbSearchBar.Name = "txbSearchBar";
             txbSearchBar.Size = new Size(168, 27);
             txbSearchBar.TabIndex = 0;
@@ -317,204 +436,6 @@
             cmbTypeEx.Size = new Size(125, 28);
             cmbTypeEx.TabIndex = 0;
             // 
-            // tabManageExercises
-            // 
-            tabManageExercises.Controls.Add(lblManageEx);
-            tabManageExercises.Controls.Add(cmbManageEx);
-            tabManageExercises.Controls.Add(tabconManageExercise);
-            tabManageExercises.Controls.Add(btnManageAllExercises);
-            tabManageExercises.Controls.Add(lbManageExercises);
-            tabManageExercises.Location = new Point(4, 29);
-            tabManageExercises.Name = "tabManageExercises";
-            tabManageExercises.Padding = new Padding(3);
-            tabManageExercises.Size = new Size(641, 318);
-            tabManageExercises.TabIndex = 2;
-            tabManageExercises.Text = "Manage Exercises";
-            tabManageExercises.UseVisualStyleBackColor = true;
-            // 
-            // lblManageEx
-            // 
-            lblManageEx.AutoSize = true;
-            lblManageEx.Location = new Point(264, 43);
-            lblManageEx.Name = "lblManageEx";
-            lblManageEx.Size = new Size(75, 20);
-            lblManageEx.TabIndex = 5;
-            lblManageEx.Text = "Select Ex :";
-            // 
-            // cmbManageEx
-            // 
-            cmbManageEx.FormattingEnabled = true;
-            cmbManageEx.Location = new Point(345, 40);
-            cmbManageEx.Name = "cmbManageEx";
-            cmbManageEx.Size = new Size(151, 28);
-            cmbManageEx.TabIndex = 4;
-            // 
-            // tabconManageExercise
-            // 
-            tabconManageExercise.Controls.Add(tabEditExercise);
-            tabconManageExercise.Controls.Add(tabDeletExercise);
-            tabconManageExercise.Location = new Point(264, 93);
-            tabconManageExercise.Name = "tabconManageExercise";
-            tabconManageExercise.SelectedIndex = 0;
-            tabconManageExercise.Size = new Size(337, 189);
-            tabconManageExercise.TabIndex = 3;
-            // 
-            // tabEditExercise
-            // 
-            tabEditExercise.Controls.Add(cmbNewDifficulty);
-            tabEditExercise.Controls.Add(btnEdit);
-            tabEditExercise.Controls.Add(txbNewWeight);
-            tabEditExercise.Controls.Add(txbNewReps);
-            tabEditExercise.Location = new Point(4, 29);
-            tabEditExercise.Name = "tabEditExercise";
-            tabEditExercise.Padding = new Padding(3);
-            tabEditExercise.Size = new Size(329, 156);
-            tabEditExercise.TabIndex = 0;
-            tabEditExercise.Text = "Edit";
-            tabEditExercise.UseVisualStyleBackColor = true;
-            // 
-            // cmbNewDifficulty
-            // 
-            cmbNewDifficulty.FormattingEnabled = true;
-            cmbNewDifficulty.Items.AddRange(new object[] { "Beginner", "Intermediate", "Advanced", "Athlete" });
-            cmbNewDifficulty.Location = new Point(39, 94);
-            cmbNewDifficulty.Name = "cmbNewDifficulty";
-            cmbNewDifficulty.Size = new Size(125, 28);
-            cmbNewDifficulty.TabIndex = 4;
-            // 
-            // btnEdit
-            // 
-            btnEdit.BackColor = Color.Violet;
-            btnEdit.FlatStyle = FlatStyle.Flat;
-            btnEdit.Location = new Point(202, 53);
-            btnEdit.Name = "btnEdit";
-            btnEdit.Size = new Size(94, 43);
-            btnEdit.TabIndex = 3;
-            btnEdit.Text = "Edit";
-            btnEdit.UseVisualStyleBackColor = false;
-            btnEdit.Click += btnEdit_Click;
-            // 
-            // txbNewWeight
-            // 
-            txbNewWeight.Location = new Point(39, 61);
-            txbNewWeight.Name = "txbNewWeight";
-            txbNewWeight.PlaceholderText = "New Weight";
-            txbNewWeight.Size = new Size(125, 27);
-            txbNewWeight.TabIndex = 1;
-            // 
-            // txbNewReps
-            // 
-            txbNewReps.Location = new Point(39, 28);
-            txbNewReps.Name = "txbNewReps";
-            txbNewReps.PlaceholderText = "New Reps";
-            txbNewReps.Size = new Size(125, 27);
-            txbNewReps.TabIndex = 0;
-            // 
-            // tabDeletExercise
-            // 
-            tabDeletExercise.Controls.Add(btnDelete);
-            tabDeletExercise.Location = new Point(4, 29);
-            tabDeletExercise.Name = "tabDeletExercise";
-            tabDeletExercise.Padding = new Padding(3);
-            tabDeletExercise.Size = new Size(329, 156);
-            tabDeletExercise.TabIndex = 1;
-            tabDeletExercise.Text = "Delete";
-            tabDeletExercise.UseVisualStyleBackColor = true;
-            // 
-            // btnDelete
-            // 
-            btnDelete.BackColor = Color.Violet;
-            btnDelete.FlatStyle = FlatStyle.Flat;
-            btnDelete.Location = new Point(124, 50);
-            btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(94, 52);
-            btnDelete.TabIndex = 0;
-            btnDelete.Text = "Delete";
-            btnDelete.UseVisualStyleBackColor = false;
-            btnDelete.Click += btnDelete_Click;
-            // 
-            // btnManageAllExercises
-            // 
-            btnManageAllExercises.BackColor = Color.Violet;
-            btnManageAllExercises.FlatStyle = FlatStyle.Flat;
-            btnManageAllExercises.Location = new Point(24, 271);
-            btnManageAllExercises.Name = "btnManageAllExercises";
-            btnManageAllExercises.Size = new Size(150, 41);
-            btnManageAllExercises.TabIndex = 2;
-            btnManageAllExercises.Text = "Show all exercises";
-            btnManageAllExercises.UseVisualStyleBackColor = false;
-            btnManageAllExercises.Click += btnManageAllExercises_Click;
-            // 
-            // lbManageExercises
-            // 
-            lbManageExercises.DisplayMember = "Name";
-            lbManageExercises.FormattingEnabled = true;
-            lbManageExercises.ItemHeight = 20;
-            lbManageExercises.Location = new Point(6, 21);
-            lbManageExercises.Name = "lbManageExercises";
-            lbManageExercises.Size = new Size(174, 244);
-            lbManageExercises.TabIndex = 1;
-            // 
-            // tabCompareExercises
-            // 
-            tabCompareExercises.Controls.Add(btnSortDescendingName);
-            tabCompareExercises.Controls.Add(btnSortExName);
-            tabCompareExercises.Controls.Add(btnCustomCompare);
-            tabCompareExercises.Controls.Add(lbExerciseSorted);
-            tabCompareExercises.Location = new Point(4, 29);
-            tabCompareExercises.Name = "tabCompareExercises";
-            tabCompareExercises.Padding = new Padding(3);
-            tabCompareExercises.Size = new Size(641, 318);
-            tabCompareExercises.TabIndex = 3;
-            tabCompareExercises.Text = "Compare";
-            tabCompareExercises.UseVisualStyleBackColor = true;
-            // 
-            // btnSortDescendingName
-            // 
-            btnSortDescendingName.BackColor = Color.Violet;
-            btnSortDescendingName.FlatStyle = FlatStyle.Flat;
-            btnSortDescendingName.Location = new Point(424, 186);
-            btnSortDescendingName.Name = "btnSortDescendingName";
-            btnSortDescendingName.Size = new Size(109, 51);
-            btnSortDescendingName.TabIndex = 5;
-            btnSortDescendingName.Text = "Sort by Name (desc)";
-            btnSortDescendingName.UseVisualStyleBackColor = false;
-            btnSortDescendingName.Click += btnSortDescendingName_Click;
-            // 
-            // btnSortExName
-            // 
-            btnSortExName.BackColor = Color.Violet;
-            btnSortExName.FlatStyle = FlatStyle.Flat;
-            btnSortExName.Location = new Point(424, 72);
-            btnSortExName.Name = "btnSortExName";
-            btnSortExName.Size = new Size(109, 51);
-            btnSortExName.TabIndex = 4;
-            btnSortExName.Text = "Sort by Name";
-            btnSortExName.UseVisualStyleBackColor = false;
-            btnSortExName.Click += btnSortExName_Click;
-            // 
-            // btnCustomCompare
-            // 
-            btnCustomCompare.BackColor = Color.Violet;
-            btnCustomCompare.FlatStyle = FlatStyle.Flat;
-            btnCustomCompare.Location = new Point(424, 129);
-            btnCustomCompare.Name = "btnCustomCompare";
-            btnCustomCompare.Size = new Size(109, 51);
-            btnCustomCompare.TabIndex = 3;
-            btnCustomCompare.Text = "Sort by Weight";
-            btnCustomCompare.UseVisualStyleBackColor = false;
-            btnCustomCompare.Click += btnCustomCompare_Click;
-            // 
-            // lbExerciseSorted
-            // 
-            lbExerciseSorted.DisplayMember = "Name";
-            lbExerciseSorted.FormattingEnabled = true;
-            lbExerciseSorted.ItemHeight = 20;
-            lbExerciseSorted.Location = new Point(98, 27);
-            lbExerciseSorted.Name = "lbExerciseSorted";
-            lbExerciseSorted.Size = new Size(242, 264);
-            lbExerciseSorted.TabIndex = 1;
-            // 
             // AppForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -527,18 +448,16 @@
             tabconExercises.ResumeLayout(false);
             tabAllExercises.ResumeLayout(false);
             tabAllExercises.PerformLayout();
+            tabconManageExercise.ResumeLayout(false);
+            tabEditExercise.ResumeLayout(false);
+            tabEditExercise.PerformLayout();
+            tabDeleteAndViewExercise.ResumeLayout(false);
+            tabSortExercises.ResumeLayout(false);
             tabAddExercise.ResumeLayout(false);
             grbSpecifics.ResumeLayout(false);
             grbSpecifics.PerformLayout();
             grbInformation.ResumeLayout(false);
             grbInformation.PerformLayout();
-            tabManageExercises.ResumeLayout(false);
-            tabManageExercises.PerformLayout();
-            tabconManageExercise.ResumeLayout(false);
-            tabEditExercise.ResumeLayout(false);
-            tabEditExercise.PerformLayout();
-            tabDeletExercise.ResumeLayout(false);
-            tabCompareExercises.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -547,13 +466,11 @@
         private TabControl tabconExercises;
         private TabPage tabAllExercises;
         private Label lblExName;
-        private Button btnViewExercise;
-        private Button btnShowExercises;
-        private ListBox lbAllExercises;
+        private Button btnViewDetails;
+        private ListBox lbExercises;
         private Button btnSearch;
         private TextBox txbSearchBar;
         private TabPage tabAddExercise;
-        private TabPage tabManageExercises;
         private Button btnCreateExercise;
         private GroupBox grbSpecifics;
         private GroupBox grbInformation;
@@ -566,24 +483,21 @@
         private ComboBox cmbDifficulty;
         private ComboBox cmbTypeEx;
         private TextBox txbSpecialty;
+        private TextBox txbPicture;
+        private ComboBox cmbSelectedEx;
+        private Button btnNext;
+        private Button btnPrevious;
         private TabControl tabconManageExercise;
         private TabPage tabEditExercise;
+        private ComboBox cmbNewDifficulty;
         private Button btnEdit;
         private TextBox txbNewWeight;
         private TextBox txbNewReps;
-        private TabPage tabDeletExercise;
+        private TabPage tabDeleteAndViewExercise;
         private Button btnDelete;
-        private Button btnManageAllExercises;
-        private ListBox lbManageExercises;
-        private ComboBox cmbNewDifficulty;
-        private TabPage tabCompareExercises;
-        private ListBox lbExerciseSorted;
-        private TextBox txbPicture;
-        private ComboBox cmbSelectedEx;
-        private Label lblManageEx;
-        private ComboBox cmbManageEx;
-        private Button btnCustomCompare;
-        private Button btnSortExName;
+        private TabPage tabSortExercises;
         private Button btnSortDescendingName;
+        private Button btnSortExName;
+        private Button btnCustomCompare;
     }
 }

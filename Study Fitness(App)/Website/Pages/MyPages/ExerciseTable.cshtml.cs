@@ -12,10 +12,13 @@ namespace Website.Pages.MyPages
 		public Exercise[] myExercises { get; set; }
 		ExerciseAdministration myManager;
 		IExerciseDAL exData = new ExerciseDAL();
-		public void OnGet()
+        private int currentPage = 1;
+        private const int pageSize = 8;
+        private bool hasRows;
+        public void OnGet()
         {
 			myManager = new ExerciseAdministration(exData);
-			exData.LoadExercises(myManager);
+			exData.LoadExercises(myManager, currentPage, pageSize, hasRows);
 			myExercises = myManager.GetExercises();
 		}
     }

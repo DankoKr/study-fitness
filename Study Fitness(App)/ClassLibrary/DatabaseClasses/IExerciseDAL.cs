@@ -15,7 +15,7 @@ namespace ClassLibrary.DatabaseClasses
 
 		void EditExercise(Exercise ex, string difficulty, int reps, double weight);
 
-		void LoadExercises(ExerciseAdministration myManager);
+		void LoadExercises(ExerciseAdministration myManager, int pageNumber, int pageSize, bool hasMoreRows);
 		int ExerciseId(string name);
 	}
 }
