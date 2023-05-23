@@ -26,7 +26,6 @@ namespace Study_Fitness_App_
         {
             InitializeComponent();
             myManager = new UserAdministration(db);
-            db.LoadUsers(myManager);
         }
 
         private void btnLogin_Click(object sender, EventArgs e)

@@ -9,7 +9,7 @@ namespace ClassLibrary.DatabaseClasses
 {
 	public interface IUserDAL
 	{
-		void LoadUsers(UserAdministration myManager);
+		void LoadUsers(UserAdministration myManager, int pageNumber, int pageSize, bool hasMoreRows);
 		void DeleteUser(User u);
 		void EditUser(User u, string name);
 		bool CreateUser(User u);

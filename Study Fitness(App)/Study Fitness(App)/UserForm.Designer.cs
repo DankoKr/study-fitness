@@ -30,8 +30,18 @@
         {
             tabConUsers = new TabControl();
             tabViewUsers = new TabPage();
-            btnViewAllUsers = new Button();
+            tabFunctions = new TabControl();
+            tabViewDetails = new TabPage();
             btnViewDetails = new Button();
+            tabModify = new TabPage();
+            txbNewUsername = new TextBox();
+            btnEditUser = new Button();
+            btnDeleteUser = new Button();
+            tabTrainer = new TabPage();
+            btnSetLevel = new Button();
+            numLevel = new NumericUpDown();
+            btnNext = new Button();
+            btnPrevious = new Button();
             lbUsers = new ListBox();
             tabAddUser = new TabPage();
             txbPassword = new TextBox();
@@ -40,30 +50,20 @@
             cmbType = new ComboBox();
             txbUsername = new TextBox();
             txbFirstName = new TextBox();
-            tabEditUser = new TabPage();
-            lblNewDifficulty = new Label();
-            txbNewUsername = new TextBox();
-            lbManageUser = new ListBox();
-            btnEditUser = new Button();
-            btnDeleteUser = new Button();
-            tabTrainerLevel = new TabPage();
-            numLevel = new NumericUpDown();
-            cmbTrainerName = new ComboBox();
-            btnSetLevel = new Button();
             tabConUsers.SuspendLayout();
             tabViewUsers.SuspendLayout();
-            tabAddUser.SuspendLayout();
-            tabEditUser.SuspendLayout();
-            tabTrainerLevel.SuspendLayout();
+            tabFunctions.SuspendLayout();
+            tabViewDetails.SuspendLayout();
+            tabModify.SuspendLayout();
+            tabTrainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numLevel).BeginInit();
+            tabAddUser.SuspendLayout();
             SuspendLayout();
             // 
             // tabConUsers
             // 
             tabConUsers.Controls.Add(tabViewUsers);
             tabConUsers.Controls.Add(tabAddUser);
-            tabConUsers.Controls.Add(tabEditUser);
-            tabConUsers.Controls.Add(tabTrainerLevel);
             tabConUsers.Location = new Point(12, 1);
             tabConUsers.Name = "tabConUsers";
             tabConUsers.SelectedIndex = 0;
@@ -72,8 +72,9 @@
             // 
             // tabViewUsers
             // 
-            tabViewUsers.Controls.Add(btnViewAllUsers);
-            tabViewUsers.Controls.Add(btnViewDetails);
+            tabViewUsers.Controls.Add(tabFunctions);
+            tabViewUsers.Controls.Add(btnNext);
+            tabViewUsers.Controls.Add(btnPrevious);
             tabViewUsers.Controls.Add(lbUsers);
             tabViewUsers.Location = new Point(4, 29);
             tabViewUsers.Name = "tabViewUsers";
@@ -83,38 +84,149 @@
             tabViewUsers.Text = "View All";
             tabViewUsers.UseVisualStyleBackColor = true;
             // 
-            // btnViewAllUsers
+            // tabFunctions
             // 
-            btnViewAllUsers.BackColor = Color.Violet;
-            btnViewAllUsers.FlatStyle = FlatStyle.Flat;
-            btnViewAllUsers.Location = new Point(409, 104);
-            btnViewAllUsers.Name = "btnViewAllUsers";
-            btnViewAllUsers.Size = new Size(94, 60);
-            btnViewAllUsers.TabIndex = 2;
-            btnViewAllUsers.Text = "View All Users";
-            btnViewAllUsers.UseVisualStyleBackColor = false;
-            btnViewAllUsers.Click += btnViewAllUsers_Click;
+            tabFunctions.Controls.Add(tabViewDetails);
+            tabFunctions.Controls.Add(tabModify);
+            tabFunctions.Controls.Add(tabTrainer);
+            tabFunctions.Location = new Point(349, 54);
+            tabFunctions.Name = "tabFunctions";
+            tabFunctions.SelectedIndex = 0;
+            tabFunctions.Size = new Size(250, 192);
+            tabFunctions.TabIndex = 5;
+            // 
+            // tabViewDetails
+            // 
+            tabViewDetails.Controls.Add(btnViewDetails);
+            tabViewDetails.Location = new Point(4, 29);
+            tabViewDetails.Name = "tabViewDetails";
+            tabViewDetails.Padding = new Padding(3);
+            tabViewDetails.Size = new Size(242, 159);
+            tabViewDetails.TabIndex = 0;
+            tabViewDetails.Text = "Details";
+            tabViewDetails.UseVisualStyleBackColor = true;
             // 
             // btnViewDetails
             // 
             btnViewDetails.BackColor = Color.Violet;
             btnViewDetails.FlatStyle = FlatStyle.Flat;
-            btnViewDetails.Location = new Point(409, 170);
+            btnViewDetails.Location = new Point(70, 39);
             btnViewDetails.Name = "btnViewDetails";
-            btnViewDetails.Size = new Size(94, 60);
+            btnViewDetails.Size = new Size(93, 50);
             btnViewDetails.TabIndex = 1;
             btnViewDetails.Text = "View Details";
             btnViewDetails.UseVisualStyleBackColor = false;
             btnViewDetails.Click += btnViewDetails_Click;
+            // 
+            // tabModify
+            // 
+            tabModify.Controls.Add(txbNewUsername);
+            tabModify.Controls.Add(btnEditUser);
+            tabModify.Controls.Add(btnDeleteUser);
+            tabModify.Location = new Point(4, 29);
+            tabModify.Name = "tabModify";
+            tabModify.Padding = new Padding(3);
+            tabModify.Size = new Size(242, 159);
+            tabModify.TabIndex = 1;
+            tabModify.Text = "Edit/Delete";
+            tabModify.UseVisualStyleBackColor = true;
+            // 
+            // txbNewUsername
+            // 
+            txbNewUsername.Location = new Point(50, 19);
+            txbNewUsername.Name = "txbNewUsername";
+            txbNewUsername.PlaceholderText = "New Username";
+            txbNewUsername.Size = new Size(125, 27);
+            txbNewUsername.TabIndex = 8;
+            // 
+            // btnEditUser
+            // 
+            btnEditUser.BackColor = Color.Violet;
+            btnEditUser.FlatStyle = FlatStyle.Flat;
+            btnEditUser.Location = new Point(70, 52);
+            btnEditUser.Name = "btnEditUser";
+            btnEditUser.Size = new Size(94, 44);
+            btnEditUser.TabIndex = 3;
+            btnEditUser.Text = "Edit";
+            btnEditUser.UseVisualStyleBackColor = false;
+            btnEditUser.Click += btnEditUser_Click;
+            // 
+            // btnDeleteUser
+            // 
+            btnDeleteUser.BackColor = Color.Violet;
+            btnDeleteUser.FlatStyle = FlatStyle.Flat;
+            btnDeleteUser.Location = new Point(70, 102);
+            btnDeleteUser.Name = "btnDeleteUser";
+            btnDeleteUser.Size = new Size(94, 44);
+            btnDeleteUser.TabIndex = 2;
+            btnDeleteUser.Text = "Delete";
+            btnDeleteUser.UseVisualStyleBackColor = false;
+            btnDeleteUser.Click += btnDeleteUser_Click;
+            // 
+            // tabTrainer
+            // 
+            tabTrainer.Controls.Add(btnSetLevel);
+            tabTrainer.Controls.Add(numLevel);
+            tabTrainer.Location = new Point(4, 29);
+            tabTrainer.Name = "tabTrainer";
+            tabTrainer.Padding = new Padding(3);
+            tabTrainer.Size = new Size(242, 159);
+            tabTrainer.TabIndex = 2;
+            tabTrainer.Text = "Trainer Level";
+            tabTrainer.UseVisualStyleBackColor = true;
+            // 
+            // btnSetLevel
+            // 
+            btnSetLevel.BackColor = Color.Violet;
+            btnSetLevel.FlatStyle = FlatStyle.Flat;
+            btnSetLevel.Location = new Point(70, 81);
+            btnSetLevel.Name = "btnSetLevel";
+            btnSetLevel.Size = new Size(93, 50);
+            btnSetLevel.TabIndex = 6;
+            btnSetLevel.Text = "Set Level";
+            btnSetLevel.UseVisualStyleBackColor = false;
+            btnSetLevel.Click += btnSetLevel_Click;
+            // 
+            // numLevel
+            // 
+            numLevel.Location = new Point(47, 34);
+            numLevel.Maximum = new decimal(new int[] { 2, 0, 0, 0 });
+            numLevel.Name = "numLevel";
+            numLevel.Size = new Size(150, 27);
+            numLevel.TabIndex = 5;
+            // 
+            // btnNext
+            // 
+            btnNext.BackColor = Color.Violet;
+            btnNext.FlatStyle = FlatStyle.Flat;
+            btnNext.Location = new Point(186, 252);
+            btnNext.Name = "btnNext";
+            btnNext.Size = new Size(94, 34);
+            btnNext.TabIndex = 4;
+            btnNext.Text = "next";
+            btnNext.UseVisualStyleBackColor = false;
+            btnNext.Click += btnNext_Click;
+            // 
+            // btnPrevious
+            // 
+            btnPrevious.BackColor = Color.Violet;
+            btnPrevious.FlatStyle = FlatStyle.Flat;
+            btnPrevious.Location = new Point(57, 252);
+            btnPrevious.Name = "btnPrevious";
+            btnPrevious.Size = new Size(94, 34);
+            btnPrevious.TabIndex = 3;
+            btnPrevious.Text = "previous";
+            btnPrevious.UseVisualStyleBackColor = false;
+            btnPrevious.Click += btnPrevious_Click;
             // 
             // lbUsers
             // 
             lbUsers.DisplayMember = "Username";
             lbUsers.FormattingEnabled = true;
             lbUsers.ItemHeight = 20;
-            lbUsers.Location = new Point(42, 25);
+            lbUsers.Location = new Point(40, 45);
             lbUsers.Name = "lbUsers";
-            lbUsers.Size = new Size(253, 264);
+            lbUsers.Size = new Size(253, 184);
             lbUsers.TabIndex = 0;
             // 
             // tabAddUser
@@ -187,113 +299,6 @@
             txbFirstName.Size = new Size(125, 27);
             txbFirstName.TabIndex = 0;
             // 
-            // tabEditUser
-            // 
-            tabEditUser.Controls.Add(lblNewDifficulty);
-            tabEditUser.Controls.Add(txbNewUsername);
-            tabEditUser.Controls.Add(lbManageUser);
-            tabEditUser.Controls.Add(btnEditUser);
-            tabEditUser.Controls.Add(btnDeleteUser);
-            tabEditUser.Location = new Point(4, 29);
-            tabEditUser.Name = "tabEditUser";
-            tabEditUser.Padding = new Padding(3);
-            tabEditUser.Size = new Size(624, 324);
-            tabEditUser.TabIndex = 2;
-            tabEditUser.Text = "Edit/Delete";
-            tabEditUser.UseVisualStyleBackColor = true;
-            // 
-            // lblNewDifficulty
-            // 
-            lblNewDifficulty.AutoSize = true;
-            lblNewDifficulty.Location = new Point(458, 56);
-            lblNewDifficulty.Name = "lblNewDifficulty";
-            lblNewDifficulty.Size = new Size(0, 20);
-            lblNewDifficulty.TabIndex = 12;
-            // 
-            // txbNewUsername
-            // 
-            txbNewUsername.Location = new Point(370, 108);
-            txbNewUsername.Name = "txbNewUsername";
-            txbNewUsername.PlaceholderText = "New Username";
-            txbNewUsername.Size = new Size(125, 27);
-            txbNewUsername.TabIndex = 7;
-            // 
-            // lbManageUser
-            // 
-            lbManageUser.DisplayMember = "Username";
-            lbManageUser.FormattingEnabled = true;
-            lbManageUser.ItemHeight = 20;
-            lbManageUser.Location = new Point(49, 39);
-            lbManageUser.Name = "lbManageUser";
-            lbManageUser.Size = new Size(187, 264);
-            lbManageUser.TabIndex = 2;
-            // 
-            // btnEditUser
-            // 
-            btnEditUser.BackColor = Color.Violet;
-            btnEditUser.FlatStyle = FlatStyle.Flat;
-            btnEditUser.Location = new Point(314, 222);
-            btnEditUser.Name = "btnEditUser";
-            btnEditUser.Size = new Size(94, 44);
-            btnEditUser.TabIndex = 1;
-            btnEditUser.Text = "Edit";
-            btnEditUser.UseVisualStyleBackColor = false;
-            btnEditUser.Click += btnEditUser_Click;
-            // 
-            // btnDeleteUser
-            // 
-            btnDeleteUser.BackColor = Color.Violet;
-            btnDeleteUser.FlatStyle = FlatStyle.Flat;
-            btnDeleteUser.Location = new Point(455, 222);
-            btnDeleteUser.Name = "btnDeleteUser";
-            btnDeleteUser.Size = new Size(94, 44);
-            btnDeleteUser.TabIndex = 0;
-            btnDeleteUser.Text = "Delete";
-            btnDeleteUser.UseVisualStyleBackColor = false;
-            btnDeleteUser.Click += btnDeleteUser_Click;
-            // 
-            // tabTrainerLevel
-            // 
-            tabTrainerLevel.Controls.Add(numLevel);
-            tabTrainerLevel.Controls.Add(cmbTrainerName);
-            tabTrainerLevel.Controls.Add(btnSetLevel);
-            tabTrainerLevel.Location = new Point(4, 29);
-            tabTrainerLevel.Name = "tabTrainerLevel";
-            tabTrainerLevel.Padding = new Padding(3);
-            tabTrainerLevel.Size = new Size(624, 324);
-            tabTrainerLevel.TabIndex = 3;
-            tabTrainerLevel.Text = "Trainer level";
-            tabTrainerLevel.UseVisualStyleBackColor = true;
-            // 
-            // numLevel
-            // 
-            numLevel.Location = new Point(242, 142);
-            numLevel.Maximum = new decimal(new int[] { 2, 0, 0, 0 });
-            numLevel.Name = "numLevel";
-            numLevel.Size = new Size(150, 27);
-            numLevel.TabIndex = 2;
-            // 
-            // cmbTrainerName
-            // 
-            cmbTrainerName.FormattingEnabled = true;
-            cmbTrainerName.Location = new Point(241, 91);
-            cmbTrainerName.Name = "cmbTrainerName";
-            cmbTrainerName.Size = new Size(151, 28);
-            cmbTrainerName.TabIndex = 1;
-            // 
-            // btnSetLevel
-            // 
-            btnSetLevel.BackColor = Color.Violet;
-            btnSetLevel.FlatStyle = FlatStyle.Flat;
-            btnSetLevel.ForeColor = SystemColors.ControlText;
-            btnSetLevel.Location = new Point(271, 192);
-            btnSetLevel.Name = "btnSetLevel";
-            btnSetLevel.Size = new Size(94, 55);
-            btnSetLevel.TabIndex = 0;
-            btnSetLevel.Text = "Set level";
-            btnSetLevel.UseVisualStyleBackColor = false;
-            btnSetLevel.Click += btnSetLevel_Click;
-            // 
             // UserForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -305,12 +310,14 @@
             Text = "UserForm";
             tabConUsers.ResumeLayout(false);
             tabViewUsers.ResumeLayout(false);
+            tabFunctions.ResumeLayout(false);
+            tabViewDetails.ResumeLayout(false);
+            tabModify.ResumeLayout(false);
+            tabModify.PerformLayout();
+            tabTrainer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)numLevel).EndInit();
             tabAddUser.ResumeLayout(false);
             tabAddUser.PerformLayout();
-            tabEditUser.ResumeLayout(false);
-            tabEditUser.PerformLayout();
-            tabTrainerLevel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)numLevel).EndInit();
             ResumeLayout(false);
         }
 
@@ -318,7 +325,6 @@
 
         private TabControl tabConUsers;
         private TabPage tabViewUsers;
-        private Button btnViewAllUsers;
         private Button btnViewDetails;
         private ListBox lbUsers;
         private TabPage tabAddUser;
@@ -327,20 +333,21 @@
         private ComboBox cmbType;
         private TextBox txbUsername;
         private TextBox txbFirstName;
-        private TabPage tabEditUser;
-        private Label lblNewDifficulty;
         private Label lblNewCalories;
         private ComboBox cmbNewDifficulty;
         private NumericUpDown numNewCalories;
         private TextBox txbNewPicURL;
+        private TextBox txbPassword;
+        private Button btnNext;
+        private Button btnPrevious;
+        private TabControl tabFunctions;
+        private TabPage tabViewDetails;
+        private TabPage tabModify;
         private TextBox txbNewUsername;
-        private ListBox lbManageUser;
         private Button btnEditUser;
         private Button btnDeleteUser;
-        private TextBox txbPassword;
-        private TabPage tabTrainerLevel;
-        private ComboBox cmbTrainerName;
-        private Button btnSetLevel;
+        private TabPage tabTrainer;
         private NumericUpDown numLevel;
+        private Button btnSetLevel;
     }
 }

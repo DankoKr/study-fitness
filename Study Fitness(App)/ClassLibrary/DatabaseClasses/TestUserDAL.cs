@@ -57,7 +57,7 @@ namespace ClassLibrary.DatabaseClasses
 			}
 		}
 
-		public void LoadUsers(UserAdministration myManager)
+		public void LoadUsers(UserAdministration myManager, int pageNumber, int pageSize, bool hasMoreRows)
 		{
 			User u1 = new User("User1", "First", "1234", "Member");
 			User u2 = new User("User2", "Second", "1234", "Admin");

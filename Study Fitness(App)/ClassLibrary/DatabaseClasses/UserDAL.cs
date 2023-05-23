@@ -16,30 +16,50 @@ namespace ClassLibrary.DatabaseClasses
     public class UserDAL : IUserDAL
     {
         DatabaseRepo db = new DatabaseRepo();
-        public void LoadUsers(UserAdministration myManager)
+        public void LoadUsers(UserAdministration myManager, int pageNumber, int pageSize, bool hasMoreRows)
         {
             SqlConnection _connection = db.GetSqlConnection();
 
+
             try
             {
-                string sql = "SELECT FirstName, Username, PasswordHash, Role\r\nFROM Users";
-                SqlCommand cmd = new SqlCommand(sql, _connection);
-                _connection.Open();
-                SqlDataReader dr = cmd.ExecuteReader();
-                while (dr.Read())
-                {
-                    myManager.AddExistingUser(new User(Convert.ToString(dr[0]), Convert.ToString(dr[1]), Convert.ToString(dr[2]), Convert.ToString(dr[3])));
-                }
+                string sql = "SELECT FirstName, Username, PasswordHash, Role " +
+                             "FROM Users " +
+                             "ORDER BY Username " + 
+                             "OFFSET @offset ROWS FETCH NEXT @fetch ROWS ONLY;";
 
-                dr.Close();
+                SqlCommand cmd = new SqlCommand(sql, _connection);
+                
+                    cmd.Parameters.AddWithValue("@offset", (pageNumber - 1) * pageSize);
+                    cmd.Parameters.AddWithValue("@fetch", pageSize);
+
+                    _connection.Open();
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    int rowCount = 0;
+
+                    while (dr.Read())
+                    {
+                        rowCount++;
+                        if (rowCount <= pageSize)
+                        {
+                            myManager.AddExistingUser(new User(Convert.ToString(dr[0]), Convert.ToString(dr[1]), Convert.ToString(dr[2]), Convert.ToString(dr[3])));
+                        }
+                    }
+
+                    hasMoreRows = rowCount > pageSize;
+                    dr.Close();
+                
             }
             catch (SqlException sqlEx)
             {
-
                 throw new Exception(sqlEx.Message);
             }
-            finally { _connection.Close(); }
+            finally
+            {
+                _connection.Close();
+            }
         }
+
 
         public void DeleteUser(User u) 
         {
@@ -68,7 +88,7 @@ namespace ClassLibrary.DatabaseClasses
 
         public void EditUser(User u, string name) 
         {
-			DatabaseRepo db = new DatabaseRepo();
+			//DatabaseRepo db = new DatabaseRepo();
 			SqlConnection _connection = db.GetSqlConnection();
 
             try
@@ -88,9 +108,9 @@ namespace ClassLibrary.DatabaseClasses
         }
 
         public bool CreateUser(User user) 
-        { 
-            using (SqlConnection _connection = db.GetSqlConnection()) 
-            {
+        {
+            SqlConnection _connection = db.GetSqlConnection();
+            
                 try
                 {
                     _connection.Open();
@@ -106,9 +126,7 @@ namespace ClassLibrary.DatabaseClasses
                 } 
                 catch (Exception) 
                 { return false; }
-                finally { _connection.Close(); }
-
-            } 
+                finally { _connection.Close(); }         
         }
 
         public bool CheckLogin(string username, string password)
@@ -236,8 +254,8 @@ namespace ClassLibrary.DatabaseClasses
 
         public void SetTrainerLevel(string trainerUsername, int level)
         {
-            using (SqlConnection _connection = db.GetSqlConnection())
-            {
+            SqlConnection _connection = db.GetSqlConnection();
+            
                 try
                 {
                     string sql = $"UPDATE Users\r\nSET TrainerLevel = '{level}'\r\nWHERE Username = '{trainerUsername}';";
@@ -252,7 +270,7 @@ namespace ClassLibrary.DatabaseClasses
                     throw new Exception(sqlEx.Message);
                 }
                 finally { _connection.Close(); }
-            }
+            
         }
 
         public int UserId(string username)

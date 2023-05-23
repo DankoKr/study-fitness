@@ -17,19 +17,16 @@ namespace Study_Fitness_App_
     public partial class UserForm : Form
     {
         UserAdministration myManager;
-        UserDAL db = new UserDAL();
+        IUserDAL db = new UserDAL();
+        private int currentPage = 1;
+        private const int pageSize = 8;
+        private bool hasRows;
+
         public UserForm()
         {
             InitializeComponent();
-            IUserDAL db = new UserDAL();
-            myManager = new UserAdministration(db);
-            db.LoadUsers(myManager);
-            FillComboBox();
-        }
-
-        private void btnViewAllUsers_Click(object sender, EventArgs e)
-        {
             ShowData();
+            btnPrevious.Enabled = false;
         }
 
         private void ClearFields()
@@ -44,25 +41,12 @@ namespace Study_Fitness_App_
         private void ShowData()
         {
             lbUsers.Items.Clear();
-            lbManageUser.Items.Clear();
+            myManager = new UserAdministration(db);
+            db.LoadUsers(myManager, currentPage, pageSize, hasRows);
 
             foreach (User u in myManager.GetUsers())
             {
                 lbUsers.Items.Add(u);
-                lbManageUser.Items.Add(u);
-            }
-        }
-
-        private void FillComboBox()
-        {
-            cmbTrainerName.Items.Clear();
-
-            foreach (User trainer in myManager.GetUsers())
-            {
-                if (trainer.UserRole == "Trainer")
-                {
-                    cmbTrainerName.Items.Add(trainer.Username);
-                }
             }
         }
 
@@ -88,6 +72,7 @@ namespace Study_Fitness_App_
                     User newUser = new User(txbFirstName.Text, txbUsername.Text, txbPassword.Text, cmbType.Text);
                     myManager.AddUser(newUser);
                     ClearFields();
+                    ShowData();
                     MessageBox.Show("User created!", "Done");
                 }
                 else { MessageBox.Show("Dublication of username!", "ERROR"); }
@@ -98,30 +83,40 @@ namespace Study_Fitness_App_
             }
         }
 
-        private void btnDeleteUser_Click(object sender, EventArgs e)
+        private void btnNext_Click(object sender, EventArgs e)
         {
-            if (lbManageUser.SelectedIndex < 0)
-            {
-                MessageBox.Show("Please choose a User!");
-                return;
-            }
-
-            object obj = lbManageUser.SelectedItem;
-            User selectedU = (User)obj;
-            myManager.DeleteUser(selectedU);
+            currentPage++;
+            db.LoadUsers(myManager, currentPage, pageSize, hasRows);
             ShowData();
-            MessageBox.Show("User deleted!", "Done");
+            btnNext.Enabled = hasRows;
+            btnPrevious.Enabled = true;
+        }
+
+        private void btnPrevious_Click(object sender, EventArgs e)
+        {
+            if (currentPage > 1)
+            {
+                currentPage--;
+                db.LoadUsers(myManager, currentPage, pageSize, hasRows);
+                ShowData();
+                btnNext.Enabled = true;
+                if (currentPage == 1)
+                {
+                    btnPrevious.Enabled = false;
+                }
+            }
+            else { btnPrevious.Enabled = false; }
         }
 
         private void btnEditUser_Click(object sender, EventArgs e)
         {
-            if (lbManageUser.SelectedIndex < 0)
+            if (lbUsers.SelectedIndex < 0)
             {
                 MessageBox.Show("Please choose a User!");
                 return;
             }
 
-            object obj = lbManageUser.SelectedItem;
+            object obj = lbUsers.SelectedItem;
             User selectedU = (User)obj;
             if (txbNewUsername.Text != "" && myManager.ValidateUserIsUnique(txbNewUsername.Text))
             {
@@ -132,14 +127,43 @@ namespace Study_Fitness_App_
             }
         }
 
+        private void btnDeleteUser_Click(object sender, EventArgs e)
+        {
+            if (lbUsers.SelectedIndex < 0)
+            {
+                MessageBox.Show("Please choose a User!");
+                return;
+            }
+
+            object obj = lbUsers.SelectedItem;
+            User selectedU = (User)obj;
+            myManager.DeleteUser(selectedU);
+            ShowData();
+            MessageBox.Show("User deleted!", "Done");
+        }
+
         private void btnSetLevel_Click(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(numLevel.Text) >= 0 && cmbTrainerName.Text != "")
+            if (lbUsers.SelectedIndex < 0)
             {
-                db.SetTrainerLevel(cmbTrainerName.Text, Convert.ToInt32(numLevel.Text));
+                MessageBox.Show("Please choose a Trainer!");
+                return;
+            }
+
+            object obj = lbUsers.SelectedItem;
+            User selectedU = (User)obj;
+
+            if (selectedU.UserRole != "Trainer")
+            {
+                MessageBox.Show("The Chosen User is not a Trainer!");
+                return;
+            }
+
+            if (Convert.ToInt32(numLevel.Text) >= 0)
+            {
+                db.SetTrainerLevel(selectedU.Username, Convert.ToInt32(numLevel.Text));
                 MessageBox.Show("Trainer level changed!", "Done");
             }
-            else { MessageBox.Show("Choose a trainer!", "ERROR"); }
         }
     }
 }
