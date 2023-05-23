@@ -11,15 +11,18 @@ namespace Website.Pages.MyPages
         public IEnumerable<Cardio> MyCardios { get; set; }
 		ICardioDAL db = new CardioDAL();
         CardioAdministration myManager;
-		
+        private int currentPage = 1;
+        private const int pageSize = 8;
+        private bool hasRows;
 
-		public int CurrentPage { get; set; } = 1;
+
+        public int CurrentPage { get; set; } = 1;
         public int PageSize { get; set; } = 10;
         public string SearchTerm { get; set; } = "";
         public void OnGet(int? page, string sort, string search)
         {
 			myManager = new CardioAdministration(db);
-			db.LoadCardios(myManager);
+			db.LoadCardios(myManager, currentPage, pageSize, hasRows);
 			MyCardios = myManager.GetCardios();
 
             if (page != null)

@@ -37,7 +37,7 @@ namespace ClassLibrary.DatabaseClasses
 			}
 		}
 
-		public void LoadCardios(CardioAdministration myManager)
+		public void LoadCardios(CardioAdministration myManager, int pageNumber, int pageSize, bool hasMoreRows)
 		{
 			Cardio c1 = new Cardio("Cardio1", 200, "Beginner", "picture1");
 			Cardio c2 = new Cardio("Cardio2", 300, "Intermediate", "picture2");

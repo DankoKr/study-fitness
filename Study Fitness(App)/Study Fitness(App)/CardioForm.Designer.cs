@@ -30,8 +30,22 @@
         {
             tabConCardio = new TabControl();
             tabViewCardio = new TabPage();
-            btnViewAllCardios = new Button();
+            tabFunctions = new TabControl();
+            tabViewDetailsAndDelete = new TabPage();
+            btnDelete = new Button();
             btnViewDetails = new Button();
+            tabEdit = new TabPage();
+            btnEdit = new Button();
+            lblNewDifficulty = new Label();
+            lblNewCalories = new Label();
+            cmbNewDifficulty = new ComboBox();
+            numNewCalories = new NumericUpDown();
+            txbNewPicURL = new TextBox();
+            txbNewName = new TextBox();
+            btnNext = new Button();
+            btnPrevious = new Button();
+            txbSearchBar = new TextBox();
+            btnSearch = new Button();
             lbCardios = new ListBox();
             tabAddCardio = new TabPage();
             btnSaveFileImage = new Button();
@@ -43,31 +57,20 @@
             numCalories = new NumericUpDown();
             txbPictureURL = new TextBox();
             txbName = new TextBox();
-            tabEditCardio = new TabPage();
-            lblNewDifficulty = new Label();
-            lblNewCalories = new Label();
-            cmbNewDifficulty = new ComboBox();
-            numNewCalories = new NumericUpDown();
-            txbNewPicURL = new TextBox();
-            txbNewName = new TextBox();
-            lbManageCardio = new ListBox();
-            btnEdit = new Button();
-            btnDelete = new Button();
-            btnSearch = new Button();
-            txbSearchBar = new TextBox();
             tabConCardio.SuspendLayout();
             tabViewCardio.SuspendLayout();
+            tabFunctions.SuspendLayout();
+            tabViewDetailsAndDelete.SuspendLayout();
+            tabEdit.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numNewCalories).BeginInit();
             tabAddCardio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numCalories).BeginInit();
-            tabEditCardio.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numNewCalories).BeginInit();
             SuspendLayout();
             // 
             // tabConCardio
             // 
             tabConCardio.Controls.Add(tabViewCardio);
             tabConCardio.Controls.Add(tabAddCardio);
-            tabConCardio.Controls.Add(tabEditCardio);
             tabConCardio.Location = new Point(12, 12);
             tabConCardio.Name = "tabConCardio";
             tabConCardio.SelectedIndex = 0;
@@ -76,10 +79,11 @@
             // 
             // tabViewCardio
             // 
+            tabViewCardio.Controls.Add(tabFunctions);
+            tabViewCardio.Controls.Add(btnNext);
+            tabViewCardio.Controls.Add(btnPrevious);
             tabViewCardio.Controls.Add(txbSearchBar);
             tabViewCardio.Controls.Add(btnSearch);
-            tabViewCardio.Controls.Add(btnViewAllCardios);
-            tabViewCardio.Controls.Add(btnViewDetails);
             tabViewCardio.Controls.Add(lbCardios);
             tabViewCardio.Location = new Point(4, 29);
             tabViewCardio.Name = "tabViewCardio";
@@ -89,23 +93,45 @@
             tabViewCardio.Text = "View All";
             tabViewCardio.UseVisualStyleBackColor = true;
             // 
-            // btnViewAllCardios
+            // tabFunctions
             // 
-            btnViewAllCardios.BackColor = Color.Violet;
-            btnViewAllCardios.FlatStyle = FlatStyle.Flat;
-            btnViewAllCardios.Location = new Point(409, 104);
-            btnViewAllCardios.Name = "btnViewAllCardios";
-            btnViewAllCardios.Size = new Size(94, 60);
-            btnViewAllCardios.TabIndex = 2;
-            btnViewAllCardios.Text = "View All Cardios";
-            btnViewAllCardios.UseVisualStyleBackColor = false;
-            btnViewAllCardios.Click += btnViewAllCardios_Click;
+            tabFunctions.Controls.Add(tabViewDetailsAndDelete);
+            tabFunctions.Controls.Add(tabEdit);
+            tabFunctions.Location = new Point(332, 39);
+            tabFunctions.Name = "tabFunctions";
+            tabFunctions.SelectedIndex = 0;
+            tabFunctions.Size = new Size(286, 245);
+            tabFunctions.TabIndex = 9;
+            // 
+            // tabViewDetailsAndDelete
+            // 
+            tabViewDetailsAndDelete.Controls.Add(btnDelete);
+            tabViewDetailsAndDelete.Controls.Add(btnViewDetails);
+            tabViewDetailsAndDelete.Location = new Point(4, 29);
+            tabViewDetailsAndDelete.Name = "tabViewDetailsAndDelete";
+            tabViewDetailsAndDelete.Padding = new Padding(3);
+            tabViewDetailsAndDelete.Size = new Size(278, 212);
+            tabViewDetailsAndDelete.TabIndex = 0;
+            tabViewDetailsAndDelete.Text = "Details/Delete";
+            tabViewDetailsAndDelete.UseVisualStyleBackColor = true;
+            // 
+            // btnDelete
+            // 
+            btnDelete.BackColor = Color.Violet;
+            btnDelete.FlatStyle = FlatStyle.Flat;
+            btnDelete.Location = new Point(151, 79);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(94, 60);
+            btnDelete.TabIndex = 2;
+            btnDelete.Text = "Delete";
+            btnDelete.UseVisualStyleBackColor = false;
+            btnDelete.Click += btnDelete_Click;
             // 
             // btnViewDetails
             // 
             btnViewDetails.BackColor = Color.Violet;
             btnViewDetails.FlatStyle = FlatStyle.Flat;
-            btnViewDetails.Location = new Point(409, 170);
+            btnViewDetails.Location = new Point(32, 79);
             btnViewDetails.Name = "btnViewDetails";
             btnViewDetails.Size = new Size(94, 60);
             btnViewDetails.TabIndex = 1;
@@ -113,14 +139,137 @@
             btnViewDetails.UseVisualStyleBackColor = false;
             btnViewDetails.Click += btnViewDetails_Click;
             // 
+            // tabEdit
+            // 
+            tabEdit.Controls.Add(btnEdit);
+            tabEdit.Controls.Add(lblNewDifficulty);
+            tabEdit.Controls.Add(lblNewCalories);
+            tabEdit.Controls.Add(cmbNewDifficulty);
+            tabEdit.Controls.Add(numNewCalories);
+            tabEdit.Controls.Add(txbNewPicURL);
+            tabEdit.Controls.Add(txbNewName);
+            tabEdit.Location = new Point(4, 29);
+            tabEdit.Name = "tabEdit";
+            tabEdit.Padding = new Padding(3);
+            tabEdit.Size = new Size(278, 212);
+            tabEdit.TabIndex = 1;
+            tabEdit.Text = "Edit";
+            tabEdit.UseVisualStyleBackColor = true;
+            // 
+            // btnEdit
+            // 
+            btnEdit.BackColor = Color.Violet;
+            btnEdit.FlatStyle = FlatStyle.Flat;
+            btnEdit.Location = new Point(191, 83);
+            btnEdit.Name = "btnEdit";
+            btnEdit.Size = new Size(69, 44);
+            btnEdit.TabIndex = 19;
+            btnEdit.Text = "Edit";
+            btnEdit.UseVisualStyleBackColor = false;
+            btnEdit.Click += btnEdit_Click;
+            // 
+            // lblNewDifficulty
+            // 
+            lblNewDifficulty.AutoSize = true;
+            lblNewDifficulty.Location = new Point(26, 60);
+            lblNewDifficulty.Name = "lblNewDifficulty";
+            lblNewDifficulty.Size = new Size(110, 20);
+            lblNewDifficulty.TabIndex = 18;
+            lblNewDifficulty.Text = "New Difficulty :";
+            // 
+            // lblNewCalories
+            // 
+            lblNewCalories.AutoSize = true;
+            lblNewCalories.Location = new Point(29, 114);
+            lblNewCalories.Name = "lblNewCalories";
+            lblNewCalories.Size = new Size(103, 20);
+            lblNewCalories.TabIndex = 17;
+            lblNewCalories.Text = "New Calories :";
+            // 
+            // cmbNewDifficulty
+            // 
+            cmbNewDifficulty.FormattingEnabled = true;
+            cmbNewDifficulty.Items.AddRange(new object[] { "Beginner", "Intermediate", "Advanced", "Athlete" });
+            cmbNewDifficulty.Location = new Point(29, 83);
+            cmbNewDifficulty.Name = "cmbNewDifficulty";
+            cmbNewDifficulty.Size = new Size(125, 28);
+            cmbNewDifficulty.TabIndex = 16;
+            // 
+            // numNewCalories
+            // 
+            numNewCalories.Location = new Point(29, 137);
+            numNewCalories.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
+            numNewCalories.Name = "numNewCalories";
+            numNewCalories.Size = new Size(125, 27);
+            numNewCalories.TabIndex = 15;
+            // 
+            // txbNewPicURL
+            // 
+            txbNewPicURL.Location = new Point(29, 170);
+            txbNewPicURL.Name = "txbNewPicURL";
+            txbNewPicURL.PlaceholderText = "PictureURL";
+            txbNewPicURL.Size = new Size(125, 27);
+            txbNewPicURL.TabIndex = 14;
+            // 
+            // txbNewName
+            // 
+            txbNewName.Location = new Point(26, 30);
+            txbNewName.Name = "txbNewName";
+            txbNewName.PlaceholderText = "Name";
+            txbNewName.Size = new Size(125, 27);
+            txbNewName.TabIndex = 13;
+            // 
+            // btnNext
+            // 
+            btnNext.BackColor = Color.Violet;
+            btnNext.FlatStyle = FlatStyle.Flat;
+            btnNext.Location = new Point(183, 264);
+            btnNext.Name = "btnNext";
+            btnNext.Size = new Size(94, 34);
+            btnNext.TabIndex = 8;
+            btnNext.Text = "next";
+            btnNext.UseVisualStyleBackColor = false;
+            btnNext.Click += btnNext_Click;
+            // 
+            // btnPrevious
+            // 
+            btnPrevious.BackColor = Color.Violet;
+            btnPrevious.FlatStyle = FlatStyle.Flat;
+            btnPrevious.Location = new Point(42, 264);
+            btnPrevious.Name = "btnPrevious";
+            btnPrevious.Size = new Size(94, 34);
+            btnPrevious.TabIndex = 7;
+            btnPrevious.Text = "previous";
+            btnPrevious.UseVisualStyleBackColor = false;
+            btnPrevious.Click += btnPrevious_Click;
+            // 
+            // txbSearchBar
+            // 
+            txbSearchBar.Location = new Point(33, 26);
+            txbSearchBar.Name = "txbSearchBar";
+            txbSearchBar.Size = new Size(164, 27);
+            txbSearchBar.TabIndex = 4;
+            // 
+            // btnSearch
+            // 
+            btnSearch.BackColor = Color.Violet;
+            btnSearch.FlatStyle = FlatStyle.Flat;
+            btnSearch.Location = new Point(203, 24);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(83, 29);
+            btnSearch.TabIndex = 3;
+            btnSearch.Text = "Search";
+            btnSearch.UseVisualStyleBackColor = false;
+            btnSearch.Click += btnSearch_Click;
+            // 
             // lbCardios
             // 
             lbCardios.DisplayMember = "Name";
             lbCardios.FormattingEnabled = true;
             lbCardios.ItemHeight = 20;
-            lbCardios.Location = new Point(42, 25);
+            lbCardios.Location = new Point(33, 74);
             lbCardios.Name = "lbCardios";
-            lbCardios.Size = new Size(253, 264);
+            lbCardios.Size = new Size(253, 184);
             lbCardios.TabIndex = 0;
             // 
             // tabAddCardio
@@ -229,129 +378,6 @@
             txbName.Size = new Size(125, 27);
             txbName.TabIndex = 0;
             // 
-            // tabEditCardio
-            // 
-            tabEditCardio.Controls.Add(lblNewDifficulty);
-            tabEditCardio.Controls.Add(lblNewCalories);
-            tabEditCardio.Controls.Add(cmbNewDifficulty);
-            tabEditCardio.Controls.Add(numNewCalories);
-            tabEditCardio.Controls.Add(txbNewPicURL);
-            tabEditCardio.Controls.Add(txbNewName);
-            tabEditCardio.Controls.Add(lbManageCardio);
-            tabEditCardio.Controls.Add(btnEdit);
-            tabEditCardio.Controls.Add(btnDelete);
-            tabEditCardio.Location = new Point(4, 29);
-            tabEditCardio.Name = "tabEditCardio";
-            tabEditCardio.Padding = new Padding(3);
-            tabEditCardio.Size = new Size(624, 313);
-            tabEditCardio.TabIndex = 2;
-            tabEditCardio.Text = "Edit/Delete";
-            tabEditCardio.UseVisualStyleBackColor = true;
-            // 
-            // lblNewDifficulty
-            // 
-            lblNewDifficulty.AutoSize = true;
-            lblNewDifficulty.Location = new Point(455, 53);
-            lblNewDifficulty.Name = "lblNewDifficulty";
-            lblNewDifficulty.Size = new Size(110, 20);
-            lblNewDifficulty.TabIndex = 12;
-            lblNewDifficulty.Text = "New Difficulty :";
-            // 
-            // lblNewCalories
-            // 
-            lblNewCalories.AutoSize = true;
-            lblNewCalories.Location = new Point(283, 126);
-            lblNewCalories.Name = "lblNewCalories";
-            lblNewCalories.Size = new Size(103, 20);
-            lblNewCalories.TabIndex = 11;
-            lblNewCalories.Text = "New Calories :";
-            // 
-            // cmbNewDifficulty
-            // 
-            cmbNewDifficulty.FormattingEnabled = true;
-            cmbNewDifficulty.Items.AddRange(new object[] { "Beginner", "Intermediate", "Advanced", "Athlete" });
-            cmbNewDifficulty.Location = new Point(455, 76);
-            cmbNewDifficulty.Name = "cmbNewDifficulty";
-            cmbNewDifficulty.Size = new Size(125, 28);
-            cmbNewDifficulty.TabIndex = 10;
-            // 
-            // numNewCalories
-            // 
-            numNewCalories.Location = new Point(283, 149);
-            numNewCalories.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
-            numNewCalories.Name = "numNewCalories";
-            numNewCalories.Size = new Size(125, 27);
-            numNewCalories.TabIndex = 9;
-            // 
-            // txbNewPicURL
-            // 
-            txbNewPicURL.Location = new Point(455, 149);
-            txbNewPicURL.Name = "txbNewPicURL";
-            txbNewPicURL.PlaceholderText = "PictureURL";
-            txbNewPicURL.Size = new Size(125, 27);
-            txbNewPicURL.TabIndex = 8;
-            // 
-            // txbNewName
-            // 
-            txbNewName.Location = new Point(283, 76);
-            txbNewName.Name = "txbNewName";
-            txbNewName.PlaceholderText = "Name";
-            txbNewName.Size = new Size(125, 27);
-            txbNewName.TabIndex = 7;
-            // 
-            // lbManageCardio
-            // 
-            lbManageCardio.DisplayMember = "Name";
-            lbManageCardio.FormattingEnabled = true;
-            lbManageCardio.ItemHeight = 20;
-            lbManageCardio.Location = new Point(49, 39);
-            lbManageCardio.Name = "lbManageCardio";
-            lbManageCardio.Size = new Size(150, 264);
-            lbManageCardio.TabIndex = 2;
-            // 
-            // btnEdit
-            // 
-            btnEdit.BackColor = Color.Violet;
-            btnEdit.FlatStyle = FlatStyle.Flat;
-            btnEdit.Location = new Point(314, 222);
-            btnEdit.Name = "btnEdit";
-            btnEdit.Size = new Size(94, 44);
-            btnEdit.TabIndex = 1;
-            btnEdit.Text = "Edit";
-            btnEdit.UseVisualStyleBackColor = false;
-            btnEdit.Click += btnEdit_Click;
-            // 
-            // btnDelete
-            // 
-            btnDelete.BackColor = Color.Violet;
-            btnDelete.FlatStyle = FlatStyle.Flat;
-            btnDelete.Location = new Point(455, 222);
-            btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(94, 44);
-            btnDelete.TabIndex = 0;
-            btnDelete.Text = "Delete";
-            btnDelete.UseVisualStyleBackColor = false;
-            btnDelete.Click += btnDelete_Click;
-            // 
-            // btnSearch
-            // 
-            btnSearch.BackColor = Color.Violet;
-            btnSearch.FlatStyle = FlatStyle.Flat;
-            btnSearch.Location = new Point(503, 36);
-            btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(94, 29);
-            btnSearch.TabIndex = 3;
-            btnSearch.Text = "Search";
-            btnSearch.UseVisualStyleBackColor = false;
-            btnSearch.Click += btnSearch_Click;
-            // 
-            // txbSearchBar
-            // 
-            txbSearchBar.Location = new Point(329, 38);
-            txbSearchBar.Name = "txbSearchBar";
-            txbSearchBar.Size = new Size(168, 27);
-            txbSearchBar.TabIndex = 4;
-            // 
             // CardioForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -364,12 +390,14 @@
             tabConCardio.ResumeLayout(false);
             tabViewCardio.ResumeLayout(false);
             tabViewCardio.PerformLayout();
+            tabFunctions.ResumeLayout(false);
+            tabViewDetailsAndDelete.ResumeLayout(false);
+            tabEdit.ResumeLayout(false);
+            tabEdit.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numNewCalories).EndInit();
             tabAddCardio.ResumeLayout(false);
             tabAddCardio.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numCalories).EndInit();
-            tabEditCardio.ResumeLayout(false);
-            tabEditCardio.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numNewCalories).EndInit();
             ResumeLayout(false);
         }
 
@@ -380,7 +408,6 @@
         private Button btnViewDetails;
         private ListBox lbCardios;
         private TabPage tabAddCardio;
-        private TabPage tabEditCardio;
         private ComboBox cmbDifficulty;
         private NumericUpDown numCalories;
         private TextBox txbPictureURL;
@@ -388,19 +415,22 @@
         private Button btnCreateCardio;
         private Label lblDifficulty;
         private Label lblCalories;
-        private ListBox lbManageCardio;
+        private Button btnBrowseImage;
+        private Button btnSaveFileImage;
+        private Button btnSearch;
+        private TextBox txbSearchBar;
+        private Button btnNext;
+        private Button btnPrevious;
+        private TabControl tabFunctions;
+        private TabPage tabViewDetailsAndDelete;
+        private TabPage tabEdit;
         private Button btnEdit;
-        private Button btnDelete;
         private Label lblNewDifficulty;
         private Label lblNewCalories;
         private ComboBox cmbNewDifficulty;
         private NumericUpDown numNewCalories;
         private TextBox txbNewPicURL;
         private TextBox txbNewName;
-        private Button btnViewAllCardios;
-        private Button btnBrowseImage;
-        private Button btnSaveFileImage;
-        private Button btnSearch;
-        private TextBox txbSearchBar;
+        private Button btnDelete;
     }
 }

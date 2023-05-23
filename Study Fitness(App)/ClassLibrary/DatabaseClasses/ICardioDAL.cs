@@ -13,7 +13,7 @@ namespace ClassLibrary.DatabaseClasses
 		void AddCardio(Cardio c);
 		void DeleteCardio(Cardio c);
 		void EditCardio(Cardio c, string name, string difficulty, int calories, string picture);
-		void LoadCardios(CardioAdministration myManager);
+		void LoadCardios(CardioAdministration myManager, int pageNumber, int pageSize, bool hasMoreRows);
 		int CardioId(string name);
 	}
 }

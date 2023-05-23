@@ -31,13 +31,15 @@
             btnView = new Button();
             btnDelete = new Button();
             lbComments = new ListBox();
+            btnNext = new Button();
+            btnPrevious = new Button();
             SuspendLayout();
             // 
             // btnView
             // 
             btnView.BackColor = Color.Violet;
             btnView.FlatStyle = FlatStyle.Flat;
-            btnView.Location = new Point(220, 252);
+            btnView.Location = new Point(471, 68);
             btnView.Name = "btnView";
             btnView.Size = new Size(94, 57);
             btnView.TabIndex = 0;
@@ -49,7 +51,7 @@
             // 
             btnDelete.BackColor = Color.Violet;
             btnDelete.FlatStyle = FlatStyle.Flat;
-            btnDelete.Location = new Point(385, 252);
+            btnDelete.Location = new Point(471, 170);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(94, 57);
             btnDelete.TabIndex = 1;
@@ -62,17 +64,43 @@
             lbComments.DisplayMember = "Title";
             lbComments.FormattingEnabled = true;
             lbComments.ItemHeight = 20;
-            lbComments.Location = new Point(185, 55);
+            lbComments.Location = new Point(54, 43);
             lbComments.Name = "lbComments";
-            lbComments.Size = new Size(328, 144);
+            lbComments.Size = new Size(264, 184);
             lbComments.TabIndex = 2;
+            // 
+            // btnNext
+            // 
+            btnNext.BackColor = Color.Violet;
+            btnNext.FlatStyle = FlatStyle.Flat;
+            btnNext.Location = new Point(214, 244);
+            btnNext.Name = "btnNext";
+            btnNext.Size = new Size(94, 34);
+            btnNext.TabIndex = 6;
+            btnNext.Text = "next";
+            btnNext.UseVisualStyleBackColor = false;
+            btnNext.Click += btnNext_Click;
+            // 
+            // btnPrevious
+            // 
+            btnPrevious.BackColor = Color.Violet;
+            btnPrevious.FlatStyle = FlatStyle.Flat;
+            btnPrevious.Location = new Point(65, 244);
+            btnPrevious.Name = "btnPrevious";
+            btnPrevious.Size = new Size(94, 34);
+            btnPrevious.TabIndex = 5;
+            btnPrevious.Text = "previous";
+            btnPrevious.UseVisualStyleBackColor = false;
+            btnPrevious.Click += btnPrevious_Click;
             // 
             // CommentForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Cyan;
-            ClientSize = new Size(673, 370);
+            ClientSize = new Size(652, 316);
+            Controls.Add(btnNext);
+            Controls.Add(btnPrevious);
             Controls.Add(lbComments);
             Controls.Add(btnDelete);
             Controls.Add(btnView);
@@ -86,5 +114,7 @@
         private Button btnView;
         private Button btnDelete;
         private ListBox lbComments;
+        private Button btnNext;
+        private Button btnPrevious;
     }
 }

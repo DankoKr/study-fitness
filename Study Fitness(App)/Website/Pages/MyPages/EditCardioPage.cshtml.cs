@@ -11,10 +11,14 @@ namespace Website.Pages.MyPages
     {
         public string Error = "";
         public string Message = "";
+        private int currentPage = 1;
+        private const int pageSize = 8;
+        private bool hasRows;
         public Cardio? selectedC { get; set; }
         CardioAdministration myManager;
 		ICardioDAL db = new CardioDAL();
-		public string? NewDifficulty { get; set; }
+
+        public string? NewDifficulty { get; set; }
         public string? NewName { get; set; }
         public int NewCalories{ get; set; }
         public string? NewPictureURL { get; set; }
@@ -23,7 +27,7 @@ namespace Website.Pages.MyPages
         {
             string nameEx = Request.Query["name"];
 			myManager = new CardioAdministration(db);
-			db.LoadCardios(myManager);
+			db.LoadCardios(myManager, currentPage, pageSize, hasRows);
 			selectedC = myManager.GetCardio(nameEx);
         }
 
@@ -36,7 +40,7 @@ namespace Website.Pages.MyPages
             NewPictureURL = Request.Form["picture"];
 
 			myManager = new CardioAdministration(db);
-			db.LoadCardios(myManager);
+			db.LoadCardios(myManager, currentPage, pageSize, hasRows);
 			selectedC = myManager.GetCardio(SelectedName);
 
 

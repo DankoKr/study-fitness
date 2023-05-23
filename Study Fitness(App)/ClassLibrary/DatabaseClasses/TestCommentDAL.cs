@@ -88,7 +88,7 @@ namespace ClassLibrary.DatabaseClasses
             throw new NotImplementedException();
         }
 
-        public void LoadComments(CommentAdministration myManager)
+        public void LoadComments(CommentAdministration myManager, int pageNumber, int pageSize, bool hasMoreRows)
         {
             Comment c1 = new Comment("Com1", "desc1", 1);
             Comment c2 = new Comment("Com2", "desc2", 2);
@@ -97,5 +97,6 @@ namespace ClassLibrary.DatabaseClasses
             myManager.AddExistingComment(c1);
             myManager.AddExistingComment(c2);
         }
+
     }
 }

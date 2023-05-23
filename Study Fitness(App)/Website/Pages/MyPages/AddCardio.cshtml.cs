@@ -11,8 +11,11 @@ namespace Website.Pages.MyPages
     {
         CardioAdministration myManager;
 		ICardioDAL db = new CardioDAL();
+        private int currentPage = 1;
+        private const int pageSize = 8;
+        private bool hasRows;
 
-		public string Message = "";
+        public string Message = "";
         public string Error = "";
         public string Name { get; set; }
         public string Difficulty { get; set; }
@@ -31,7 +34,7 @@ namespace Website.Pages.MyPages
             PictureUrl = Request.Form["pictureURL"];
 
             myManager = new CardioAdministration(db);
-            db.LoadCardios(myManager);
+            db.LoadCardios(myManager, currentPage, pageSize, hasRows);
 
             if (Name.Length == 0)
             { Error = "Missing data!"; return; }

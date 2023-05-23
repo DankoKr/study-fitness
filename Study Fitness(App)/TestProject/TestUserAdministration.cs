@@ -7,6 +7,10 @@ namespace TestProject
     [TestClass]
     public class TestUserAdministration
     {
+        private int currentPage = 1;
+        private const int pageSize = 20;
+        private bool hasRows;
+
         [TestMethod]
         public void LoadUsersFromDatabaseTest()
         {
@@ -16,7 +20,7 @@ namespace TestProject
 			myManager = new UserAdministration(testUserDAL);
 
 			//Act		(currently 3 cardios in fake database)	
-			testUserDAL.LoadUsers(myManager);
+			testUserDAL.LoadUsers(myManager, currentPage, pageSize, hasRows);
 
 			//Assert
 			Assert.AreEqual(3, myManager.GetUsers().Count());
@@ -30,7 +34,7 @@ namespace TestProject
 			IUserDAL testUserDAL = new TestUserDAL();
 			myManager = new UserAdministration(testUserDAL);
 			User u4 = new User("User4", "Forth", "1234", "Member");
-			testUserDAL.LoadUsers(myManager);
+			testUserDAL.LoadUsers(myManager, currentPage, pageSize, hasRows);
 
 			//Act		(currently 3 cardios in fake database)	
 			myManager.AddUser(u4);
@@ -47,7 +51,7 @@ namespace TestProject
 			IUserDAL testUserDAL = new TestUserDAL();
 			myManager = new UserAdministration(testUserDAL);
 			User dublicatedUser = new User("User3", "Third", "1234", "Member");
-			testUserDAL.LoadUsers(myManager);
+			testUserDAL.LoadUsers(myManager, currentPage, pageSize, hasRows);
 
 			//Act		(currently 3 cardios in fake database)	
 			myManager.AddUser(dublicatedUser);
@@ -80,7 +84,7 @@ namespace TestProject
 			UserAdministration myManager;
 			IUserDAL testUserDAL = new TestUserDAL();
 			myManager = new UserAdministration(testUserDAL);
-			testUserDAL.LoadUsers(myManager);
+			testUserDAL.LoadUsers(myManager, currentPage, pageSize, hasRows);
 			User uniqueUser = new User("Unique", "Fifth", "1234", "Member");
 
 			//Act			
@@ -96,7 +100,7 @@ namespace TestProject
 			//Arrange			
 			IUserDAL testUserDAL = new TestUserDAL();
 			UserAdministration myManager = new UserAdministration(testUserDAL);
-			testUserDAL.LoadUsers(myManager);
+			testUserDAL.LoadUsers(myManager, currentPage, pageSize, hasRows);
 
 			//Act			
 			User user = myManager.GetUser("First");

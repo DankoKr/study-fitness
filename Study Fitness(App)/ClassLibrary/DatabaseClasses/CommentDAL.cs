@@ -14,29 +14,48 @@ namespace ClassLibrary.DatabaseClasses
     public class CommentDAL : ICommentDAL
     {
         DatabaseRepo db = new DatabaseRepo();
-        public void LoadComments(CommentAdministration myManager) 
+        public void LoadComments(CommentAdministration myManager, int pageNumber, int pageSize, bool hasMoreRows) 
         {
             SqlConnection _connection = db.GetSqlConnection();
 
             try
             {
-                string sql = "SELECT  name, description, rating FROM Comment ";
+                string sql = "SELECT name, description, rating " +
+                             "FROM Comment " +
+                             "ORDER BY name " +
+                             "OFFSET @offset ROWS FETCH NEXT @fetch ROWS ONLY;";
+
                 SqlCommand cmd = new SqlCommand(sql, _connection);
+
+                cmd.Parameters.AddWithValue("@offset", (pageNumber - 1) * pageSize);
+                cmd.Parameters.AddWithValue("@fetch", pageSize);
+
                 _connection.Open();
                 SqlDataReader dr = cmd.ExecuteReader();
+                int rowCount = 0;
+
                 while (dr.Read())
                 {
-                    myManager.AddExistingComment(new Comment(Convert.ToString(dr[0]), Convert.ToString(dr[1]), Convert.ToInt32(dr[2])));
+                    rowCount++;
+                    if (rowCount <= pageSize)
+                    {
+                        myManager.AddExistingComment(new Comment(Convert.ToString(dr[0]), Convert.ToString(dr[1]), Convert.ToInt32(dr[2]))); 
+                    }
                 }
 
+                hasMoreRows = rowCount > pageSize;
                 dr.Close();
+
             }
             catch (SqlException sqlEx)
             {
-
                 throw new Exception(sqlEx.Message);
             }
-            finally { _connection.Close(); }
+            finally
+            {
+                _connection.Close();
+            }
+
         }
         public void AddCommentExercise(Comment c, int userId, int exId) 
         {

@@ -6,6 +6,10 @@ namespace TestProject
     [TestClass]
     public class TestCardioAdministration
     {
+        private int currentPage = 1;
+        private const int pageSize = 8;
+        private bool hasRows = true;
+
         [TestMethod]
         public void LoadCardiosFromDatabaseTest()
         {
@@ -15,7 +19,7 @@ namespace TestProject
 			myManager = new CardioAdministration(testCardioDAL);
 
 			//Act		(currently 3 cardios in fake database)	
-			testCardioDAL.LoadCardios(myManager);
+			testCardioDAL.LoadCardios(myManager, currentPage, pageSize, hasRows);
 
 			//Assert
 			Assert.AreEqual(3, myManager.GetCardios().Count());
@@ -97,7 +101,7 @@ namespace TestProject
 			CardioAdministration myManager;
 			ICardioDAL testCardioDAL = new TestCardioDAL();
 			myManager = new CardioAdministration(testCardioDAL);
-			testCardioDAL.LoadCardios(myManager);
+			testCardioDAL.LoadCardios(myManager, currentPage, pageSize, hasRows);
 			Cardio uniqueC = new Cardio("Unique", 243, "Beginner", "pictureUrl");
 
 			//Act		

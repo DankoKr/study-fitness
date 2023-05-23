@@ -9,7 +9,7 @@ namespace ClassLibrary.DatabaseClasses
 {
     public interface ICommentDAL
     {
-        void LoadComments(CommentAdministration myManager);
+        void LoadComments(CommentAdministration myManager, int pageNumber, int pageSize, bool hasMoreRows);
         void AddCommentExercise(Comment c, int userId, int exId);
         void DeleteComment(Comment c);
         void EditComment(Comment c, string title, string description, int rating);

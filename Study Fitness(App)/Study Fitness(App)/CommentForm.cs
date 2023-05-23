@@ -16,12 +16,15 @@ namespace Study_Fitness_App_
     {
         CommentAdministration myManager;
         ICommentDAL db = new CommentDAL();
+        private int currentPage = 1;
+        private const int pageSize = 8;
+        private bool hasRows;
+
         public CommentForm()
         {
             InitializeComponent();
-            myManager = new CommentAdministration(db);
-            db.LoadComments(myManager);
             ShowData();
+            btnPrevious.Enabled = false;
         }
 
         private void btnView_Click(object sender, EventArgs e)
@@ -54,10 +57,38 @@ namespace Study_Fitness_App_
         private void ShowData()
         {
             lbComments.Items.Clear();
+            myManager = new CommentAdministration(db);
+            db.LoadComments(myManager, currentPage, pageSize, hasRows);            
+
             foreach (Comment comment in myManager.GetComments())
             {
                 lbComments.Items.Add(comment);
             }
+        }
+
+        private void btnPrevious_Click(object sender, EventArgs e)
+        {
+            if (currentPage > 1)
+            {
+                currentPage--;
+                db.LoadComments(myManager, currentPage, pageSize, hasRows);
+                ShowData();
+                btnNext.Enabled = true;
+                if (currentPage == 1)
+                {
+                    btnPrevious.Enabled = false;
+                }
+            }
+            else { btnPrevious.Enabled = false; }
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            currentPage++;
+            db.LoadComments(myManager, currentPage, pageSize, hasRows);
+            ShowData();
+            btnNext.Enabled = hasRows;
+            btnPrevious.Enabled = true;
         }
     }
 }

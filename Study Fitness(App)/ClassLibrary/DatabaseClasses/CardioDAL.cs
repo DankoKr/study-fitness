@@ -1,4 +1,5 @@
 ﻿using ClassLibrary.CardioClasses;
+using ClassLibrary.CommentClasses;
 using ClassLibrary.UserClasses;
 using System;
 using System.Collections.Generic;
@@ -14,29 +15,47 @@ namespace ClassLibrary.DatabaseClasses
     {
         DatabaseRepo db = new DatabaseRepo();
 
-        public void LoadCardios(CardioAdministration myManager)
+        public void LoadCardios(CardioAdministration myManager, int pageNumber, int pageSize, bool hasMoreRows)
         {
             SqlConnection _connection = db.GetSqlConnection();
 
             try
             {
-                string sql = "SELECT  * FROM Cardio ";
+                string sql = "SELECT * " +
+                             "FROM Cardio " +
+                             "ORDER BY name " +
+                             "OFFSET @offset ROWS FETCH NEXT @fetch ROWS ONLY;";
+
                 SqlCommand cmd = new SqlCommand(sql, _connection);
+
+                cmd.Parameters.AddWithValue("@offset", (pageNumber - 1) * pageSize);
+                cmd.Parameters.AddWithValue("@fetch", pageSize);
+
                 _connection.Open();
                 SqlDataReader dr = cmd.ExecuteReader();
+                int rowCount = 0;
+
                 while (dr.Read())
                 {
-                    myManager.AddExistingCardio(new Cardio(Convert.ToString(dr[1]), Convert.ToInt32(dr[2]), Convert.ToString(dr[3]), Convert.ToString(dr[4])));
+                    rowCount++;
+                    if (rowCount <= pageSize)
+                    {
+                        myManager.AddExistingCardio(new Cardio(Convert.ToString(dr[1]), Convert.ToInt32(dr[2]), Convert.ToString(dr[3]), Convert.ToString(dr[4])));
+                    }
                 }
 
+                hasMoreRows = rowCount > pageSize;
                 dr.Close();
+
             }
             catch (SqlException sqlEx)
             {
-
                 throw new Exception(sqlEx.Message);
             }
-            finally { _connection.Close(); }
+            finally
+            {
+                _connection.Close();
+            }
         }
 
         public void AddCardio(Cardio c) 

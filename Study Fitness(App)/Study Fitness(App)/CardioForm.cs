@@ -1,4 +1,5 @@
 ﻿using ClassLibrary.CardioClasses;
+using ClassLibrary.CommentClasses;
 using ClassLibrary.DatabaseClasses;
 using ClassLibrary.ExerciseClasses;
 using System;
@@ -18,13 +19,16 @@ namespace Study_Fitness_App_
 {
     public partial class CardioForm : Form
     {
-        CardioAdministration myAdministration;
+        CardioAdministration myManager;
+        ICardioDAL cardioDAL = new CardioDAL();
+        private int currentPage = 1;
+        private const int pageSize = 8;
+        private bool hasRows;
         public CardioForm()
         {
             InitializeComponent();
-            ICardioDAL cardioDAL = new CardioDAL();
-            myAdministration = new CardioAdministration(cardioDAL);
-            cardioDAL.LoadCardios(myAdministration);
+            ShowData();
+            btnPrevious.Enabled = false;
         }
 
         private void btnCreateCardio_Click(object sender, EventArgs e)
@@ -32,15 +36,16 @@ namespace Study_Fitness_App_
             string name = txbName.Text;
             if (name != "")
             {
-                if (myAdministration.ValidateCardioIsUnique(name) && myAdministration.IsPictureValid(txbPictureURL.Text))
+                if (myManager.ValidateCardioIsUnique(name) && myManager.IsPictureValid(txbPictureURL.Text))
                 {
                     string difficulty = cmbDifficulty.Text;
                     int calories = Convert.ToInt32(numCalories.Text);
                     string picture = txbPictureURL.Text;
 
-                    myAdministration.CreateCardio(name, calories, difficulty, picture);
+                    myManager.CreateCardio(name, calories, difficulty, picture);
                     ClearFields();
                     MessageBox.Show("Cardio created!", "Done");
+                    ShowData();
                 }
                 else
                 {
@@ -68,19 +73,13 @@ namespace Study_Fitness_App_
         private void ShowData()
         {
             lbCardios.Items.Clear();
-            lbManageCardio.Items.Clear();
+            myManager = new CardioAdministration(cardioDAL);
+            cardioDAL.LoadCardios(myManager, currentPage, pageSize, hasRows);
 
-            foreach (Cardio c in myAdministration.GetCardios())
+            foreach (Cardio c in myManager.GetCardios())
             {
                 lbCardios.Items.Add(c);
-                lbManageCardio.Items.Add(c);
             }
-        }
-
-
-        private void btnViewAllCardios_Click(object sender, EventArgs e)
-        {
-            ShowData();
         }
 
         private void btnViewDetails_Click(object sender, EventArgs e)
@@ -94,45 +93,6 @@ namespace Study_Fitness_App_
             object obj = lbCardios.SelectedItem;
             Cardio selectedC = (Cardio)obj;
             MessageBox.Show(selectedC.ToString(), "Data");
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            if (lbManageCardio.SelectedIndex < 0)
-            {
-                MessageBox.Show("Please choose a Cardio!");
-                return;
-            }
-
-            object obj = lbManageCardio.SelectedItem;
-            Cardio selectedC = (Cardio)obj;
-            myAdministration.RemoveCardio(selectedC.Name);
-            ShowData();
-            MessageBox.Show("Cardio deleted!", "Done");
-        }
-
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-            if (lbManageCardio.SelectedIndex < 0)
-            {
-                MessageBox.Show("Please choose a Cardio!");
-                return;
-            }
-
-            object obj = lbManageCardio.SelectedItem;
-            Cardio selectedC = (Cardio)obj;
-            if (myAdministration.IsPictureValid(txbNewPicURL.Text))
-            {
-                myAdministration.EditCardioData(selectedC, txbNewName.Text, Convert.ToInt32(numNewCalories.Text), cmbNewDifficulty.Text, txbNewPicURL.Text);
-                ClearFields();
-                ShowData();
-                MessageBox.Show("Cardio changed!", "Done");
-            }
-            else
-            {
-                MessageBox.Show("Incorrect URL!", "ERROR");
-            }
-
         }
 
         private void btnBrowseImage_Click(object sender, EventArgs e)
@@ -169,13 +129,76 @@ namespace Study_Fitness_App_
             string searched = txbSearchBar.Text;
             string regexPattern = "\\b\\w*" + searched + "\\w*\\b";
 
-            foreach (Cardio ex in myAdministration.GetCardios())
+            foreach (Cardio ex in myManager.GetCardios())
             {
                 if (Regex.IsMatch(ex.Name, regexPattern, RegexOptions.IgnoreCase))
                 {
                     lbCardios.Items.Add(ex);
                 }
             }
+        }
+
+        private void btnPrevious_Click(object sender, EventArgs e)
+        {
+            if (currentPage > 1)
+            {
+                currentPage--;
+                cardioDAL.LoadCardios(myManager, currentPage, pageSize, hasRows);
+                ShowData();
+                btnNext.Enabled = true;
+                if (currentPage == 1)
+                {
+                    btnPrevious.Enabled = false;
+                }
+            }
+            else { btnPrevious.Enabled = false; }
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            currentPage++;
+            cardioDAL.LoadCardios(myManager, currentPage, pageSize, hasRows);
+            ShowData();
+            btnNext.Enabled = hasRows;
+            btnPrevious.Enabled = true;
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            if (lbCardios.SelectedIndex < 0)
+            {
+                MessageBox.Show("Please choose a Cardio!");
+                return;
+            }
+
+            object obj = lbCardios.SelectedItem;
+            Cardio selectedC = (Cardio)obj;
+            if (myManager.IsPictureValid(txbNewPicURL.Text))
+            {
+                myManager.EditCardioData(selectedC, txbNewName.Text, Convert.ToInt32(numNewCalories.Text), cmbNewDifficulty.Text, txbNewPicURL.Text);
+                ClearFields();
+                ShowData();
+                MessageBox.Show("Cardio changed!", "Done");
+            }
+            else
+            {
+                MessageBox.Show("Incorrect URL!", "ERROR");
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (lbCardios.SelectedIndex < 0)
+            {
+                MessageBox.Show("Please choose a Cardio!");
+                return;
+            }
+
+            object obj = lbCardios.SelectedItem;
+            Cardio selectedC = (Cardio)obj;
+            myManager.RemoveCardio(selectedC.Name);
+            ShowData();
+            MessageBox.Show("Cardio deleted!", "Done");
         }
     }
 }

@@ -16,7 +16,7 @@ namespace TestProject
 			myManager = new CommentAdministration(testCommentDAL);
 
             //Act		(currently 2 comments in fake database)	
-            testCommentDAL.LoadComments(myManager);
+            testCommentDAL.LoadComments(myManager, 1, 20, true);
 
 			//Assert
 			Assert.AreEqual(2, myManager.GetComments().Count());
@@ -61,7 +61,7 @@ namespace TestProject
             CommentAdministration myManager;
             ICommentDAL testCommentDAL = new TestCommentDAL();
             myManager = new CommentAdministration(testCommentDAL);
-            testCommentDAL.LoadComments(myManager);
+            testCommentDAL.LoadComments(myManager, 1, 20, true);
 
             //Act		
             Comment selectedComment = myManager.GetComment("Com1");

@@ -13,8 +13,11 @@ namespace Website.Pages.MyPages
     {
         UserAdministration myManager;
 		IUserDAL db = new UserDAL();
+        private int currentPage = 1;
+        private const int pageSize = 20;
+        private bool hasRows;
 
-		public string Error = "";
+        public string Error = "";
         public string Username { get; set; }
         public string Password { get; set; }
         public string FirstName { get; set; }
@@ -27,7 +30,7 @@ namespace Website.Pages.MyPages
         public void OnPost()
         {
 			myManager = new UserAdministration(db);
-            db.LoadUsers(myManager);
+            db.LoadUsers(myManager, currentPage, pageSize, hasRows);
 
 			Username = Request.Form["username"];
             Password = Request.Form["password"];
