@@ -8,6 +8,10 @@ namespace TestProject
     [TestClass]
     public class TestScheduleAdministration
     {
+        private int currentPage = 1;
+        private const int pageSize = 8;
+        private bool hasRows = true;
+
         [TestMethod]
         public void LoadSchedulesFromDatabaseTest()
         {
@@ -17,7 +21,7 @@ namespace TestProject
 			myManager = new ScheduleAdministration(testScheduleDAL);
 
             //Act		(currently 2 cardios in fake database)	
-            testScheduleDAL.LoadSchedules(myManager);
+            testScheduleDAL.LoadSchedules(myManager, currentPage, pageSize, hasRows);
 
 			//Assert
 			Assert.AreEqual(2, myManager.GetSchedules().Count());

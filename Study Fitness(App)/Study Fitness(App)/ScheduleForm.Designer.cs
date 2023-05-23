@@ -30,8 +30,20 @@
         {
             tabConCardio = new TabControl();
             tabViewCardio = new TabPage();
-            btnViewAllSchedules = new Button();
+            tabFunctions = new TabControl();
+            tabDetailsAndDelete = new TabPage();
+            btnDelete = new Button();
             btnViewDetails = new Button();
+            tabEdit = new TabPage();
+            dateNewTime = new DateTimePicker();
+            lblNewTrainer = new Label();
+            lblNewTime = new Label();
+            cmbNewTrainer = new ComboBox();
+            txbNewDescription = new TextBox();
+            txbNewTitle = new TextBox();
+            btnEdit = new Button();
+            btnNext = new Button();
+            btnPrevious = new Button();
             lbSchedule = new ListBox();
             tabAddCardio = new TabPage();
             dateTime = new DateTimePicker();
@@ -41,16 +53,6 @@
             cmbTrainer = new ComboBox();
             txbDescription = new TextBox();
             txbTitle = new TextBox();
-            tabEditCardio = new TabPage();
-            dateNewTime = new DateTimePicker();
-            lblNewTrainer = new Label();
-            lblNewTime = new Label();
-            cmbNewTrainer = new ComboBox();
-            txbNewDescription = new TextBox();
-            txbNewTitle = new TextBox();
-            lbManageSchedule = new ListBox();
-            btnEdit = new Button();
-            btnDelete = new Button();
             tabTrainerSchedule = new TabPage();
             btnViewTrainerSchedule = new Button();
             btnShowTrainerSchedules = new Button();
@@ -58,8 +60,10 @@
             lbScheduleTrainer = new ListBox();
             tabConCardio.SuspendLayout();
             tabViewCardio.SuspendLayout();
+            tabFunctions.SuspendLayout();
+            tabDetailsAndDelete.SuspendLayout();
+            tabEdit.SuspendLayout();
             tabAddCardio.SuspendLayout();
-            tabEditCardio.SuspendLayout();
             tabTrainerSchedule.SuspendLayout();
             SuspendLayout();
             // 
@@ -67,7 +71,6 @@
             // 
             tabConCardio.Controls.Add(tabViewCardio);
             tabConCardio.Controls.Add(tabAddCardio);
-            tabConCardio.Controls.Add(tabEditCardio);
             tabConCardio.Controls.Add(tabTrainerSchedule);
             tabConCardio.Location = new Point(12, 2);
             tabConCardio.Name = "tabConCardio";
@@ -77,8 +80,9 @@
             // 
             // tabViewCardio
             // 
-            tabViewCardio.Controls.Add(btnViewAllSchedules);
-            tabViewCardio.Controls.Add(btnViewDetails);
+            tabViewCardio.Controls.Add(tabFunctions);
+            tabViewCardio.Controls.Add(btnNext);
+            tabViewCardio.Controls.Add(btnPrevious);
             tabViewCardio.Controls.Add(lbSchedule);
             tabViewCardio.Location = new Point(4, 29);
             tabViewCardio.Name = "tabViewCardio";
@@ -88,29 +92,155 @@
             tabViewCardio.Text = "View All";
             tabViewCardio.UseVisualStyleBackColor = true;
             // 
-            // btnViewAllSchedules
+            // tabFunctions
             // 
-            btnViewAllSchedules.BackColor = Color.Violet;
-            btnViewAllSchedules.FlatStyle = FlatStyle.Flat;
-            btnViewAllSchedules.Location = new Point(409, 104);
-            btnViewAllSchedules.Name = "btnViewAllSchedules";
-            btnViewAllSchedules.Size = new Size(94, 60);
-            btnViewAllSchedules.TabIndex = 2;
-            btnViewAllSchedules.Text = "View All Schedules";
-            btnViewAllSchedules.UseVisualStyleBackColor = false;
-            btnViewAllSchedules.Click += btnViewAllSchedules_Click;
+            tabFunctions.Controls.Add(tabDetailsAndDelete);
+            tabFunctions.Controls.Add(tabEdit);
+            tabFunctions.Location = new Point(339, 25);
+            tabFunctions.Name = "tabFunctions";
+            tabFunctions.SelectedIndex = 0;
+            tabFunctions.Size = new Size(267, 229);
+            tabFunctions.TabIndex = 11;
+            // 
+            // tabDetailsAndDelete
+            // 
+            tabDetailsAndDelete.Controls.Add(btnDelete);
+            tabDetailsAndDelete.Controls.Add(btnViewDetails);
+            tabDetailsAndDelete.Location = new Point(4, 29);
+            tabDetailsAndDelete.Name = "tabDetailsAndDelete";
+            tabDetailsAndDelete.Padding = new Padding(3);
+            tabDetailsAndDelete.Size = new Size(259, 196);
+            tabDetailsAndDelete.TabIndex = 0;
+            tabDetailsAndDelete.Text = "Details/Delete";
+            tabDetailsAndDelete.UseVisualStyleBackColor = true;
+            // 
+            // btnDelete
+            // 
+            btnDelete.BackColor = Color.Violet;
+            btnDelete.FlatStyle = FlatStyle.Flat;
+            btnDelete.Location = new Point(143, 75);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(94, 60);
+            btnDelete.TabIndex = 2;
+            btnDelete.Text = "Delete";
+            btnDelete.UseVisualStyleBackColor = false;
+            btnDelete.Click += btnDelete_Click;
             // 
             // btnViewDetails
             // 
             btnViewDetails.BackColor = Color.Violet;
             btnViewDetails.FlatStyle = FlatStyle.Flat;
-            btnViewDetails.Location = new Point(409, 170);
+            btnViewDetails.Location = new Point(24, 75);
             btnViewDetails.Name = "btnViewDetails";
             btnViewDetails.Size = new Size(94, 60);
             btnViewDetails.TabIndex = 1;
             btnViewDetails.Text = "View Details";
             btnViewDetails.UseVisualStyleBackColor = false;
             btnViewDetails.Click += btnViewDetails_Click;
+            // 
+            // tabEdit
+            // 
+            tabEdit.Controls.Add(dateNewTime);
+            tabEdit.Controls.Add(lblNewTrainer);
+            tabEdit.Controls.Add(lblNewTime);
+            tabEdit.Controls.Add(cmbNewTrainer);
+            tabEdit.Controls.Add(txbNewDescription);
+            tabEdit.Controls.Add(txbNewTitle);
+            tabEdit.Controls.Add(btnEdit);
+            tabEdit.Location = new Point(4, 29);
+            tabEdit.Name = "tabEdit";
+            tabEdit.Padding = new Padding(3);
+            tabEdit.Size = new Size(259, 196);
+            tabEdit.TabIndex = 1;
+            tabEdit.Text = "Edit";
+            tabEdit.UseVisualStyleBackColor = true;
+            // 
+            // dateNewTime
+            // 
+            dateNewTime.Format = DateTimePickerFormat.Short;
+            dateNewTime.Location = new Point(16, 71);
+            dateNewTime.Name = "dateNewTime";
+            dateNewTime.Size = new Size(125, 27);
+            dateNewTime.TabIndex = 20;
+            dateNewTime.Value = new DateTime(2023, 5, 20, 0, 0, 0, 0);
+            // 
+            // lblNewTrainer
+            // 
+            lblNewTrainer.AutoSize = true;
+            lblNewTrainer.Location = new Point(16, 101);
+            lblNewTrainer.Name = "lblNewTrainer";
+            lblNewTrainer.Size = new Size(114, 20);
+            lblNewTrainer.TabIndex = 19;
+            lblNewTrainer.Text = "New Trainer ID :";
+            // 
+            // lblNewTime
+            // 
+            lblNewTime.AutoSize = true;
+            lblNewTime.Location = new Point(16, 48);
+            lblNewTime.Name = "lblNewTime";
+            lblNewTime.Size = new Size(49, 20);
+            lblNewTime.TabIndex = 18;
+            lblNewTime.Text = "Time :";
+            // 
+            // cmbNewTrainer
+            // 
+            cmbNewTrainer.FormattingEnabled = true;
+            cmbNewTrainer.Location = new Point(16, 124);
+            cmbNewTrainer.Name = "cmbNewTrainer";
+            cmbNewTrainer.Size = new Size(125, 28);
+            cmbNewTrainer.TabIndex = 17;
+            // 
+            // txbNewDescription
+            // 
+            txbNewDescription.Location = new Point(16, 158);
+            txbNewDescription.Name = "txbNewDescription";
+            txbNewDescription.PlaceholderText = "Description";
+            txbNewDescription.Size = new Size(125, 27);
+            txbNewDescription.TabIndex = 16;
+            // 
+            // txbNewTitle
+            // 
+            txbNewTitle.Location = new Point(16, 18);
+            txbNewTitle.Name = "txbNewTitle";
+            txbNewTitle.PlaceholderText = "Title";
+            txbNewTitle.Size = new Size(125, 27);
+            txbNewTitle.TabIndex = 15;
+            // 
+            // btnEdit
+            // 
+            btnEdit.BackColor = Color.Violet;
+            btnEdit.FlatStyle = FlatStyle.Flat;
+            btnEdit.Location = new Point(171, 73);
+            btnEdit.Name = "btnEdit";
+            btnEdit.Size = new Size(71, 44);
+            btnEdit.TabIndex = 14;
+            btnEdit.Text = "Edit";
+            btnEdit.UseVisualStyleBackColor = false;
+            btnEdit.Click += btnEdit_Click;
+            // 
+            // btnNext
+            // 
+            btnNext.BackColor = Color.Violet;
+            btnNext.FlatStyle = FlatStyle.Flat;
+            btnNext.Location = new Point(188, 248);
+            btnNext.Name = "btnNext";
+            btnNext.Size = new Size(94, 34);
+            btnNext.TabIndex = 10;
+            btnNext.Text = "next";
+            btnNext.UseVisualStyleBackColor = false;
+            btnNext.Click += btnNext_Click;
+            // 
+            // btnPrevious
+            // 
+            btnPrevious.BackColor = Color.Violet;
+            btnPrevious.FlatStyle = FlatStyle.Flat;
+            btnPrevious.Location = new Point(52, 248);
+            btnPrevious.Name = "btnPrevious";
+            btnPrevious.Size = new Size(94, 34);
+            btnPrevious.TabIndex = 9;
+            btnPrevious.Text = "previous";
+            btnPrevious.UseVisualStyleBackColor = false;
+            btnPrevious.Click += btnPrevious_Click;
             // 
             // lbSchedule
             // 
@@ -119,7 +249,7 @@
             lbSchedule.ItemHeight = 20;
             lbSchedule.Location = new Point(42, 25);
             lbSchedule.Name = "lbSchedule";
-            lbSchedule.Size = new Size(253, 264);
+            lbSchedule.Size = new Size(253, 204);
             lbSchedule.TabIndex = 0;
             // 
             // tabAddCardio
@@ -202,110 +332,6 @@
             txbTitle.Size = new Size(125, 27);
             txbTitle.TabIndex = 0;
             // 
-            // tabEditCardio
-            // 
-            tabEditCardio.Controls.Add(dateNewTime);
-            tabEditCardio.Controls.Add(lblNewTrainer);
-            tabEditCardio.Controls.Add(lblNewTime);
-            tabEditCardio.Controls.Add(cmbNewTrainer);
-            tabEditCardio.Controls.Add(txbNewDescription);
-            tabEditCardio.Controls.Add(txbNewTitle);
-            tabEditCardio.Controls.Add(lbManageSchedule);
-            tabEditCardio.Controls.Add(btnEdit);
-            tabEditCardio.Controls.Add(btnDelete);
-            tabEditCardio.Location = new Point(4, 29);
-            tabEditCardio.Name = "tabEditCardio";
-            tabEditCardio.Padding = new Padding(3);
-            tabEditCardio.Size = new Size(624, 323);
-            tabEditCardio.TabIndex = 2;
-            tabEditCardio.Text = "Edit/Delete";
-            tabEditCardio.UseVisualStyleBackColor = true;
-            // 
-            // dateNewTime
-            // 
-            dateNewTime.Format = DateTimePickerFormat.Short;
-            dateNewTime.Location = new Point(283, 154);
-            dateNewTime.Name = "dateNewTime";
-            dateNewTime.Size = new Size(125, 27);
-            dateNewTime.TabIndex = 13;
-            dateNewTime.Value = new DateTime(2023, 5, 20, 0, 0, 0, 0);
-            // 
-            // lblNewTrainer
-            // 
-            lblNewTrainer.AutoSize = true;
-            lblNewTrainer.Location = new Point(455, 53);
-            lblNewTrainer.Name = "lblNewTrainer";
-            lblNewTrainer.Size = new Size(114, 20);
-            lblNewTrainer.TabIndex = 12;
-            lblNewTrainer.Text = "New Trainer ID :";
-            // 
-            // lblNewTime
-            // 
-            lblNewTime.AutoSize = true;
-            lblNewTime.Location = new Point(283, 126);
-            lblNewTime.Name = "lblNewTime";
-            lblNewTime.Size = new Size(49, 20);
-            lblNewTime.TabIndex = 11;
-            lblNewTime.Text = "Time :";
-            // 
-            // cmbNewTrainer
-            // 
-            cmbNewTrainer.FormattingEnabled = true;
-            cmbNewTrainer.Location = new Point(455, 76);
-            cmbNewTrainer.Name = "cmbNewTrainer";
-            cmbNewTrainer.Size = new Size(125, 28);
-            cmbNewTrainer.TabIndex = 10;
-            // 
-            // txbNewDescription
-            // 
-            txbNewDescription.Location = new Point(455, 149);
-            txbNewDescription.Name = "txbNewDescription";
-            txbNewDescription.PlaceholderText = "Description";
-            txbNewDescription.Size = new Size(125, 27);
-            txbNewDescription.TabIndex = 8;
-            // 
-            // txbNewTitle
-            // 
-            txbNewTitle.Location = new Point(283, 76);
-            txbNewTitle.Name = "txbNewTitle";
-            txbNewTitle.PlaceholderText = "Title";
-            txbNewTitle.Size = new Size(125, 27);
-            txbNewTitle.TabIndex = 7;
-            // 
-            // lbManageSchedule
-            // 
-            lbManageSchedule.DisplayMember = "Title";
-            lbManageSchedule.FormattingEnabled = true;
-            lbManageSchedule.ItemHeight = 20;
-            lbManageSchedule.Location = new Point(49, 39);
-            lbManageSchedule.Name = "lbManageSchedule";
-            lbManageSchedule.Size = new Size(183, 264);
-            lbManageSchedule.TabIndex = 2;
-            // 
-            // btnEdit
-            // 
-            btnEdit.BackColor = Color.Violet;
-            btnEdit.FlatStyle = FlatStyle.Flat;
-            btnEdit.Location = new Point(314, 222);
-            btnEdit.Name = "btnEdit";
-            btnEdit.Size = new Size(94, 44);
-            btnEdit.TabIndex = 1;
-            btnEdit.Text = "Edit";
-            btnEdit.UseVisualStyleBackColor = false;
-            btnEdit.Click += btnEdit_Click;
-            // 
-            // btnDelete
-            // 
-            btnDelete.BackColor = Color.Violet;
-            btnDelete.FlatStyle = FlatStyle.Flat;
-            btnDelete.Location = new Point(455, 222);
-            btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(94, 44);
-            btnDelete.TabIndex = 0;
-            btnDelete.Text = "Delete";
-            btnDelete.UseVisualStyleBackColor = false;
-            btnDelete.Click += btnDelete_Click;
-            // 
             // tabTrainerSchedule
             // 
             tabTrainerSchedule.Controls.Add(btnViewTrainerSchedule);
@@ -357,9 +383,9 @@
             lbScheduleTrainer.DisplayMember = "Title";
             lbScheduleTrainer.FormattingEnabled = true;
             lbScheduleTrainer.ItemHeight = 20;
-            lbScheduleTrainer.Location = new Point(94, 74);
+            lbScheduleTrainer.Location = new Point(73, 66);
             lbScheduleTrainer.Name = "lbScheduleTrainer";
-            lbScheduleTrainer.Size = new Size(150, 204);
+            lbScheduleTrainer.Size = new Size(208, 204);
             lbScheduleTrainer.TabIndex = 0;
             // 
             // ScheduleForm
@@ -373,10 +399,12 @@
             Text = "ScheduleForm";
             tabConCardio.ResumeLayout(false);
             tabViewCardio.ResumeLayout(false);
+            tabFunctions.ResumeLayout(false);
+            tabDetailsAndDelete.ResumeLayout(false);
+            tabEdit.ResumeLayout(false);
+            tabEdit.PerformLayout();
             tabAddCardio.ResumeLayout(false);
             tabAddCardio.PerformLayout();
-            tabEditCardio.ResumeLayout(false);
-            tabEditCardio.PerformLayout();
             tabTrainerSchedule.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -385,7 +413,6 @@
 
         private TabControl tabConCardio;
         private TabPage tabViewCardio;
-        private Button btnViewAllSchedules;
         private Button btnViewDetails;
         private ListBox lbSchedule;
         private TabPage tabAddCardio;
@@ -395,21 +422,24 @@
         private ComboBox cmbTrainer;
         private TextBox txbDescription;
         private TextBox txbTitle;
-        private TabPage tabEditCardio;
-        private Label lblNewTrainer;
-        private Label lblNewTime;
-        private ComboBox cmbNewTrainer;
-        private TextBox txbNewDescription;
-        private TextBox txbNewTitle;
-        private ListBox lbManageSchedule;
-        private Button btnEdit;
-        private Button btnDelete;
-        private DateTimePicker dateNewTime;
         private DateTimePicker dateTime;
         private TabPage tabTrainerSchedule;
         private ListBox lbScheduleTrainer;
         private Button btnShowTrainerSchedules;
         private ComboBox cmbTrainerId;
         private Button btnViewTrainerSchedule;
+        private Button btnNext;
+        private Button btnPrevious;
+        private TabControl tabFunctions;
+        private TabPage tabDetailsAndDelete;
+        private Button btnDelete;
+        private TabPage tabEdit;
+        private DateTimePicker dateNewTime;
+        private Label lblNewTrainer;
+        private Label lblNewTime;
+        private ComboBox cmbNewTrainer;
+        private TextBox txbNewDescription;
+        private TextBox txbNewTitle;
+        private Button btnEdit;
     }
 }

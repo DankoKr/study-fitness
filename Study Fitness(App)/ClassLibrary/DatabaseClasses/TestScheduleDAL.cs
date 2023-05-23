@@ -59,7 +59,7 @@ namespace ClassLibrary.DatabaseClasses
             return false;
         }
 
-        public void LoadSchedules(ScheduleAdministration myManager)
+        public void LoadSchedules(ScheduleAdministration myManager, int pageNumber, int pageSize, bool hasMoreRows)
         {
             string date = "2023-08-12";
             Schedule s1 = new Schedule("Title", Convert.ToDateTime(date), "desc", 1);

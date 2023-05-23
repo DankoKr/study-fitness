@@ -9,7 +9,7 @@ namespace ClassLibrary.DatabaseClasses
 {
     public interface IScheduleDAL
     {
-        void LoadSchedules(ScheduleAdministration myManager);
+        void LoadSchedules(ScheduleAdministration myManager, int pageNumber, int pageSize, bool hasMoreRows);
         void AddSchedule(Schedule s);
         void RemoveSchedule(Schedule s);
         void UpdateSchedule(Schedule s, int trainerId, string title, DateTime time, string description);

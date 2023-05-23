@@ -1,4 +1,5 @@
 ﻿using ClassLibrary.CardioClasses;
+using ClassLibrary.CommentClasses;
 using ClassLibrary.ScheduleClasses;
 using System;
 using System.Collections.Generic;
@@ -86,36 +87,54 @@ namespace ClassLibrary.DatabaseClasses
             finally { _connection.Close(); }
         }
 
-        public void LoadSchedules(ScheduleAdministration myManager)
+        public void LoadSchedules(ScheduleAdministration myManager, int pageNumber, int pageSize, bool hasMoreRows)
         {
             SqlConnection _connection = db.GetSqlConnection();
 
             try
             {
-                string sql = "SELECT  * FROM Schedule ";
+                string sql = "SELECT * " +
+                             "FROM Schedule " +
+                             "ORDER BY title " +
+                             "OFFSET @offset ROWS FETCH NEXT @fetch ROWS ONLY;";
+
                 SqlCommand cmd = new SqlCommand(sql, _connection);
+
+                cmd.Parameters.AddWithValue("@offset", (pageNumber - 1) * pageSize);
+                cmd.Parameters.AddWithValue("@fetch", pageSize);
+
                 _connection.Open();
                 SqlDataReader dr = cmd.ExecuteReader();
+                int rowCount = 0;
+
                 while (dr.Read())
                 {
-                    if (dr[5] != null)
+                    rowCount++;
+                    if (rowCount <= pageSize)
                     {
-                        myManager.AddExistingSchedule(new Schedule(Convert.ToString(dr[1]), Convert.ToDateTime(dr[3]).Date, Convert.ToString(dr[2]), Convert.ToInt32(dr[4]), Convert.ToString(dr[5])));
-                    }
-                    else
-                    {
-                        myManager.AddExistingSchedule(new Schedule(Convert.ToString(dr[1]), Convert.ToDateTime(dr[3]).Date, Convert.ToString(dr[2]), Convert.ToInt32(dr[4])));
+                        if (dr[5] != null)
+                        {
+                            myManager.AddExistingSchedule(new Schedule(Convert.ToString(dr[1]), Convert.ToDateTime(dr[3]).Date, Convert.ToString(dr[2]), Convert.ToInt32(dr[4]), Convert.ToString(dr[5])));
+                        }
+                        else
+                        {
+                            myManager.AddExistingSchedule(new Schedule(Convert.ToString(dr[1]), Convert.ToDateTime(dr[3]).Date, Convert.ToString(dr[2]), Convert.ToInt32(dr[4])));
+                        }
                     }
                 }
 
+                hasMoreRows = rowCount > pageSize;
                 dr.Close();
+
             }
             catch (SqlException sqlEx)
             {
-
                 throw new Exception(sqlEx.Message);
             }
-            finally { _connection.Close(); }
+            finally
+            {
+                _connection.Close();
+            }
         }
 
         public void LoadSchedulesTrainerLevel(int level, ScheduleAdministration myManager)
