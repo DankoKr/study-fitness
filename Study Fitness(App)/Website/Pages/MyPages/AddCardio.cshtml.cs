@@ -21,6 +21,8 @@ namespace Website.Pages.MyPages
         public string Difficulty { get; set; }
         public int Calories { get; set; }
         public string PictureUrl { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public string FileName { get; set; }
 
         public void OnGet()
         {

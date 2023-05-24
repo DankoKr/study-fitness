@@ -1,0 +1,10 @@
+﻿@page
+@model Website.Pages.MyPages.UploadImageModel
+@{
+}
+
+<form method="post" enctype="multipart/form-data">
+    <span>Select File: </span>
+    <input type="file" asp-for="UploadFile" />
+    <input type="submit" value="Upload File ..." asp-page-handler="Upload" class="btn-success" />
+</form>
