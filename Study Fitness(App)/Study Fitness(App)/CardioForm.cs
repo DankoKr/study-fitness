@@ -112,14 +112,48 @@ namespace Study_Fitness_App_
 
         private void btnSaveFileImage_Click(object sender, EventArgs e)
         {
-            File.Copy(txbPictureURL.Text, Path.Combine(@"C:\Users\panay\Desktop\Study Fitness\study-fitness\Study Fitness(App)\Website\wwwroot\Images\", Path.GetFileName(txbPictureURL.Text)), true);
-            MessageBox.Show("Picture saved!", "Done");
+            string pictureURL = txbPictureURL.Text.Trim();
 
-            // Extract image file name from path
-            string imageName = Path.GetFileName(txbPictureURL.Text);
+            if (string.IsNullOrEmpty(pictureURL))
+            {
+                MessageBox.Show("Please enter a valid picture URL.", "Error");
+                return;
+            }
 
-            // Display the name of the image file in the textbox
-            txbPictureURL.Text = imageName;
+            try
+            {
+                //It won't work if the path is not updated (currently hardcoded)
+                string destinationPath = @"C:\Users\panay\Desktop\Study Fitness\study-fitness\Study Fitness(App)\Website\wwwroot\Images\";
+
+                // Check if the source file exists
+                if (!File.Exists(pictureURL))
+                {
+                    MessageBox.Show("The specified picture file does not exist.", "Error");
+                    return;
+                }
+
+                string fileName = Path.GetFileName(pictureURL);
+
+                // Check if the destination directory exists
+                if (!Directory.Exists(destinationPath))
+                {
+                    MessageBox.Show("The destination directory does not exist.", "Error");
+                    return;
+                }
+
+                string destinationFilePath = Path.Combine(destinationPath, fileName);
+
+                // Copy the file to the destination
+                File.Copy(pictureURL, destinationFilePath, true);
+
+                MessageBox.Show("Picture saved!", "Done");
+
+                txbPictureURL.Text = fileName;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while saving the picture: " + ex.Message, "Error");
+            }
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
