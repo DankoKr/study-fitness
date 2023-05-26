@@ -74,14 +74,7 @@ namespace ClassLibrary.ExerciseClasses
 
         public bool ValidateExerciseIsUnique(string name)
         {
-            foreach (Exercise ex in myExercises)
-            {
-                if (ex.Name == name)
-                {
-                    return false;
-                }
-            }
-            return true;
+            return ExerciseDAL.isUnique(name);
         }
 
         public bool ExerciseExists(string exName)

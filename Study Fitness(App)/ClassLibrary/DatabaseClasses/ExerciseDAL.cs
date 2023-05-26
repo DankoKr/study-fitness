@@ -523,6 +523,33 @@ namespace ClassLibrary.DatabaseClasses
             return exId;
         }
 
+        public bool isUnique(string name)
+        {
+            SqlConnection _connection = db.GetSqlConnection();
+            bool isUnique = true;
+
+            try
+            {
+                string sql = $"SELECT Name FROM Exercise WHERE Name = '{name}'";
+                SqlCommand cmd = new SqlCommand(sql, _connection);
+                _connection.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    return isUnique = false;
+                }
+
+                dr.Close();
+            }
+            catch (SqlException sqlEx)
+            {
+
+                throw new Exception(sqlEx.Message);
+            }
+            finally { _connection.Close(); }
+            return isUnique;
+        }
+
         public void LoadExercises(ExerciseAdministration myManager, int pageNumber, int pageSize, bool hasMoreRows)
         {
             SqlConnection _connection = db.GetSqlConnection();

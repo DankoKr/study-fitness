@@ -35,14 +35,7 @@ namespace ClassLibrary.CardioClasses
 
         public bool ValidateCardioIsUnique(string name)
         {
-            foreach (Cardio cardio in myCardios)
-            {
-                if (cardio.Name == name)
-                {
-                    return false;
-                }
-            }
-            return true;
+            return db.isUnique(name);
         }
 
         public bool CardioExists(string name)

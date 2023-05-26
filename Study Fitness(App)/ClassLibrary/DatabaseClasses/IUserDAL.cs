@@ -20,5 +20,6 @@ namespace ClassLibrary.DatabaseClasses
 		void GetTrainerNameByPoints(int points, List<string> trainers);
 		void SetTrainerLevel(string trainerUsername, int level);
 		int UserId(string username);
+        bool isUnique(string name);
     }
 }

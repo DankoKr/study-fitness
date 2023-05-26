@@ -1,4 +1,5 @@
-﻿using ClassLibrary.UserClasses;
+﻿using ClassLibrary.CardioClasses;
+using ClassLibrary.UserClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,7 +58,17 @@ namespace ClassLibrary.DatabaseClasses
 			}
 		}
 
-		public void LoadUsers(UserAdministration myManager, int pageNumber, int pageSize, bool hasMoreRows)
+        public bool isUnique(string name)
+        {
+            bool isUnique = true;
+            foreach (User u in myUsers)
+            {
+                if (u.Username == name) return isUnique = false;
+            }
+            return isUnique;
+        }
+
+        public void LoadUsers(UserAdministration myManager, int pageNumber, int pageSize, bool hasMoreRows)
 		{
 			User u1 = new User("User1", "First", "1234", "Member");
 			User u2 = new User("User2", "Second", "1234", "Admin");

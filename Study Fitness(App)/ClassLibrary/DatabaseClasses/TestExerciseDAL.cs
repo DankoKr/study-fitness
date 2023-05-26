@@ -1,6 +1,7 @@
 ﻿using ClassLibrary.ExerciseClasses;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,6 +32,16 @@ namespace ClassLibrary.DatabaseClasses
         public int ExerciseId(string name)
         {
             throw new NotImplementedException();
+        }
+
+        public bool isUnique(string name)
+        {
+			bool isUnique = true;
+            foreach (Exercise ex in myExercises)
+			{ 
+				if (ex.Name == name) return isUnique = false;
+			}
+			return isUnique;
         }
 
         public void LoadExercises(ExerciseAdministration myManager, int pageNumber, int pageSize, bool hasMoreRows)

@@ -40,14 +40,7 @@ namespace ClassLibrary.UserClasses
 
         public bool ValidateUserIsUnique(string username)
         {
-            foreach (User user in myUsers)
-            {
-                if (user.Username == username)
-                {
-                    return false;
-                }
-            }
-            return true;
+            return db.isUnique(username);
         }
 
         public User GetUser(string username)

@@ -17,5 +17,6 @@ namespace ClassLibrary.DatabaseClasses
 
 		void LoadExercises(ExerciseAdministration myManager, int pageNumber, int pageSize, bool hasMoreRows);
 		int ExerciseId(string name);
+		bool isUnique(string name);
 	}
 }

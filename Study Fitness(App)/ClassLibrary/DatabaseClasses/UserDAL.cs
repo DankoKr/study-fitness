@@ -300,5 +300,32 @@ namespace ClassLibrary.DatabaseClasses
             finally { _connection.Close(); }
             return userId;
         }
+
+        public bool isUnique(string name)
+        {
+            SqlConnection _connection = db.GetSqlConnection();
+            bool isUnique = true;
+
+            try
+            {
+                string sql = $"SELECT Username FROM Users WHERE Username = '{name}'";
+                SqlCommand cmd = new SqlCommand(sql, _connection);
+                _connection.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    return isUnique = false;
+                }
+
+                dr.Close();
+            }
+            catch (SqlException sqlEx)
+            {
+
+                throw new Exception(sqlEx.Message);
+            }
+            finally { _connection.Close(); }
+            return isUnique;
+        }
     }
 }

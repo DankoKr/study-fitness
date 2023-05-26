@@ -15,5 +15,6 @@ namespace ClassLibrary.DatabaseClasses
 		void EditCardio(Cardio c, string name, string difficulty, int calories, string picture);
 		void LoadCardios(CardioAdministration myManager, int pageNumber, int pageSize, bool hasMoreRows);
 		int CardioId(string name);
-	}
+        bool isUnique(string name);
+    }
 }
