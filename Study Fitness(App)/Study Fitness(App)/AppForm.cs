@@ -28,23 +28,47 @@ namespace Study_Fitness_App_
             InitializeComponent();
             ShowData();
             btnPrevious.Enabled = false;
+            txbSearchBar.TextChanged += txbSearchBar_TextChanged;
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
             lbExercises.Items.Clear();
 
-            string searched = txbSearchBar.Text;
-            string regexPattern = "\\b\\w*" + searched + "\\w*\\b";
+            string[] searchLines = txbSearchBar.Text.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+
+            string namePattern = searchLines.Length > 0 ? "\\b\\w*" + searchLines[0] + "\\w*\\b" : null;
+            int? weight = searchLines.Length > 1 && int.TryParse(searchLines[1], out var parsedWeight) ? parsedWeight : (int?)null;
+            string difficulty = searchLines.Length > 2 ? searchLines[2] : null;
 
             foreach (Exercise ex in myManager.GetExercises())
             {
-                if (Regex.IsMatch(ex.Name, regexPattern, RegexOptions.IgnoreCase))
+                bool nameMatch = namePattern == null || Regex.IsMatch(ex.Name, namePattern, RegexOptions.IgnoreCase);
+                bool weightMatch = !weight.HasValue || ex.Weight == weight.Value;
+                bool difficultyMatch = string.IsNullOrWhiteSpace(difficulty) || ex.Difficulty.IndexOf(difficulty, StringComparison.OrdinalIgnoreCase) >= 0;
+
+                if (nameMatch && weightMatch && difficultyMatch)
                 {
                     lbExercises.Items.Add(ex);
                 }
             }
         }
+
+        private void txbSearchBar_TextChanged(object sender, EventArgs e)
+        {
+            var textBox = sender as TextBox;
+            if (textBox != null)
+            {
+                string[] lines = textBox.Text.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+                if (lines.Length > 3)
+                {
+                    // Ignore further input and inform the user
+                    MessageBox.Show("You cannot enter more than 3 lines.", "ERROR");
+                    textBox.Text = string.Join(Environment.NewLine, lines.Take(3));
+                }
+            }
+        }
+
 
         private void btnViewExercise_Click(object sender, EventArgs e)
         {

@@ -30,6 +30,7 @@
         {
             tabconExercises = new TabControl();
             tabAllExercises = new TabPage();
+            txbSearchBar = new TextBox();
             tabconManageExercise = new TabControl();
             tabEditExercise = new TabPage();
             cmbNewDifficulty = new ComboBox();
@@ -47,7 +48,6 @@
             btnPrevious = new Button();
             lbExercises = new ListBox();
             btnSearch = new Button();
-            txbSearchBar = new TextBox();
             tabAddExercise = new TabPage();
             btnCreateExercise = new Button();
             grbSpecifics = new GroupBox();
@@ -85,12 +85,12 @@
             // 
             // tabAllExercises
             // 
+            tabAllExercises.Controls.Add(txbSearchBar);
             tabAllExercises.Controls.Add(tabconManageExercise);
             tabAllExercises.Controls.Add(btnNext);
             tabAllExercises.Controls.Add(btnPrevious);
             tabAllExercises.Controls.Add(lbExercises);
             tabAllExercises.Controls.Add(btnSearch);
-            tabAllExercises.Controls.Add(txbSearchBar);
             tabAllExercises.Location = new Point(4, 29);
             tabAllExercises.Name = "tabAllExercises";
             tabAllExercises.Padding = new Padding(3);
@@ -98,6 +98,17 @@
             tabAllExercises.TabIndex = 0;
             tabAllExercises.Text = "All Exercises";
             tabAllExercises.UseVisualStyleBackColor = true;
+            // 
+            // txbSearchBar
+            // 
+            txbSearchBar.AllowDrop = true;
+            txbSearchBar.Location = new Point(24, 19);
+            txbSearchBar.Multiline = true;
+            txbSearchBar.Name = "txbSearchBar";
+            txbSearchBar.PlaceholderText = "Name/Weight/Difficulty";
+            txbSearchBar.ScrollBars = ScrollBars.Vertical;
+            txbSearchBar.Size = new Size(168, 59);
+            txbSearchBar.TabIndex = 12;
             // 
             // tabconManageExercise
             // 
@@ -250,7 +261,7 @@
             // 
             btnNext.BackColor = Color.Violet;
             btnNext.FlatStyle = FlatStyle.Flat;
-            btnNext.Location = new Point(176, 254);
+            btnNext.Location = new Point(167, 264);
             btnNext.Name = "btnNext";
             btnNext.Size = new Size(94, 34);
             btnNext.TabIndex = 10;
@@ -262,7 +273,7 @@
             // 
             btnPrevious.BackColor = Color.Violet;
             btnPrevious.FlatStyle = FlatStyle.Flat;
-            btnPrevious.Location = new Point(42, 254);
+            btnPrevious.Location = new Point(33, 264);
             btnPrevious.Name = "btnPrevious";
             btnPrevious.Size = new Size(94, 34);
             btnPrevious.TabIndex = 9;
@@ -275,7 +286,7 @@
             lbExercises.DisplayMember = "Name";
             lbExercises.FormattingEnabled = true;
             lbExercises.ItemHeight = 20;
-            lbExercises.Location = new Point(33, 84);
+            lbExercises.Location = new Point(24, 84);
             lbExercises.Name = "lbExercises";
             lbExercises.Size = new Size(246, 164);
             lbExercises.TabIndex = 2;
@@ -284,20 +295,13 @@
             // 
             btnSearch.BackColor = Color.Violet;
             btnSearch.FlatStyle = FlatStyle.Flat;
-            btnSearch.Location = new Point(207, 38);
+            btnSearch.Location = new Point(207, 31);
             btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(72, 29);
+            btnSearch.Size = new Size(72, 32);
             btnSearch.TabIndex = 1;
             btnSearch.Text = "Search";
             btnSearch.UseVisualStyleBackColor = false;
             btnSearch.Click += btnSearch_Click;
-            // 
-            // txbSearchBar
-            // 
-            txbSearchBar.Location = new Point(33, 38);
-            txbSearchBar.Name = "txbSearchBar";
-            txbSearchBar.Size = new Size(168, 27);
-            txbSearchBar.TabIndex = 0;
             // 
             // tabAddExercise
             // 
@@ -469,7 +473,6 @@
         private Button btnViewDetails;
         private ListBox lbExercises;
         private Button btnSearch;
-        private TextBox txbSearchBar;
         private TabPage tabAddExercise;
         private Button btnCreateExercise;
         private GroupBox grbSpecifics;
@@ -499,5 +502,6 @@
         private Button btnSortDescendingName;
         private Button btnSortExName;
         private Button btnCustomCompare;
+        private TextBox txbSearchBar;
     }
 }
