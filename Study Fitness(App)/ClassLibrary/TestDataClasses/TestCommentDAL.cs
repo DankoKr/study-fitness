@@ -1,11 +1,12 @@
 ﻿using ClassLibrary.CommentClasses;
+using ClassLibrary.DatabaseClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClassLibrary.DatabaseClasses
+namespace ClassLibrary.TestDataClasses
 {
     public class TestCommentDAL : ICommentDAL
     {
@@ -52,7 +53,7 @@ namespace ClassLibrary.DatabaseClasses
 
         public Comment GetComment(string title, Comment c)
         {
-            foreach (Comment comment in  comments)
+            foreach (Comment comment in comments)
             {
                 if (title == comment.Title)
                 {

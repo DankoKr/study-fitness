@@ -1,5 +1,6 @@
 using ClassLibrary.DatabaseClasses;
 using ClassLibrary.ExerciseClasses;
+using ClassLibrary.TestDataClasses;
 using ClassLibrary.UserClasses;
 
 namespace TestProject

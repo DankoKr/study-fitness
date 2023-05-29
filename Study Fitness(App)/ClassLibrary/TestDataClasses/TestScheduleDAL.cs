@@ -1,4 +1,5 @@
-﻿using ClassLibrary.ScheduleClasses;
+﻿using ClassLibrary.DatabaseClasses;
+using ClassLibrary.ScheduleClasses;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
@@ -7,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace ClassLibrary.DatabaseClasses
+namespace ClassLibrary.TestDataClasses
 {
     public class TestScheduleDAL : IScheduleDAL
     {
@@ -25,9 +26,9 @@ namespace ClassLibrary.DatabaseClasses
         public int GetTotalUserBookings(string name)
         {
             int counter = 0;
-            foreach (Schedule schedule in schedules) 
+            foreach (Schedule schedule in schedules)
             {
-                if (schedule.ClientName == name) 
+                if (schedule.ClientName == name)
                 {
                     counter++;
                 }
@@ -66,7 +67,7 @@ namespace ClassLibrary.DatabaseClasses
             Schedule s2 = new Schedule("Title2", Convert.ToDateTime(date), "desc2", 2);
             schedules.Add(s1);
             schedules.Add(s2);
-            myManager.AddSchedule(s1);  
+            myManager.AddSchedule(s1);
             myManager.AddSchedule(s2);
         }
 

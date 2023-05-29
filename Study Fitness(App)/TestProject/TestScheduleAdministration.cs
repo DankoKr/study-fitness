@@ -1,6 +1,7 @@
 using ClassLibrary.CardioClasses;
 using ClassLibrary.DatabaseClasses;
 using ClassLibrary.ScheduleClasses;
+using ClassLibrary.TestDataClasses;
 using ClassLibrary.UserClasses;
 
 namespace TestProject
