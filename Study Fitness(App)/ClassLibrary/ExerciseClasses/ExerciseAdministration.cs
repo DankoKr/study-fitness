@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary.ExerciseClasses
 {
-    public class ExerciseAdministration : IExerciseComparer
+    public class ExerciseAdministration
     {
         List<Exercise> myExercises = new List<Exercise>();
         IExerciseDAL ExerciseDAL = new ExerciseDAL();
