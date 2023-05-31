@@ -392,7 +392,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Cyan;
+            BackColor = Color.MistyRose;
             ClientSize = new Size(673, 370);
             Controls.Add(tabConCardio);
             Name = "ScheduleForm";

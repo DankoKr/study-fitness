@@ -162,7 +162,7 @@
             // 
             // panelHeading
             // 
-            panelHeading.BackColor = Color.Cyan;
+            panelHeading.BackColor = Color.PaleTurquoise;
             panelHeading.Controls.Add(pictureBox);
             panelHeading.Controls.Add(lblHeader);
             panelHeading.Dock = DockStyle.Top;
@@ -194,7 +194,7 @@
             // 
             // panelFormsContent
             // 
-            panelFormsContent.BackColor = Color.Cyan;
+            panelFormsContent.BackColor = Color.MistyRose;
             panelFormsContent.Dock = DockStyle.Fill;
             panelFormsContent.Location = new Point(130, 84);
             panelFormsContent.Name = "panelFormsContent";

@@ -30,6 +30,9 @@
         {
             tabconExercises = new TabControl();
             tabAllExercises = new TabPage();
+            lblExDifficulty = new Label();
+            lblExWeight = new Label();
+            lblName = new Label();
             txbSearchBar = new TextBox();
             tabconManageExercise = new TabControl();
             tabEditExercise = new TabPage();
@@ -85,6 +88,9 @@
             // 
             // tabAllExercises
             // 
+            tabAllExercises.Controls.Add(lblExDifficulty);
+            tabAllExercises.Controls.Add(lblExWeight);
+            tabAllExercises.Controls.Add(lblName);
             tabAllExercises.Controls.Add(txbSearchBar);
             tabAllExercises.Controls.Add(tabconManageExercise);
             tabAllExercises.Controls.Add(btnNext);
@@ -99,15 +105,42 @@
             tabAllExercises.Text = "All Exercises";
             tabAllExercises.UseVisualStyleBackColor = true;
             // 
+            // lblExDifficulty
+            // 
+            lblExDifficulty.AutoSize = true;
+            lblExDifficulty.Location = new Point(13, 67);
+            lblExDifficulty.Name = "lblExDifficulty";
+            lblExDifficulty.Size = new Size(76, 20);
+            lblExDifficulty.TabIndex = 15;
+            lblExDifficulty.Text = "Difficulty :";
+            // 
+            // lblExWeight
+            // 
+            lblExWeight.AutoSize = true;
+            lblExWeight.Location = new Point(26, 45);
+            lblExWeight.Name = "lblExWeight";
+            lblExWeight.Size = new Size(63, 20);
+            lblExWeight.TabIndex = 14;
+            lblExWeight.Text = "Weight :";
+            // 
+            // lblName
+            // 
+            lblName.AutoSize = true;
+            lblName.Location = new Point(33, 22);
+            lblName.Name = "lblName";
+            lblName.Size = new Size(56, 20);
+            lblName.TabIndex = 13;
+            lblName.Text = "Name :";
+            // 
             // txbSearchBar
             // 
             txbSearchBar.AllowDrop = true;
-            txbSearchBar.Location = new Point(24, 19);
+            txbSearchBar.Location = new Point(92, 19);
             txbSearchBar.Multiline = true;
             txbSearchBar.Name = "txbSearchBar";
             txbSearchBar.PlaceholderText = "Name/Weight/Difficulty";
             txbSearchBar.ScrollBars = ScrollBars.Vertical;
-            txbSearchBar.Size = new Size(168, 59);
+            txbSearchBar.Size = new Size(168, 75);
             txbSearchBar.TabIndex = 12;
             // 
             // tabconManageExercise
@@ -115,7 +148,7 @@
             tabconManageExercise.Controls.Add(tabEditExercise);
             tabconManageExercise.Controls.Add(tabDeleteAndViewExercise);
             tabconManageExercise.Controls.Add(tabSortExercises);
-            tabconManageExercise.Location = new Point(332, 38);
+            tabconManageExercise.Location = new Point(338, 93);
             tabconManageExercise.Name = "tabconManageExercise";
             tabconManageExercise.SelectedIndex = 0;
             tabconManageExercise.Size = new Size(275, 210);
@@ -261,7 +294,7 @@
             // 
             btnNext.BackColor = Color.Violet;
             btnNext.FlatStyle = FlatStyle.Flat;
-            btnNext.Location = new Point(167, 264);
+            btnNext.Location = new Point(167, 278);
             btnNext.Name = "btnNext";
             btnNext.Size = new Size(94, 34);
             btnNext.TabIndex = 10;
@@ -273,7 +306,7 @@
             // 
             btnPrevious.BackColor = Color.Violet;
             btnPrevious.FlatStyle = FlatStyle.Flat;
-            btnPrevious.Location = new Point(33, 264);
+            btnPrevious.Location = new Point(33, 278);
             btnPrevious.Name = "btnPrevious";
             btnPrevious.Size = new Size(94, 34);
             btnPrevious.TabIndex = 9;
@@ -286,7 +319,7 @@
             lbExercises.DisplayMember = "Name";
             lbExercises.FormattingEnabled = true;
             lbExercises.ItemHeight = 20;
-            lbExercises.Location = new Point(24, 84);
+            lbExercises.Location = new Point(24, 108);
             lbExercises.Name = "lbExercises";
             lbExercises.Size = new Size(246, 164);
             lbExercises.TabIndex = 2;
@@ -295,7 +328,7 @@
             // 
             btnSearch.BackColor = Color.Violet;
             btnSearch.FlatStyle = FlatStyle.Flat;
-            btnSearch.Location = new Point(207, 31);
+            btnSearch.Location = new Point(266, 35);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(72, 32);
             btnSearch.TabIndex = 1;
@@ -444,7 +477,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Cyan;
+            BackColor = Color.MistyRose;
             ClientSize = new Size(673, 370);
             Controls.Add(tabconExercises);
             Name = "AppForm";
@@ -503,5 +536,8 @@
         private Button btnSortExName;
         private Button btnCustomCompare;
         private TextBox txbSearchBar;
+        private Label lblExDifficulty;
+        private Label lblExWeight;
+        private Label lblName;
     }
 }

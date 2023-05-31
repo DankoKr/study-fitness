@@ -77,7 +77,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Cyan;
+            BackColor = Color.MistyRose;
             ClientSize = new Size(444, 310);
             Controls.Add(lblLogin);
             Controls.Add(txbPassword);

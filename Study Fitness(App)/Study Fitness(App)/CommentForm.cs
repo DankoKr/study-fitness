@@ -58,7 +58,7 @@ namespace Study_Fitness_App_
         {
             lbComments.Items.Clear();
             myManager = new CommentAdministration(db);
-            db.LoadComments(myManager, currentPage, pageSize, hasRows);            
+            db.LoadComments(myManager, currentPage, pageSize, hasRows);
 
             foreach (Comment comment in myManager.GetComments())
             {

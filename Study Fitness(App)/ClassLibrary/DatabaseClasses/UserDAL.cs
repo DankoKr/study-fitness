@@ -176,6 +176,7 @@ namespace ClassLibrary.DatabaseClasses
                 }
                 catch (SqlException)
                 { return null; }
+                finally { _connection.Close(); }
             }
         }
 
