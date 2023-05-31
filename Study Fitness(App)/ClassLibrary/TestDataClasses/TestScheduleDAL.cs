@@ -71,17 +71,17 @@ namespace ClassLibrary.TestDataClasses
             myManager.AddSchedule(s2);
         }
 
-        public void LoadSchedulesTrainerLevel(int level, ScheduleAdministration myManager)
+        public void LoadSchedulesTrainerLevel(int level, ScheduleAdministration myManager, int pageNumber, int pageSize, bool hasMoreRows)
         {
             throw new NotImplementedException();
         }
 
-        public void LoadTrainerSchedules(int trainer_id, List<Schedule> s)
+        public void LoadTrainerSchedules(int trainer_id, List<Schedule> s, int pageNumber, int pageSize, bool hasMoreRows)
         {
             throw new NotImplementedException();
         }
 
-        public void LoadUserBookings(ScheduleAdministration myManager, string username)
+        public void LoadUserBookings(ScheduleAdministration myManager, string username, int pageNumber, int pageSize, bool hasMoreRows)
         {
             throw new NotImplementedException();
         }
@@ -101,9 +101,8 @@ namespace ClassLibrary.TestDataClasses
             s.ClientName = null;
         }
 
-        public void UpdateSchedule(Schedule s, int trainerId, string title, DateTime time, string description)
+        public void UpdateSchedule(Schedule s, int trainerId, DateTime time, string description)
         {
-            s.Title = title;
             s.Description = description;
             s.TrainerId = trainerId;
             s.Date = time;

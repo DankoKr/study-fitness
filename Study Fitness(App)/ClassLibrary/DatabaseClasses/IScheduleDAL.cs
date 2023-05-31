@@ -12,13 +12,13 @@ namespace ClassLibrary.DatabaseClasses
         void LoadSchedules(ScheduleAdministration myManager, int pageNumber, int pageSize, bool hasMoreRows);
         void AddSchedule(Schedule s);
         void RemoveSchedule(Schedule s);
-        void UpdateSchedule(Schedule s, int trainerId, string title, DateTime time, string description);
+        void UpdateSchedule(Schedule s, int trainerId, DateTime time, string description);
         void GetTrainersId(List<int> ids);
         void AssignSchedule(Schedule s, string name);
-        void LoadSchedulesTrainerLevel(int level, ScheduleAdministration myManager);
-        void LoadTrainerSchedules(int trainer_id, List<Schedule> schedules);
+        void LoadSchedulesTrainerLevel(int level, ScheduleAdministration myManager, int pageNumber, int pageSize, bool hasMoreRows);
+        void LoadTrainerSchedules(int trainer_id, List<Schedule> schedules, int pageNumber, int pageSize, bool hasMoreRows);
         void UnAssignSchedule(Schedule s);
-        void LoadUserBookings(ScheduleAdministration myManager, string username);
+        void LoadUserBookings(ScheduleAdministration myManager, string username, int pageNumber, int pageSize, bool hasMoreRows);
         int GetTotalUserBookings(string name);
         bool IsDublicatedScheduleTime(DateTime date, string username);
         Dictionary<string, int> GetTrainersBookings();

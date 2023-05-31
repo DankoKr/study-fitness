@@ -17,13 +17,16 @@ namespace Website.Pages.MyPages
         public string? ClientName { get; set; }
         public string? ScheduleTitle { get; set; }
         public String? Message { get; set; }
+        private int currentPage = 1;
+        private const int pageSize = 8;
+        private bool hasRows;
 
         public void OnGet()
         {
             myManager = new ScheduleAdministration(db);
             string num = Request.Query["level"];
             int level = Convert.ToInt32(num);
-            db.LoadSchedulesTrainerLevel(level ,myManager);
+            db.LoadSchedulesTrainerLevel(level ,myManager, currentPage, pageSize, hasRows);
         }
 
         public IActionResult OnPost() 
@@ -33,7 +36,7 @@ namespace Website.Pages.MyPages
                 myManager = new ScheduleAdministration(db);
                 string num = Request.Query["level"];
                 int level = Convert.ToInt32(num);
-                db.LoadSchedulesTrainerLevel(level, myManager);   
+                db.LoadSchedulesTrainerLevel(level,myManager, currentPage, pageSize, hasRows);   
                 ClientName = HttpContext.Session.GetString("Username");
                 string scheduleTitle = Request.Form["scheduleTitle"];
                 int counter = myManager.GetTotalUserBookings(ClientName);

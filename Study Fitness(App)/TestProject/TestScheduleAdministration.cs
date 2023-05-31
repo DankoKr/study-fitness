@@ -57,10 +57,10 @@ namespace TestProject
             //Act			
             Schedule s1 = new Schedule("Title", Convert.ToDateTime("2023-01-12"), "desc", 1);
             myManager.AddSchedule(s1);
-            myManager.EditSchedule(s1, 2,"NewTitle", Convert.ToDateTime("2022-02-10"), "newDesc");
+            myManager.EditSchedule(s1, 2, Convert.ToDateTime("2022-02-10"), "newDesc");
 
             //Assert
-            Assert.AreNotEqual("Title", s1.Title);
+            Assert.AreNotEqual("2022-02-10", s1.Date);
         }
 
         [TestMethod]

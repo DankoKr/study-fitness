@@ -95,7 +95,7 @@ namespace ClassLibrary.DatabaseClasses
             {
                 string sql = "SELECT * " +
                              "FROM Schedule " +
-                             "ORDER BY title " +
+                             "ORDER BY date " +
                              "OFFSET @offset ROWS FETCH NEXT @fetch ROWS ONLY;";
 
                 SqlCommand cmd = new SqlCommand(sql, _connection);
@@ -137,69 +137,113 @@ namespace ClassLibrary.DatabaseClasses
             }
         }
 
-        public void LoadSchedulesTrainerLevel(int level, ScheduleAdministration myManager)
+        public void LoadSchedulesTrainerLevel(int level, ScheduleAdministration myManager, int pageNumber, int pageSize, bool hasMoreRows)
         {
             SqlConnection _connection = db.GetSqlConnection();
 
             try
             {
-                string sql = $"SELECT s.title, s.description, s.date, s.trainer_id, s.client_name, u.Trainerlevel \r\nFROM Schedule s\r\nJOIN Users u\r\nON s.trainer_id = u.Id\r\nWHERE u.TrainerLevel = {level}";
+                string sql = "SELECT s.title, s.description, s.date, s.trainer_id, s.client_name, u.Trainerlevel " +
+                             "FROM Schedule s " +
+                             "JOIN Users u " +
+                             "ON s.trainer_id = u.Id " +
+                             "WHERE u.TrainerLevel = @level " +
+                             "ORDER BY date " +
+                             "OFFSET @offset ROWS FETCH NEXT @fetch ROWS ONLY";
+
                 SqlCommand cmd = new SqlCommand(sql, _connection);
+
+                cmd.Parameters.AddWithValue("@level", level);
+                cmd.Parameters.AddWithValue("@offset", (pageNumber - 1) * pageSize);
+                cmd.Parameters.AddWithValue("@fetch", pageSize);
+
                 _connection.Open();
                 SqlDataReader dr = cmd.ExecuteReader();
+                int rowCount = 0;
+
                 while (dr.Read())
                 {
-                    if (dr[4] != null)
+                    rowCount++;
+                    if (rowCount <= pageSize)
                     {
-                        myManager.AddExistingSchedule(new Schedule(Convert.ToString(dr[0]), Convert.ToDateTime(dr[2]).Date, Convert.ToString(dr[1]), Convert.ToInt32(dr[3]), Convert.ToString(dr[4])));
-                    }
-                    else
-                    {
-                        myManager.AddExistingSchedule(new Schedule(Convert.ToString(dr[0]), Convert.ToDateTime(dr[2]).Date, Convert.ToString(dr[1]), Convert.ToInt32(dr[3])));
+                        if (dr[4] != null)
+                        {
+                            myManager.AddExistingSchedule(new Schedule(Convert.ToString(dr[0]), Convert.ToDateTime(dr[2]).Date, Convert.ToString(dr[1]), Convert.ToInt32(dr[3]), Convert.ToString(dr[4])));
+                        }
+                        else
+                        {
+                            myManager.AddExistingSchedule(new Schedule(Convert.ToString(dr[0]), Convert.ToDateTime(dr[2]).Date, Convert.ToString(dr[1]), Convert.ToInt32(dr[3])));
+                        }
                     }
                 }
 
+                hasMoreRows = rowCount > pageSize;
                 dr.Close();
             }
             catch (SqlException sqlEx)
             {
-
                 throw new Exception(sqlEx.Message);
             }
-            finally { _connection.Close(); }
+            finally
+            {
+                _connection.Close();
+            }
         }
 
-        public void LoadTrainerSchedules(int trainer_id, List<Schedule> schedules)
+
+        public void LoadTrainerSchedules(int trainer_id, List<Schedule> schedules, int pageNumber, int pageSize, bool hasMoreRows)
         {
             SqlConnection _connection = db.GetSqlConnection();
 
             try
             {
-                string sql = $"SELECT s.title, s.description, s.date, s.trainer_id, s.client_name, u.Trainerlevel \r\nFROM Schedule s\r\nJOIN Users u\r\nON s.trainer_id = u.Id\r\nWHERE u.Id = {trainer_id}";
+                string sql = "SELECT s.title, s.description, s.date, s.trainer_id, s.client_name, u.Trainerlevel " +
+                             "FROM Schedule s " +
+                             "JOIN Users u " +
+                             "ON s.trainer_id = u.Id " +
+                             "WHERE u.Id = @trainer_id " +
+                             "ORDER BY date " +
+                             "OFFSET @offset ROWS FETCH NEXT @fetch ROWS ONLY";
+
                 SqlCommand cmd = new SqlCommand(sql, _connection);
+
+                cmd.Parameters.AddWithValue("@trainer_id", trainer_id);
+                cmd.Parameters.AddWithValue("@offset", (pageNumber - 1) * pageSize);
+                cmd.Parameters.AddWithValue("@fetch", pageSize);
+
                 _connection.Open();
                 SqlDataReader dr = cmd.ExecuteReader();
+                int rowCount = 0;
+
                 while (dr.Read())
                 {
-                    if (dr[4] != null)
+                    rowCount++;
+                    if (rowCount <= pageSize)
                     {
-                        schedules.Add(new Schedule(Convert.ToString(dr[0]), Convert.ToDateTime(dr[2]).Date, Convert.ToString(dr[1]), Convert.ToInt32(dr[3]), Convert.ToString(dr[4])));
-                    }
-                    else
-                    {
-                        schedules.Add(new Schedule(Convert.ToString(dr[0]), Convert.ToDateTime(dr[2]).Date, Convert.ToString(dr[1]), Convert.ToInt32(dr[3])));
+                        if (dr[4] != null)
+                        {
+                            schedules.Add(new Schedule(Convert.ToString(dr[0]), Convert.ToDateTime(dr[2]).Date, Convert.ToString(dr[1]), Convert.ToInt32(dr[3]), Convert.ToString(dr[4])));
+                        }
+                        else
+                        {
+                            schedules.Add(new Schedule(Convert.ToString(dr[0]), Convert.ToDateTime(dr[2]).Date, Convert.ToString(dr[1]), Convert.ToInt32(dr[3])));
+                        }
                     }
                 }
 
+                hasMoreRows = rowCount > pageSize;
                 dr.Close();
             }
             catch (SqlException sqlEx)
             {
-
                 throw new Exception(sqlEx.Message);
             }
-            finally { _connection.Close(); }
+            finally
+            {
+                _connection.Close();
+            }
         }
+
 
         public void RemoveSchedule(Schedule s)
         {
@@ -221,15 +265,14 @@ namespace ClassLibrary.DatabaseClasses
             finally { _connection.Close(); }
         }
 
-        public void UpdateSchedule(Schedule s, int trainerId, string title, DateTime time, string description)
+        public void UpdateSchedule(Schedule s, int trainerId, DateTime time, string description)
         {
             SqlConnection _connection = db.GetSqlConnection();
 
             try
             {
-                string sql = "UPDATE Schedule SET title = @title, description = @description, date = @date, trainer_id = @trainer_id WHERE title = @titleSchedule";
+                string sql = "UPDATE Schedule SET description = @description, date = @date, trainer_id = @trainer_id WHERE title = @titleSchedule";
                 SqlCommand cmd = new SqlCommand(sql, _connection);
-                cmd.Parameters.AddWithValue("@title", title);
                 cmd.Parameters.AddWithValue("@description", description);
                 cmd.Parameters.AddWithValue("@date", time.Date);
                 cmd.Parameters.AddWithValue("@trainer_id", trainerId);
@@ -266,33 +309,53 @@ namespace ClassLibrary.DatabaseClasses
             finally { _connection.Close(); }
         }
 
-        public void LoadUserBookings(ScheduleAdministration myManager, string username)
+        public void LoadUserBookings(ScheduleAdministration myManager, string username, int pageNumber, int pageSize, bool hasMoreRows)
         {
             SqlConnection _connection = db.GetSqlConnection();
 
             try
             {
-                string sql = $"SELECT * \r\nFROM Schedule\r\nWHERE client_name = '{username}'";
+                string sql = "SELECT * " +
+                             "FROM Schedule " +
+                             "WHERE client_name = @username " +
+                             "ORDER BY date " +
+                             "OFFSET @offset ROWS FETCH NEXT @fetch ROWS ONLY";
+
                 SqlCommand cmd = new SqlCommand(sql, _connection);
+
+                cmd.Parameters.AddWithValue("@username", username);
+                cmd.Parameters.AddWithValue("@offset", (pageNumber - 1) * pageSize);
+                cmd.Parameters.AddWithValue("@fetch", pageSize);
+
                 _connection.Open();
                 SqlDataReader dr = cmd.ExecuteReader();
+                int rowCount = 0;
+
                 while (dr.Read())
                 {
-                    if (dr[5] != null)
+                    rowCount++;
+                    if (rowCount <= pageSize)
                     {
-                        myManager.AddExistingSchedule(new Schedule(Convert.ToString(dr[1]), Convert.ToDateTime(dr[3]).Date, Convert.ToString(dr[2]), Convert.ToInt32(dr[4]), Convert.ToString(dr[5])));
+                        if (dr[5] != null)
+                        {
+                            myManager.AddExistingSchedule(new Schedule(Convert.ToString(dr[1]), Convert.ToDateTime(dr[3]).Date, Convert.ToString(dr[2]), Convert.ToInt32(dr[4]), Convert.ToString(dr[5])));
+                        }
                     }
                 }
 
+                hasMoreRows = rowCount > pageSize;
                 dr.Close();
             }
             catch (SqlException sqlEx)
             {
-
                 throw new Exception(sqlEx.Message);
             }
-            finally { _connection.Close(); }
+            finally
+            {
+                _connection.Close();
+            }
         }
+
 
         public int GetTotalUserBookings(string name)
         {
@@ -350,7 +413,7 @@ namespace ClassLibrary.DatabaseClasses
             finally { _connection.Close(); }
         }
         public Dictionary<string, int> GetTrainersBookings()
-        {
+        {//Need this for statistics
             SqlConnection _connection = db.GetSqlConnection();
             Dictionary<string, int> trainersBookings = new Dictionary<string, int>();
 

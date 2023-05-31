@@ -73,7 +73,6 @@ namespace Study_Fitness_App_
         {
             txbDescription.Text = "";
             txbNewDescription.Text = "";
-            txbNewTitle.Text = "";
             txbTitle.Text = "";
         }
 
@@ -99,7 +98,7 @@ namespace Study_Fitness_App_
             {
                 lbScheduleTrainer.Items.Clear();
                 List<Schedule> trainerSchedules = new List<Schedule>();
-                myManager.GetTrainersSchedules(Convert.ToInt32(cmbTrainerId.Text), trainerSchedules);
+                myManager.GetTrainersSchedules(Convert.ToInt32(cmbTrainerId.Text), trainerSchedules, currentPage, pageSize, hasRows);
                 foreach (Schedule schedule in trainerSchedules)
                 {
                     lbScheduleTrainer.Items.Add(schedule);
@@ -149,7 +148,8 @@ namespace Study_Fitness_App_
 
             object obj = lbSchedule.SelectedItem;
             Schedule selectedS = (Schedule)obj;
-            myManager.EditSchedule(selectedS, Convert.ToInt32(cmbNewTrainer.Text), txbNewTitle.Text, Convert.ToDateTime(dateTime.Value), txbNewDescription.Text);
+            DateTime time = Convert.ToDateTime(dateTime.Value);
+            myManager.EditSchedule(selectedS, Convert.ToInt32(cmbNewTrainer.Text), time, txbNewDescription.Text);
             ShowData();
             MessageBox.Show("Schedule changed!", "Done");
         }

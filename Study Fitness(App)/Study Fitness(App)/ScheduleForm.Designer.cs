@@ -40,7 +40,6 @@
             lblNewTime = new Label();
             cmbNewTrainer = new ComboBox();
             txbNewDescription = new TextBox();
-            txbNewTitle = new TextBox();
             btnEdit = new Button();
             btnNext = new Button();
             btnPrevious = new Button();
@@ -145,7 +144,6 @@
             tabEdit.Controls.Add(lblNewTime);
             tabEdit.Controls.Add(cmbNewTrainer);
             tabEdit.Controls.Add(txbNewDescription);
-            tabEdit.Controls.Add(txbNewTitle);
             tabEdit.Controls.Add(btnEdit);
             tabEdit.Location = new Point(4, 29);
             tabEdit.Name = "tabEdit";
@@ -158,16 +156,16 @@
             // dateNewTime
             // 
             dateNewTime.Format = DateTimePickerFormat.Short;
-            dateNewTime.Location = new Point(16, 71);
+            dateNewTime.Location = new Point(17, 37);
             dateNewTime.Name = "dateNewTime";
             dateNewTime.Size = new Size(125, 27);
             dateNewTime.TabIndex = 20;
-            dateNewTime.Value = new DateTime(2023, 5, 20, 0, 0, 0, 0);
+            dateNewTime.Value = new DateTime(2023, 5, 31, 0, 0, 0, 0);
             // 
             // lblNewTrainer
             // 
             lblNewTrainer.AutoSize = true;
-            lblNewTrainer.Location = new Point(16, 101);
+            lblNewTrainer.Location = new Point(17, 76);
             lblNewTrainer.Name = "lblNewTrainer";
             lblNewTrainer.Size = new Size(114, 20);
             lblNewTrainer.TabIndex = 19;
@@ -176,7 +174,7 @@
             // lblNewTime
             // 
             lblNewTime.AutoSize = true;
-            lblNewTime.Location = new Point(16, 48);
+            lblNewTime.Location = new Point(17, 14);
             lblNewTime.Name = "lblNewTime";
             lblNewTime.Size = new Size(49, 20);
             lblNewTime.TabIndex = 18;
@@ -185,32 +183,24 @@
             // cmbNewTrainer
             // 
             cmbNewTrainer.FormattingEnabled = true;
-            cmbNewTrainer.Location = new Point(16, 124);
+            cmbNewTrainer.Location = new Point(17, 99);
             cmbNewTrainer.Name = "cmbNewTrainer";
             cmbNewTrainer.Size = new Size(125, 28);
             cmbNewTrainer.TabIndex = 17;
             // 
             // txbNewDescription
             // 
-            txbNewDescription.Location = new Point(16, 158);
+            txbNewDescription.Location = new Point(17, 148);
             txbNewDescription.Name = "txbNewDescription";
             txbNewDescription.PlaceholderText = "Description";
             txbNewDescription.Size = new Size(125, 27);
             txbNewDescription.TabIndex = 16;
             // 
-            // txbNewTitle
-            // 
-            txbNewTitle.Location = new Point(16, 18);
-            txbNewTitle.Name = "txbNewTitle";
-            txbNewTitle.PlaceholderText = "Title";
-            txbNewTitle.Size = new Size(125, 27);
-            txbNewTitle.TabIndex = 15;
-            // 
             // btnEdit
             // 
             btnEdit.BackColor = Color.Violet;
             btnEdit.FlatStyle = FlatStyle.Flat;
-            btnEdit.Location = new Point(171, 73);
+            btnEdit.Location = new Point(169, 76);
             btnEdit.Name = "btnEdit";
             btnEdit.Size = new Size(71, 44);
             btnEdit.TabIndex = 14;
@@ -383,7 +373,7 @@
             lbScheduleTrainer.DisplayMember = "Title";
             lbScheduleTrainer.FormattingEnabled = true;
             lbScheduleTrainer.ItemHeight = 20;
-            lbScheduleTrainer.Location = new Point(73, 66);
+            lbScheduleTrainer.Location = new Point(77, 66);
             lbScheduleTrainer.Name = "lbScheduleTrainer";
             lbScheduleTrainer.Size = new Size(208, 204);
             lbScheduleTrainer.TabIndex = 0;
@@ -428,8 +418,6 @@
         private Button btnShowTrainerSchedules;
         private ComboBox cmbTrainerId;
         private Button btnViewTrainerSchedule;
-        private Button btnNext;
-        private Button btnPrevious;
         private TabControl tabFunctions;
         private TabPage tabDetailsAndDelete;
         private Button btnDelete;
@@ -439,7 +427,8 @@
         private Label lblNewTime;
         private ComboBox cmbNewTrainer;
         private TextBox txbNewDescription;
-        private TextBox txbNewTitle;
         private Button btnEdit;
+        private Button btnNext;
+        private Button btnPrevious;
     }
 }

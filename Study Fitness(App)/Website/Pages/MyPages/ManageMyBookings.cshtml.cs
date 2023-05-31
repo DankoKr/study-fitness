@@ -13,13 +13,16 @@ namespace Website.Pages.MyPages
         public ScheduleAdministration myManager;
         IScheduleDAL db = new ScheduleDAL();
         public Schedule? schedule { get; set; }
+        private int currentPage = 1;
+        private const int pageSize = 8;
+        private bool hasRows;
         public void OnGet()
         {
             if (HttpContext.Session.GetString("Username") != null)
             {
                 string nameUser = HttpContext.Session.GetString("Username");
                 myManager = new ScheduleAdministration(db);
-                db.LoadUserBookings(myManager, nameUser);
+                db.LoadUserBookings(myManager, nameUser, currentPage, pageSize, hasRows);
             }
         }
 
@@ -29,7 +32,7 @@ namespace Website.Pages.MyPages
             {
                 string nameUser = HttpContext.Session.GetString("Username");
                 myManager = new ScheduleAdministration(db);
-                db.LoadUserBookings(myManager, nameUser);
+                db.LoadUserBookings(myManager, nameUser, currentPage, pageSize, hasRows);
                 string scheduleTitle = Request.Form["scheduleTitle"];
 
                 if (scheduleTitle != "")

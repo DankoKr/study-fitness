@@ -37,13 +37,12 @@ namespace ClassLibrary.ScheduleClasses
             db.RemoveSchedule(s);
         }
 
-        public void EditSchedule(Schedule s, int trainerId, string title, DateTime time, string description) 
+        public void EditSchedule(Schedule s, int trainerId, DateTime time, string description) 
         {
-            if (title != "" && trainerId != 0) 
+            if (trainerId != 0) 
             {
-                db.UpdateSchedule(s, trainerId, title, time, description);
+                db.UpdateSchedule(s, trainerId, time, description);
                 s.TrainerId = trainerId;
-                s.Title = title;
                 s.Description = description;
                 s.Date = time;
             }
@@ -82,9 +81,9 @@ namespace ClassLibrary.ScheduleClasses
             db.UnAssignSchedule(s);
         }
 
-        public void GetTrainersSchedules(int trainer_id, List<Schedule> trainerSchedules) 
+        public void GetTrainersSchedules(int trainer_id, List<Schedule> trainerSchedules, int pageNumber, int pageSize, bool hasMoreRows) 
         {
-            db.LoadTrainerSchedules(trainer_id, trainerSchedules);
+            db.LoadTrainerSchedules(trainer_id, trainerSchedules, pageNumber, pageSize, hasMoreRows);
         }
         public int GetTotalUserBookings(string name) 
         {
