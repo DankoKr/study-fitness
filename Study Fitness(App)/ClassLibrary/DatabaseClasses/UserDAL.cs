@@ -88,7 +88,6 @@ namespace ClassLibrary.DatabaseClasses
 
         public void EditUser(User u, string name) 
         {
-			//DatabaseRepo db = new DatabaseRepo();
 			SqlConnection _connection = db.GetSqlConnection();
 
             try
@@ -229,7 +228,7 @@ namespace ClassLibrary.DatabaseClasses
         }
 
         public void GetTrainerNameByPoints(int points, List<string> trainers) 
-        {
+        {//I need this for statistics
             SqlConnection _connection = db.GetSqlConnection();
 
             try

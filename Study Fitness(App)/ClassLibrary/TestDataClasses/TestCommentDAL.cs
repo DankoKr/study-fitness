@@ -27,9 +27,8 @@ namespace ClassLibrary.TestDataClasses
             comments.Remove(c);
         }
 
-        public void EditComment(Comment c, string title, string description, int rating)
+        public void EditComment(Comment c, string description, int rating)
         {
-            c.Title = title;
             c.Description = description;
             c.Rating = rating;
         }
@@ -69,7 +68,7 @@ namespace ClassLibrary.TestDataClasses
             throw new NotImplementedException();
         }
 
-        public void GetExerciseComments(int exercise_id, CommentAdministration myManager)
+        public void GetExerciseComments(int exercise_id, CommentAdministration myManager, int pageNumber, int pageSize, bool hasMoreRows)
         {
             throw new NotImplementedException();
         }
@@ -79,7 +78,7 @@ namespace ClassLibrary.TestDataClasses
             throw new NotImplementedException();
         }
 
-        public void GetUserComments(int user_id, CommentAdministration myManager)
+        public void GetUserComments(int user_id, CommentAdministration myManager, int pageNumber, int pageSize, bool hasMoreRows)
         {
             throw new NotImplementedException();
         }

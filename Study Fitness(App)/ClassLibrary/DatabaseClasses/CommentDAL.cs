@@ -95,13 +95,13 @@ namespace ClassLibrary.DatabaseClasses
             }
             finally { _connection.Close(); }
         }
-        public void EditComment(Comment c, string title, string description, int rating) 
+        public void EditComment(Comment c, string description, int rating) 
         {
             SqlConnection _connection = db.GetSqlConnection();
 
             try
             {
-                string sql = $"UPDATE Comment\r\nSET name = '{title}', description = '{description}', rating = {rating}\r\nWHERE name = '{c.Title}';";
+                string sql = $"UPDATE Comment\r\nSET description = '{description}', rating = {rating}\r\nWHERE name = '{c.Title}';";
                 SqlCommand cmd = new SqlCommand(sql, _connection);
                 _connection.Open();
                 cmd.ExecuteNonQuery();
@@ -140,7 +140,6 @@ namespace ClassLibrary.DatabaseClasses
             finally { _connection.Close(); }
             return exId;
         }
-
         public int GetUserId(string username, int userId)
         {
             SqlConnection _connection = db.GetSqlConnection();
@@ -212,54 +211,82 @@ namespace ClassLibrary.DatabaseClasses
             }
             finally { _connection.Close(); }
         }
-        public void GetExerciseComments(int exercise_id, CommentAdministration myManager) 
+        public void GetExerciseComments(int exercise_id, CommentAdministration myManager, int pageNumber, int pageSize, bool hasMoreRows)
         {
             SqlConnection _connection = db.GetSqlConnection();
 
             try
             {
-                string sql = $"SELECT  name, description, rating FROM Comment WHERE exercise_id = {exercise_id}";
+                string sql = $"SELECT name, description, rating FROM Comment WHERE exercise_id = {exercise_id} ORDER BY name OFFSET @offset ROWS FETCH NEXT @fetch ROWS ONLY";
                 SqlCommand cmd = new SqlCommand(sql, _connection);
+
+                cmd.Parameters.AddWithValue("@offset", (pageNumber - 1) * pageSize);
+                cmd.Parameters.AddWithValue("@fetch", pageSize);
+
                 _connection.Open();
                 SqlDataReader dr = cmd.ExecuteReader();
+                int rowCount = 0;
+
                 while (dr.Read())
                 {
-                    myManager.AddExistingComment(new Comment(Convert.ToString(dr[0]), Convert.ToString(dr[1]), Convert.ToInt32(dr[2])));
+                    rowCount++;
+                    if (rowCount <= pageSize)
+                    {
+                        myManager.AddExistingComment(new Comment(Convert.ToString(dr[0]), Convert.ToString(dr[1]), Convert.ToInt32(dr[2])));
+                    }
                 }
 
+                hasMoreRows = rowCount > pageSize;
                 dr.Close();
             }
             catch (SqlException sqlEx)
             {
-
                 throw new Exception(sqlEx.Message);
             }
-            finally { _connection.Close(); }
+            finally
+            {
+                _connection.Close();
+            }
         }
-        public void GetUserComments(int user_id, CommentAdministration myManager)
+
+        public void GetUserComments(int user_id, CommentAdministration myManager, int pageNumber, int pageSize, bool hasMoreRows)
         {
             SqlConnection _connection = db.GetSqlConnection();
 
             try
             {
-                string sql = $"SELECT  name, description, rating FROM Comment WHERE user_id = {user_id}";
+                string sql = $"SELECT name, description, rating FROM Comment WHERE user_id = {user_id} ORDER BY name OFFSET @offset ROWS FETCH NEXT @fetch ROWS ONLY";
                 SqlCommand cmd = new SqlCommand(sql, _connection);
+
+                cmd.Parameters.AddWithValue("@offset", (pageNumber - 1) * pageSize);
+                cmd.Parameters.AddWithValue("@fetch", pageSize);
+
                 _connection.Open();
                 SqlDataReader dr = cmd.ExecuteReader();
+                int rowCount = 0;
+
                 while (dr.Read())
                 {
-                    myManager.AddExistingComment(new Comment(Convert.ToString(dr[0]), Convert.ToString(dr[1]), Convert.ToInt32(dr[2])));
+                    rowCount++;
+                    if (rowCount <= pageSize)
+                    {
+                        myManager.AddExistingComment(new Comment(Convert.ToString(dr[0]), Convert.ToString(dr[1]), Convert.ToInt32(dr[2])));
+                    }
                 }
 
+                hasMoreRows = rowCount > pageSize;
                 dr.Close();
             }
             catch (SqlException sqlEx)
             {
-
                 throw new Exception(sqlEx.Message);
             }
-            finally { _connection.Close(); }
+            finally
+            {
+                _connection.Close();
+            }
         }
+
         public Comment GetComment(string title, Comment c) 
         {
             SqlConnection _connection = db.GetSqlConnection();

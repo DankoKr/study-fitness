@@ -15,7 +15,6 @@ namespace Website.Pages.MyPages
         public string SelectedName { get; set; }
         public Comment? selectedC { get; set; }
         public int NewRating { get; set; }
-        public string NewTitle { get; set; }
         public string NewDescription { get; set; }
         CommentAdministration myManager;
         ICommentDAL db = new CommentDAL();
@@ -32,17 +31,16 @@ namespace Website.Pages.MyPages
             myManager = new CommentAdministration(db);
             selectedC = db.GetComment(SelectedName, selectedC);
 
-            NewTitle = Request.Form["title"];
             NewRating = Convert.ToInt32(Request.Form["rating"]);
             NewDescription = Request.Form["description"];
 
-            if (NewRating > 5 || NewDescription == "" || NewTitle == "" || NewRating < 0)
+            if (NewRating > 5 || NewDescription == "" || NewRating < 0)
             {
                 Error = "Missing or wrong data!";
                 return;
             }
 
-            myManager.EditComment(selectedC, NewTitle, NewDescription, NewRating);
+            myManager.EditComment(selectedC, NewDescription, NewRating);
 
             Response.Redirect("/MyPages/MyComments");
         }

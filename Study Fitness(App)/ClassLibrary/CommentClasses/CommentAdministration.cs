@@ -45,13 +45,12 @@ namespace ClassLibrary.CommentClasses
             db.DeleteComment(c);
         }
 
-        public void EditComment(Comment c, string newTtile, string newDescription, int newRate)
+        public void EditComment(Comment c, string newDescription, int newRate)
         {
-            if (newTtile != "" && newDescription != "" && newRate < 6)
+            if (newDescription != "" && newRate < 6)
             {
-                db.EditComment(c, newTtile, newDescription, newRate);
+                db.EditComment(c, newDescription, newRate);
                 c.Description = newDescription;
-                c.Title = newTtile;
                 c.Rating = newRate;
             }
         }

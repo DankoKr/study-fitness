@@ -12,6 +12,9 @@ namespace Website.Pages.MyPages
         CommentAdministration myManager;
         ICommentDAL db = new CommentDAL();
         Comment c;
+        private int currentPage = 1;
+        private const int pageSize = 8;
+        private bool hasRows;
         public void OnGet()
         {
             if (HttpContext.Session.GetString("Username") != null)
@@ -20,7 +23,7 @@ namespace Website.Pages.MyPages
                 string nameUser = HttpContext.Session.GetString("Username");
                 int userId = db.GetUserId(nameUser, uId);
                 myManager = new CommentAdministration(db);
-                db.GetUserComments(userId, myManager);
+                db.GetUserComments(userId, myManager, currentPage, pageSize, hasRows);
                 string commentTitle = Request.Query["name"];
                 c = db.GetComment(commentTitle, c);
                 myManager.RemoveComment(c);

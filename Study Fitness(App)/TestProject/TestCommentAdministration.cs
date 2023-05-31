@@ -48,11 +48,11 @@ namespace TestProject
             Comment c = new Comment("Test", "desc", 5);
 
             //Act		
-            myManager.EditComment(c, "NewTitle", "NewDescription", 3);
+            myManager.EditComment(c, "NewDescription", 3);
 
 
             //Assert
-            Assert.AreNotEqual(c.Title, "Test");
+            Assert.AreNotEqual(c.Description, "desc");
         }
 
         [TestMethod]

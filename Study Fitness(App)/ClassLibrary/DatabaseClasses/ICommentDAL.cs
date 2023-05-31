@@ -12,13 +12,13 @@ namespace ClassLibrary.DatabaseClasses
         void LoadComments(CommentAdministration myManager, int pageNumber, int pageSize, bool hasMoreRows);
         void AddCommentExercise(Comment c, int userId, int exId);
         void DeleteComment(Comment c);
-        void EditComment(Comment c, string title, string description, int rating);
+        void EditComment(Comment c, string description, int rating);
         int GetExerciseId(string nameEx, int exId);
         int GetUserId(string username, int userId);
         int GetCardioId(string nameCardio, int cId);
         void AddCommentCardio(Comment c, int userId, int cId);
-        void GetExerciseComments(int exercise_id, CommentAdministration myManager);
-        void GetUserComments(int user_id, CommentAdministration myManager);
+        void GetExerciseComments(int exercise_id, CommentAdministration myManager, int pageNumber, int pageSize, bool hasMoreRows);
+        void GetUserComments(int user_id, CommentAdministration myManager, int pageNumber, int pageSize, bool hasMoreRows);
         Comment GetComment(string title, Comment c);
         int GetCommentsByRating(int rating);
     }

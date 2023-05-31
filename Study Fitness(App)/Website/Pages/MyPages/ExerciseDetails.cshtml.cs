@@ -28,7 +28,7 @@ namespace Website.Pages.MyPages
             myComments = new CommentAdministration(comments);
             int id = 0;
             int exId = comments.GetExerciseId(selectedEx.Name, id);
-            comments.GetExerciseComments(exId, myComments);
+            comments.GetExerciseComments(exId, myComments, currentPage, pageSize, hasRows);
         }
 
     }

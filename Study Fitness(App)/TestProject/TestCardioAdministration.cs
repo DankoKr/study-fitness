@@ -84,11 +84,11 @@ namespace TestProject
 			CardioAdministration myManager;
 			ICardioDAL testCardioDAL = new TestCardioDAL();
 			myManager = new CardioAdministration(testCardioDAL);
-			myManager.CreateCardio("Cardio1", 200, "Beginner", "picture1");
-			Cardio oldCardio = myManager.GetCardio("Cardio1");
+			myManager.CreateCardio("Cardio",200, "Beginner", "picture1");
+			Cardio oldCardio = myManager.GetCardio("Cardio");
 
 			//Act		
-			myManager.EditCardioData(oldCardio, "Cardio1", 100, "Intermediate", "newPicture");
+			myManager.EditCardioData(oldCardio, 100, "Intermediate", "newPicture");
 
 
 			//Assert

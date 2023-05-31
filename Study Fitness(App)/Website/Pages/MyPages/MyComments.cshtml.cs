@@ -14,6 +14,9 @@ namespace Website.Pages.MyPages
     {
         public CommentAdministration myComments;
         ICommentDAL comments = new CommentDAL();
+        private int currentPage = 1;
+        private const int pageSize = 8;
+        private bool hasRows;
         public void OnGet()
         {
             if (HttpContext.Session.GetString("Username") != null)
@@ -22,7 +25,7 @@ namespace Website.Pages.MyPages
                 string nameUser = HttpContext.Session.GetString("Username");
                 int userId = comments.GetUserId(nameUser, uId);
                 myComments = new CommentAdministration(comments);
-                comments.GetUserComments(userId, myComments);
+                comments.GetUserComments(userId, myComments, currentPage, pageSize, hasRows);
             }
         }
     }
