@@ -28,11 +28,10 @@ namespace ClassLibrary.TestDataClasses
             cardios.Remove(c);
         }
 
-        public void EditCardio(Cardio c, string newName, string newDifficulty, int newCalories, string newPicture)
+        public void EditCardio(Cardio c, string newDifficulty, int newCalories, string newPicture)
         {
-            if (newCalories > 0 && newName != "")
+            if (newCalories > 0)
             {
-                c.Name = newName;
                 c.Calories = newCalories;
                 c.Difficulty = newDifficulty;
                 c.PictureURL = newPicture;

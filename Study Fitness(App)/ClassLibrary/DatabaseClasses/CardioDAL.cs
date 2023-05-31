@@ -99,13 +99,13 @@ namespace ClassLibrary.DatabaseClasses
 			}
 			finally { _connection.Close(); }
 		}
-        public void EditCardio(Cardio c, string name, string difficulty, int calories, string picture) 
+        public void EditCardio(Cardio c, string difficulty, int calories, string picture) 
         {
 			SqlConnection _connection = db.GetSqlConnection();
 
 			try
 			{
-				string sql = $"UPDATE Cardio\r\nSET name = '{name}', difficulty = '{difficulty}', calories = {calories}, pictureURL = '{picture}'\r\nWHERE name = '{c.Name}';";
+				string sql = $"UPDATE Cardio\r\nSET difficulty = '{difficulty}', calories = {calories}, pictureURL = '{picture}'\r\nWHERE name = '{c.Name}';";
 				SqlCommand cmd = new SqlCommand(sql, _connection);
 				_connection.Open();
 				cmd.ExecuteNonQuery();

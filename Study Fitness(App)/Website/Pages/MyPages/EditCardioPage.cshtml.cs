@@ -19,7 +19,6 @@ namespace Website.Pages.MyPages
 		ICardioDAL db = new CardioDAL();
 
         public string? NewDifficulty { get; set; }
-        public string? NewName { get; set; }
         public int NewCalories{ get; set; }
         public string? NewPictureURL { get; set; }
         public string? SelectedName { get; set; }
@@ -36,7 +35,6 @@ namespace Website.Pages.MyPages
             SelectedName = Request.Query["name"];
             NewDifficulty = Request.Form["difficulty"];
             NewCalories = Convert.ToInt32(Request.Form["calories"]);
-            NewName = Request.Form["newname"];
             NewPictureURL = Request.Form["picture"];
 
 			myManager = new CardioAdministration(db);
@@ -44,13 +42,13 @@ namespace Website.Pages.MyPages
 			selectedC = myManager.GetCardio(SelectedName);
 
 
-            if (NewCalories == 0 || NewName == "" || NewPictureURL == "")
+            if (NewCalories == 0 ||  NewPictureURL == "")
             {
                 Error = "Missing or wrong data!";
                 return;
             }
 
-            myManager.EditCardioData(selectedC, NewName, NewCalories, NewDifficulty, NewPictureURL);
+            myManager.EditCardioData(selectedC, NewCalories, NewDifficulty, NewPictureURL);
 
             Response.Redirect("/MyPages/CardioTable");
         }

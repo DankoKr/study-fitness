@@ -61,7 +61,6 @@ namespace Study_Fitness_App_
         private void ClearFields()
         {
             txbName.Text = "";
-            txbNewName.Text = "";
             txbPictureURL.Text = "";
             txbNewPicURL.Text = "";
             numCalories.Text = "0";
@@ -209,7 +208,7 @@ namespace Study_Fitness_App_
             Cardio selectedC = (Cardio)obj;
             if (myManager.IsPictureValid(txbNewPicURL.Text))
             {
-                myManager.EditCardioData(selectedC, txbNewName.Text, Convert.ToInt32(numNewCalories.Text), cmbNewDifficulty.Text, txbNewPicURL.Text);
+                myManager.EditCardioData(selectedC, Convert.ToInt32(numNewCalories.Text), cmbNewDifficulty.Text, txbNewPicURL.Text);
                 ClearFields();
                 ShowData();
                 MessageBox.Show("Cardio changed!", "Done");

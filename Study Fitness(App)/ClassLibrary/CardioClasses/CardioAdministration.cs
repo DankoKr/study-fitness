@@ -76,12 +76,11 @@ namespace ClassLibrary.CardioClasses
             return myCardios.ToArray();
         }
 
-        public void EditCardioData(Cardio c, string newName, int newCalories, string newDifficulty, string newPicture)
+        public void EditCardioData(Cardio c, int newCalories, string newDifficulty, string newPicture)
         {
-            if (newCalories > 0 && newName != "")
+            if (newCalories > 0)
             {
-                db.EditCardio(c, newName, newDifficulty, newCalories, newPicture);
-                c.Name = newName;
+                db.EditCardio(c, newDifficulty, newCalories, newPicture);
                 c.Calories = newCalories;
                 c.Difficulty = newDifficulty;
                 c.PictureURL = newPicture;

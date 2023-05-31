@@ -41,7 +41,6 @@
             cmbNewDifficulty = new ComboBox();
             numNewCalories = new NumericUpDown();
             txbNewPicURL = new TextBox();
-            txbNewName = new TextBox();
             btnNext = new Button();
             btnPrevious = new Button();
             txbSearchBar = new TextBox();
@@ -147,7 +146,6 @@
             tabEdit.Controls.Add(cmbNewDifficulty);
             tabEdit.Controls.Add(numNewCalories);
             tabEdit.Controls.Add(txbNewPicURL);
-            tabEdit.Controls.Add(txbNewName);
             tabEdit.Location = new Point(4, 29);
             tabEdit.Name = "tabEdit";
             tabEdit.Padding = new Padding(3);
@@ -160,7 +158,7 @@
             // 
             btnEdit.BackColor = Color.Violet;
             btnEdit.FlatStyle = FlatStyle.Flat;
-            btnEdit.Location = new Point(191, 83);
+            btnEdit.Location = new Point(182, 92);
             btnEdit.Name = "btnEdit";
             btnEdit.Size = new Size(69, 44);
             btnEdit.TabIndex = 19;
@@ -171,7 +169,7 @@
             // lblNewDifficulty
             // 
             lblNewDifficulty.AutoSize = true;
-            lblNewDifficulty.Location = new Point(26, 60);
+            lblNewDifficulty.Location = new Point(29, 30);
             lblNewDifficulty.Name = "lblNewDifficulty";
             lblNewDifficulty.Size = new Size(110, 20);
             lblNewDifficulty.TabIndex = 18;
@@ -180,7 +178,7 @@
             // lblNewCalories
             // 
             lblNewCalories.AutoSize = true;
-            lblNewCalories.Location = new Point(29, 114);
+            lblNewCalories.Location = new Point(29, 92);
             lblNewCalories.Name = "lblNewCalories";
             lblNewCalories.Size = new Size(103, 20);
             lblNewCalories.TabIndex = 17;
@@ -190,14 +188,14 @@
             // 
             cmbNewDifficulty.FormattingEnabled = true;
             cmbNewDifficulty.Items.AddRange(new object[] { "Beginner", "Intermediate", "Advanced", "Athlete" });
-            cmbNewDifficulty.Location = new Point(29, 83);
+            cmbNewDifficulty.Location = new Point(32, 53);
             cmbNewDifficulty.Name = "cmbNewDifficulty";
             cmbNewDifficulty.Size = new Size(125, 28);
             cmbNewDifficulty.TabIndex = 16;
             // 
             // numNewCalories
             // 
-            numNewCalories.Location = new Point(29, 137);
+            numNewCalories.Location = new Point(32, 115);
             numNewCalories.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             numNewCalories.Name = "numNewCalories";
             numNewCalories.Size = new Size(125, 27);
@@ -205,19 +203,11 @@
             // 
             // txbNewPicURL
             // 
-            txbNewPicURL.Location = new Point(29, 170);
+            txbNewPicURL.Location = new Point(32, 163);
             txbNewPicURL.Name = "txbNewPicURL";
             txbNewPicURL.PlaceholderText = "PictureURL";
             txbNewPicURL.Size = new Size(125, 27);
             txbNewPicURL.TabIndex = 14;
-            // 
-            // txbNewName
-            // 
-            txbNewName.Location = new Point(26, 30);
-            txbNewName.Name = "txbNewName";
-            txbNewName.PlaceholderText = "Name";
-            txbNewName.Size = new Size(125, 27);
-            txbNewName.TabIndex = 13;
             // 
             // btnNext
             // 
@@ -430,7 +420,6 @@
         private ComboBox cmbNewDifficulty;
         private NumericUpDown numNewCalories;
         private TextBox txbNewPicURL;
-        private TextBox txbNewName;
         private Button btnDelete;
     }
 }
