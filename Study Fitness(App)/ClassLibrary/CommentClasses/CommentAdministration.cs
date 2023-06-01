@@ -18,19 +18,25 @@ namespace ClassLibrary.CommentClasses
 
         public void AddCommentExercise(Comment c, int userId, int exId)
         {
-            if (c.Rating < 6 && c.Rating >= 0 && c.Title != "")
+            if (ValidateCommentIsUnique(c.Title))
             {
-                comments.Add(c);
-                db.AddCommentExercise(c, userId, exId);
+                if (c.Rating < 6 && c.Rating >= 0 && c.Title != "")
+                {
+                    comments.Add(c);
+                    db.AddCommentExercise(c, userId, exId);
+                }
             }
         }
 
         public void AddCommentCardio(Comment c, int userId, int cId)
         {
-            if (c.Rating < 6 && c.Rating >= 0 && c.Title != "")
+            if (ValidateCommentIsUnique(c.Title)) 
             {
-                comments.Add(c);
-                db.AddCommentCardio(c, userId, cId);
+                if (c.Rating < 6 && c.Rating >= 0 && c.Title != "")
+                {
+                    comments.Add(c);
+                    db.AddCommentCardio(c, userId, cId);
+                }
             }
         }
 
@@ -76,6 +82,10 @@ namespace ClassLibrary.CommentClasses
         {
             int exId = db.GetCardioId(nameCardio, id);
             return exId;
+        }
+        public bool ValidateCommentIsUnique(string name)
+        {
+            return db.IsUnique(name);
         }
     }
 }

@@ -94,7 +94,7 @@ namespace Study_Fitness_App_
             string specialty = txbSpecialty.Text;
             string picture = txbPicture.Text;
 
-            if (myManager.isExerciseTypeValid(typeEx))
+            if (myManager.IsExerciseTypeValid(typeEx))
             {
                 if (myManager.ValidateExerciseIsUnique(nameEx))
                 {

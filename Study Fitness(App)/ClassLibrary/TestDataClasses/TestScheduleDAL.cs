@@ -62,15 +62,28 @@ namespace ClassLibrary.TestDataClasses
             return false;
         }
 
+        public bool IsUnique(string name)
+        {
+            bool isUnique = true;
+            foreach (Schedule s in schedules)
+            {
+                if (s.Title == name)
+                {
+                    return isUnique = false;
+                }
+            }
+            return isUnique;
+        }
+
         public void LoadSchedules(ScheduleAdministration myManager, int pageNumber, int pageSize, bool hasMoreRows)
         {
             string date = "2023-08-12";
-            Schedule s1 = new Schedule("Title", Convert.ToDateTime(date), "desc", 1);
-            Schedule s2 = new Schedule("Title2", Convert.ToDateTime(date), "desc2", 2);
+            Schedule s1 = new Schedule("Test11111111", Convert.ToDateTime(date), "desc", 1);
+            Schedule s2 = new Schedule("Test22222222", Convert.ToDateTime(date), "desc2", 2);
             schedules.Add(s1);
             schedules.Add(s2);
-            myManager.AddSchedule(s1);
-            myManager.AddSchedule(s2);
+            myManager.AddExistingSchedule(s1);
+            myManager.AddExistingSchedule(s2);
         }
 
         public void LoadSchedulesTrainerLevel(int level, ScheduleAdministration myManager, int pageNumber, int pageSize, bool hasMoreRows)

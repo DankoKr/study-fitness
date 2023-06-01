@@ -189,8 +189,6 @@ namespace ClassLibrary.DatabaseClasses
                 _connection.Close();
             }
         }
-
-
         public void LoadTrainerSchedules(int trainer_id, List<Schedule> schedules, int pageNumber, int pageSize, bool hasMoreRows)
         {
             SqlConnection _connection = db.GetSqlConnection();
@@ -243,8 +241,6 @@ namespace ClassLibrary.DatabaseClasses
                 _connection.Close();
             }
         }
-
-
         public void RemoveSchedule(Schedule s)
         {
             SqlConnection _connection = db.GetSqlConnection();
@@ -356,7 +352,6 @@ namespace ClassLibrary.DatabaseClasses
             }
         }
 
-
         public int GetTotalUserBookings(string name)
         {
             SqlConnection _connection = db.GetSqlConnection();
@@ -463,6 +458,32 @@ namespace ClassLibrary.DatabaseClasses
                 throw new Exception(sqlEx.Message);
             }
             finally { _connection.Close(); }
+        }
+        public bool IsUnique(string name)
+        {
+            SqlConnection _connection = db.GetSqlConnection();
+            bool isUnique = true;
+
+            try
+            {
+                string sql = $"SELECT title FROM Schedule WHERE title = '{name}'";
+                SqlCommand cmd = new SqlCommand(sql, _connection);
+                _connection.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    return isUnique = false;
+                }
+
+                dr.Close();
+            }
+            catch (SqlException sqlEx)
+            {
+
+                throw new Exception(sqlEx.Message);
+            }
+            finally { _connection.Close(); }
+            return isUnique;
         }
     }
 }

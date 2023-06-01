@@ -2,6 +2,7 @@
 using ClassLibrary.CommentClasses;
 using ClassLibrary.DatabaseClasses;
 using ClassLibrary.ExerciseClasses;
+using ClassLibrary.ScheduleClasses;
 using ClassLibrary.UserClasses;
 using System;
 using System.Collections.Generic;
@@ -125,6 +126,19 @@ namespace ClassLibrary.TestDataClasses
                 }
             }
             return userId;
+        }
+
+        public bool IsUnique(string name)
+        {
+            bool isUnique = true;
+            foreach (Comment c in comments) 
+            {
+                if (c.Title == name)
+                {
+                    return isUnique = false;
+                }
+            }
+            return isUnique;
         }
 
         public void LoadComments(CommentAdministration myManager, int pageNumber, int pageSize, bool hasMoreRows)

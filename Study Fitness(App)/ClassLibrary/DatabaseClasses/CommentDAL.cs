@@ -248,7 +248,6 @@ namespace ClassLibrary.DatabaseClasses
                 _connection.Close();
             }
         }
-
         public void GetUserComments(int user_id, CommentAdministration myManager, int pageNumber, int pageSize, bool hasMoreRows)
         {
             SqlConnection _connection = db.GetSqlConnection();
@@ -286,7 +285,6 @@ namespace ClassLibrary.DatabaseClasses
                 _connection.Close();
             }
         }
-
         public Comment GetComment(string title, Comment c) 
         {
             SqlConnection _connection = db.GetSqlConnection();
@@ -339,6 +337,32 @@ namespace ClassLibrary.DatabaseClasses
             }
             finally { _connection.Close(); }
             return numComments;
+        }
+        public bool IsUnique(string name)
+        {
+            SqlConnection _connection = db.GetSqlConnection();
+            bool isUnique = true;
+
+            try
+            {
+                string sql = $"SELECT name FROM Comment WHERE name = '{name}'";
+                SqlCommand cmd = new SqlCommand(sql, _connection);
+                _connection.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    return isUnique = false;
+                }
+
+                dr.Close();
+            }
+            catch (SqlException sqlEx)
+            {
+
+                throw new Exception(sqlEx.Message);
+            }
+            finally { _connection.Close(); }
+            return isUnique;
         }
     }
 }

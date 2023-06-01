@@ -74,7 +74,7 @@ namespace ClassLibrary.ExerciseClasses
 
         public bool ValidateExerciseIsUnique(string name)
         {
-            return ExerciseDAL.isUnique(name);
+            return ExerciseDAL.IsUnique(name);
         }
 
         public bool ExerciseExists(string exName)
@@ -195,7 +195,7 @@ namespace ClassLibrary.ExerciseClasses
                 return false;
             }
         }
-        public bool isExerciseTypeValid(string type) 
+        public bool IsExerciseTypeValid(string type) 
         {
             if (type != "Arm" && type != "Chest" && type != "Shoulder" && type != "Back" && type != "Core" && type != "Legs" && type != "Neck")
             {

@@ -21,7 +21,7 @@ namespace TestProject
 			IScheduleDAL testScheduleDAL = new TestScheduleDAL();
 			myManager = new ScheduleAdministration(testScheduleDAL);
 
-            //Act		(currently 2 cardios in fake database)	
+            //Act		(currently 2 schedules in fake database)	
             testScheduleDAL.LoadSchedules(myManager, currentPage, pageSize, hasRows);
 
 			//Assert

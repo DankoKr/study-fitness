@@ -35,7 +35,7 @@ namespace ClassLibrary.CardioClasses
 
         public bool ValidateCardioIsUnique(string name)
         {
-            return db.isUnique(name);
+            return db.IsUnique(name);
         }
 
         public bool CardioExists(string name)

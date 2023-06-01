@@ -44,7 +44,7 @@ namespace ClassLibrary.TestDataClasses
             return id;
         }
 
-        public bool isUnique(string name)
+        public bool IsUnique(string name)
         {
             bool isUnique = true;
             foreach (Exercise ex in myExercises)

@@ -19,10 +19,13 @@ namespace ClassLibrary.ScheduleClasses
 
         public void AddSchedule(Schedule s) 
         {
-            if (s.TrainerId != 0 && s.Title != "")
+            if (ValidateScheduleIsUnique(s.Title)) 
             {
-                schedules.Add(s);
-                db.AddSchedule(s);
+                if (s.TrainerId != 0 && s.Title != "")
+                {
+                    schedules.Add(s);
+                    db.AddSchedule(s);
+                }
             }
         }
 
@@ -94,6 +97,10 @@ namespace ClassLibrary.ScheduleClasses
         {
             bool isDublicated = db.IsDublicatedScheduleTime(date, username);
             return isDublicated;
+        }
+        public bool ValidateScheduleIsUnique(string name)
+        {
+            return db.IsUnique(name);
         }
     }
 }

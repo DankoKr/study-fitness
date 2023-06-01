@@ -147,7 +147,7 @@ namespace ClassLibrary.DatabaseClasses
             return cId;
         }
 
-        public bool isUnique(string name)
+        public bool IsUnique(string name)
         {
             SqlConnection _connection = db.GetSqlConnection();
             bool isUnique = true;

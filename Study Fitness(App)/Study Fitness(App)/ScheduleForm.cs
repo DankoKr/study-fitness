@@ -78,18 +78,21 @@ namespace Study_Fitness_App_
 
         private void btnCreateSchedule_Click(object sender, EventArgs e)
         {
-            if (txbTitle.Text != "")
+            if (myManager.ValidateScheduleIsUnique(txbTitle.Text))
             {
-                myManager.AddSchedule(new Schedule(txbTitle.Text, Convert.ToDateTime(dateTime.Value), txbDescription.Text, Convert.ToInt32(cmbTrainer.Text)));
-                ClearFields();
-                ShowData();
-                MessageBox.Show("Schedule created!", "Done");
+                if (txbTitle.Text != "")
+                {
+                    myManager.AddSchedule(new Schedule(txbTitle.Text, Convert.ToDateTime(dateTime.Value), txbDescription.Text, Convert.ToInt32(cmbTrainer.Text)));
+                    ClearFields();
+                    ShowData();
+                    MessageBox.Show("Schedule created!", "Done");
+                }
+                else
+                {
+                    MessageBox.Show("Incorrect data!", "ERROR");
+                }
             }
-            else
-            {
-                MessageBox.Show("Incorrect data!", "ERROR");
-            }
-
+            else { MessageBox.Show("Dublication on title data!", "ERROR"); }
         }
 
         private void btnShowTrainerSchedules_Click(object sender, EventArgs e)
@@ -148,7 +151,7 @@ namespace Study_Fitness_App_
 
             object obj = lbSchedule.SelectedItem;
             Schedule selectedS = (Schedule)obj;
-            DateTime time = Convert.ToDateTime(dateTime.Value);
+            DateTime time = Convert.ToDateTime(dateNewTime.Value);
             myManager.EditSchedule(selectedS, Convert.ToInt32(cmbNewTrainer.Text), time, txbNewDescription.Text);
             ShowData();
             MessageBox.Show("Schedule changed!", "Done");

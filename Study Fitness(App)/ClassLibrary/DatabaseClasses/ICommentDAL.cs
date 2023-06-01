@@ -21,5 +21,6 @@ namespace ClassLibrary.DatabaseClasses
         void GetUserComments(int user_id, CommentAdministration myManager, int pageNumber, int pageSize, bool hasMoreRows);
         Comment GetComment(string title, Comment c);
         int GetCommentsByRating(int rating);
+        bool IsUnique(string name);
     }
 }

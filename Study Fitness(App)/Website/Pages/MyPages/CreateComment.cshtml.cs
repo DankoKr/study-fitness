@@ -44,12 +44,16 @@ namespace Website.Pages.MyPages
             if (ModelState.IsValid)
             {
                 myManager = new CommentAdministration(db);
-                if (comment != null)
+                if (comment != null && myManager.ValidateCommentIsUnique(comment.Title))
                 {
                     Message = "Thank you for your feedback!";
                     exerciseId = (int)TempData["ExerciseId"];
                     userId = (int)TempData["UserId"];
                     myManager.AddCommentExercise(comment, userId, exerciseId);
+                }
+                else
+                {
+                    Message = "Dublication of title!";
                 }
             }
             return Page();

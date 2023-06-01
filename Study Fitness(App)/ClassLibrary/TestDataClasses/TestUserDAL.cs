@@ -72,7 +72,7 @@ namespace ClassLibrary.TestDataClasses
             }
         }
 
-        public bool isUnique(string name)
+        public bool IsUnique(string name)
         {
             bool isUnique = true;
             foreach (User u in myUsers)

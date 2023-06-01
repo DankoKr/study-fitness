@@ -23,5 +23,6 @@ namespace ClassLibrary.DatabaseClasses
         bool IsDublicatedScheduleTime(DateTime date, string username);
         Dictionary<string, int> GetTrainersBookings();
         int NumBookedSchedulesPerTrainerLevel(int level);
+        bool IsUnique(string name);
     }
 }

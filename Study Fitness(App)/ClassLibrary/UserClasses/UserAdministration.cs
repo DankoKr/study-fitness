@@ -40,7 +40,7 @@ namespace ClassLibrary.UserClasses
 
         public bool ValidateUserIsUnique(string username)
         {
-            return db.isUnique(username);
+            return db.IsUnique(username);
         }
 
         public User GetUser(string username)
