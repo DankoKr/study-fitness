@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace ClassLibrary.TestDataClasses
 {
@@ -14,7 +15,13 @@ namespace ClassLibrary.TestDataClasses
         List<User> myUsers = new List<User>();
         public bool CheckLogin(string username, string password)
         {
-            throw new NotImplementedException();
+            bool isLogged = false;
+            foreach (User u in myUsers)
+            {
+                if (u.Username == username && u.Password == password)
+                { return isLogged = true; }
+            }
+            return isLogged;
         }
 
         public bool CreateUser(User u)
@@ -40,11 +47,17 @@ namespace ClassLibrary.TestDataClasses
 
         public string GetSalt(string username)
         {
-            throw new NotImplementedException();
+            string salt = "";
+            foreach (User u in myUsers)
+            {
+                if (u.Username == username)
+                { return salt = "fdsjhf"; }
+            }
+            return salt;
         }
 
         public void GetTrainerNameByPoints(int points, List<string> trainers)
-        {
+        {//Cannot implement because this method requires real database
             throw new NotImplementedException();
         }
 
@@ -84,12 +97,28 @@ namespace ClassLibrary.TestDataClasses
 
         public void SetTrainerLevel(string trainerUsername, int level)
         {
-            throw new NotImplementedException();
+            int trainerLevel = 0;
+            foreach (User u in myUsers)
+            {
+                if (u.Username == trainerUsername)
+                {
+                    trainerLevel = level;
+                }
+            }
         }
 
         public int UserId(string username)
         {
-            throw new NotImplementedException();
+            int id = 0;
+            foreach (User u in myUsers)
+            {
+                id++;
+                if (u.Username == username)
+                {
+                    return id;
+                }
+            }
+            return id;
         }
     }
 }

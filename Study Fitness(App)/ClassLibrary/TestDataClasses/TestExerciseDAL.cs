@@ -32,7 +32,16 @@ namespace ClassLibrary.TestDataClasses
 
         public int ExerciseId(string name)
         {
-            throw new NotImplementedException();
+            int id = 0;
+            foreach (Exercise ex in myExercises)
+            {
+                id++;
+                if (ex.Name == name)
+                {
+                    return id;
+                }
+            }
+            return id;
         }
 
         public bool isUnique(string name)

@@ -20,7 +20,16 @@ namespace ClassLibrary.TestDataClasses
 
         public int CardioId(string name)
         {
-            throw new NotImplementedException();
+            int id = 0;
+            foreach (Cardio c in cardios)
+            {
+                id++;
+                if (c.Name == name)
+                {
+                    return id;
+                }
+            }
+            return id;
         }
 
         public void DeleteCardio(Cardio c)

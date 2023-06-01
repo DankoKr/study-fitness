@@ -1,5 +1,6 @@
 ﻿using ClassLibrary.DatabaseClasses;
 using ClassLibrary.ScheduleClasses;
+using ClassLibrary.UserClasses;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
@@ -13,6 +14,7 @@ namespace ClassLibrary.TestDataClasses
     public class TestScheduleDAL : IScheduleDAL
     {
         List<Schedule> schedules = new List<Schedule>();
+        List<User> users = new List<User>();
         public void AddSchedule(Schedule s)
         {
             schedules.Add(s);
@@ -37,7 +39,7 @@ namespace ClassLibrary.TestDataClasses
         }
 
         public Dictionary<string, int> GetTrainersBookings()
-        {
+        {//Cannot implement because this method requires real database
             throw new NotImplementedException();
         }
 
@@ -72,22 +74,30 @@ namespace ClassLibrary.TestDataClasses
         }
 
         public void LoadSchedulesTrainerLevel(int level, ScheduleAdministration myManager, int pageNumber, int pageSize, bool hasMoreRows)
-        {
+        {//Cannot implement because this method requires real database
             throw new NotImplementedException();
         }
 
         public void LoadTrainerSchedules(int trainer_id, List<Schedule> s, int pageNumber, int pageSize, bool hasMoreRows)
-        {
+        {//Cannot implement because this method requires real database
             throw new NotImplementedException();
         }
 
         public void LoadUserBookings(ScheduleAdministration myManager, string username, int pageNumber, int pageSize, bool hasMoreRows)
         {
-            throw new NotImplementedException();
+            foreach (User u in users)
+            {
+                if (u.Username == username)
+                {
+                    string date = "2023-08-12";
+                    myManager.AddExistingSchedule(new Schedule("FakeBooking", Convert.ToDateTime(date), "desc2", 2));
+                }
+            }
+
         }
 
         public int NumBookedSchedulesPerTrainerLevel(int level)
-        {
+        {//Cannot implement because this method requires real database
             throw new NotImplementedException();
         }
 

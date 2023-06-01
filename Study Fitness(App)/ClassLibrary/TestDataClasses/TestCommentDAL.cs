@@ -1,16 +1,23 @@
-﻿using ClassLibrary.CommentClasses;
+﻿using ClassLibrary.CardioClasses;
+using ClassLibrary.CommentClasses;
 using ClassLibrary.DatabaseClasses;
+using ClassLibrary.ExerciseClasses;
+using ClassLibrary.UserClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace ClassLibrary.TestDataClasses
 {
     public class TestCommentDAL : ICommentDAL
     {
         List<Comment> comments = new List<Comment>();
+        List<User> users = new List<User>();
+        List<Exercise> exercises = new List<Exercise>();
+        List<Cardio> cardios = new List<Cardio>();
 
         public void AddCommentCardio(Comment c, int userId, int cId)
         {
@@ -35,7 +42,15 @@ namespace ClassLibrary.TestDataClasses
 
         public int GetCardioId(string nameCardio, int cId)
         {
-            throw new NotImplementedException();
+            foreach (Cardio c in cardios)
+            {
+                cId++;
+                if (c.Name == nameCardio)
+                {
+                    return cId;
+                }
+            }
+            return cId;
         }
 
         public Comment GetComment(string title)
@@ -65,27 +80,51 @@ namespace ClassLibrary.TestDataClasses
 
         public int GetCommentsByRating(int rating)
         {
-            throw new NotImplementedException();
+            int counter = 0;
+            foreach (Comment comment in comments)
+            {
+                if (rating == comment.Rating)
+                {
+                    counter++;
+                }
+            }
+            return counter;
         }
 
         public void GetExerciseComments(int exercise_id, CommentAdministration myManager, int pageNumber, int pageSize, bool hasMoreRows)
-        {
+        {//Cannot implement because this method requires real database
             throw new NotImplementedException();
         }
 
         public int GetExerciseId(string nameEx, int exId)
         {
-            throw new NotImplementedException();
+            foreach (Exercise ex in exercises)
+            {
+                exId++;
+                if (ex.Name == nameEx)
+                {
+                    return exId;
+                }
+            }
+            return exId;
         }
 
         public void GetUserComments(int user_id, CommentAdministration myManager, int pageNumber, int pageSize, bool hasMoreRows)
-        {
+        {//Cannot implement because this method requires real database
             throw new NotImplementedException();
         }
 
         public int GetUserId(string username, int userId)
         {
-            throw new NotImplementedException();
+            foreach (User u in users)
+            {
+                userId++;
+                if (u.Username == username)
+                {
+                    return userId;
+                }
+            }
+            return userId;
         }
 
         public void LoadComments(CommentAdministration myManager, int pageNumber, int pageSize, bool hasMoreRows)
