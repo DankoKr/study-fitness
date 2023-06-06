@@ -26,6 +26,10 @@ namespace Website.Pages.MyPages
 
         public void OnGet()
         {
+            if (FileName != null)
+            {
+                PictureUrl = FileName;
+            }
         }
 
         public void OnPost()
