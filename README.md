@@ -2,7 +2,7 @@
 
 
 ## Description
-Study Fitness is my second year individual project which I had to do at Fontys (end of 2023). It is an application that consists of 4 parts:
+Study Fitness is my second year individual project which I had to do at Fontys (beginning of 2023). It is an application that consists of 4 parts:
 - Windows forms (Study Fitness (App) folder)
 - Website  (Website folder)
 - Test cases  (TestProject folder)
